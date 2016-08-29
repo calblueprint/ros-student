@@ -31,6 +31,10 @@ group :development, :test do
   gem 'better_errors'
   gem 'quiet_assets'
   gem 'factory_girl_rails'
+  gem "spring"
+  gem "spring-commands-rspec"
+  gem "guard-rubocop"
+  gem "guard-livereload"
   gem 'rspec-rails'
   gem 'rubocop'
 end
@@ -41,9 +45,13 @@ group :development do
 end
 
 group :test do
+  gem "shoulda-matchers", require: false
+  gem "database_cleaner"
   gem 'capybara', '~> 2.4.4'
   gem 'guard-rspec'
   gem 'launchy'
+
+  gem "codeclimate-test-reporter", require: nil
 end
 
 group :production, :staging do
