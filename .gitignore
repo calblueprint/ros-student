@@ -1,0 +1,22 @@
+# Keep .keep files
+!.keep
+
+# Ignore DS_STORE
+*.DS_Store
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+public/tmp/
+
+# Ignore the database config
+config/database.yml
+
+# Ignore application env variables
+config/application.yml
+
+# Ignore pem files
+*.pem
