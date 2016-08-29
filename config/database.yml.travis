@@ -1,0 +1,7 @@
+test:
+  adapter:   postgresql
+  encoding:  utf8
+  username:  postgres
+  pool:      2
+  timeout:   5000
+  database:  travis_ci_test

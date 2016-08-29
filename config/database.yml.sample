@@ -1,0 +1,13 @@
+# Change the development/test database, username, and password as necessary
+
+development: &default
+  adapter:   postgresql
+  encoding:  utf8
+  username:  your-name
+  pool:      2
+  timeout:   5000
+  database:  ros-development
+
+test:
+  <<: *default
+  database: ros-test
