@@ -19,7 +19,7 @@ gem 'react-rails', '1.5.0'
 # Client
 gem 'font-awesome-rails', '4.5.0'
 gem 'jquery-rails', '3.1.4'
-gem 'sass-rails', '5.0.4'
+gem 'sass-rails', '5.0.6'
 gem 'uglifier', '2.7.2'
 
 group :development, :staging, :test do
