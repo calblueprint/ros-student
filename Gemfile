@@ -14,7 +14,10 @@ gem 'kaminari', '0.16.3'
 gem 'nokogiri'
 gem 'pg', '0.18.4'
 gem 'pg_search', '1.0.5'
-gem 'react-rails', '1.5.0'
+
+# React
+gem 'react-rails', '1.4.0'
+gem 'react-router-rails', '0.13.3.2'
 
 # Client
 gem 'font-awesome-rails', '4.5.0'
