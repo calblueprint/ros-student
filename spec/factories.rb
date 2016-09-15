@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :admin do
-    
+  factory :student do
+
   end
-  factory :user do
-    
+  factory :admin do
+
   end
 end

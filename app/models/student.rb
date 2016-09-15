@@ -1,8 +1,10 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: students
 #
 #  id                     :integer          not null, primary key
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
@@ -13,11 +15,9 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
 #
 
-class User < ActiveRecord::Base
+class Student < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
