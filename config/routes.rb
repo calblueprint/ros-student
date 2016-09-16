@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+  root 'pages#home'
+
+  # Login flow
+  get '/sign_up', to: 'pages#home'
+  get '/students/forgot_password', to: 'pages#home'
+  get '/admins/sign_in', to: 'pages#home'
+  get '/admins/forgot_password', to: 'pages#home'
+
+  devise_for :students
+  devise_for :admins
+
+  resources :students
+  resources :admins
+
+  namespace :api, defaults: { format: :json } do
+
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
