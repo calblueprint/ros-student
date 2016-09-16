@@ -19,6 +19,9 @@ gem 'pg_search', '1.0.5'
 gem 'react-rails', '1.4.0'
 gem 'react-router-rails', '0.13.3.2'
 
+# Building javascript
+gem 'webpack-rails', '0.9.9'
+
 # Client
 gem 'font-awesome-rails', '4.5.0'
 gem 'jquery-rails', '3.1.4'
@@ -45,6 +48,7 @@ end
 group :development do
   gem 'annotate'
   gem 'letter_opener'
+  gem 'foreman'
 end
 
 group :test do
