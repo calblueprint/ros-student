@@ -1,0 +1,13 @@
+{
+  "name": "webpack-rails-example",
+  "version": "0.0.1",
+  "license": "MIT",
+  "dependencies": {
+    "babel-loader": "6.2.5",
+    "react": "15.3.1",
+    "react-router": "2.8.1",
+    "stats-webpack-plugin": "^0.2.1",
+    "webpack": "^1.9.11",
+    "webpack-dev-server": "^1.9.0"
+  }
+}
