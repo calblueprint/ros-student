@@ -1,4 +1,7 @@
-const Link = ReactRouter.Link
+import React from 'react'
+import Link from 'react-router'
+
+import ForgotPasswordForm from './ForgotPasswordForm'
 
 class AdminForgotPasswordPage extends React.Component {
   render() {
@@ -10,3 +13,5 @@ class AdminForgotPasswordPage extends React.Component {
     )
   }
 }
+
+export default AdminForgotPasswordPage

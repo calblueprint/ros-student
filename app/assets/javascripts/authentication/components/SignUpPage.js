@@ -1,3 +1,7 @@
+import React from 'react'
+
+import Form from '../../shared/components/Form'
+
 class SignUpPage extends React.Component {
   render() {
     return (
@@ -34,3 +38,5 @@ class SignUpPage extends React.Component {
     )
   }
 }
+
+export default SignUpPage

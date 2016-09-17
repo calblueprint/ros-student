@@ -1,3 +1,5 @@
+import React from 'react'
+
 class StudentDashboard extends React.Component {
   render() {
     return (
@@ -5,3 +7,5 @@ class StudentDashboard extends React.Component {
     )
   }
 }
+
+export default StudentDashboard

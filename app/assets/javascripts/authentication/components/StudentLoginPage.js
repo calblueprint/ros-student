@@ -1,3 +1,7 @@
+import React from 'react'
+
+import LoginForm from './LoginForm'
+
 class StudentLoginPage extends React.Component {
   render() {
     return (
@@ -8,3 +12,5 @@ class StudentLoginPage extends React.Component {
     )
   }
 }
+
+export default StudentLoginPage

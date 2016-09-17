@@ -2,6 +2,10 @@
 <html>
 <head>
   <title>RosStudent</title>
+  <% if Rails.env.development? %>
+    <script src="http://localhost:3808/webpack-dev-server.js"></script>
+  <% end %>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>

@@ -1,4 +1,8 @@
-class ForgotPasswordPage extends React.Component {
+import React from 'react'
+
+import Form from '../../shared/components/Form'
+
+class ForgotPasswordForm extends React.Component {
   render() {
     return (
       <div>
@@ -28,3 +32,5 @@ class ForgotPasswordPage extends React.Component {
     )
   }
 }
+
+export default ForgotPasswordForm

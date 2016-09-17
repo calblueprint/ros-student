@@ -1,3 +1,7 @@
+import React from 'react'
+
+import { getCSRFFieldName, getCSRFToken } from '../../utils/form_helpers'
+
 class Form extends React.Component {
   render () {
     return (
@@ -12,8 +16,8 @@ class Form extends React.Component {
 
         <input
           type='hidden'
-          name={FormHelpers.getCSRFFieldName()}
-          value={FormHelpers.getCSRFToken()} />
+          name={getCSRFFieldName()}
+          value={getCSRFToken()} />
 
         {this.props.children}
       </form>
@@ -25,5 +29,7 @@ Form.defaultProps = {
   class: '',
   id: '',
   action: 'post',
-  method: ''
+  method: '',
 }
+
+export default Form
