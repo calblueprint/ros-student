@@ -1,3 +1,7 @@
+import React from 'react'
+
+import Form from '../../shared/components/Form'
+
 class LoginForm extends React.Component {
   render() {
     return(
@@ -48,3 +52,4 @@ class LoginForm extends React.Component {
   }
 }
 
+export default LoginForm

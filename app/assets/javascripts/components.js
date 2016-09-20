@@ -1,2 +1,2 @@
-//= require_tree ./utils
-//= require_tree ./components
+//= require_tree ./bundle
+

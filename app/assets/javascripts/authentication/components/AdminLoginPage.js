@@ -1,4 +1,7 @@
-const Link = ReactRouter.Link
+import React from 'react'
+import Link from 'react-router'
+
+import LoginForm from './LoginForm'
 
 class AdminLoginPage extends React.Component {
   render() {
@@ -6,8 +9,9 @@ class AdminLoginPage extends React.Component {
       <div>
         <h1>Admin Login Page!</h1>
         <LoginForm userType='admin' action='/admins/sign_in' />
-
       </div>
     )
   }
 }
+
+export default AdminLoginPage

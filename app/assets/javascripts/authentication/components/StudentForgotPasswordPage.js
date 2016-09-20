@@ -1,3 +1,7 @@
+import React from 'react'
+
+import ForgotPasswordForm from './ForgotPasswordForm'
+
 class StudentForgotPasswordPage extends React.Component {
   render() {
     return (
@@ -8,3 +12,5 @@ class StudentForgotPasswordPage extends React.Component {
     )
   }
 }
+
+export default StudentForgotPasswordPage
