@@ -18,7 +18,6 @@ class LoginForm extends React.Component {
             id='user_email'
             autoFocus='autofocus'
             type='email'
-            value=''
             name={`${this.props.userType}[email]`}
           />
         </div>

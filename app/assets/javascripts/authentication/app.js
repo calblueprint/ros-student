@@ -8,20 +8,12 @@ import AdminLoginPage from './components/AdminLoginPage'
 import StudentForgotPasswordPage from './components/StudentForgotPasswordPage'
 import AdminForgotPasswordPage from './components/AdminForgotPasswordPage'
 
-const App = ({ children }) => (
-  <div>
-    {children}
-  </div>
-)
-
 render((
   <Router history={browserHistory}>
-    <Route path='/' name='StudentLoginPage' component={App}>
-      <IndexRoute component={StudentLoginPage} />
-      <Route path='sign_up' name='SignUpPage' component={SignUpPage} />
-      <Route path='admins/sign_in' name='AdminLoginPage' component={AdminLoginPage} />
-      <Route path='admins/forgot_password' name='StudentForgotPasswordPage' component={StudentForgotPasswordPage} />
-      <Route path='students/forgot_password' name='AdminForgotPasswordPage' component={AdminForgotPasswordPage} />
-    </Route>
+    <Route path='/' name='StudentLoginPage' component={StudentLoginPage} />
+    <Route path='/sign_up' name='SignUpPage' component={SignUpPage} />
+    <Route path='/admins/sign_in' name='AdminLoginPage' component={AdminLoginPage} />
+    <Route path='/admins/forgot_password' name='StudentForgotPasswordPage' component={StudentForgotPasswordPage} />
+    <Route path='/students/forgot_password' name='AdminForgotPasswordPage' component={AdminForgotPasswordPage} />
   </Router>
 ), document.getElementById('main_container'))

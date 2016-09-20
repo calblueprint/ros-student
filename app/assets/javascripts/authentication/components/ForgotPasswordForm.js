@@ -6,7 +6,6 @@ class ForgotPasswordForm extends React.Component {
   render() {
     return (
       <div>
-        <h1>Forgot Password?</h1>
         <Form
           className='forgot_password_form'
           id='forgot_password_form'

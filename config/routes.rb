@@ -13,6 +13,14 @@ Rails.application.routes.draw do
   resources :students
   resources :admins
 
+  namespace :students do
+
+  end
+
+  namespace :admins do
+
+  end
+
   namespace :api, defaults: { format: :json } do
 
   end
