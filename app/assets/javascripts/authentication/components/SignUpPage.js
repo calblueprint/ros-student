@@ -15,7 +15,7 @@ class SignUpPage extends React.Component {
 
           <div className="field">
             <label htmlFor="student_email">Email</label><br />
-            <input autoFocus="autofocus" type="email" value="" name="student[email]" id="student_email" />
+            <input autoFocus="autofocus" type="email" name="student[email]" id="student_email" />
           </div>
 
           <div className="field">

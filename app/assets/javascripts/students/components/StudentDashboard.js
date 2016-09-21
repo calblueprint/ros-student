@@ -3,7 +3,10 @@ import React from 'react'
 class StudentDashboard extends React.Component {
   render() {
     return (
-      <h1>Student Homepage</h1>
+      <div>
+        <h1>Student Homepage</h1>
+        <a href='/students/sign_out' data-method="delete">Sign Out</a>
+      </div>
     )
   }
 }

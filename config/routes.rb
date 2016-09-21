@@ -2,27 +2,25 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   # Login flow
-  get '/sign_up', to: 'pages#home'
+  get '/students/sign_up', to: 'pages#home'
   get '/students/forgot_password', to: 'pages#home'
   get '/admins/sign_in', to: 'pages#home'
   get '/admins/forgot_password', to: 'pages#home'
 
-  devise_for :students
-  devise_for :admins
+  get '/dashboard', to: 'pages#dashboard'
 
-  resources :students
-  resources :admins
+  devise_for :students, skip: [:registrations]
+  devise_for :admins, skip: [:registrations]
 
-  namespace :students do
-
+  scope module: 'students' do
+    resources :students
   end
 
-  namespace :admins do
-
+  scope module: 'admins' do
+    resources :admins, only: [:edit, :update]
   end
 
   namespace :api, defaults: { format: :json } do
-
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -11,8 +11,8 @@ import AdminForgotPasswordPage from './components/AdminForgotPasswordPage'
 render((
   <Router history={browserHistory}>
     <Route path='/' name='StudentLoginPage' component={StudentLoginPage} />
-    <Route path='/sign_up' name='SignUpPage' component={SignUpPage} />
-    <Route path='/admins/sign_in' name='AdminLoginPage' component={AdminLoginPage} />
+    <Route path='/students/sign_up' name='SignUpPage' component={SignUpPage} />
+    <Route path='/admins/login' name='AdminLoginPage' component={AdminLoginPage} />
     <Route path='/admins/forgot_password' name='StudentForgotPasswordPage' component={StudentForgotPasswordPage} />
     <Route path='/students/forgot_password' name='AdminForgotPasswordPage' component={AdminForgotPasswordPage} />
   </Router>

@@ -1,0 +1,4 @@
+<% if current_admin %>
+<% elsif current_student %>
+  <%= javascript_include_tag *webpack_asset_paths("students") %>
+<% end %>
