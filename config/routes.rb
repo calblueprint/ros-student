@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   # Login flow
+  get '/students/sign_in', to: redirect('/')
   get '/students/sign_up', to: 'pages#home'
   get '/students/forgot_password', to: 'pages#home'
   get '/admins/sign_in', to: 'pages#home'

@@ -1,6 +1,7 @@
 class DeviseFailure < Devise::FailureApp
   def redirect_url
-    root_path
+    admin_session_path == attempted_path ? admin_session_path
+                                         : root_path
   end
 
   def respond

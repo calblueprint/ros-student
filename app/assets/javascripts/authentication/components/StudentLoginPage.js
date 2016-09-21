@@ -9,7 +9,7 @@ class StudentLoginPage extends React.Component {
     return (
       <div>
         <h1>Student Login Page!</h1>
-        <LoginForm userType='student' action='/students/login' />
+        <LoginForm userType='student' action='/students/sign_in' />
         <Link to='/students/sign_up'>Sign up</Link>
         <Link to='/students/forgot_password'>Forgot password?</Link>
       </div>
