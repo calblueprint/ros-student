@@ -15,10 +15,6 @@ gem 'nokogiri'
 gem 'pg', '0.18.4'
 gem 'pg_search', '1.0.5'
 
-# React
-gem 'react-rails', '1.4.0'
-gem 'react-router-rails', '0.13.3.2'
-
 # Building javascript
 gem 'webpack-rails', '0.9.9'
 
