@@ -54,6 +54,8 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.2.2)
     cancancan (1.15.0)
     capybara (2.4.4)
@@ -69,6 +71,7 @@ GEM
     concurrent-ruby (1.0.2)
     connection_pool (2.2.0)
     database_cleaner (1.5.3)
+    debug_inspector (0.0.2)
     devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -305,6 +308,7 @@ DEPENDENCIES
   annotate
   awesome_print
   better_errors
+  binding_of_caller
   cancancan (= 1.15.0)
   capybara (~> 2.4.4)
   codeclimate-test-reporter

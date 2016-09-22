@@ -35,6 +35,7 @@ end
 group :development, :test do
   gem 'awesome_print'
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'quiet_assets'
   gem 'factory_girl_rails'
   gem "spring"
