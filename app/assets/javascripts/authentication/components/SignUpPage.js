@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { RailsRoutes } from '../../shared/routes'
+
 import Form from '../../shared/components/Form'
 
 class SignUpPage extends React.Component {
@@ -10,7 +12,7 @@ class SignUpPage extends React.Component {
         <Form
           className='sign_up_form'
           id='sign_up_form'
-          action='/students'
+          action={RailsRoutes.studentsSignUpPath}
           method='post'>
 
           <div className='field'>
