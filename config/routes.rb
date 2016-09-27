@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
+    get '/ping', to: 'pages#ping'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
