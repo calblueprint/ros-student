@@ -49,6 +49,10 @@ var config = {
       test: /\.js$/,
       exclude: /(node_modules|bower_components)/,
       loader: 'babel',
+    },
+    {
+      test: /\.scss$/,
+      loaders: ["style", "css", "sass"]
     }]
   },
 };
