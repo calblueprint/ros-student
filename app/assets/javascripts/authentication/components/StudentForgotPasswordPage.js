@@ -12,7 +12,7 @@ class StudentForgotPasswordPage extends React.Component {
         <ForgotPasswordForm
           userType='student'
           action={RailsRoutes.studentForgotPasswordPath}
-          />
+        />
       </div>
     )
   }
