@@ -1,0 +1,2 @@
+class ErrorSerializer < BaseMessageSerializer
+end

@@ -1,11 +1,14 @@
 import React from 'react'
-import { RouteHandler, Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { RouteHandler, Router, Route, Redirect, browserHistory } from 'react-router'
 import { render } from 'react-dom'
+
+import { ReactRoutes } from '../shared/routes'
 
 import StudentDashboard from './components/StudentDashboard'
 
 render((
   <Router history={browserHistory}>
-    <Route path='/dashboard' component={StudentDashboard} />
+    <Route path={ReactRoutes.dashboardPath} component={StudentDashboard} />
+    <Redirect from={ReactRoutes.rootPath} to={ReactRoutes.dashboardPath} />
   </Router>
 ), document.getElementById('main_container'))

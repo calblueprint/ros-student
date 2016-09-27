@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'react-router'
 
+import { RailsRoutes } from '../../shared/routes'
+
 import ForgotPasswordForm from './ForgotPasswordForm'
 
 class AdminForgotPasswordPage extends React.Component {
@@ -8,7 +10,11 @@ class AdminForgotPasswordPage extends React.Component {
     return (
       <div>
         <h1>Forgot Password?</h1>
-        <ForgotPasswordForm userType='admin' path='/admins/password' />
+        <ForgotPasswordForm
+          userType='admin'
+          path={RailsRoutes.adminsForgotPasswordPath}
+        />
+        <Link to={ReactRoutes.adminsForgotPasswordPath}>Forgot password?</Link>
       </div>
     )
   }
