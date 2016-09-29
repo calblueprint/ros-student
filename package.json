@@ -2,11 +2,13 @@
   "name": "RoS",
   "version": "0.0.1",
   "license": "MIT",
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/calblueprint/ros-student"
+  },
   "dependencies": {
     "babel-core": "6.14.0",
     "babel-loader": "6.2.5",
-    "babel-preset-es2015": "6.14.0",
-    "babel-preset-react": "6.11.1",
     "css-loader": "0.25.0",
     "node-sass": "3.10.0",
     "react": "15.3.1",
@@ -18,5 +20,15 @@
     "webpack": "^1.9.11",
     "webpack-dev-middleware": "1.7.0",
     "webpack-dev-server": "^1.9.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "6.14.0",
+    "babel-preset-react": "6.11.1",
+    "jest": "15.1.1",
+    "jest-cli": "15.1.1",
+    "react-test-renderer": "15.3.1"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
