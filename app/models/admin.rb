@@ -15,6 +15,9 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  first_name             :string           default("")
+#  last_name              :string           default("")
+#  username               :string           default("")
 #
 
 class Admin < ActiveRecord::Base
