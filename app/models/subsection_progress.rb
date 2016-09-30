@@ -11,7 +11,12 @@
 #
 
 class SubsectionProgress < ActiveRecord::Base
+  after_initialize :set_defaults, unless: :persisted?
+
+  def set_defaults
+    self.completed = true if self.bool_field.nil?
+  end
+
   validates :student_id, presence: true
   validates :subsection_id, presence: true
-  validates :completed, presence: true
 end
