@@ -15,6 +15,9 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
+#  first_name             :string           default("")
+#  last_name              :string           default("")
+#  username               :string           default("")
 #
 
 require 'rails_helper'
