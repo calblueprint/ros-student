@@ -26,5 +26,11 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  EMAIL_PATTERN = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
   validates_confirmation_of :password
+  validates :email, format: { with: EMAIL_PATTERN }, uniqueness: true, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :username, uniqueness: true, presence: true
 end
