@@ -18,5 +18,8 @@
     "webpack": "^1.9.11",
     "webpack-dev-middleware": "1.7.0",
     "webpack-dev-server": "^1.9.0"
+  },
+  "scripts": {
+    "heroku-postbuild": "cp config/database.yml.heroku config/database.yml"
   }
 }
