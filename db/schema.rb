@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930233423) do
+ActiveRecord::Schema.define(version: 20160930234500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,12 @@ ActiveRecord::Schema.define(version: 20160930233423) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "sections", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "module_id"
+    t.integer  "position"
+  end
 
   create_table "code_courses", force: :cascade do |t|
     t.integer  "code_id"
@@ -87,5 +93,21 @@ ActiveRecord::Schema.define(version: 20160930233423) do
 
   add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
+
+  create_table "subsection_progresses", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "subsection_id"
+    t.boolean  "completed",     default: true
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "subsections", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "section_id"
+    t.integer  "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
