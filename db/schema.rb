@@ -29,6 +29,9 @@ ActiveRecord::Schema.define(version: 20160930234500) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "first_name",             default: ""
+    t.string   "last_name",              default: ""
+    t.string   "username",               default: ""
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -55,6 +58,9 @@ ActiveRecord::Schema.define(version: 20160930234500) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "first_name",             default: ""
+    t.string   "last_name",              default: ""
+    t.string   "username",               default: ""
   end
 
   add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
