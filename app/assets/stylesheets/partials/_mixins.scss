@@ -1,0 +1,35 @@
+// Places vendor prefixes before each property: value pair
+@mixin prefixer($property, $value) {
+  -webkit-#{$property}: $value;
+  -moz-#{$property}: $value;
+  -ms-#{$property}: $value;
+  -o-#{$property}: $value;
+  #{$property}: $value;
+}
+
+/* Use this for transforms
+ * Syntax example:
+ *    @include transform(translateY(-50px));
+ */
+@mixin transform($property: none) {
+  @include prefixer(transform, $property);
+}
+
+/* Use this for transforms
+ * Syntax example:
+ *    @include appearance(none);
+ */
+@mixin appearance($property: none) {
+  @include prefixer(appearance, $property);
+}
+
+// Clearfix for floats
+@mixin clearAfter {
+  &:after {
+    clear: both;
+    content: "";
+    height: 0;
+    visibility: hidden;
+    display: block;
+  }
+}

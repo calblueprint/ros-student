@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,900');
+
+body {
+  color: $black;
+  font-family: $font-stack;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+::selection {
+  background: $black-80;
+  color: white;
+}
+::-moz-selection {
+  background: $black-80;
+  color: white;
+}
+
+a,
+.link {
+  color: $blue;
+  font-size: inherit;
+  font-weight: $regular;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.link--no-underline:hover {
+  text-decoration: none;
+}

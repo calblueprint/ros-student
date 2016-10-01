@@ -2,8 +2,11 @@ import React from 'react'
 import { render } from 'react-dom'
 import { RouteHandler, Router, Route, IndexRoute, browserHistory } from 'react-router'
 
+import '../../stylesheets/bundle/authentication.scss'
+
 import { ReactRoutes } from '../shared/routes'
 
+import DesignPage from './components/DesignPage'
 import StudentLoginPage from './components/StudentLoginPage'
 import SignUpPage from './components/SignUpPage'
 import AdminLoginPage from './components/AdminLoginPage'
@@ -17,5 +20,6 @@ render((
     <Route path={ReactRoutes.adminsSignInPath()} name='AdminLoginPage' component={AdminLoginPage} />
     <Route path={ReactRoutes.studentsForgotPasswordPath()} name='StudentForgotPasswordPage' component={StudentForgotPasswordPage} />
     <Route path={ReactRoutes.adminsForgotPasswordPath()} name='AdminForgotPasswordPage' component={AdminForgotPasswordPage} />
+    <Route path={ReactRoutes.designPath()} name='DesignPage' component={DesignPage} />
   </Router>
 ), document.getElementById('main_container'))

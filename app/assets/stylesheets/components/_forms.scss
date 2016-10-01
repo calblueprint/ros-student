@@ -1,0 +1,27 @@
+.input {
+  @include appearance(none);
+  background: $white;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  color: $black;
+  font-family: $font-stack;
+  font-size: 14px;
+  font-weight: $regular;
+  outline: none;
+  padding: 8px 15px;
+  transition: 50ms;
+
+  &:focus {
+    border-color: $blue-40;
+  }
+}
+
+.input--lg {
+  font-size: 16px;
+  padding: 12px 18px;
+}
+
+.input--sm {
+  font-size: 12px;
+  padding: 5px 10px;
+}
