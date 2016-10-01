@@ -76,7 +76,4 @@ describe Admin do
       expect(admin.valid?).to be false
     end
   end
-
-
-
 end

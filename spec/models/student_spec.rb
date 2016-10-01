@@ -76,7 +76,4 @@ describe Student do
       expect(student.valid?).to be false
     end
   end
-
-
-
 end
