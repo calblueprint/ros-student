@@ -1,4 +1,4 @@
-production: &default
+development: &default
   adapter:   postgresql
   encoding:  utf8
   username:  heroku-buildpack
