@@ -1,0 +1,8 @@
+exports[`test changes the class when hovered 1`] = `
+<a
+  onClick={[Function bound handleClick]}
+  page="http://www.facebook.com"
+  style={Object {}}>
+  Facebook
+</a>
+`;
