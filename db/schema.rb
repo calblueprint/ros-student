@@ -41,8 +41,35 @@ ActiveRecord::Schema.define(version: 20160930234500) do
     t.string   "title"
     t.integer  "module_id"
     t.integer  "position"
+
+  create_table "code_courses", force: :cascade do |t|
+    t.integer  "code_id"
+    t.integer  "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "codes", force: :cascade do |t|
+    t.string   "key"
+    t.integer  "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "description"
+  end
+
+  create_table "student_courses", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "student_id"
+    t.boolean  "started",    default: true
+    t.boolean  "self_paced"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "students", force: :cascade do |t|
