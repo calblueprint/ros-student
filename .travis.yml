@@ -1,10 +1,15 @@
 language: ruby
 rvm:
   - 2.2.5
+node_js:
+  - 6
 before_script:
   - cp config/database.yml.travis config/database.yml
   - cp config/application.yml.travis config/application.yml
   - psql -c 'create database travis_ci_test;' -U postgres
+  - npm install -g jest
+  - npm install -g babel-jest
+  - npm install -g react-test-renderer
 script:
   - bundle exec rake --trace db:reset db:seed && bundle exec rspec spec
-  - npm install -g && npm test
+  - npm test
