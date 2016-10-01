@@ -7,3 +7,4 @@ before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
 script:
   - bundle exec rake --trace db:reset db:seed && bundle exec rspec spec
+  - npm install -g && npm test
