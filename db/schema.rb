@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160930234500) do
     t.string   "title"
     t.integer  "module_id"
     t.integer  "position"
+  end
 
   create_table "code_courses", force: :cascade do |t|
     t.integer  "code_id"
