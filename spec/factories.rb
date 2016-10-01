@@ -42,7 +42,7 @@ FactoryGirl.define do
     password 'password'
     first_name 'first'
     last_name 'last'
-    username 'firstlast'
+    username { FFaker::Internet.user_name }
   end
 
   factory :admin do
@@ -50,6 +50,7 @@ FactoryGirl.define do
     password 'password'
     first_name 'first'
     last_name 'last'
-    username 'firstlast'
+    username { FFaker::Internet.user_name }
   end
 end
+
