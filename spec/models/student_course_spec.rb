@@ -14,5 +14,18 @@
 require 'rails_helper'
 
 RSpec.describe StudentCourse, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'is invalid' do
+    let!(:student_course) { build :student_course }
+
+    it 'has no course_id' do
+      student_course.course_id = nil
+      expect(student_course.valid?).to be false
+    end
+
+    it 'has no student_id' do
+      student_course.student_id = nil
+      expect(student_course.valid?).to be false
+    end
+    
+  end
 end

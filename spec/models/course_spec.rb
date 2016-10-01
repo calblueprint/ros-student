@@ -12,5 +12,18 @@
 require 'rails_helper'
 
 RSpec.describe Course, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'is invalid' do
+    let!(:course) { build :course }
+
+    it 'has no name' do
+      course.name = nil
+      expect(course.valid?).to be false
+    end
+
+    it 'has no description' do
+      course.description = nil
+      expect(course.valid?).to be false
+    end
+    
+  end
 end

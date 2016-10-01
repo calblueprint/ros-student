@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: code_courses
+# Table name: code_course
 #
 #  id         :integer          not null, primary key
 #  code_id    :integer
@@ -12,5 +12,18 @@
 require 'rails_helper'
 
 RSpec.describe CodeCourse, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'is invalid' do
+    let!(:code_course) { build :code_course }
+
+    it 'has no code_id' do
+      code_course.code_id = nil
+      expect(code_course.valid?).to be false
+    end
+
+    it 'has no course_id' do
+      code_course.course_id = nil
+      expect(code_course.valid?).to be false
+    end
+    
+  end
 end
