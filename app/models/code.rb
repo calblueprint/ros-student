@@ -11,4 +11,5 @@
 
 class Code < ActiveRecord::Base
   validates :key, :student_id, presence: true
+  validates :key, uniqueness: true
 end

@@ -33,7 +33,7 @@ FactoryGirl.define do
   end
 
   factory :code do
-    key "MyString"
+    key { Devise.friendly_token(length = 8) }
     student_id 1
   end
 
