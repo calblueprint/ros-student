@@ -9,7 +9,7 @@ var StatsPlugin = require('stats-webpack-plugin');
 var devServerPort = 3808;
 
 // set NODE_ENV=production on the environment to add asset fingerprints
-var production = process.env.NODE_ENV === 'production';
+var production = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging';
 
 var config = {
   entry: {
