@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930234500) do
+ActiveRecord::Schema.define(version: 20161002072602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,13 +52,13 @@ ActiveRecord::Schema.define(version: 20160930234500) do
   end
 
   create_table "components", force: :cascade do |t|
-    t.integer  "type"
+    t.integer  "component_type"
     t.string   "audio_url"
     t.string   "content_url"
     t.integer  "position"
     t.integer  "subsection_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "courses", force: :cascade do |t|
