@@ -1,17 +1,19 @@
 # == Schema Information
 #
-# Table name: subsection_progresses
+# Table name: components
 #
 #  id            :integer          not null, primary key
-#  student_id    :integer
+#  type          :integer
+#  audio_url     :string
+#  content_url   :string
+#  position      :integer
 #  subsection_id :integer
-#  completed     :boolean          default(TRUE)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
 
 require 'rails_helper'
 
-RSpec.describe SubsectionProgress, type: :model do
+RSpec.describe Component, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
