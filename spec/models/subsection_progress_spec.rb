@@ -5,7 +5,7 @@
 #  id            :integer          not null, primary key
 #  student_id    :integer
 #  subsection_id :integer
-#  completed     :boolean
+#  completed     :boolean          default(TRUE)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #

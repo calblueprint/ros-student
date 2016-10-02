@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: code_course
+# Table name: code_courses
 #
 #  id         :integer          not null, primary key
 #  code_id    :integer
