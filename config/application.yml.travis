@@ -1,1 +1,3 @@
 # Any secret keys/env variables go here
+SECRET_KEY_BASE: ATESTKEY
+NODE_ENV: test
