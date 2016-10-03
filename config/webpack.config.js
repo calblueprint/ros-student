@@ -9,7 +9,7 @@ var StatsPlugin = require('stats-webpack-plugin');
 var devServerPort = 3808;
 
 // set NODE_ENV=production on the environment to add asset fingerprints
-var production = process.env.NODE_ENV === 'production';
+var production = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging';
 
 var config = {
   entry: {
@@ -23,8 +23,8 @@ var config = {
     // that all webpacked assets start with webpack/
 
     // must match config.webpack.output_dir
-    path: path.join(__dirname, '..', 'app', 'assets', 'javascripts',' bundle'),
-    publicPath: '/bundle/',
+    path: path.join(__dirname, '..', 'public', 'webpack'),
+    publicPath: '/webpack/',
 
     filename: production ? '[name]-[chunkhash].js' : '[name].js'
   },
