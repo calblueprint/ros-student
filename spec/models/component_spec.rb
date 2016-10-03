@@ -50,21 +50,15 @@ RSpec.describe Component, type: :model do
 
   describe 'should be valid' do
     describe 'if it has' do
-      let!(:component) do
-        build :component, component_type: 1,
-                          audio_url: 'audio_url_string',
-                          content_url: 'content_url_string',
-                          position: 2,
-                          subsection_id: 1
-      end
+      let!(:valid_component) { create :component, position: 3 }
 
       it 'all valid fields' do
-        expect(component.valid?).to be true
+        expect(valid_component.valid?).to be true
       end
 
       it 'no audio_url' do
-        component.audio_url = nil
-        expect(component.valid?).to be true
+        valid_component.audio_url = nil
+        expect(valid_component.valid?).to be true
       end
     end
   end
