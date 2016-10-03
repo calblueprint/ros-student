@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :component do
+    component_type 0
+    audio_url 'audio_url_string'
+    content_url 'content_url_string'
+    position 1
+    subsection_id 1
+  end
   factory :subsection_progress do
     student_id 1
     subsection_id 1

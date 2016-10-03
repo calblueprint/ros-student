@@ -16,8 +16,56 @@ require 'rails_helper'
 
 RSpec.describe Component, type: :model do
   describe 'should not be valid' do
+    describe 'if it has' do
+      let!(:component) { build :component }
+      let!(:invalid_component) { create :component, position: 2, subsection_id: 1}
+
+      it 'no component type' do
+        component.component_type = nil
+        expect(component.valid?).to be false
+      end
+
+      it 'no content url' do
+        component.content_url = nil
+        expect(component.valid?).to be false
+      end
+
+      it 'no position' do
+        component.position = nil
+        expect(component.valid?).to be false
+      end
+
+      it 'no subsection_id' do
+        component.subsection_id = nil
+        expect(component.valid?).to be false
+      end
+
+      it 'same position' do
+        component.subsection_id = invalid_component.subsection_id
+        component.position = invalid_component.position
+        expect(component.valid?).to be false
+      end
+    end
   end
 
   describe 'should be valid' do
+    describe 'if it has' do
+      let!(:component) do
+        build :component, component_type: 1,
+                          audio_url: 'audio_url_string',
+                          content_url: 'content_url_string',
+                          position: 2,
+                          subsection_id: 1
+      end
+
+      it 'all valid fields' do
+        expect(component.valid?).to be true
+      end
+
+      it 'no audio_url' do
+        component.audio_url = nil
+        expect(component.valid?).to be true
+      end
+    end
   end
 end
