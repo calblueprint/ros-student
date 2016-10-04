@@ -8,6 +8,12 @@ class ReactRoutes {
 
   // Shared Flow
   static get dashboardPath()              { return '/dashboard' }
+
+  // Admin Flow
+  static get updateAdminPath()            { return '/admins/:id/edit'}
+  static get updateStudentPath()          { return 'students/:id/edit' }
+
+  // Student Flow
 }
 
 
@@ -25,7 +31,11 @@ class RailsRoutes {
 }
 
 class APIRoutes {
+  // Students
+  static createRoute(route) { return `/api/${route}` }
 
+  static updateAdminPath(id)   { return APIRoutes.createRoute(`admins/${id}`) }
+  static updateStudentPath(id) { return APIRoutes.createRoute(`students/${id}`) }
 }
 
 export {
