@@ -14,15 +14,22 @@ Rails.application.routes.draw do
   devise_for :admins, skip: [:registrations]
 
   scope module: 'students' do
-    resources :students
+    resources :students, only: [:create]
   end
 
   scope module: 'admins' do
-    resources :admins, only: [:edit, :update]
   end
 
   namespace :api, defaults: { format: :json } do
     get '/ping', to: 'pages#ping'
+
+    scope module: 'admins' do
+      resources :admins, only: [:update]
+    end
+
+    scope module: 'students' do
+      resources :students, only: [:update]
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
