@@ -12,7 +12,7 @@ class Students::StudentsController < Students::BaseController
     end
   end
 
-  def show
+  def edit
   end
 
   def student_params

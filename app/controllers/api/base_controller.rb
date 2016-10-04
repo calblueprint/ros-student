@@ -1,5 +1,4 @@
 class Api::BaseController < ApplicationController
-
   def unauthorized_response
     error_response(nil, "Unauthorized", 403)
   end
