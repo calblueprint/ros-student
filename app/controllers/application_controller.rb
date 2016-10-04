@@ -16,14 +16,14 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_user
-    if signed_in?
+    if current_user
       dashboard_path
     else
       root_path
     end
   end
 
-  def signed_in?
+  def current_user
     current_admin || current_student
   end
 end

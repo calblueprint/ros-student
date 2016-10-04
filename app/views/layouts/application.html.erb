@@ -9,6 +9,14 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, 'modernizr' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <% if current_admin %>
+    <% set_meta_tags user: StudentSerializer.new(current_admin) %>
+  <% elsif current_student %>
+    <% set_meta_tags user: AdminSerializer.new(current_student) %>
+  <% end %>
+
+  <%= display_meta_tags %>
 </head>
 <body>
 

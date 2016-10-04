@@ -23,6 +23,7 @@ gem 'font-awesome-rails', '4.5.0'
 gem 'jquery-rails', '3.1.4'
 gem 'sass-rails', '5.0.6'
 gem 'uglifier', '2.7.2'
+gem 'meta-tags', '2.3.1'
 
 group :development, :staging, :test do
   gem 'ffaker'

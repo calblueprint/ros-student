@@ -144,6 +144,8 @@ GEM
     lumberjack (1.0.10)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    meta-tags (2.3.1)
+      actionpack (>= 3.2.0, <= 5.1.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -310,6 +312,7 @@ DEPENDENCIES
   kaminari (= 0.16.3)
   launchy
   letter_opener
+  meta-tags (= 2.3.1)
   nokogiri
   pg (= 0.18.4)
   pg_search (= 1.0.5)
