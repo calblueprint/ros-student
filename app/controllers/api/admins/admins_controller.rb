@@ -12,12 +12,14 @@ class Api::Admins::AdminsController < Api::Admins::BaseController
   private
 
   def update_params
-    params.require(:admin).permit(:username,
-                                  :email,
-                                  :first_name,
-                                  :last_name,
-                                  :password,
-                                  :current_password,
-                                  :password_confirmation)
+    params.require(:admin).permit(
+      :username,
+      :email,
+      :first_name,
+      :last_name,
+      :password,
+      :current_password,
+      :password_confirmation
+    )
   end
 end
