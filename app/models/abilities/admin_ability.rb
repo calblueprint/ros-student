@@ -1,8 +1,8 @@
-class StudentAbility
+class AdminAbility
   include CanCan::Ability
 
-  def initialize(student)
-    student ||= Student.new
+  def initialize(admin)
+    admin ||= Admin.new
 
     can [
       :index,
@@ -10,6 +10,6 @@ class StudentAbility
       :create,
       :update,
       :destroy,
-    ], Student, id: student.id
+    ], Admin, id: admin.id
   end
 end

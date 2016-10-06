@@ -1,4 +1,4 @@
-class Admins::BaseController < ApplicationController
+class Api::Admins::BaseController < Api::BaseController
   before_filter :authenticate_admin!
 
   private

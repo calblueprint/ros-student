@@ -26,7 +26,4 @@ class ApplicationController < ActionController::Base
   def signed_in?
     current_admin || current_student
   end
-
-  def error_404
-  end
 end

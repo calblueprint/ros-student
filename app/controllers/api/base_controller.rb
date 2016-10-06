@@ -1,4 +1,13 @@
 class Api::BaseController < ApplicationController
+  protect_from_forgery with: :null_session
+
+  rescue_from CanCan::AccessDenied do |exception|
+    unauthorized_response
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    not_found_response
+  end
 
   def unauthorized_response
     error_response(nil, "Unauthorized", 403)

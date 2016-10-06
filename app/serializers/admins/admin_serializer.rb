@@ -1,0 +1,2 @@
+class AdminSerializer < BaseAdminSerializer
+end

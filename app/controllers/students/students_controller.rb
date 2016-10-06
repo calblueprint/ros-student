@@ -12,10 +12,17 @@ class Students::StudentsController < Students::BaseController
     end
   end
 
-  def show
+  def edit
   end
 
   def student_params
-    params.require(:student).permit(:email, :password, :password_confirmation)
+    params.require(:student).permit(
+      :email,
+      :username,
+      :first_name,
+      :last_name,
+      :password,
+      :password_confirmation
+    )
   end
 end
