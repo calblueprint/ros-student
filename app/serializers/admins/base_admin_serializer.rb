@@ -1,5 +1,5 @@
 class BaseAdminSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id,
              :email,
              :username,
              :first_name,
