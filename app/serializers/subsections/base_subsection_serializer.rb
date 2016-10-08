@@ -1,6 +1,6 @@
 class BaseSubsectionSerializer < ActiveModel::Serializer
   attributes :id,
              :title,
-             :subsection_id,
+             :section_id,
              :position
 end

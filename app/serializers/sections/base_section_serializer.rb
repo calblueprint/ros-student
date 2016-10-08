@@ -1,6 +1,6 @@
 class BaseSectionSerializer < ActiveModel::Serializer
   attributes :id,
              :title,
-             :module_id,
+             :course_id,
              :position
 end

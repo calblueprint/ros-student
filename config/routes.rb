@@ -23,14 +23,14 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     get '/ping', to: 'pages#ping'
 
-    resources :courses, only: [:create, :update, :destroy] do
-      resources :sections, only: [:create, :update, :destroy] do
-        resources :subsections, only: [:create, :update, :destroy]
-      end
-    end
-
     scope module: 'admins' do
       resources :admins, only: [:update]
+
+      resources :courses, only: [:create, :update, :destroy] do
+        resources :sections, only: [:create, :update, :destroy] do
+          resources :subsections, only: [:create, :update, :destroy]
+        end
+      end
     end
 
     scope module: 'students' do

@@ -1,4 +1,4 @@
-class Api::SectionsController < Api::BaseController
+class Api::Admins::SectionsController < Api::Admins::BaseController
   load_and_authorize_resource
 
   def create
@@ -30,7 +30,7 @@ class Api::SectionsController < Api::BaseController
   def section_params
     params.require(:section).permit(
       :title,
-      :module_id,
+      :course_id,
       :position
     )
   end

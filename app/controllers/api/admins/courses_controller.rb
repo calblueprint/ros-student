@@ -1,4 +1,4 @@
-class Api::CoursesController < Api::BaseController
+class Api::Admins::CoursesController < Api::Admins::BaseController
   load_and_authorize_resource
 
   def create
