@@ -25,6 +25,12 @@ Rails.application.routes.draw do
 
     scope module: 'admins' do
       resources :admins, only: [:update]
+
+      resources :courses, only: [:create, :update, :destroy] do
+        resources :sections, only: [:create, :update, :destroy] do
+          resources :subsections, only: [:create, :update, :destroy]
+        end
+      end
     end
 
     scope module: 'students' do
