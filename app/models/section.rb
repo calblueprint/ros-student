@@ -17,4 +17,8 @@ class Section < ActiveRecord::Base
 
   validates :course_id, uniqueness: true
   validates :position, uniqueness: true
+
+  has_many :subsections
+
+  belongs_to :course
 end

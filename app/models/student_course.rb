@@ -13,4 +13,7 @@
 
 class StudentCourse < ActiveRecord::Base
   validates :course_id, :student_id, presence: true
+
+  belongs_to :course
+  belongs_to :student
 end
