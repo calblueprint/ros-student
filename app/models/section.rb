@@ -12,9 +12,9 @@
 
 class Section < ActiveRecord::Base
   validates :title, presence: true
-  validates :module_id, presence: true
+  validates :course, presence: true
   validates :position, presence: true
 
-  validates :module_id, uniqueness: true
+  validates :course, uniqueness: true
   validates :position, uniqueness: true
 end

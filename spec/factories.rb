@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :component do
     component_type 0
     audio_url 'audio_url_string'
@@ -6,19 +7,22 @@ FactoryGirl.define do
     position 1
     subsection_id 1
   end
+
   factory :subsection_progress do
     student_id 1
     subsection_id 1
     completed true
   end
+
   factory :subsection do
     title 'MyString'
     section_id 1
     position 1
   end
+
   factory :section do
     title 'MyString'
-    module_id 1
+    course_id 1
     position 1
   end
 
