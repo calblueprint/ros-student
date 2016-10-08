@@ -1,0 +1,2 @@
+class CourseSerializer < BaseCourseSerializer
+end
