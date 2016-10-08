@@ -15,6 +15,5 @@ class Section < ActiveRecord::Base
   validates :course_id, presence: true
   validates :position, presence: true
 
-  validates :course_id, uniqueness: true
-  validates :position, uniqueness: true
+  validates :position, uniqueness: { scope: :course_id }
 end
