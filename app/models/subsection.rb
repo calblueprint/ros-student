@@ -16,4 +16,8 @@ class Subsection < ActiveRecord::Base
   validates :position, presence: true
 
   validates :position, uniqueness: { scope: :section_id }
+
+  belongs_to :section
+
+  has_many :components
 end

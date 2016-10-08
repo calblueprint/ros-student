@@ -11,4 +11,7 @@
 
 class CodeCourse < ActiveRecord::Base
   validates :code_id, :course_id, presence: true
+
+  belongs_to :code
+  belongs_to :course
 end

@@ -21,4 +21,6 @@ class Component < ActiveRecord::Base
   validates :subsection_id, presence: true
 
   validates :position, uniqueness: true
+
+  belongs_to :subsection
 end
