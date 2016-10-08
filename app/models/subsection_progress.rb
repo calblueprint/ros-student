@@ -13,4 +13,7 @@
 class SubsectionProgress < ActiveRecord::Base
   validates :student_id, presence: true
   validates :subsection_id, presence: true
+
+  belongs_to :student
+  belongs_to :subsection
 end

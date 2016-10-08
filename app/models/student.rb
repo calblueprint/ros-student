@@ -33,4 +33,12 @@ class Student < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :username, uniqueness: true, presence: true
+
+  has_one :code
+
+  has_many :student_courses
+  has_many :courses, through: :student_courses
+
+  has_many :subsection_progresses
+  has_many :subsections, through: :subsection_progresses
 end
