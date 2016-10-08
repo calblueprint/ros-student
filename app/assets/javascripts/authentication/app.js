@@ -12,10 +12,10 @@ import AdminForgotPasswordPage from './components/AdminForgotPasswordPage'
 
 render((
   <Router history={browserHistory}>
-    <Route path={ReactRoutes.rootPath} name='StudentLoginPage' component={StudentLoginPage} />
-    <Route path={ReactRoutes.studentsSignUpPath} name='SignUpPage' component={SignUpPage} />
-    <Route path={ReactRoutes.adminsSignInPath} name='AdminLoginPage' component={AdminLoginPage} />
-    <Route path={ReactRoutes.studentsForgotPasswordPath} name='StudentForgotPasswordPage' component={StudentForgotPasswordPage} />
-    <Route path={ReactRoutes.adminsForgotPasswordPath} name='AdminForgotPasswordPage' component={AdminForgotPasswordPage} />
+    <Route path={ReactRoutes.rootPath()} name='StudentLoginPage' component={StudentLoginPage} />
+    <Route path={ReactRoutes.studentsSignUpPath()} name='SignUpPage' component={SignUpPage} />
+    <Route path={ReactRoutes.adminsSignInPath()} name='AdminLoginPage' component={AdminLoginPage} />
+    <Route path={ReactRoutes.studentsForgotPasswordPath()} name='StudentForgotPasswordPage' component={StudentForgotPasswordPage} />
+    <Route path={ReactRoutes.adminsForgotPasswordPath()} name='AdminForgotPasswordPage' component={AdminForgotPasswordPage} />
   </Router>
 ), document.getElementById('main_container'))

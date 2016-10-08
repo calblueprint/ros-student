@@ -1,59 +1,102 @@
+import _ from 'underscore'
 import React from 'react'
 
+import { getUser } from '../../utils/user_helpers'
+import { APIRoutes } from '../../shared/routes'
+
+import Form from '../../shared/components/forms/Form'
+import Input from '../../shared/components/forms/Input'
+
 class UpdateStudentPage extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.id = this.props.routeParams.id
+    // Assume we're modifying only our user
+    this.user = getUser()
+
+    this.state = {
+      formFields: {
+        email: {
+          label: 'Email',
+          value: this.user.email,
+          onChange: _.bind(this.handleChange, this, 'email'),
+          error: '',
+        },
+        username: {
+          label: 'Username',
+          value: this.user.username,
+          onChange: _.bind(this.handleChange, this, 'username'),
+          error: '',
+        },
+        firstName: {
+          label: 'First Name',
+          value: this.user.first_name,
+          onChange: _.bind(this.handleChange, this, 'firstName'),
+          error: '',
+        },
+        lastName: {
+          label: 'Last Name',
+          value: this.user.last_name,
+          onChange: _.bind(this.handleChange, this, 'lastName'),
+          error: '',
+        },
+        newPassword: {
+          label: 'New Password',
+          value: '',
+          type: 'password',
+          onChange: _.bind(this.handleChange, this, 'newPassword'),
+          error: '',
+        },
+        confirmPassword: {
+          label: 'Confirm Password',
+          value: '',
+          type: 'password',
+          onChange: _.bind(this.handleChange, this, 'confirmPassword'),
+          error: '',
+        },
+        currentPassword: {
+          label: 'Current Password',
+          value: '',
+          type: 'password',
+          onChange: _.bind(this.handleChange, this, 'currentPassword'),
+          error: '',
+        },
+      }
+    }
+  }
+
+  updateUser(e) {
+    e.preventDefault()
+    console.log('clicked')
+    console.log(this.state)
+    const path = APIRoutes.updateStudentPath(this.id)
+  }
+
+  handleChange(attr, e) {
+    const formFields = this.state.formFields
+    formFields[attr].value = e.target.value
+    this.setState({ formFields: formFields })
+  }
+
+  renderFields() {
+    return (
+      _.pairs(this.state.formFields).map((values) => {
+        return <Input key={values[0]} {...values[1]} />
+      })
+    )
+  }
+
   render() {
+
     return (
       <div>
         <h1>Update Profile</h1>
-        <Form
-          className='update_form'
-          id='update_form'
-          action={RailsRoutes.studentsSignUpPath}
-          method='post'>
-
-          <div className='field'>
-            <label htmlFor='student_email'>Email</label><br />
-            <input autoFocus='autofocus' type='email' name='student[email]' id='student_email' />
-          </div>
-
-          <div className='field'>
-            <label htmlFor='student_username'>Username</label><br />
-            <input type='text' name='student[username]' id='student_username' />
-          </div>
-
-          <div className='field'>
-            <label htmlFor='student_first_name'>First Name</label><br />
-            <input type='text' name='student[first_name]' id='student_first_name' />
-          </div>
-
-          <div className='field'>
-            <label htmlFor='student_last_name'>Last Name</label><br />
-            <input type='text' name='student[last_name]' id='student_last_name' />
-          </div>
-
-          <div className='field'>
-            <label htmlFor='student_password'>New Password</label>
-            <em>(8 characters minimum)</em>
-            <br />
-            <input autoComplete='off' type='password' name='student[password]' id='student_password' />
-          </div>
-
-          <div className='field'>
-            <label htmlFor='student_password_confirmation'>Password confirmation</label><br />
-            <input autoComplete='off' type='password' name='student[password_confirmation]' id='student_password_confirmation' />
-          </div>
-
-          <div className='field'>
-            <label htmlFor='student_current_password'>Confirm Password</label>
-            <em></em>
-            <br />
-            <input autoComplete='off' type='password' name='student[current_password]' id='student_current_password' />
-          </div>
-
-
+        <Form>
+          {this.renderFields()}
 
           <div className='actions'>
-            <input type='submit' name='commit' value='Sign up' />
+            <input type='submit' name='commit' value='Update user' onClick={this.updateUser.bind(this)} />
           </div>
         </Form>
       </div>

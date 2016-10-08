@@ -8,7 +8,7 @@ import AdminDashboard from './components/AdminDashboard'
 
 render((
   <Router history={browserHistory}>
-    <Route path={ReactRoutes.dashboardPath} component={AdminDashboard} />
-    <Redirect from={ReactRoutes.rootPath} to={ReactRoutes.dashboardPath} />
+    <Route path={ReactRoutes.dashboardPath()} component={AdminDashboard} />
+    <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath} />
   </Router>
 ), document.getElementById('main_container'))
