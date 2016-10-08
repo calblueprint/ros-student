@@ -20,7 +20,6 @@ class Component < ActiveRecord::Base
   validates :position, presence: true
   validates :subsection_id, presence: true
 
-  validates :position, uniqueness: true
 
   belongs_to :subsection
 end

@@ -24,4 +24,8 @@ class Api::BaseController < ApplicationController
   def error_response(object, message = nil, status = nil)
     render json: Error.new(object, message), serializer: ErrorSerializer, status: status || 400
   end
+
+  def current_ability
+    @current_ability ||= ::Ability.new(current_student || current_admin)
+  end
 end

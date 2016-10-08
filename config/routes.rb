@@ -38,6 +38,17 @@ Rails.application.routes.draw do
     scope module: 'students' do
       resources :students, only: [:update]
     end
+
+    resources :courses, only: [:show, :index] do
+      member do
+        get :outline
+      end
+      resources :sections, only: [] do
+        resources :subsections, only: [] do
+          resources :components, only: [:show]
+        end
+      end
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
