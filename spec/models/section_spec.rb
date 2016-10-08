@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  title      :string
-#  module_id  :integer
+#  course_id  :integer
 #  position   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
