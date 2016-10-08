@@ -15,6 +15,5 @@ class Subsection < ActiveRecord::Base
   validates :section_id, presence: true
   validates :position, presence: true
 
-  validates :section_id, uniqueness: true
   validates :position, uniqueness: true
 end
