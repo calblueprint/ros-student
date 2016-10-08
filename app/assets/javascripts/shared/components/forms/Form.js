@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getCSRFFieldName, getCSRFToken } from '../../utils/form_helpers'
+import { getCSRFFieldName, getCSRFToken } from '../../../utils/form_helpers'
 
 class Form extends React.Component {
   render () {
