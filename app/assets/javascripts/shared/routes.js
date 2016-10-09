@@ -12,14 +12,14 @@ class ReactRoutes {
 
   // Admin Flow
   static updateAdminPath(id)          { return `/admins/${ReactRoutes.getId(id, 'id')}/edit`}
-  static updateStudentPath(id)        { return `/students/${ReactRoutes.getId(id, 'id')}/edit` }
 
   // Student Flow
+  static updateStudentPath(id)        { return `/students/${ReactRoutes.getId(id, 'id')}/edit` }
 }
 
 
 class RailsRoutes {
-  static adminsSignInPath() { '/admins/sign_in' }
+  static adminsSignInPath() { return '/admins/sign_in' }
   static studentsSignInPath() { return '/students/sign_in' }
 
   static adminsForgotPasswordPath() { '/admins/password' }

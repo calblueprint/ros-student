@@ -10,8 +10,8 @@ import { APIRoutes } from '../../shared/routes'
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
 
-class UpdateStudentPage extends React.Component {
-  constructor(props) {
+class UpdateAdminPage extends React.Component {
+    constructor(props) {
     super(props)
 
     this.id = this.props.routeParams.id
@@ -75,12 +75,12 @@ class UpdateStudentPage extends React.Component {
   updateUser(e) {
     e.preventDefault()
 
-    const path = APIRoutes.updateStudentPath(this.id)
-    const params = { student: getInputToParams(this.state.formFields) }
+    const path = APIRoutes.updateAdminPath(this.id)
+    const params = { admin: getInputToParams(this.state.formFields) }
 
     request.update(path, params, (response) => {
-      setUser(response.student)
-      this.user = response.student
+      setUser(response.admin)
+      this.user = response.admin
       this.setState(this.getUserFields())
     }, (error) => {
       console.log(error)
@@ -100,7 +100,6 @@ class UpdateStudentPage extends React.Component {
       })
     )
   }
-
   render() {
     return (
       <div>
@@ -117,4 +116,4 @@ class UpdateStudentPage extends React.Component {
   }
 }
 
-export default UpdateStudentPage
+export default UpdateAdminPage
