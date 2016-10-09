@@ -38,7 +38,7 @@ class Request {
     const request = this.initialize('POST', route);
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
-        if (request.status === 201 && resolve) {
+        if (request.status === 200 && resolve) {
           resolve(JSON.parse(request.response));
         } else if (reject) {
           reject(JSON.parse(request.response));
@@ -52,7 +52,7 @@ class Request {
     const request = this.initialize('PATCH', route);
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
-        if (request.status === 201 && resolve) {
+        if (request.status === 200 && resolve) {
           resolve(JSON.parse(request.response));
         } else if (reject) {
           reject(JSON.parse(request.response));

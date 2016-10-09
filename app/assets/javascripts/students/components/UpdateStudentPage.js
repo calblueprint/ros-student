@@ -1,8 +1,12 @@
 import _ from 'underscore'
 import React from 'react'
 
-import { getUser } from '../../utils/user_helpers'
+import request from '../../shared/requests/request'
+
+import { getUser, setUser } from '../../utils/user_helpers'
+import { getInputToParams } from '../../utils/form_helpers'
 import { APIRoutes } from '../../shared/routes'
+
 
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
@@ -14,8 +18,11 @@ class UpdateStudentPage extends React.Component {
     this.id = this.props.routeParams.id
     // Assume we're modifying only our user
     this.user = getUser()
+    this.state = this.getUserFields()
+  }
 
-    this.state = {
+  getUserFields() {
+    return {
       formFields: {
         email: {
           label: 'Email',
@@ -68,9 +75,17 @@ class UpdateStudentPage extends React.Component {
 
   updateUser(e) {
     e.preventDefault()
-    console.log('clicked')
-    console.log(this.state)
+
     const path = APIRoutes.updateStudentPath(this.id)
+    const params = { student: getInputToParams(this.state.formFields) }
+
+    request.update(path, params, (response) => {
+      setUser(response.student)
+      this.user = response.student
+      this.setState(this.getUserFields())
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   handleChange(attr, e) {

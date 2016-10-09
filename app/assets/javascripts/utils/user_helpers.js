@@ -4,7 +4,7 @@ function getUser() {
 }
 
 function setUser(user) {
-
+  document.querySelector('meta[name="user"]').setAttribute('content', JSON.stringify(user))
 }
 
 export {
