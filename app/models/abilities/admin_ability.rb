@@ -9,25 +9,12 @@ class AdminAbility
       :show,
       :create,
       :update,
-      :destroy
+      :destroy,
     ], Admin, id: admin.id
 
-    can [
-      :create,
-      :update,
-      :destroy
-    ], Course
-
-    can [
-      :create,
-      :update,
-      :destroy
-    ], Section
-
-    can [
-      :create,
-      :update,
-      :destroy
-    ], Subsection
+    can :manage, Course
+    can :manage, Section
+    can :manage, Subsection
+    can :manage, Component
   end
 end

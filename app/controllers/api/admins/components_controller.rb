@@ -1,8 +1,25 @@
 class Api::Admins::ComponentsController < Api::Admins::BaseController
-  load_and_authorize_resource
+  load_and_authorize_resource :subsection, only: :create
+  load_and_authorize_resource :component, through: :subsection, shallow: :true
+
+  def create
+    if @component.save
+      render json: @component, serializer: ComponentSerializer
+    else
+      error_response(@component)
+    end
+  end
 
   def update
-    if @component.update_with_password(update_params)
+    if @component.update(component_params)
+      render json: @component, serializer: ComponentSerializer
+    else
+      error_response(@component)
+    end
+  end
+
+  def destroy
+    if @component.destroy
       render json: @component, serializer: ComponentSerializer
     else
       error_response(@component)
@@ -11,15 +28,13 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
 
   private
 
-  def update_params
+  def component_params
     params.require(:component).permit(
       :component_type,
-      :email,
-      :first_name,
-      :last_name,
-      :password,
-      :current_password,
-      :password_confirmation
+      :audio_url,
+      :content_url,
+      :position,
+      :subsection_id,
     )
   end
 end

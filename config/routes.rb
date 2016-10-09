@@ -26,9 +26,11 @@ Rails.application.routes.draw do
     scope module: 'admins' do
       resources :admins, only: [:update]
 
-      resources :courses, only: [:create, :update, :destroy] do
+      resources :courses, only: [:create, :update, :destroy], shallow: true do
         resources :sections, only: [:create, :update, :destroy] do
-          resources :subsections, only: [:create, :update, :destroy]
+          resources :subsections, only: [:create, :update, :destroy] do
+            resources :components, only: [:create, :update, :destroy]
+          end
         end
       end
     end
