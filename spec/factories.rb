@@ -5,37 +5,37 @@ FactoryGirl.define do
     audio_url 'audio_url_string'
     content_url 'content_url_string'
     position 1
-    subsection_id 1
+    subsection
   end
 
   factory :subsection_progress do
-    student_id 1
-    subsection_id 1
+    student
+    subsection
     completed true
   end
 
   factory :subsection do
     title 'MyString'
-    section_id 1
+    section
     position 1
   end
 
   factory :section do
     title 'MyString'
-    course_id 1
+    course
     position 1
   end
 
   factory :student_course do
-    course_id 1
-    student_id 1
+    course
+    student
     started false
     self_paced false
   end
 
   factory :code_course do
-    code_id 1
-    course_id 1
+    code
+    course
   end
 
   factory :course do
@@ -64,4 +64,3 @@ FactoryGirl.define do
     username { FFaker::Internet.user_name }
   end
 end
-

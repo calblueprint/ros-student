@@ -13,11 +13,10 @@
 require 'rails_helper'
 
 RSpec.describe Section, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
-  describe 'is not valid' do
+  describe 'is not valid because it' do
     let!(:valid_section) { create :section }
     let!(:section) { build :section }
-    let!(:other_section) { build :section }
+    let!(:other_section) { create :section }
 
     it 'has no title' do
       section.title = nil
@@ -35,9 +34,9 @@ RSpec.describe Section, type: :model do
     end
 
     it 'is a duplicate position from the same course' do
-      other_section.course_id = section.course_id
-      other_section.position = section.position
-      expect(section.valid?).to be false
+      other_section.course_id = valid_section.course_id
+      other_section.position = valid_section.position
+      expect(other_section.valid?).to be false
     end
   end
 end
