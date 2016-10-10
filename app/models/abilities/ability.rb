@@ -1,7 +1,7 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(_user)
+  def initialize(user)
     can :manage, :all
   end
 end

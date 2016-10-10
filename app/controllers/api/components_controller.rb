@@ -1,4 +1,4 @@
-class Api::ComponentController < Api::BaseController
+class Api::ComponentsController < Api::BaseController
   load_and_authorize_resource
 
   def show

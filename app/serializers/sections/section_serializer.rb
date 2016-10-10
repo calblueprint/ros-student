@@ -1,3 +1,3 @@
-class SectionSerializer < BaseCourseSerializer
-  has_many :subsections, serializer: SubsectionSerializer
+class SectionSerializer < BaseSectionSerializer
+  has_many :subsections, each_serializer: SubsectionSerializer
 end

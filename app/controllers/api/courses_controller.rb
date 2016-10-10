@@ -5,4 +5,7 @@ class Api::CoursesController < Api::BaseController
     render json: @course, serializer: CourseSerializer
   end
 
+  def outline
+    render json: @course, serializer: CourseOutlineSerializer
+  end
 end

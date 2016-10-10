@@ -1,3 +1,3 @@
 class CourseSerializer < BaseCourseSerializer
-  has_many :sections, serializer: SectionSerializer
+  has_many :sections, each_serializer: SectionSerializer
 end
