@@ -16,6 +16,7 @@ var config = {
     students: './app/assets/javascripts/students/app.js',
     admins: './app/assets/javascripts/admins/app.js',
     authentication: './app/assets/javascripts/authentication/app.js',
+
   },
 
   output: {
