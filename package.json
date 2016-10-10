@@ -11,6 +11,7 @@
     "node-sass": "3.10.0",
     "react": "15.3.1",
     "react-dom": "15.3.1",
+    "react-motion": "0.4.5",
     "react-router": "2.8.1",
     "sass-loader": "4.0.2",
     "stats-webpack-plugin": "^0.2.1",
