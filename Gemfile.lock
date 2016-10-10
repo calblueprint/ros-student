@@ -308,6 +308,7 @@ DEPENDENCIES
   guard-rspec
   guard-rubocop
   has_scope (= 0.6.0)
+  http_parser.rb (~> 0.6.0)
   jquery-rails (= 3.1.4)
   kaminari (= 0.16.3)
   launchy
