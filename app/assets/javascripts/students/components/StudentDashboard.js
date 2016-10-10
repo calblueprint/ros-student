@@ -2,10 +2,9 @@ import React from 'react'
 import { Link } from 'react-router'
 
 import { getUser } from '../../utils/user_helpers'
-import { ReactRoutes } from '../../shared/routes'
+import { RailsRoutes, ReactRoutes } from '../../shared/routes'
 
 class StudentDashboard extends React.Component {
-
   render() {
     return (
       <div>
