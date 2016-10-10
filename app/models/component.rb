@@ -19,7 +19,7 @@ class Component < ActiveRecord::Base
   validates :content_url, presence: true
   validates :position, presence: true
   validates :subsection_id, presence: true
-
+  validates :position, uniqueness: { scope: :subsection_id }
 
   belongs_to :subsection
 end
