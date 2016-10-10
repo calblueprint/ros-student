@@ -1,6 +1,7 @@
 class CourseOutlineSerializer < ActiveModel::Serializer
   attributes :id,
-             :name
+             :name,
+             :description
 
   has_many :sections, each_serializer: SectionOutlineSerializer
 end
