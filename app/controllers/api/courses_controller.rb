@@ -8,4 +8,8 @@ class Api::CoursesController < Api::BaseController
   def outline
     render json: @course, serializer: CourseOutlineSerializer
   end
+
+  def index
+    render json: @courses, each_serializer: CourseListSerializer
+  end
 end
