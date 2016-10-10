@@ -1,6 +1,6 @@
 import _ from 'underscore'
 
-import { MAPPER } from '../shared/requests/serializer'
+import { SERIALIZER } from '../shared/requests/serializer'
 
 function getCSRFFieldName() {
   return document.querySelector('meta[name="csrf-param"]').content
@@ -12,7 +12,7 @@ function getCSRFToken() {
 
 function getInputToParams(formFields) {
   return _.reduce(formFields, function(result, val, key) {
-    key = MAPPER[key] || key;
+    key = SERIALIZER[key] || key;
     result[key] = val.value;
     return result;
   }, {})

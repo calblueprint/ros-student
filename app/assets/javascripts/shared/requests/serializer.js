@@ -1,4 +1,4 @@
-const MAPPER = {
+const SERIALIZER = {
   // User
   username: 'username',
   firstName: 'first_name',
@@ -8,4 +8,4 @@ const MAPPER = {
   currentPassword: 'current_password',
 }
 
-export { MAPPER }
+export { SERIALIZER }
