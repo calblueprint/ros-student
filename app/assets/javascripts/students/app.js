@@ -1,3 +1,4 @@
+import React from 'react'
 import { RouteHandler, Router, Route, Redirect, browserHistory } from 'react-router'
 import { render } from 'react-dom'
 

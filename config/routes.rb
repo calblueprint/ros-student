@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/students/:id/edit', to: 'pages#dashboard'
 
   # Course flow
+  resources :courses, only: [:show]
 
   devise_for :students, skip: [:registrations]
   devise_for :admins, skip: [:registrations]
