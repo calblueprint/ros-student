@@ -1,8 +1,6 @@
 language: ruby
 rvm:
   - 2.2.5
-before_install:
-  - rm -rf .bundle/
 before_script:
   - cp config/database.yml.travis config/database.yml
   - cp config/application.yml.travis config/application.yml
