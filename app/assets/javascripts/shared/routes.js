@@ -1,31 +1,45 @@
 class ReactRoutes {
+  static getId(id, name) { return id || `:${name}` }
   // Authentication Flow
-  static get rootPath()                   { return '/' }
-  static get studentsSignUpPath()         { return '/students/sign_up' }
-  static get adminsSignInPath()           { return '/admins/sign_in' }
-  static get adminsForgotPasswordPath()   { return '/admins/forgot_password' }
-  static get studentsForgotPasswordPath() { return '/students/forgot_password' }
+  static rootPath()                   { return '/' }
+  static studentsSignUpPath()         { return '/students/sign_up' }
+  static adminsSignInPath()           { return '/admins/sign_in' }
+  static adminsForgotPasswordPath()   { return '/admins/forgot_password' }
+  static studentsForgotPasswordPath() { return '/students/forgot_password' }
 
   // Shared Flow
-  static get dashboardPath()              { return '/dashboard' }
+  static dashboardPath()              { return '/dashboard' }
+
+  // Admin Flow
+  static updateAdminPath(id)          { return `/admins/${ReactRoutes.getId(id, 'id')}/edit`}
+
+  // Student Flow
+  static updateStudentPath(id)        { return `/students/${ReactRoutes.getId(id, 'id')}/edit` }
 }
 
 
 class RailsRoutes {
-  static get adminsSignInPath() { '/admins/sign_in' }
-  static get studentsSignInPath() { return '/students/sign_in' }
+  static adminsSignInPath() { return '/admins/sign_in' }
+  static studentsSignInPath() { return '/students/sign_in' }
 
-  static get adminsForgotPasswordPath() { '/admins/password' }
-  static get studentsForgotPasswordPath() { return '/students/password' }
+  static adminsForgotPasswordPath() { '/admins/password' }
+  static studentsForgotPasswordPath() { return '/students/password' }
 
-  static get studentsSignUpPath() { return '/students' }
+  static studentsSignUpPath() { return '/students' }
 
-  static get adminsSignOutPath() { return '/admins/sign_out' }
-  static get studentsSignOutPath() { return '/students/sign_out' }
+  static adminsSignOutPath() { return '/admins/sign_out' }
+  static studentsSignOutPath() { return '/students/sign_out' }
 }
 
 class APIRoutes {
+  // Students
+  static createRoute(route) { return `/api/${route}` }
 
+  static updateAdminPath(id)   { return APIRoutes.createRoute(`admins/${id}`) }
+  static updateStudentPath(id) { return APIRoutes.createRoute(`students/${id}`) }
+
+  static getAdminPath(id)      { return APIRoutes.createRoute(`admins/${id}`) }
+  static getStudentPath(id)    { return APIRoutes.createRoute(`students/${id}`) }
 }
 
 export {

@@ -10,9 +10,9 @@ class StudentLoginPage extends React.Component {
     return (
       <div>
         <h1>Student Login Page!</h1>
-        <LoginForm userType='student' action={RailsRoutes.studentsSignInPath} />
-        <Link to={ReactRoutes.studentsSignUpPath}>Sign up</Link>
-        <Link to={ReactRoutes.studentsForgotPasswordPath}>Forgot password?</Link>
+        <LoginForm userType='student' action={RailsRoutes.studentsSignInPath()} />
+        <Link to={ReactRoutes.studentsSignUpPath()}>Sign up</Link>
+        <Link to={ReactRoutes.studentsForgotPasswordPath()}>Forgot password?</Link>
       </div>
     )
   }

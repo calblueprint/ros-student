@@ -1,5 +1,3 @@
-const BASE_API = '/api'
-
 class Request {
   initialize(type, route, content='application/json') {
     const request = new XMLHttpRequest();
@@ -11,7 +9,7 @@ class Request {
   }
 
   delete(route, resolve, reject) {
-    const request = this.initialize('DELETE', `${BASE_API}/${route}`);
+    const request = this.initialize('DELETE', route);
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200 && resolve) {
@@ -25,7 +23,7 @@ class Request {
   }
 
   get(route, resolve, reject) {
-    const request = this.initialize('GET', `${BASE_API}/${route}`);
+    const request = this.initialize('GET', route);
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200 && resolve) {
@@ -37,10 +35,10 @@ class Request {
   }
 
   post(route, params, resolve, reject) {
-    const request = this.initialize('POST', `${BASE_API}/${route}`);
+    const request = this.initialize('POST', route);
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
-        if (request.status === 201 && resolve) {
+        if (request.status === 200 && resolve) {
           resolve(JSON.parse(request.response));
         } else if (reject) {
           reject(JSON.parse(request.response));
@@ -51,10 +49,10 @@ class Request {
   }
 
   update(route, params, resolve, reject) {
-    const request = this.initialize('PATCH', `${BASE_API}/${route}`);
+    const request = this.initialize('PATCH', route);
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
-        if (request.status === 201 && resolve) {
+        if (request.status === 200 && resolve) {
           resolve(JSON.parse(request.response));
         } else if (reject) {
           reject(JSON.parse(request.response));

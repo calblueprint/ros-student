@@ -2,7 +2,7 @@ import React from 'react'
 
 import { RailsRoutes } from '../../shared/routes'
 
-import Form from '../../shared/components/Form'
+import Form from '../../shared/components/forms/Form'
 
 class SignUpPage extends React.Component {
   render() {

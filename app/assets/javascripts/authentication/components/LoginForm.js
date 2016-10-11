@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Form from '../../shared/components/Form'
+import Form from '../../shared/components/forms/Form'
 
 class LoginForm extends React.Component {
   render() {

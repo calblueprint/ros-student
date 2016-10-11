@@ -10,10 +10,7 @@ class AdminLoginPage extends React.Component {
     return (
       <div>
         <h1>Admin Login Page!</h1>
-        <LoginForm
-          userType='admin'
-          action={RailsRoutes.adminsSignInPath}
-          />
+        <LoginForm userType='admin' action={RailsRoutes.adminsSignInPath()} />
       </div>
     )
   }

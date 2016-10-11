@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'pages#dashboard'
 
+  # Student Flow
+  get '/students/:id/edit', to: 'pages#dashboard'
+
   devise_for :students, skip: [:registrations]
   devise_for :admins, skip: [:registrations]
 
