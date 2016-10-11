@@ -6,6 +6,7 @@ class ReactRoutes {
   static adminsSignInPath()           { return '/admins/sign_in' }
   static adminsForgotPasswordPath()   { return '/admins/forgot_password' }
   static studentsForgotPasswordPath() { return '/students/forgot_password' }
+  static designPath()                 { return '/design' }
 
   // Shared Flow
   static dashboardPath()              { return '/dashboard' }

@@ -1,0 +1,15 @@
+.color-style {
+  border-radius: 2px;
+  color: $snow;
+  display: inline-block;
+  font-weight: 500;
+  padding: 10px 20px;
+
+  &.blue { background: $blue; }
+  &.blue-dark { background: $blue-dark; color: $snow; }
+  &.yellow { background: $yellow; }
+  &.black { background: $black; color: $snow; }
+  &.silver { background: $silver; }
+  &.gray { background: $gray; color: $black; }
+  &.snow { background: $snow; color: $black; }
+}
