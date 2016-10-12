@@ -4,11 +4,17 @@ class Students::StudentsController < Students::BaseController
   load_and_authorize_resource
 
   def create
-    if @student.save
-      sign_in(:student, @student)
-      redirect_to dashboard_path
+    @code = Code.verify(code_params)
+    if @code
+      @student.code = @code
+      if @student.save
+        sign_in(:student, @student)
+        redirect_to dashboard_path
+      else
+        redirect_to students_sign_up_path
+      end
     else
-      redirect_to root_path
+      error_response(nil, 'Invalid Code', 404)
     end
   end
 
@@ -22,7 +28,13 @@ class Students::StudentsController < Students::BaseController
       :first_name,
       :last_name,
       :password,
-      :password_confirmation
+      :password_confirmation,
+    )
+  end
+
+  def code_params
+    params.require(:code).permit(
+      :key,
     )
   end
 end

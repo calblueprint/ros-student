@@ -37,13 +37,15 @@ class RailsRoutes {
 
 class APIRoutes {
   // Students
-  static createRoute(route) { return `/api/${route}` }
+  static createRoute(route)    { return `/api/${route}` }
 
   static updateAdminPath(id)   { return APIRoutes.createRoute(`admins/${id}`) }
   static updateStudentPath(id) { return APIRoutes.createRoute(`students/${id}`) }
 
   static getAdminPath(id)      { return APIRoutes.createRoute(`admins/${id}`) }
   static getStudentPath(id)    { return APIRoutes.createRoute(`students/${id}`) }
+
+  static verifyCodePath()      { return APIRoutes.createRoute(`codes/verify`) }
 }
 
 export {
