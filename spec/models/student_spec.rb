@@ -23,9 +23,11 @@
 require 'rails_helper'
 
 describe Student do
+  let!(:valid_student) { create :student }
+  let!(:student) { build :student }
+  let!(:course) { create :course }
+
   describe 'is not valid' do
-    let!(:valid_student) { create :student }
-    let!(:student) { build :student }
     it 'if there is no first_name' do
       student.first_name = nil
       expect(student.valid?).to be false
@@ -74,6 +76,19 @@ describe Student do
     it 'if there is an invalid password' do
       student.password = ''
       expect(student.valid?).to be false
+    end
+
+    it 'if there is no code' do
+      student.code = nil
+      expect(student.valid?).to be false
+    end
+  end
+
+  describe 'should have a course' do
+    it 'if the student\'s code was registered with a course' do
+      student.code.courses << course
+      student.save
+      expect(student.courses.size).to be student.code.courses.size
     end
   end
 end

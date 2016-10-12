@@ -22,15 +22,15 @@ FactoryGirl.define do
 
   factory :section do
     title 'MyString'
-    course
     position 1
+    course
   end
 
   factory :student_course do
-    course
-    student
     started false
     self_paced false
+    course
+    student
   end
 
   factory :code_course do
@@ -39,7 +39,7 @@ FactoryGirl.define do
   end
 
   factory :course do
-    name "MyString"
+    name 'MyString'
     description 'MyString'
   end
 
@@ -54,6 +54,7 @@ FactoryGirl.define do
     first_name 'first'
     last_name 'last'
     username { FFaker::Internet.user_name }
+    code
   end
 
   factory :admin do

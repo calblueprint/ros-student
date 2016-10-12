@@ -19,6 +19,7 @@ class Code < ActiveRecord::Base
   has_many :courses, through: :code_courses
 
   def self.verify(params)
-    find_by(key: params[:key])
+    code = find_by(key: params[:key])
+    code && !code.student_id
   end
 end
