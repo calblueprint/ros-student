@@ -10,8 +10,12 @@
 #
 
 class Code < ActiveRecord::Base
-  validates :key, :student_id, presence: true
+  validates :key, presence: true
   validates :key, uniqueness: true
 
   belongs_to :student
+
+  def self.verify(params)
+    find_by(key: params[:key])
+  end
 end

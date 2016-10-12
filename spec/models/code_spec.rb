@@ -21,15 +21,10 @@ RSpec.describe Code, type: :model do
       expect(code.valid?).to be false
     end
 
-    it 'has no student_id' do
-      code.student_id = nil
-      expect(code.valid?).to be false
-    end
-
     it 'key is not unique' do
       code.key = invalid_code.key
       expect(code.valid?).to be false
     end
-    
+
   end
 end

@@ -4,5 +4,4 @@ class Api::ComponentsController < Api::BaseController
   def show
     render json: @component, serializer: ComponentSerializer
   end
-
 end
