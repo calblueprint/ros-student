@@ -11,10 +11,12 @@ class Students::StudentsController < Students::BaseController
         sign_in(:student, @student)
         redirect_to dashboard_path
       else
+        @error = Error.new(@student.errors)
         redirect_to students_sign_up_path
       end
     else
-      error_response(nil, 'Invalid Code', 404)
+      @error = Error.new(nil, 'Invalid Code')
+      redirect_to students_sign_up_path
     end
   end
 

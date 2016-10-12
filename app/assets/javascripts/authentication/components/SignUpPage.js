@@ -11,6 +11,7 @@ import Input from '../../shared/components/forms/Input'
 class SignUpPage extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       verified: false,
       code: {},

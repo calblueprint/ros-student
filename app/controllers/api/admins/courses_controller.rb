@@ -28,6 +28,7 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
   private
 
   def course_params
+    puts params
     params.require(:course).permit(
       :name,
       :description

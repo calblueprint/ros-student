@@ -4,7 +4,7 @@ import React from 'react'
 import request from '../../shared/requests/request'
 
 import { getUser, setUser } from '../../utils/user_helpers'
-import { getInputToParams } from '../../utils/form_helpers'
+import { getInputToParams, mapErrorToFormFields } from '../../utils/form_helpers'
 import { APIRoutes } from '../../shared/routes'
 
 import Form from '../../shared/components/forms/Form'
@@ -83,7 +83,10 @@ class UpdateStudentPage extends React.Component {
       this.user = response.student
       this.setState(this.getUserFields())
     }, (error) => {
-      console.log(error)
+      console.log(mapErrorToFormFields(error, this.state.formFields))
+      this.setState({
+        formFields: mapErrorToFormFields(error, this.state.formFields)
+      })
     })
   }
 
