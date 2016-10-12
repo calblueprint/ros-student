@@ -12,6 +12,7 @@ import SignUpPage from './components/SignUpPage'
 import AdminLoginPage from './components/AdminLoginPage'
 import StudentForgotPasswordPage from './components/StudentForgotPasswordPage'
 import AdminForgotPasswordPage from './components/AdminForgotPasswordPage'
+import TestingPage from './components/TestingPage'
 
 render((
   <Router history={browserHistory}>
@@ -21,5 +22,6 @@ render((
     <Route path={ReactRoutes.studentsForgotPasswordPath()} name='StudentForgotPasswordPage' component={StudentForgotPasswordPage} />
     <Route path={ReactRoutes.adminsForgotPasswordPath()} name='AdminForgotPasswordPage' component={AdminForgotPasswordPage} />
     <Route path={ReactRoutes.designPath()} name='DesignPage' component={DesignPage} />
+    <Route path='/testing' name='TestingPage' component={TestingPage} />
   </Router>
 ), document.getElementById('main_container'))
