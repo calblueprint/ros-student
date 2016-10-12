@@ -6,4 +6,10 @@ module ApplicationHelper
       StudentSerializer.new(current_student, root: false).to_json
     end
   end
+
+  def error(error)
+    if error
+      ErrorSerializer.new(error, root: false).to_json
+    end
+  end
 end

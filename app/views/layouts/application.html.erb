@@ -11,6 +11,7 @@
   <%= csrf_meta_tags %>
 
   <% set_meta_tags user: user %>
+  <% set_meta_tags errors: error(@error) %>
   <%= display_meta_tags %>
 </head>
 <body>
