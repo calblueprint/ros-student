@@ -108,6 +108,8 @@ class SignUpPage extends React.Component {
             <input autoComplete='off' type='password' name='student[password_confirmation]' id='student_password_confirmation' />
           </div>
 
+          <input type='hidden' name='code[key]' value={this.state.code.key} />
+
           <div className='actions'>
             <input type='submit' name='commit' value='Sign up' />
           </div>

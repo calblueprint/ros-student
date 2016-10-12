@@ -15,6 +15,9 @@ class Code < ActiveRecord::Base
 
   belongs_to :student
 
+  has_many :code_courses
+  has_many :courses, through: :code_courses
+
   def self.verify(params)
     find_by(key: params[:key])
   end

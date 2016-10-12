@@ -33,6 +33,7 @@ class Student < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :username, uniqueness: true, presence: true
+  validate :has_code
 
   has_one :code
 
@@ -41,4 +42,19 @@ class Student < ActiveRecord::Base
 
   has_many :subsection_progresses
   has_many :subsections, through: :subsection_progresses
+
+
+  after_create :subscribe_to_courses
+
+  private
+
+  def has_code
+    unless code
+      errors.add(:code, 'does not exist')
+    end
+  end
+
+  def subscribe_to_courses
+    code.courses.each { |course| student_courses.create(course_id: course.id) }
+  end
 end
