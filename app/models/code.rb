@@ -14,4 +14,8 @@ class Code < ActiveRecord::Base
   validates :key, uniqueness: true
 
   belongs_to :student
+
+  def self.verify(params)
+    find_by(params)
+  end
 end

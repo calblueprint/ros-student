@@ -56,5 +56,11 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    resources :codes, only: [] do
+      collection do
+        post :verify
+      end
+    end
   end
 end
