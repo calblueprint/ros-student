@@ -8,7 +8,7 @@ class Students::StudentsController < Students::BaseController
       sign_in(:student, @student)
       redirect_to dashboard_path
     else
-      redirect_to root_path
+      redirect_to students_sign_up_path
     end
   end
 
