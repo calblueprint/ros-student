@@ -4,7 +4,7 @@ class Api::CodesController < Api::BaseController
   def verify
     @code = Code.verify(code_params)
     if @code
-      render json: @code, seralizer: CodeListSerializer
+      render json: @code, serializer: CodeSerializer
     else
       error_response(nil, 'Invalid Code', 404)
     end

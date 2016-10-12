@@ -1,0 +1,2 @@
+class CodeSerializer < BaseCodeSerializer
+end
