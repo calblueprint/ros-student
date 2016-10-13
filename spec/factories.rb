@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :code_csv do
+    name "MyString"
+  end
 
   factory :component do
     component_type 0
