@@ -18,7 +18,7 @@ function getErrors() {
   return JSON.parse(errors.content)
 }
 
-form getFlashes() {
+function getFlashes() {
   const flashes = document.querySelector('meta[name="flash"]')
   if (!flashes) {
     return {}
@@ -141,6 +141,7 @@ export {
   getCSRFToken,
   getInputToParams,
   getErrors,
+  getFlashes,
   getFormErrors,
   getFormFields,
   mapErrorToFormFields,
