@@ -1,8 +1,6 @@
 import _ from 'underscore'
 import React from 'react'
 
-import { getFlashes } from '../../utils/form_helpers'
-
 import Input from '../../shared/components/forms/Input'
 import Form from '../../shared/components/forms/Form'
 
@@ -44,12 +42,8 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const flash = getFlashes()
-
     return(
       <div>
-        <h3>{flash.alert}</h3>
-
         <Form
           className='login_form'
           id='login_form'

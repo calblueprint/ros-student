@@ -20,10 +20,18 @@ function getErrors() {
 
 function getFlashes() {
   const flashes = document.querySelector('meta[name="flash"]')
+
   if (!flashes) {
     return {}
   }
-  return JSON.parse(flashes.content)
+  const content = JSON.parse(flashes.content)
+
+  resetFlash()
+  return content
+}
+
+function resetFlash() {
+  document.querySelector('meta[name="flash"]').setAttribute('content', '{}')
 }
 
 /**
@@ -142,6 +150,7 @@ export {
   getInputToParams,
   getErrors,
   getFlashes,
+  resetFlash,
   getFormErrors,
   getFormFields,
   mapErrorToFormFields,
