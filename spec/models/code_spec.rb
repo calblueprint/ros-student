@@ -2,11 +2,12 @@
 #
 # Table name: codes
 #
-#  id         :integer          not null, primary key
-#  key        :string
-#  student_id :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  key         :string
+#  student_id  :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  code_csv_id :integer
 #
 
 require 'rails_helper'
