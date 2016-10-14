@@ -12,4 +12,10 @@ module ApplicationHelper
       ErrorSerializer.new(error, root: false).to_json
     end
   end
+
+  def flashes(flash)
+    if flash
+      flash.keys.each_with_object({}) { |key, obj| obj[key] = flash[key] }.to_json
+    end
+  end
 end

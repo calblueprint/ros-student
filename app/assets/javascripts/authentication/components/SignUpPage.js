@@ -2,7 +2,7 @@ import _ from 'underscore'
 import React from 'react'
 
 import { RailsRoutes, APIRoutes } from '../../shared/routes'
-import { getInputToParams } from '../../utils/form_helpers'
+import { getInputToParams, getFormErrors, getFormFields, getErrors } from '../../utils/form_helpers'
 import request from '../../shared/requests/request'
 
 import Form from '../../shared/components/forms/Form'
@@ -12,42 +12,99 @@ class SignUpPage extends React.Component {
   constructor(props) {
     super(props)
 
+    const formErrors = getFormErrors()
+    const formFields = {
+      code: getFormFields().code || {},
+      student: getFormFields().student || {}
+    }
+
     this.state = {
-      verified: false,
-      code: {},
-      formFields: {
+      verified: !_.isEmpty(formErrors),
+      codeFormFields: {
         key: {
           label: 'Code',
-          value: '',
-          onChange: _.bind(this.handleChange, this, 'key'),
+          value: formFields.code.key,
+          onChange: _.bind(this.handleCodeChange, this, 'key'),
           error: '',
+        },
+      },
+      signUpFormFields: {
+        firstName: {
+          label: 'First Name',
+          value: formFields.student.firstName,
+          name: 'student[first_name]',
+          onChange: _.bind(this.handleSignUpChange, this, 'firstName'),
+          error: formErrors.firstName,
+        },
+        lastName: {
+          label: 'Last Name',
+          value: formFields.student.lastName,
+          name: 'student[last_name]',
+          onChange: _.bind(this.handleSignUpChange, this, 'lastName'),
+          error: formErrors.lastName,
+        },
+        username: {
+          label: 'Username',
+          value: formFields.student.username,
+          name: 'student[username]',
+          onChange: _.bind(this.handleSignUpChange, this, 'username'),
+          error: formErrors.username,
+        },
+        email: {
+          label: 'Email',
+          value: formFields.student.email,
+          name: 'student[email]',
+          onChange: _.bind(this.handleSignUpChange, this, 'email'),
+          error: formErrors.email,
+        },
+        newPassword: {
+          label: 'Password',
+          value: formFields.student.newPassword,
+          name: 'student[password]',
+          onChange: _.bind(this.handleSignUpChange, this, 'newPassword'),
+          error: formErrors.newPassword,
+        },
+        confirmPassword: {
+          label: 'Confirm Password',
+          value: formFields.student.confirmPassword,
+          name: 'student[password_confirmation]',
+          onChange: _.bind(this.handleSignUpChange, this, 'confirmPassword'),
+          error: formErrors.confirmPassword,
         },
       }
     }
   }
 
-  handleChange(attr, e) {
-    const formFields = this.state.formFields
-    formFields[attr].value = e.target.value
-    this.setState({ formFields: formFields })
+  handleCodeChange(attr, e) {
+    const codeFormFields = this.state.codeFormFields
+    codeFormFields[attr].value = e.target.value
+    this.setState({ codeFormFields: codeFormFields })
+  }
+
+  handleSignUpChange(attr, e) {
+    const signUpFormFields = this.state.signUpFormFields
+    signUpFormFields[attr].value = e.target.value
+    this.setState({ signUpFormFields: signUpFormFields })
   }
 
   makeVerifyRequest(e) {
     e.preventDefault()
 
     const path = APIRoutes.verifyCodePath()
-    const params = { code: getInputToParams(this.state.formFields) }
+    const params = { code: getInputToParams(this.state.codeFormFields) }
 
     request.post(path, params, (response) => {
-      this.setState({ verified: true, code: response.code })
+      this.setState({ verified: true })
     }, (error) => {
-      console.log('error')
+      const codeFormFields = this.state.codeFormFields
+      codeFormFields.key.error = 'is invalid'
+      this.setState({ codeFormFields: codeFormFields })
     })
   }
 
-  renderFields() {
+  renderFields(fields) {
     return (
-      _.pairs(this.state.formFields).map((values) => {
+      _.pairs(fields).map((values) => {
         return <Input key={values[0]} {...values[1]} />
       })
     )
@@ -58,11 +115,22 @@ class SignUpPage extends React.Component {
       <div>
         <h1 className='h1'>Enter 8 Digit Code</h1>
         <Form>
-          {this.renderFields()}
+          {this.renderFields(this.state.codeFormFields)}
           <div className='actions'>
             <input type='submit' value='Update user' onClick={this.makeVerifyRequest.bind(this)} />
           </div>
         </Form>
+      </div>
+    )
+  }
+
+  renderField(name, label, type='text') {
+    return (
+      <div className='field'>
+        <label htmlFor={`student_${name}`}>{label}</label>
+        <br />
+        <input type={type} name={`student[${name}]`} id={`student_${name}`} />
+        <p>{this.state.errors[name]}</p>
       </div>
     )
   }
@@ -77,39 +145,12 @@ class SignUpPage extends React.Component {
           action={RailsRoutes.studentsSignUpPath()}
           method='post'>
 
-          <div className='field'>
-            <label htmlFor='student_first_name'>First Name</label><br />
-            <input name='student[first_name]' id='student_first_name' />
-          </div>
+          {this.renderFields(this.state.signUpFormFields)}
 
-          <div className='field'>
-            <label htmlFor='student_last_name'>Last Name</label><br />
-            <input name='student[last_name]' id='student_last_name' />
-          </div>
-
-          <div className='field'>
-            <label htmlFor='student_username'>Username</label><br />
-            <input name='student[username]' id='student_username' />
-          </div>
-
-          <div className='field'>
-            <label htmlFor='student_email'>Email</label><br />
-            <input type='email' name='student[email]' id='student_email' />
-          </div>
-
-          <div className='field'>
-            <label htmlFor='student_password'>Password </label>
-            <em>(8 characters minimum)</em>
-            <br />
-            <input autoComplete='off' type='password' name='student[password]' id='student_password' />
-          </div>
-
-          <div className='field'>
-            <label htmlFor='student_password_confirmation'>Password confirmation</label><br />
-            <input autoComplete='off' type='password' name='student[password_confirmation]' id='student_password_confirmation' />
-          </div>
-
-          <input type='hidden' name='code[key]' value={this.state.code.key} />
+          <input
+            type='hidden'
+            name='code[key]'
+            value={this.state.codeFormFields.key.value} />
 
           <div className='actions'>
             <input type='submit' name='commit' value='Sign up' />

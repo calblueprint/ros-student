@@ -7,6 +7,7 @@ class Input extends React.Component {
         autoComplete={this.props.autoComplete}
         type={this.props.type}
         value={this.props.value}
+        name={this.props.name}
         onChange={this.props.onChange} />
     )
   }
@@ -29,12 +30,15 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   autoComplete: PropTypes.bool,
   error: PropTypes.string,
+  name: PropTypes.string
 }
 
 Input.defaultProps = {
   type: 'text',
   autoComplete: true,
+  value: '',
   error: '',
+  name: '',
 }
 
 export default Input

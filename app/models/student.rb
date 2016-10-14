@@ -43,7 +43,6 @@ class Student < ActiveRecord::Base
   has_many :subsection_progresses
   has_many :subsections, through: :subsection_progresses
 
-
   after_create :subscribe_to_courses
 
   private
