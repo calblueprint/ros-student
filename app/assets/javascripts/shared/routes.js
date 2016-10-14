@@ -21,6 +21,10 @@ class ReactRoutes {
 
   // Course Flow
   static coursePath(id)               { return `/courses/${ReactRoutes.getId(id, 'id')}` }
+
+
+  // Course Edit Flow
+  static courseEditPath(id)           { return `/courses/${ReactRoutes.getId(id, 'id')}/edit` }
 }
 
 

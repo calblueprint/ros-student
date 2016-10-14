@@ -1,3 +1,5 @@
+require('es6-promise').polyfill()
+
 // Example webpack configuration with asset fingerprinting in production.
 'use strict';
 
@@ -17,6 +19,7 @@ var config = {
     admins: './app/assets/javascripts/admins/app.js',
     authentication: './app/assets/javascripts/authentication/app.js',
     course: './app/assets/javascripts/course/app.js',
+    courseEdit: './app/assets/javascripts/courseEdit/app.js',
   },
 
   output: {
