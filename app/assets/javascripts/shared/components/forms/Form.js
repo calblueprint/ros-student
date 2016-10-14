@@ -10,6 +10,7 @@ class Form extends React.Component {
       flash: getFlashes()
     }
   }
+
   render() {
     return (
       <form

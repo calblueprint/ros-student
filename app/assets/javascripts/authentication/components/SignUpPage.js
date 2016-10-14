@@ -126,17 +126,6 @@ class SignUpPage extends React.Component {
     )
   }
 
-  renderField(name, label, type='text') {
-    return (
-      <div className='field'>
-        <label htmlFor={`student_${name}`}>{label}</label>
-        <br />
-        <input type={type} name={`student[${name}]`} id={`student_${name}`} />
-        <p>{this.state.errors[name]}</p>
-      </div>
-    )
-  }
-
   renderSignUpForm() {
     return (
       <div>
