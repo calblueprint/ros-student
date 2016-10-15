@@ -26,6 +26,6 @@ class Api::BaseController < ApplicationController
   end
 
   def current_ability
-    @current_ability ||= ::Ability.new(current_student || current_admin)
+    @current_ability ||= ::Ability.new(current_user)
   end
 end
