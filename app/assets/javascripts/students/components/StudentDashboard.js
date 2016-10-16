@@ -13,6 +13,10 @@ class StudentDashboard extends React.Component {
           to={ReactRoutes.updateStudentPath(getUser().id)}>
           Update User
         </Link>
+        <Link
+          to={ReactRoutes.courseOutlinePath(2)}>
+          Course Outline
+        </Link>
         <a href={RailsRoutes.studentsSignOutPath()} data-method="delete">Sign Out</a>
       </div>
     )
