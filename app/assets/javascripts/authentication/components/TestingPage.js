@@ -5,6 +5,7 @@ import _ from 'underscore'
 import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-hoc';
 
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
+import Dropdown from '../../shared/components/widgets/Dropdown'
 
 const SortableItem = SortableElement(({ name, index }) =>
   <li className='SortableItem'>{name}</li>
@@ -98,6 +99,16 @@ class TestingPage extends React.Component {
     this.setState({ value2: value })
   }
 
+  renderHeader() {
+    return <h1>HEADER</h1>
+  }
+
+  renderItems() {
+    return ['1', '2', '3'].map((value) => {
+      return <h3 key={value}>{value}</h3>
+    })
+  }
+
   render() {
     return (
       <div>
@@ -111,6 +122,7 @@ class TestingPage extends React.Component {
 
         <InlineEditInput value={this.state.value1} onBlur={this.onBlur1.bind(this)} />
         <InlineEditInput value={this.state.value2} onBlur={this.onBlur2.bind(this)} />
+        <Dropdown header={this.renderHeader()} items={this.renderItems()} />
       </div>
     )
   }
