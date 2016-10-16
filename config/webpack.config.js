@@ -43,13 +43,14 @@ var config = {
       chunks: false,
       modules: false,
       assets: true
-  })],
+    })
+  ],
 
   module: {
     loaders: [{
       test: /\.js$/,
       exclude: /(node_modules|bower_components)/,
-      loader: 'babel',
+      loaders: ['react-hot', 'babel'],
     },
     {
       test: /\.scss$/,
@@ -78,7 +79,7 @@ if (production) {
   };
   config.output.publicPath = '//localhost:' + devServerPort + '/webpack/';
   // Source maps
-  config.devtool = 'cheap-module-eval-source-map';
+  config.devtool = 'cheap-eval-source-map';
 }
 
 module.exports = config;
