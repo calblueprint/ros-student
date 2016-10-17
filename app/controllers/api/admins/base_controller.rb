@@ -1,5 +1,5 @@
 class Api::Admins::BaseController < Api::BaseController
-  # before_filter :authenticate_admin!
+  before_filter :authenticate_admin!
 
   private
 
