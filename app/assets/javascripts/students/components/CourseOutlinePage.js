@@ -51,7 +51,7 @@ class CourseOutlinePage extends React.Component {
         <ol>{this.renderSections()}</ol>
 
         <Link to={ReactRoutes.coursePath(2)}>Continue</Link>
-      </div>      
+      </div>
     )
   }
 }
