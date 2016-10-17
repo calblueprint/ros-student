@@ -1,52 +1,73 @@
+import _ from 'underscore'
 import React from 'react'
 
+import Input from '../../shared/components/forms/Input'
 import Form from '../../shared/components/forms/Form'
 
 class LoginForm extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      formFields: {
+        email: {
+          label: 'Email',
+          value: '',
+          name: `${this.props.userType}[email]`,
+          onChange: _.bind(this.handleChange, this, 'email'),
+        },
+        password: {
+          label: 'Password',
+          value: '',
+          type: 'password',
+          name: `${this.props.userType}[password]`,
+          onChange: _.bind(this.handleChange, this, 'password'),
+        },
+      }
+    }
+  }
+
+  handleChange(attr, e) {
+    const formFields = this.state.formFields
+    formFields[attr].value = e.target.value
+    this.setState({ formFields: formFields })
+  }
+
+  renderFields() {
+    return (
+      _.pairs(this.state.formFields).map((values) => {
+        return <Input key={values[0]} {...values[1]} />
+      })
+    )
+  }
+
   render() {
     return(
-      <Form
-        className='login_form'
-        id='login_form'
-        method='post'
-        action={this.props.action}>
+      <div>
+        <Form
+          className='login_form'
+          id='login_form'
+          method='post'
+          action={this.props.action}>
 
-        <div className='field'>
-          <label htmlFor='user_email'>Email</label>
-          <br />
-          <input
-            id='user_email'
-            autoFocus='autofocus'
-            type='email'
-            name={`${this.props.userType}[email]`}
-          />
-        </div>
+          {this.renderFields()}
 
-        <div className='field'>
-          <label htmlFor='user_password'>Password</label><br />
-          <input
-            id='user_password'
-            autoComplete='off'
-            type='password'
-            name={`${this.props.userType}[password]`}
-          />
-        </div>
+          <div className='field'>
+            <input name='user[remember_me]' type='hidden' value='0' />
+            <label htmlFor='user_remember_me'>Remember me</label>
+            <input
+              id='user_remember_me'
+              type='checkbox'
+              value='1'
+              name={`${this.props.userType}[remember_me]`}
+            />
+          </div>
 
-        <div className='field'>
-          <input name='user[remember_me]' type='hidden' value='0' />
-          <label htmlFor='user_remember_me'>Remember me</label>
-          <input
-            id='user_remember_me'
-            type='checkbox'
-            value='1'
-            name={`${this.props.userType}[remember_me]`}
-          />
-        </div>
-
-        <div className='actions'>
-          <input type='submit' name='commit' value='Log in' />
-        </div>
-      </Form>
+          <div className='actions'>
+            <input type='submit' name='commit' value='Log in' />
+          </div>
+        </Form>
+      </div>
     )
   }
 }

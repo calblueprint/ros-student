@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { RouteHandler, Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { Redirect, Router, Route, browserHistory } from 'react-router'
 
 import '../../stylesheets/bundle/authentication.scss'
 
@@ -23,5 +23,6 @@ render((
     <Route path={ReactRoutes.adminsForgotPasswordPath()} name='AdminForgotPasswordPage' component={AdminForgotPasswordPage} />
     <Route path={ReactRoutes.designPath()} name='DesignPage' component={DesignPage} />
     <Route path='/testing' name='TestingPage' component={TestingPage} />
+    <Redirect from={ReactRoutes.studentsRenderPath()} to={ReactRoutes.studentsSignUpPath()} />
   </Router>
 ), document.getElementById('main_container'))

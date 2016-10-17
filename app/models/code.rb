@@ -22,6 +22,6 @@ class Code < ActiveRecord::Base
 
   def self.verify(params)
     code = find_by(key: params[:key])
-    code && !code.student_id
+    code if code && !code.student_id
   end
 end

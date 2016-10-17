@@ -11,14 +11,15 @@ class Students::StudentsController < Students::BaseController
         sign_in(:student, @student)
         redirect_to dashboard_path
       else
-        redirect_to students_sign_up_path
+        @error = Error.new(@student, nil,
+                   code: code_params,
+                   student: student_params)
+        render 'pages/home'
       end
     else
-      error_response(nil, 'Invalid Code', 404)
+      @error = Error.new(nil, 'Invalid Code', code: code_params)
+      render 'pages/home'
     end
-  end
-
-  def edit
   end
 
   def student_params

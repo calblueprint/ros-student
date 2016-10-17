@@ -31,9 +31,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     get '/ping', to: 'pages#ping'
 
-    scope module: 'admins' do
-      resources :admins, only: [:update]
-
+    namespace :admins do
       resources :courses, only: [:create, :update, :destroy], shallow: true do
         resources :sections, only: [:create, :update, :destroy] do
           resources :subsections, only: [:create, :update, :destroy] do
@@ -43,8 +41,15 @@ Rails.application.routes.draw do
       end
     end
 
+    namespace :students do
+    end
+
     scope module: 'students' do
       resources :students, only: [:update]
+    end
+
+    scope module: 'admins' do
+      resources :admins, only: [:update]
     end
 
     resources :courses, only: [:show, :index], shallow: true do

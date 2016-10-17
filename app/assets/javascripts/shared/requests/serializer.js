@@ -6,6 +6,8 @@ const SERIALIZER = {
   newPassword: 'password',
   confirmPassword: 'password_confirmation',
   currentPassword: 'current_password',
+  key: 'key',
+  code: 'code',
 }
 
 export { SERIALIZER }

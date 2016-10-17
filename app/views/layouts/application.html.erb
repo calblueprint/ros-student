@@ -11,6 +11,8 @@
   <%= csrf_meta_tags %>
 
   <% set_meta_tags user: user %>
+  <% set_meta_tags errors: error(@error) %>
+  <% set_meta_tags flash: flashes(flash) %>
   <%= display_meta_tags %>
 </head>
 <body>
