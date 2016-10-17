@@ -17,6 +17,7 @@ class ReactRoutes {
 
   // Student Flow
   static updateStudentPath(id)        { return `/students/${ReactRoutes.getId(id, 'id')}/edit` }
+  static courseOutlinePath(id)        { return `/courses/${ReactRoutes.getId(id, 'id')}/outline`}
 
   // Course Flow
   static coursePath(id)                   { return `/courses/${ReactRoutes.getId(id, 'id')}` }

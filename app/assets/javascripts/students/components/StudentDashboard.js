@@ -4,6 +4,8 @@ import { Link } from 'react-router'
 import { getUser } from '../../utils/user_helpers'
 import { RailsRoutes, ReactRoutes } from '../../shared/routes'
 
+import CourseList from './CourseList'
+
 class StudentDashboard extends React.Component {
   render() {
     return (
@@ -14,6 +16,7 @@ class StudentDashboard extends React.Component {
           Update User
         </Link>
         <a href={RailsRoutes.studentsSignOutPath()} data-method="delete">Sign Out</a>
+        <CourseList />
       </div>
     )
   }

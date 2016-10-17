@@ -5,7 +5,7 @@ class CourseCard extends React.Component {
     return (
       <div>
         <h2>{this.props.course.name}</h2>
-        <h3>{this.props.course.description}</h3>
+        <p>{this.props.course.description}</p>
       </div>
     )
   }
