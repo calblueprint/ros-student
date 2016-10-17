@@ -15,6 +15,8 @@ class CourseOutlinePage extends React.Component {
   constructor(props) {
     super(props)
 
+    this.id = this.props.routeParams.id
+
     this.state = {
       courseOutline: {}
     }
@@ -23,7 +25,7 @@ class CourseOutlinePage extends React.Component {
   }
 
   requestOutline() {
-    const path = APIRoutes.getCourseOutlinePath(2)
+    const path = APIRoutes.getCourseOutlinePath(this.id)
 
     request.get(path, (response) => {
       console.log(response)
@@ -50,7 +52,7 @@ class CourseOutlinePage extends React.Component {
         <div>{this.state.courseOutline.description}</div>
         <ol>{this.renderSections()}</ol>
 
-        <Link to={ReactRoutes.coursePath(2)}>Continue</Link>
+        <a href={RailsRoutes.coursePath(this.state.courseOutline.id)}>Continue</a>
       </div>
     )
   }

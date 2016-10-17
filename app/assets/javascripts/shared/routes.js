@@ -35,6 +35,7 @@ class RailsRoutes {
 
   static adminsSignOutPath() { return '/admins/sign_out' }
   static studentsSignOutPath() { return '/students/sign_out' }
+  static coursePath(id)        { return `/courses/${ReactRoutes.getId(id, 'id')}` }
 }
 
 class APIRoutes {
