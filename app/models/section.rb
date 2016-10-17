@@ -19,4 +19,18 @@ class Section < ActiveRecord::Base
 
   has_many :subsections
   belongs_to :course
+
+  def progress(user)
+    n = 0.0
+    completed = 0.0
+
+    subsections.each do |subsection|
+      n = n + 1
+      if subsection.is_complete?(user)
+        completed = completed + 1
+      end
+    end
+
+    return completed / n * 100
+  end
 end
