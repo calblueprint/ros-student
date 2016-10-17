@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import Input from './Input'
 
@@ -8,7 +8,6 @@ class InlineEditInput extends React.Component {
 
     this.enableEdit = this.enableEdit.bind(this)
     this.onBlur = this.onBlur.bind(this)
-    console.log(props)
     this.state = {
       editable: false,
     }
@@ -29,7 +28,8 @@ class InlineEditInput extends React.Component {
       <input
         autoFocus
         defaultValue={this.props.value}
-        onBlur={this.onBlur} />
+        onBlur={this.onBlur}
+      />
     )
   }
 
@@ -53,8 +53,9 @@ class InlineEditInput extends React.Component {
   }
 }
 
-InlineEditInput.defaultProps = {
-  value: '',
+InlineEditInput.propTypes = {
+  onBlur: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 }
 
 export default InlineEditInput
