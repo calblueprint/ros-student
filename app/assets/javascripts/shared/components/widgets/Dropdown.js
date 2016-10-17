@@ -52,8 +52,4 @@ Dropdown.propTypes = {
   items: PropTypes.array.isRequired,
 }
 
-Dropdown.defaultProps = {
-  items: [],
-}
-
 export default Dropdown
