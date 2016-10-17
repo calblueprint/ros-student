@@ -20,4 +20,9 @@ class Subsection < ActiveRecord::Base
   belongs_to :section
 
   has_many :components
+
+  def is_complete?(user)
+    subsection_progress = SubsectionProgress.find_by({ student_id: user.id, subsection_id: id })
+    subsection_progress.blank? ? false : subsection_progress.completed
+  end
 end

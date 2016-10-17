@@ -7,6 +7,7 @@ import { getUser } from '../../utils/user_helpers'
 import { RailsRoutes, ReactRoutes } from '../../shared/routes'
 import { APIRoutes } from '../../shared/routes'
 import SubsectionOutline from './SubsectionOutline'
+import SectionProgressBar from './SectionProgressBar'
 
 class SectionOutline extends React.Component {
 
@@ -23,7 +24,7 @@ class SectionOutline extends React.Component {
   render() {
     return (
       <div>
-        <li><h2>{this.props.section.title}</h2></li>
+        <li><h2>{this.props.section.title} <SectionProgressBar progress={this.props.section.progress}/></h2></li>
         <ul>{this.renderSubsections()}</ul>
       </div>
     )
