@@ -4,6 +4,8 @@ import _ from 'underscore'
 
 import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-hoc';
 
+import InlineEditInput from '../../shared/components/forms/InlineEditInput'
+
 const SortableItem = SortableElement(({ name, index }) =>
   <li className='SortableItem'>{name}</li>
 );
@@ -68,7 +70,9 @@ class TestingPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      sections: [{section: 'A', items: ['A1', 'A2', 'A3']}, {section: 'B', items: ['B1', 'B2']}]
+      sections: [{section: 'A', items: ['A1', 'A2', 'A3']}, {section: 'B', items: ['B1', 'B2']}],
+      value1: 'This is value',
+      value2: 'This other value'
     }
   }
   onSortEnd({oldIndex, newIndex}) {
@@ -85,16 +89,31 @@ class TestingPage extends React.Component {
       sections: this.state.sections
     });
   }
+
+  onBlur1(value) {
+    this.setState({ value1: value })
+  }
+
+  onBlur2(value) {
+    this.setState({ value2: value })
+  }
+
   render() {
     return (
-      <SortableSectionList
-        sections={this.state.sections}
-        lockAxis="y"
-        lockToContainerEdges
-        onSortEnd={this.onSortEnd.bind(this)}
-        onSectionSortEnd={this.onSectionSortEnd.bind(this)}
-      />
+      <div>
+        <SortableSectionList
+          sections={this.state.sections}
+          lockAxis="y"
+          lockToContainerEdges
+          onSortEnd={this.onSortEnd.bind(this)}
+          onSectionSortEnd={this.onSectionSortEnd.bind(this)}
+        />
+
+        <InlineEditInput value={this.state.value1} onBlur={this.onBlur1.bind(this)} />
+        <InlineEditInput value={this.state.value2} onBlur={this.onBlur2.bind(this)} />
+      </div>
     )
   }
 }
+
 export default TestingPage
