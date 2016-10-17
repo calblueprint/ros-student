@@ -26,7 +26,6 @@ class CourseOutlinePage extends React.Component {
     const path = APIRoutes.getCourseOutlinePath(2)
 
     request.get(path, (response) => {
-      console.log(response)
       this.setState({ courseOutline: response.course_outline })
     }, (error) => {
       console.log(error)
@@ -49,9 +48,13 @@ class CourseOutlinePage extends React.Component {
         <h1>{this.state.courseOutline.name}</h1>
         <div>{this.state.courseOutline.description}</div>
         <ol>{this.renderSections()}</ol>
+<<<<<<< HEAD
 
         <Link to={ReactRoutes.coursePath(2)}>Continue</Link>
-      </div>      
+      </div>
+=======
+      </div>
+>>>>>>> origin/micah/CourseFlowHomepageRoutes
     )
   }
 }
