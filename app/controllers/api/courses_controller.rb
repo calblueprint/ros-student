@@ -10,6 +10,6 @@ class Api::CoursesController < Api::BaseController
   end
 
   def index
-    render json: @courses, each_serializer: CourseListSerializer
+    render json: @courses, user: current_user, each_serializer: CourseListSerializer
   end
 end

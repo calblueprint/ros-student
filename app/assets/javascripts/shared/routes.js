@@ -47,6 +47,9 @@ class APIRoutes {
   static getStudentPath(id)    { return APIRoutes.createRoute(`students/${id}`) }
 
   static verifyCodePath()      { return APIRoutes.createRoute(`codes/verify`) }
+
+  // Courses
+  static getCourses()          { return APIRoutes.createRoute(`courses`)}
 }
 
 export {
