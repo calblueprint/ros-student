@@ -11,6 +11,7 @@
     "node-sass": "3.10.0",
     "react": "15.3.1",
     "react-dom": "15.3.1",
+    "react-hot-loader": "^1.3.0",
     "react-router": "2.8.1",
     "react-sortable-hoc": "0.0.9",
     "sass-loader": "4.0.2",
@@ -19,7 +20,8 @@
     "underscore": "1.8.3",
     "webpack": "^1.9.11",
     "webpack-dev-middleware": "1.7.0",
-    "webpack-dev-server": "^1.9.0"
+    "webpack-dev-server": "^1.9.0",
+    "webpack-hot-middleware": "2.13.0"
   },
   "scripts": {
     "heroku-postbuild": "cp config/database.yml.heroku config/database.yml"
