@@ -1,5 +1,4 @@
 import React from 'react'
-import { Motion, spring } from 'react-motion'
 import _ from 'underscore'
 
 import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-hoc';
