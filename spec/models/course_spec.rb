@@ -3,10 +3,10 @@
 # Table name: courses
 #
 #  id          :integer          not null, primary key
-#  name        :string
+#  name        :string           default("Course Name")
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  description :string
+#  description :string           default("This is a course description.")
 #
 
 require 'rails_helper'
