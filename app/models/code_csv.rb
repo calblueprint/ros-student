@@ -13,16 +13,12 @@ class CodeCsv < ActiveRecord::Base
 
   has_many :codes
 
-  # Students should have an authentication token attribute?
-
   # Takes a name for the csv file, the number of codes, and a list of course ids
   def generate_csv(amount, course_ids)
-    codes = []
-    for _ in 1..amount
-      codes << generate_auth_token
-    end
-    amount.times.map { |_|   }
-    return codes.to_csv  # Converts array to CSV string
+    codes = amount.times.map { |_| Code.create(key: @code.generate_auth_token) }
+    codes.map { |code| code.assign_to_courses(course_ids) }
+    keys = codes.map { |code| code.key }
+    return keys.to_csv  # Converts array to CSV string
   end
 
 end
