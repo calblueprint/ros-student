@@ -24,4 +24,17 @@ class Code < ActiveRecord::Base
     code = find_by(key: params[:key])
     code if code && !code.student_id
   end
+
+  # Generates authentication token unless same token already exists in db
+  def self.generate_auth_token
+    loop do
+      token = Devise.friendly_token
+      return token unless Code.find_by(key: token)
+    end
+  end
+
+  # Assigns this code to every course that it is valid for
+  def assign_to_courses(course_ids)
+    course_ids.each { |course_id| code_courses.create(course_id: course_id) }
+  end
 end
