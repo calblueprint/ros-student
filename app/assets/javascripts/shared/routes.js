@@ -20,7 +20,7 @@ class ReactRoutes {
   static courseOutlinePath(id)        { return `/courses/${ReactRoutes.getId(id, 'id')}/outline`}
 
   // Course Flow
-  static coursePath(id)                   { return `/courses/${ReactRoutes.getId(id, 'id')}` }
+  static coursePath(id)               { return `/courses/${ReactRoutes.getId(id, 'id')}` }
 }
 
 
@@ -35,6 +35,7 @@ class RailsRoutes {
 
   static adminsSignOutPath() { return '/admins/sign_out' }
   static studentsSignOutPath() { return '/students/sign_out' }
+  static coursePath(id)        { return `/courses/${ReactRoutes.getId(id, 'id')}` }
 }
 
 class APIRoutes {
@@ -46,6 +47,7 @@ class APIRoutes {
 
   static getAdminPath(id)      { return APIRoutes.createRoute(`admins/${id}`) }
   static getStudentPath(id)    { return APIRoutes.createRoute(`students/${id}`) }
+  static getCourseOutlinePath(id) { return APIRoutes.createRoute(`courses/${id}/outline`) }
 
   static verifyCodePath()      { return APIRoutes.createRoute(`codes/verify`) }
 

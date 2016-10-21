@@ -6,7 +6,7 @@ class Api::CoursesController < Api::BaseController
   end
 
   def outline
-    render json: @course, serializer: CourseOutlineSerializer
+    render json: @course, user: current_user, serializer: CourseOutlineSerializer
   end
 
   def index
