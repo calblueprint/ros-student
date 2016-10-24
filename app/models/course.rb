@@ -20,4 +20,13 @@ class Course < ActiveRecord::Base
     StudentCourse.find_by({ course_id: id, student_id: user.id})
   end
 
+  def current_subsection(user)
+    sections.each do |section|
+      section.subsections.each do |subsection|
+        if !subsection.is_complete?(user)
+          return subsection
+        end
+      end
+    end
+  end
 end

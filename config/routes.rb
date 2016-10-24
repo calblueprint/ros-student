@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # Student Flow
   get '/students/:id/edit', to: 'pages#dashboard'
   get '/courses/:id/outline', to: 'pages#dashboard'
+  get '/courses/:id/sidebar', to: 'pages#dashboard'
 
   # Course flow
   resources :courses, only: [:show]
@@ -58,6 +59,17 @@ Rails.application.routes.draw do
     resources :courses, only: [:show, :index], shallow: true do
       member do
         get :outline
+      end
+      resources :sections, only: [] do
+        resources :subsections, only: [] do
+          resources :components, only: [:show]
+        end
+      end
+    end
+
+    resources :courses, only: [:show, :index], shallow: true do
+      member do
+        get :sidebar
       end
       resources :sections, only: [] do
         resources :subsections, only: [] do
