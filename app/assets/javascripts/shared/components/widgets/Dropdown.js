@@ -22,16 +22,11 @@ class Dropdown extends React.Component {
     this.setState({ expanded: !this.state.expanded })
   }
 
-  getDropdownHeight() {
-    return _.reduce(this.props.items, (result, component) => {
-      return result + component
-    }, 0)
-  }
 
   getDropdownStyle() {
     if (this.state.expanded) {
       return { maxHeight: `${this.state.height}px` }
-    }
+    } 
   }
 
   render() {
