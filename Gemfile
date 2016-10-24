@@ -24,6 +24,7 @@ gem 'jquery-rails', '3.1.4'
 gem 'sass-rails', '5.0.6'
 gem 'uglifier', '2.7.2'
 gem 'meta-tags', '2.3.1'
+gem 'acts_as_list', '0.8.0'
 
 group :development, :staging, :test do
   gem 'ffaker'

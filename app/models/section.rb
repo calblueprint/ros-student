@@ -13,12 +13,12 @@
 class Section < ActiveRecord::Base
   validates :title, presence: true
   validates :course_id, presence: true
-  validates :position, presence: true
 
   validates :position, uniqueness: { scope: :course_id }
 
-  has_many :subsections
+  has_many :subsections, -> { order(position: :asc) }
   belongs_to :course
+  acts_as_list scope: :course
 
   def progress(user)
     n = 0.0
@@ -32,5 +32,12 @@ class Section < ActiveRecord::Base
     end
 
     return completed / n * 100
+  end
+
+  def switch(params)
+    new_position = params[:position].presence || position
+    return false if new_position >= course.sections.size or new_position < 0
+    insert_at(new_position)
+    true
   end
 end

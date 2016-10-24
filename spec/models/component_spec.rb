@@ -30,11 +30,6 @@ RSpec.describe Component, type: :model do
         expect(component.valid?).to be false
       end
 
-      it 'no position' do
-        component.position = nil
-        expect(component.valid?).to be false
-      end
-
       it 'no subsection_id' do
         component.subsection_id = nil
         expect(component.valid?).to be false
