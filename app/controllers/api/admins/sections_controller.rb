@@ -25,6 +25,14 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
     end
   end
 
+  def switch_position
+    if @section.switch(switch_position_params)
+      render json: @section, serializer: SectionSerializer
+    else
+      error_response(nil, 'Invalid position given')
+    end
+  end
+
   private
 
   def section_params
@@ -33,5 +41,9 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
       :course_id,
       :position
     )
+  end
+
+  def switch_position_params
+    params.require(:section).permit(:position)
   end
 end

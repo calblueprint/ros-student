@@ -36,8 +36,18 @@ Rails.application.routes.draw do
     namespace :admins do
       resources :courses, only: [:create, :update, :destroy], shallow: true do
         resources :sections, only: [:create, :update, :destroy] do
+          member do
+            post :switch_position
+          end
           resources :subsections, only: [:create, :update, :destroy] do
-            resources :components, only: [:create, :update, :destroy]
+            member do
+              post :switch_position
+            end
+            resources :components, only: [:create, :update, :destroy] do
+              member do
+                post :switch_position
+              end
+            end
           end
         end
       end

@@ -28,11 +28,6 @@ RSpec.describe Subsection, type: :model do
       expect(subsection.valid?).to be false
     end
 
-    it 'has no position' do
-      subsection.position = nil
-      expect(subsection.valid?).to be false
-    end
-
     it 'is a duplicate position from the same course' do
       other_subsection.section_id = valid_subsection.section_id
       other_subsection.position = valid_subsection.position

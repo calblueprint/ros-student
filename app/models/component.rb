@@ -17,9 +17,16 @@ class Component < ActiveRecord::Base
 
   validates :component_type, presence: true
   validates :content_url, presence: true
-  validates :position, presence: true
   validates :subsection_id, presence: true
   validates :position, uniqueness: { scope: :subsection_id }
 
   belongs_to :subsection
+  acts_as_list scope: :subsection
+
+  def switch(params)
+    new_position = params[:position].presence || position
+    return false if new_position >= subsection.components.size or new_position < 0
+    insert_at(new_position)
+    true
+  end
 end

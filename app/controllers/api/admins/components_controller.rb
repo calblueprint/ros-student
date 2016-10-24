@@ -26,6 +26,15 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
     end
   end
 
+  def switch_position
+    if @component.switch(switch_position_params)
+      render json: @component, serializer: ComponentSerializer
+    else
+      error_response(nil, 'Invalid position given')
+    end
+  end
+
+
   private
 
   def component_params
@@ -36,5 +45,9 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
       :position,
       :subsection_id,
     )
+  end
+
+  def switch_position_params
+    params.require(:component).permit(:position)
   end
 end

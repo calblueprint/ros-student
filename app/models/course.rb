@@ -12,7 +12,7 @@
 class Course < ActiveRecord::Base
   validates :name, :description, presence: true
 
-  has_many :sections
+  has_many :sections, -> { order(position: :asc) }
   has_many :code_courses
   has_many :codes, through: :code_courses
 
