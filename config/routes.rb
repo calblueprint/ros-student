@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
 
   scope module: 'admins' do
+    resources :courses, only: [:create, :edit]
   end
 
   namespace :api, defaults: { format: :json } do
@@ -55,7 +56,7 @@ Rails.application.routes.draw do
       resources :admins, only: [:update]
     end
 
-    resources :courses, only: [:show, :index], shallow: true do
+    resources :courses, only: [:show, :index, :edit], shallow: true do
       member do
         get :outline
       end

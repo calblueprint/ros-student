@@ -21,6 +21,10 @@ class ReactRoutes {
 
   // Course Flow
   static coursePath(id)               { return `/courses/${ReactRoutes.getId(id, 'id')}` }
+
+
+  // Course Edit Flow
+  static courseEditPath(id)           { return `/courses/${ReactRoutes.getId(id, 'id')}/edit` }
 }
 
 
@@ -35,7 +39,9 @@ class RailsRoutes {
 
   static adminsSignOutPath() { return '/admins/sign_out' }
   static studentsSignOutPath() { return '/students/sign_out' }
-  static coursePath(id)        { return `/courses/${ReactRoutes.getId(id, 'id')}` }
+  static coursePath(id)        { return `/courses/${id}` }
+
+  static courseCreatePath() { return '/courses' }
 }
 
 class APIRoutes {
@@ -53,6 +59,13 @@ class APIRoutes {
 
   // Courses
   static getCourses()          { return APIRoutes.createRoute(`courses`)}
+
+  // Course Edit
+  static getEditCoursePath(id)   { return APIRoutes.createRoute(`courses/${id}/edit`)}
+  static editComponentPath(id)   { return APIRoutes.createRoute(`admins/components/${id}`)}
+  static editSubsectionPath(id)  { return APIRoutes.createRoute(`admins/subsections/${id}`)}
+  static editSectionPath(id)     { return APIRoutes.createRoute(`admins/sections/${id}`)}
+  static editCoursePath(id)      { return APIRoutes.createRoute(`admins/courses/${id}`)}
 }
 
 export {

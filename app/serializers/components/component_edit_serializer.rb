@@ -1,0 +1,2 @@
+class ComponentEditSerializer < BaseComponentSerializer
+end

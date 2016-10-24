@@ -6,7 +6,6 @@ class BaseCourseSerializer < ActiveModel::Serializer
 
   def is_enrolled
     user = serialization_options[:user].presence
-    object.is_enrolled?(user) ? true : false
+    user && object.is_enrolled?(user) ? true : false
   end
-
 end
