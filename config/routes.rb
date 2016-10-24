@@ -56,7 +56,7 @@ Rails.application.routes.draw do
       resources :admins, only: [:update]
     end
 
-    resources :courses, only: [:show, :index], shallow: true do
+    resources :courses, only: [:show, :index, :edit], shallow: true do
       member do
         get :outline
       end

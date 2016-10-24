@@ -5,6 +5,10 @@ class Api::CoursesController < Api::BaseController
     render json: @course, serializer: CourseSerializer
   end
 
+  def edit
+    render json: @course, serializer: CourseEditSerializer
+  end
+
   def outline
     render json: @course, user: current_user, serializer: CourseOutlineSerializer
   end
