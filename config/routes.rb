@@ -52,8 +52,7 @@ Rails.application.routes.draw do
           end
         end
       end
-
-      resources :code_csvs, only: [:create]
+      resources :code_csvs, only: [:create, :index]
     end
 
     namespace :students do

@@ -14,6 +14,10 @@ class Api::Admins::CodeCsvsController < Api::Admins::BaseController
   def download
   end
 
+  def index
+    render json: @code_csvs, user: current_user, each_serializer: CodeCsvListSerializer
+  end
+
   private
 
   def code_csv_params
