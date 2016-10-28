@@ -1,0 +1,2 @@
+class SubsectionSidebarSerializer < BaseSubsectionSerializer
+end
