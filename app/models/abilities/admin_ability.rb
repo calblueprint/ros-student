@@ -16,5 +16,6 @@ class AdminAbility
     can :manage, Section
     can :manage, Subsection
     can :manage, Component
+    can :manage, CodeCsv
   end
 end
