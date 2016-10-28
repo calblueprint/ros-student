@@ -1,5 +1,5 @@
 import React from 'react'
-import { RouteHandler, Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router'
+import { RouteHandler, Router, Route, Redirect, browserHistory } from 'react-router'
 import { render } from 'react-dom'
 
 import { ReactRoutes } from '../shared/routes'
