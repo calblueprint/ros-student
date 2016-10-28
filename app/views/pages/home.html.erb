@@ -1,1 +1,7 @@
+<% set_meta_tags images: {
+    test: asset_path('test.png')
+  }.to_json
+%>
+<%= display_meta_tags %>
+
 <%= javascript_include_tag *webpack_asset_paths("authentication") %>
