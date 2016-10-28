@@ -1,5 +1,6 @@
 .input {
   @include appearance(none);
+  width: 100%;
   background: $white;
   border-radius: 4px;
   border: 1px solid transparent;
@@ -24,4 +25,26 @@
 .input--sm {
   font-size: 12px;
   padding: 5px 10px;
+}
+
+.alert {
+  padding: $xxs $sm;
+  background: $yellow-60;
+  width: 100%;
+  text-align: center;
+
+  &-text {
+    color: $white;
+  }
+}
+
+.error {
+  padding: $xxs;
+  background: $red-60;
+  width: 100%;
+  text-align: center;
+
+  &-text {
+    color: $white;
+  }
 }

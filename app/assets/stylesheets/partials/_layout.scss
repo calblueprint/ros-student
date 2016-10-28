@@ -14,6 +14,8 @@ $md: 24px;
 $lg: 32px;
 $xl: 40px;
 $xxl: 54px;
+$xxxl: 60px;
+$xxxxl: 72px;
 
 $space-names: 'xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl';
 $space-list: $xxs, $xs, $sm, $md, $lg, $xl, $xxl;
@@ -49,4 +51,21 @@ $space-list: $xxs, $xs, $sm, $md, $lg, $xl, $xxl;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+
+  &.center {
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+
+    align-items: center;
+    justify-content: center;
+
+    &-vertical {
+      flex-direction: column;
+    }
+
+    &-horizontal {
+      flex-direction: row;
+    }
+  }
 }

@@ -8,12 +8,14 @@ import LoginForm from './LoginForm'
 class StudentLoginPage extends React.Component {
   render() {
     return (
-      <div className='flex login-container'>
-        <img className='login-logo' src={Images.rootsLogo} />
-        <h1 className='h2 marginTopBot-xsm'>Student Login Page!</h1>
-        <LoginForm userType='student' action={RailsRoutes.studentsSignInPath()} />
-        <Link to={ReactRoutes.studentsSignUpPath()}>Sign up</Link>
-        <Link to={ReactRoutes.studentsForgotPasswordPath()}>Forgot password?</Link>
+      <div className='flex center center-vertical login-container'>
+        <div className='flex center center-vertical login-modal'>
+          <img className='login-logo' src={Images.rootsLogo} />
+          <h2 className='h2 marginTopBot-xxs'>Let's get started.</h2>
+          <LoginForm userType='student' action={RailsRoutes.studentsSignInPath()} />
+          <Link className='marginTop-xxs' to={ReactRoutes.studentsSignUpPath()}>Sign up</Link>
+          <Link to={ReactRoutes.studentsForgotPasswordPath()}>Forgot password?</Link>
+        </div>
       </div>
     )
   }

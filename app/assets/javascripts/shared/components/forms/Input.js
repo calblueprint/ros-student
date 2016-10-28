@@ -4,6 +4,7 @@ class Input extends React.Component {
   renderInput() {
     return (
       <input
+        className='input'
         autoComplete={this.props.autoComplete}
         type={this.props.type}
         value={this.props.value}
@@ -14,10 +15,10 @@ class Input extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.props.label}
-        {this.renderInput()}
-        {this.props.error}
+      <div className='marginTopBot-xxs'>
+        <div>{this.props.label}</div>
+        <div>{this.renderInput()}</div>
+        <div>{this.props.error}</div>
       </div>
     )
   }

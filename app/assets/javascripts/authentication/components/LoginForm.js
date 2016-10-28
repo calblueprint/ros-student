@@ -45,27 +45,25 @@ class LoginForm extends React.Component {
     return(
       <div>
         <Form
-          className='login_form'
-          id='login_form'
           method='post'
           action={this.props.action}>
 
-          {this.renderFields()}
+          <div className='login-form'>
+            {this.renderFields()}
 
-          <div className='field'>
-            <input name='user[remember_me]' type='hidden' value='0' />
-            <label htmlFor='user_remember_me'>Remember me</label>
-            <input
-              id='user_remember_me'
-              type='checkbox'
-              value='1'
-              name={`${this.props.userType}[remember_me]`}
-            />
+            <div className='flex center center-horizontal marginTopBot-xxs'>
+              <input name='user[remember_me]' type='hidden' value='0' />
+              <label>Remember me</label>
+              <input
+                className='marginLeft-xs'
+                type='checkbox'
+                value='1'
+                name={`${this.props.userType}[remember_me]`}
+              />
+            </div>
           </div>
 
-          <div className='actions'>
-            <input type='submit' name='commit' value='Log in' />
-          </div>
+          <input className='marginTopBot-xxs button' type='submit' name='commit' value='Log in' />
         </Form>
       </div>
     )
