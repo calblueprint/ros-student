@@ -1,3 +1,4 @@
+import _ from 'underscore'
 import React from 'react'
 
 import { getCSRFFieldName, getCSRFToken, getFlashes } from '../../../utils/form_helpers'
@@ -9,6 +10,16 @@ class Form extends React.Component {
     this.state = {
       flash: getFlashes()
     }
+  }
+
+  renderFlashes() {
+    return _.keys(this.state.flash).map((key) => {
+      return (
+        <div key={key} className={`marginTopBot-xxs flash ${key}`}>
+          <h3 className={`${key}-text`}>{this.state.flash[key]}</h3>
+        </div>
+      )
+    })
   }
 
   renderAlert() {
@@ -31,6 +42,16 @@ class Form extends React.Component {
     }
   }
 
+  renderNotice() {
+    if (this.state.flash.error) {
+      return (
+        <div className='marginTopBot-xxs error'>
+          <h3 className='error-text'>{this.state.flash.error}</h3>
+        </div>
+      )
+    }
+  }
+
   render() {
     console.log(this.state.flash)
     return (
@@ -41,8 +62,7 @@ class Form extends React.Component {
         method={this.props.method}
         acceptCharset='UTF-8'>
 
-        {this.renderError()}
-        {this.renderAlert()}
+        {this.renderFlashes() }
 
         <input type='hidden' name='utf8' value='&#x2713;' />
 

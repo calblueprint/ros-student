@@ -27,11 +27,14 @@
   padding: 5px 10px;
 }
 
-.alert {
+.flash {
   padding: $xxs $sm;
-  background: $yellow-60;
   width: 100%;
   text-align: center;
+}
+
+.alert {
+  background: $yellow-60;
 
   &-text {
     color: $white;
@@ -39,10 +42,15 @@
 }
 
 .error {
-  padding: $xxs;
   background: $red-60;
-  width: 100%;
-  text-align: center;
+
+  &-text {
+    color: $white;
+  }
+}
+
+.notice {
+  background: $green-60;
 
   &-text {
     color: $white;
