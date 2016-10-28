@@ -10,7 +10,7 @@ class StudentLoginPage extends React.Component {
     return (
       <div className='flex login-container'>
         <img className='login-logo' src={Images.rootsLogo} />
-        <h1 className='h2'>Student Login Page!</h1>
+        <h1 className='h2 marginTopBot-xsm'>Student Login Page!</h1>
         <LoginForm userType='student' action={RailsRoutes.studentsSignInPath()} />
         <Link to={ReactRoutes.studentsSignUpPath()}>Sign up</Link>
         <Link to={ReactRoutes.studentsForgotPasswordPath()}>Forgot password?</Link>

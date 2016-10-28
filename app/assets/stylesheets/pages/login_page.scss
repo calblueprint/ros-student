@@ -1,7 +1,13 @@
 .login-container {
+  min-height: 100vh;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
   align-items: center;
-  justify-content: center;
+
   flex-direction: column;
+  justify-content: center;
 }
 
 .login-logo {

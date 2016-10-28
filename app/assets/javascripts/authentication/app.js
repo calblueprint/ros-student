@@ -25,4 +25,4 @@ render((
     <Route path='/testing' name='TestingPage' component={TestingPage} />
     <Redirect from={ReactRoutes.studentsRenderPath()} to={ReactRoutes.studentsSignUpPath()} />
   </Router>
-), document.getElementById('main_container'))
+), document.getElementById('main-container'))

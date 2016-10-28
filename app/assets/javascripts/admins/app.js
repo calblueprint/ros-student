@@ -13,4 +13,4 @@ render((
     <Route path={ReactRoutes.updateAdminPath()} name='UpdateAdminPage' component={UpdateAdminPage} />
     <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />
   </Router>
-), document.getElementById('main_container'))
+), document.getElementById('main-container'))

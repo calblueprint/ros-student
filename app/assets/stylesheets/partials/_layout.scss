@@ -40,6 +40,13 @@ $space-list: $xxs, $xs, $sm, $md, $lg, $xl, $xxl;
   .marginRight-#{$name} { margin-right: #{$value} }
 }
 
+.main-container {
+  width: auto;
+  height: auto;
+}
+
 .flex {
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
 }

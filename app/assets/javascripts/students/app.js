@@ -15,4 +15,4 @@ render((
     <Route path={ReactRoutes.courseOutlinePath()} component={CourseOutlinePage} />
     <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />
   </Router>
-), document.getElementById('main_container'))
+), document.getElementById('main-container'))
