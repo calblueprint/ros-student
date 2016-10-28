@@ -5,7 +5,7 @@ class Api::Admins::CodeCsvsController < Api::Admins::BaseController
     if @code_csv.save
       # Call generate_csv for this code_csv here
       @code_csv.generate_codes(code_csv_args)
-      render json: @code_csv, serializer: BaseCodeCsvSerializer
+      render json: @code_csv, serializer: CodeCsvSerializer
     else
       error_response(@code_csv)
     end
@@ -15,7 +15,7 @@ class Api::Admins::CodeCsvsController < Api::Admins::BaseController
   end
 
   def index
-    render json: @code_csvs, user: current_user, each_serializer: CodeCsvListSerializer
+    render json: @code_csvs, each_serializer: CodeCsvListSerializer
   end
 
   private

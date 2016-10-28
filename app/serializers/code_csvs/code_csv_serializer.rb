@@ -1,0 +1,2 @@
+class CodeCsvSerializer < BaseCodeCsvSerializer
+end
