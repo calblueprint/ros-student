@@ -3,6 +3,8 @@ import _ from 'underscore'
 
 import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-hoc';
 
+import { Images } from '../../utils/image_helpers'
+
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import Dropdown from '../../shared/components/widgets/Dropdown'
 
@@ -111,6 +113,7 @@ class TestingPage extends React.Component {
   render() {
     return (
       <div>
+        <img src={Images.test} />
         <SortableSectionList
           sections={this.state.sections}
           lockAxis="y"
