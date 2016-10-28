@@ -39,3 +39,7 @@ $space-list: $xxs, $xs, $sm, $md, $lg, $xl, $xxl;
   .marginLeft-#{$name} { margin-left: #{$value} }
   .marginRight-#{$name} { margin-right: #{$value} }
 }
+
+.flex {
+  display: flex;
+}
