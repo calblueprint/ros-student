@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :photo do
+    parent_id 1
+    parent_type "MyString"
+    image "MyString"
+  end
   factory :code_csv do
     name "MyString"
   end
