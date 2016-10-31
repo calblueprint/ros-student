@@ -21,8 +21,12 @@ class CoursePage extends React.Component {
     return (
       <div>
         <h1>This is a course page</h1>
+<<<<<<< cff884485c4178f4567da40c4f529f9fc41add75
         <ParentComponent component={this.component_params}/>
         <CourseSidebar id={this.props.routeParams.id}/>
+=======
+        <CourseSidebar id={2} callback={this.changeSubsectionDisplayed.bind(this)}/>
+>>>>>>> fixed graph bug
         <ComponentGraph id={this.state.subsection_displayed} />
       </div>
     )
