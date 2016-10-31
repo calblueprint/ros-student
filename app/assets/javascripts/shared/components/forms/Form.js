@@ -6,8 +6,9 @@ import Input from './Input'
 import { getCSRFFieldName, getCSRFToken, getFlashes } from '../../../utils/form_helpers'
 
 const PASSWORD = 'password'
-const TEXT = 'text'
-const IMAGE = 'image'
+const TEXT     = 'text'
+const IMAGE    = 'image'
+const AUDIO    = 'audio'
 
 class Form extends React.Component {
   constructor(props) {

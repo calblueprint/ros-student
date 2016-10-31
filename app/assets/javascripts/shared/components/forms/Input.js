@@ -10,7 +10,7 @@ class Input extends React.Component {
         value={this.props.value}
         name={this.props.name}
         onChange={this.props.onChange}
-        accept={this.props.accept} />
+      />
     )
   }
 
@@ -41,7 +41,6 @@ Input.defaultProps = {
   value: '',
   error: '',
   name: '',
-  accept: '',
 }
 
 export default Input
