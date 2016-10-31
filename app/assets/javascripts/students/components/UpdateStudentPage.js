@@ -23,6 +23,12 @@ class UpdateStudentPage extends React.Component {
   getUserFields() {
     return {
       formFields: {
+        image: {
+          label: 'Profile Image',
+          type: 'file',
+          onChange: _.bind(this.handleImage, this),
+          accept: 'image/*',
+        },
         email: {
           label: 'Email',
           value: this.user.email,
@@ -96,6 +102,10 @@ class UpdateStudentPage extends React.Component {
     this.setState({ formFields: formFields })
   }
 
+  handleImage(e) {
+    debugger
+  }
+
   renderFields() {
     return (
       _.pairs(this.state.formFields).map((values) => {
@@ -108,7 +118,7 @@ class UpdateStudentPage extends React.Component {
     return (
       <div>
         <h1>Update Profile</h1>
-        <Form>
+        <Form fields={this.state.formFields}>
           {this.renderFields()}
 
           <div className='actions'>

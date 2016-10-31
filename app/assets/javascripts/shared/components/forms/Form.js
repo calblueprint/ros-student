@@ -1,7 +1,13 @@
 import _ from 'underscore'
 import React from 'react'
 
+import Input from './Input'
+
 import { getCSRFFieldName, getCSRFToken, getFlashes } from '../../../utils/form_helpers'
+
+const PASSWORD = 'password'
+const TEXT = 'text'
+const IMAGE = 'image'
 
 class Form extends React.Component {
   constructor(props) {
@@ -22,35 +28,6 @@ class Form extends React.Component {
     })
   }
 
-  renderAlert() {
-    if (this.state.flash.alert) {
-      return (
-        <div className='marginTopBot-xxs alert'>
-          <h3 className='alert-text'>{this.state.flash.alert}</h3>
-        </div>
-      )
-    }
-  }
-
-  renderError() {
-    if (this.state.flash.error) {
-      return (
-        <div className='marginTopBot-xxs error'>
-          <h3 className='error-text'>{this.state.flash.error}</h3>
-        </div>
-      )
-    }
-  }
-
-  renderNotice() {
-    if (this.state.flash.error) {
-      return (
-        <div className='marginTopBot-xxs error'>
-          <h3 className='error-text'>{this.state.flash.error}</h3>
-        </div>
-      )
-    }
-  }
 
   render() {
     console.log(this.state.flash)
@@ -62,7 +39,7 @@ class Form extends React.Component {
         method={this.props.method}
         acceptCharset='UTF-8'>
 
-        {this.renderFlashes() }
+        {this.renderFlashes()}
 
         <input type='hidden' name='utf8' value='&#x2713;' />
 

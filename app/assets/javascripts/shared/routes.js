@@ -1,5 +1,6 @@
 class ReactRoutes {
   static getId(id, name) { return id || `:${name}` }
+
   // Authentication Flow
   static rootPath()                   { return '/' }
   static studentsSignUpPath()         { return '/students/sign_up' }

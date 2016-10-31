@@ -7,6 +7,7 @@ import { Images } from '../../utils/image_helpers'
 
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import Dropdown from '../../shared/components/widgets/Dropdown'
+import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
 
 const SortableItem = SortableElement(({ name, index }) =>
   <li className='SortableItem'>{name}</li>
@@ -113,7 +114,6 @@ class TestingPage extends React.Component {
   render() {
     return (
       <div>
-        <img src={Images.test} />
         <SortableSectionList
           sections={this.state.sections}
           lockAxis="y"
@@ -125,6 +125,7 @@ class TestingPage extends React.Component {
         <InlineEditInput value={this.state.value1} onBlur={this.onBlur1.bind(this)} />
         <InlineEditInput value={this.state.value2} onBlur={this.onBlur2.bind(this)} />
         <Dropdown header={this.renderHeader()} items={this.renderItems()} />
+        <ImageUploadInput />
       </div>
     )
   }

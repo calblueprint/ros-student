@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'pages#dashboard'
 
+  # Admin Flow
+  get '/admins/:id/edit', to: 'pages#dashboard'
+
   # Student Flow
   get '/students/:id/edit', to: 'pages#dashboard'
   get '/courses/:id/outline', to: 'pages#dashboard'
