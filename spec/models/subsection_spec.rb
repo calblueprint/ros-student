@@ -3,7 +3,7 @@
 # Table name: subsections
 #
 #  id         :integer          not null, primary key
-#  title      :string
+#  title      :string           default("Subsection")
 #  section_id :integer
 #  position   :integer
 #  created_at :datetime         not null
@@ -26,12 +26,6 @@ RSpec.describe Subsection, type: :model do
     it 'has no course id' do
       subsection.section_id = nil
       expect(subsection.valid?).to be false
-    end
-
-    it 'is a duplicate position from the same course' do
-      other_subsection.section_id = valid_subsection.section_id
-      other_subsection.position = valid_subsection.position
-      expect(other_subsection.valid?).to be false
     end
   end
 end

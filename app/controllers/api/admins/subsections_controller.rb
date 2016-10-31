@@ -1,5 +1,6 @@
 class Api::Admins::SubsectionsController < Api::Admins::BaseController
-  load_and_authorize_resource
+  load_and_authorize_resource :section
+  load_and_authorize_resource :subsection, through: :section, shallow: :true
 
   def create
     if @subsection.save
@@ -18,8 +19,8 @@ class Api::Admins::SubsectionsController < Api::Admins::BaseController
   end
 
   def destroy
-    if @subsection.destroy
-      render json: @subsection, serializer: SubsectionSerializer
+    if @subsection.remove_from_list and @subsection.destroy
+      render json: @subsection.section.subsections, each_serializer: SubsectionListSerializer
     else
       error_response(@subsection)
     end
@@ -37,7 +38,7 @@ class Api::Admins::SubsectionsController < Api::Admins::BaseController
   private
 
   def subsection_params
-    params.require(:subsection).permit(
+    params.fetch(:subsection, {}).permit(
       :title,
       :section_id,
       :position
