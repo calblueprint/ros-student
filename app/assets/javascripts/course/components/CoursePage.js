@@ -20,7 +20,7 @@ class CoursePage extends React.Component {
     return (
       <div>
         <h1>This is a course page</h1>
-        <CourseSidebar id={2} callback={this.changeSubsectionDisplayed}/>
+        <CourseSidebar id={2} callback={this.changeSubsectionDisplayed.bind(this)}/>
         <ComponentGraph id={this.state.subsection_displayed} />
       </div>
     )

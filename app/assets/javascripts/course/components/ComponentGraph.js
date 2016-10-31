@@ -9,14 +9,18 @@ class ComponentGraph extends React.Component {
   constructor(props) {
     super(props)
 
-    this.id = this.props.id
     this.state = { subsection: {} }
 
-    this.requestSubsection()
+    this.requestSubsection(this.props.id)
   }
 
-  requestSubsection() {
-    const path = APIRoutes.getSubsectionPath(this.id)
+  componentWillReceiveProps(nextProps) {
+    this.requestSubsection(nextProps.id)
+    console.log(nextProps);
+  }
+
+  requestSubsection(id) {
+    const path = APIRoutes.getSubsectionPath(id)
 
     request.get(path, (response) => {
       console.log(response)
@@ -31,7 +35,7 @@ class ComponentGraph extends React.Component {
       return "Loading"
     } else {
       return this.state.subsection.components.map((value) => {
-        return <p key={value.id}>{value.component_type}</p>
+        return <p key={value.id}>{value.id}{value.component_type}</p>
       })
     }
   }
