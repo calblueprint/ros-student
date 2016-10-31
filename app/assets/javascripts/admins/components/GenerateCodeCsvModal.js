@@ -9,6 +9,7 @@ import { APIRoutes } from '../../shared/routes'
 
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
+import GenerateCodeCsvCourseCard from './GenerateCodeCsvCourseCard'
 
 class GenerateCodeCsvModal extends React.Component {
   constructor(props) {
@@ -27,12 +28,13 @@ class GenerateCodeCsvModal extends React.Component {
           value: '',
           name: 'Number of codes to generate',
           onChange: _.bind(this.handleChange, this, 'numberOfCodes')
-        }
-      }
+        },
+      },
+      courses: []
     }
 
     // Get courses for admin to selectively activate
-    this.getCourses();
+    this.getCourses()
   }
 
   handleChange(attr, e) {
@@ -53,38 +55,40 @@ class GenerateCodeCsvModal extends React.Component {
     const path = APIRoutes.getCourses()
 
     request.get(path, (response) => {
-      this.setState( { courses: response.courses }) // FIXME: courses needs to return list of course_ids
+      this.setState( { courses: response.courses })
     }, (error) => {
       console.log('error')
     })
   }
 
   renderCourses() {
-    return this.state.courses.map(value) => {
+    return this.state.courses.map((value) => {
       return (
-        <Button>
+        <li>
           <GenerateCodeCsvCourseCard course={value} selected={false} />
-        </Button>
+        </li>
       )
-    }
+    })
   }
 
   render() {
+    // FIXME Check what is `action`
+    // FIXME Ok to put in ol?
     return (
       <div>
         <Form
           className='generate_code_csv_form'
           id='generate_code_csv_form'
           method='post'
-          action={this.props.action}> // FIXME Check what is `action`
+          action={this.props.action}>
 
           <h1> Generate sign-up codes </h1>
           {this.renderFields()}
-          <ol>{this.renderCourses()}</ol> // FIXME Ok to put in ol?
+          <ol>{this.renderCourses()}</ol>
         </Form>
       </div>
     )
   }
 }
 
-export default GenerateCodeCsvCourse
+export default GenerateCodeCsvModal
