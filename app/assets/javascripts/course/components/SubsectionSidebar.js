@@ -22,7 +22,9 @@ class SubsectionSidebar extends React.Component {
   render() {
     return (
       <div>
-        <li>{this.props.subsection.id} {this.props.subsection.title} {this.current()}</li>
+        <li onClick={_.bind(this.props.callback, this, this.props.subsection.id)}>
+        {`${this.props.subsection.id} ${this.props.subsection.title}`} {this.current()}
+        </li>
       </div>
     )
   }
