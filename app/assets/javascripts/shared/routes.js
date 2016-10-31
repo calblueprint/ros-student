@@ -22,7 +22,6 @@ class ReactRoutes {
   // Course Flow
   static coursePath(id)               { return `/courses/${ReactRoutes.getId(id, 'id')}` }
 
-
   // Course Edit Flow
   static courseEditPath(id)           { return `/courses/${ReactRoutes.getId(id, 'id')}/edit` }
 }
@@ -55,6 +54,7 @@ class APIRoutes {
   static getStudentPath(id)    { return APIRoutes.createRoute(`students/${id}`) }
   static getCourseOutlinePath(id) { return APIRoutes.createRoute(`courses/${id}/outline`) }
   static getCourseSidebarPath(id) { return APIRoutes.createRoute(`courses/${id}/sidebar`) }
+  static getSubsectionPath(id) { return APIRoutes.createRoute(`subsections/${id}`) }
 
   static verifyCodePath()      { return APIRoutes.createRoute(`codes/verify`) }
 

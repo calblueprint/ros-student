@@ -83,7 +83,7 @@ Rails.application.routes.draw do
         get :sidebar
       end
       resources :sections, only: [] do
-        resources :subsections, only: [] do
+        resources :subsections, only: [:show] do
           resources :components, only: [:show]
         end
       end

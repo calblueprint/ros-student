@@ -16,7 +16,7 @@ class CourseSidebar extends React.Component {
   constructor(props) {
     super(props)
 
-    this.id = 2 //this.props.routeParams.id
+    this.id = this.props.id
 
     this.state = {
       courseSidebar: {}
@@ -41,7 +41,7 @@ class CourseSidebar extends React.Component {
       return "Loading"
     } else {
       return this.state.courseSidebar.sections.map((value) => {
-        return <SectionSidebar key={value.id} section={value} current_subsection={this.state.courseSidebar.current_subsection} />
+        return <SectionSidebar key={value.id} section={value} current_subsection={this.state.courseSidebar.current_subsection} callback={this.props.callback}/>
       })
     }
   }
