@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   get '/courses/:id/outline', to: 'pages#dashboard'
   get '/courses/:id/sidebar', to: 'pages#dashboard'
 
+  # Admin Flow
+  get '/admins/code_csvs', to: 'pages#dashboard'
+
   # Course flow
   resources :courses, only: [:show]
 

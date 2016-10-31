@@ -15,6 +15,8 @@ class ReactRoutes {
 
   // Admin Flow
   static updateAdminPath(id)          { return `/admins/${ReactRoutes.getId(id, 'id')}/edit`}
+  static codeCsvListPath()            { return
+  `/admins/code_csvs` }
 
   // Student Flow
   static updateStudentPath(id)        { return `/students/${ReactRoutes.getId(id, 'id')}/edit` }

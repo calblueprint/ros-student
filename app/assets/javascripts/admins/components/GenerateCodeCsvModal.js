@@ -12,8 +12,7 @@ import Input from '../../shared/components/forms/Input'
 
 class GenerateCodeCsvModal extends React.Component {
   constructor(props) {
-    super(props);
-    this.id = this.props.routeParams.id;
+    super(props)
 
     this.state = {
       formFields: {
@@ -30,7 +29,7 @@ class GenerateCodeCsvModal extends React.Component {
           onChange: _.bind(this.handleChange, this, 'numberOfCodes')
         }
       }
-    };
+    }
 
     // Get courses for admin to selectively activate
     this.getCourses();
@@ -54,7 +53,7 @@ class GenerateCodeCsvModal extends React.Component {
     const path = APIRoutes.getCourses()
 
     request.get(path, (response) => {
-      this.setState( { courses: response.courses })
+      this.setState( { courses: response.courses }) // FIXME: courses needs to return list of course_ids
     }, (error) => {
       console.log('error')
     })
@@ -71,7 +70,7 @@ class GenerateCodeCsvModal extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div>
         <Form
           className='generate_code_csv_form'
@@ -87,3 +86,5 @@ class GenerateCodeCsvModal extends React.Component {
     )
   }
 }
+
+export default GenerateCodeCsvCourse
