@@ -7,7 +7,7 @@ import { ReactRoutes } from '../shared/routes'
 import AdminDashboardPage from './components/AdminDashboardPage'
 import UpdateAdminPage from './components/UpdateAdminPage'
 import GenerateCodeCsvModal from './components/GenerateCodeCsvModal'
-
+console.log(ReactRoutes.codeCsvListPath())
 render((
   <Router history={browserHistory}>
     <Route path={ReactRoutes.dashboardPath()} name='AdminDashboardPage' component={AdminDashboardPage} />
