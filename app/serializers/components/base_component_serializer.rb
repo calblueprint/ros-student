@@ -5,4 +5,6 @@ class BaseComponentSerializer < ActiveModel::Serializer
               :content_url,
               :position,
               :subsection_id
+
+  has_one :photo, serializer: PhotoSerializer
 end

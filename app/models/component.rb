@@ -20,6 +20,9 @@ class Component < ActiveRecord::Base
   validates :content_url, presence: true
   validates :subsection_id, presence: true
 
+  has_one :photo, as: :parent, dependent: :destroy
+  accepts_nested_attributes_for :photo
+
   belongs_to :subsection
   acts_as_list scope: :subsection
 

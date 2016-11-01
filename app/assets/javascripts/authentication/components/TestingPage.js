@@ -3,6 +3,7 @@ import _ from 'underscore'
 
 import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-hoc';
 
+import request from '../../shared/requests/request'
 import { Images } from '../../utils/image_helpers'
 
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
@@ -76,14 +77,18 @@ class TestingPage extends React.Component {
     this.state = {
       sections: [{section: 'A', items: ['A1', 'A2', 'A3']}, {section: 'B', items: ['B1', 'B2']}],
       value1: 'This is value',
-      value2: 'This other value'
+      value2: 'This other value',
+      url: '',
+      image: '',
     }
   }
+
   onSortEnd({oldIndex, newIndex}) {
     this.setState({
             sections: arrayMove(this.state.sections, oldIndex, newIndex)
         });
   }
+
   onSectionSortEnd(sectionIndex, {oldIndex, newIndex}) {
     const section = this.state.sections[sectionIndex];
 
@@ -96,10 +101,30 @@ class TestingPage extends React.Component {
 
   onImage(value) {
     console.log('image')
+    const params = {
+      component: {
+        photo_attributes: {
+          image_data: value,
+        },
+      },
+    }
+    request.post('/api/admins/subsections/1/components', params, (response) => {
+      this.setState({ image: response.component.photo.image_url })
+      console.log(response.component.photo.image_url)
+    })
   }
 
   onAudio(audio) {
     console.log('audio')
+    const params = {
+      component: {
+        audio_data: audio,
+      }
+    }
+    request.post('/api/admins/subsections/1/components', params, (response) => {
+      this.setState({ url: response.component.audio_url })
+      console.log(response.component)
+    })
   }
 
   onBlur1(value) {
@@ -134,8 +159,10 @@ class TestingPage extends React.Component {
         <InlineEditInput value={this.state.value1} onBlur={this.onBlur1.bind(this)} />
         <InlineEditInput value={this.state.value2} onBlur={this.onBlur2.bind(this)} />
         <Dropdown header={this.renderHeader()} items={this.renderItems()} />
-        <ImageUploadInput label='image' onChange={this.onImage} />
-        <AudioUploadInput label='audio' onChange={this.onAudio} />
+        <ImageUploadInput label='image' onChange={this.onImage.bind(this)} />
+        <AudioUploadInput label='audio' onChange={this.onAudio.bind(this)} />
+        <audio src={this.state.url} controls preload />
+        <img src={this.state.image} />
       </div>
     )
   }
