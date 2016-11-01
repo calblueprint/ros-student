@@ -32,7 +32,7 @@ class ImageUploadInput extends React.Component {
         <div>{this.props.label}</div>
         <UploadInput
           onChange={this.setChosenImage}
-          accept='image/*'
+          accept='image/jpg, image/jpeg, image/png'
         />
       </div>
     )

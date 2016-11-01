@@ -35,7 +35,7 @@ class AudioUploadInput extends React.Component {
         {this.renderAudio()}
         <div>{this.props.label}</div>
         <UploadInput
-          accept='audio/*'
+          accept='audio/mp3'
           onChange={this.setChosenAudio}
         />
       </div>
