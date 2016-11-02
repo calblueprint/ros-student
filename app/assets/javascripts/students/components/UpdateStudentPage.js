@@ -89,7 +89,6 @@ class UpdateStudentPage extends React.Component {
       this.user = response.student
       this.setState(this.getUserFields())
     }, (error) => {
-      console.log(mapErrorToFormFields(error, this.state.formFields))
       this.setState({
         formFields: mapErrorToFormFields(error, this.state.formFields)
       })
@@ -103,7 +102,6 @@ class UpdateStudentPage extends React.Component {
   }
 
   handleImage(e) {
-    debugger
   }
 
   renderFields() {

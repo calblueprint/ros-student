@@ -14,7 +14,6 @@ class AudioUploadInput extends React.Component {
   }
 
   setChosenAudio(audio) {
-    console.log('loaded')
     this.setState({ audio: audio })
     this.props.onChange(audio)
   }

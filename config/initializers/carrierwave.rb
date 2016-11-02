@@ -1,5 +1,11 @@
 CarrierWave.configure do |config|
-  config.storage    = :aws
+  if Rails.env.test? || Rails.env.cucumber?
+    config.storage  = :aws
+  else
+    config.storage = :file
+    config.enable_processing = false
+  end
+
   config.aws_bucket = ENV.fetch('S3_BUCKET_NAME')
   config.aws_acl    = 'public-read'
 

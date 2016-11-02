@@ -9,7 +9,6 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
     if @component.save
       render json: @component, serializer: ComponentSerializer
     else
-      puts @component.errors.messages
       error_response(@component)
     end
   end

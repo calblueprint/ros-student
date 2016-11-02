@@ -8,16 +8,14 @@ class UploadInput extends React.Component {
   }
 
   setChosenFile(e) {
-    console.log('chosen1')
     const files = e.target.files
     if (!files || !files[0]) {
       return
     }
-    console.log('chosen2')
+
     // FileReader decodes into a base64 string.
     const reader = new FileReader()
     reader.onload = (file) => {
-      console.log('chosen3')
       this.props.onChange(file.target.result)
     }
 
