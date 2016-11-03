@@ -16,7 +16,7 @@ class CoursePage extends React.Component {
     return (
       <div>
         <h1>This is a course page</h1>
-        <CourseSidebar course_id={2} />
+        <CourseSidebar course_id={this.props.course_id} />
         <ParentComponent component={this.component_params}/>
       </div>
     )

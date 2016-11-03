@@ -1,4 +1,5 @@
 import React from 'react'
+
 import ImageComponent from './ImageComponent'
 import VideoComponent from './VideoComponent'
 import AudioComponent from './AudioComponent'
@@ -35,7 +36,6 @@ class ParentComponent extends React.Component {
   render() {
     return (
       <div>
-        <p>This is a PARENT component</p>
         {this.renderComponent()}
       </div>
     )

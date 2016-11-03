@@ -6,7 +6,7 @@ class AudioComponent extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {playing: true}
+    this.state = { playing: true }
     this.audioUrl = this.props.audioUrl
   }
 
@@ -17,10 +17,6 @@ class AudioComponent extends React.Component {
   }
 
   render() {
-
-    const {
-      playing
-    } = this.state
 
     return (
       <div>
