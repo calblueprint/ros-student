@@ -9,7 +9,6 @@ class CoursePage extends React.Component {
     super(props)
 
     this.state = { subsection_displayed: 31 }
-
   }
 
   changeSubsectionDisplayed(id) {
@@ -20,7 +19,7 @@ class CoursePage extends React.Component {
     return (
       <div>
         <h1>This is a course page</h1>
-        <CourseSidebar id={2} callback={this.changeSubsectionDisplayed.bind(this)}/>
+        <CourseSidebar id={this.props.id} callback={this.changeSubsectionDisplayed.bind(this)}/>
         <ComponentGraph id={this.state.subsection_displayed} />
       </div>
     )

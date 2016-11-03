@@ -29,7 +29,6 @@ class CourseSidebar extends React.Component {
     const path = APIRoutes.getCourseSidebarPath(this.id)
 
     request.get(path, (response) => {
-      console.log(response)
       this.setState({ courseSidebar: response.course_sidebar })
     }, (error) => {
       console.log(error)
