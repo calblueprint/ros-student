@@ -15,7 +15,6 @@ class ReactRoutes {
 
   // Admin Flow
   static updateAdminPath(id)          { return `/admins/${ReactRoutes.getId(id, 'id')}/edit`}
-  static codeCsvListPath()            { return '/admins/code_csvs' }
 
   // Student Flow
   static updateStudentPath(id)        { return `/students/${ReactRoutes.getId(id, 'id')}/edit` }
@@ -69,14 +68,10 @@ class APIRoutes {
   static editSubsectionPath(id)  { return APIRoutes.createRoute(`admins/subsections/${id}`)}
   static editSectionPath(id)     { return APIRoutes.createRoute(`admins/sections/${id}`)}
   static editCoursePath(id)      { return APIRoutes.createRoute(`admins/courses/${id}`)}
-<<<<<<< 3475b9d19e5ae210b329076593ce516886660758
   static createSubsectionPath(id) { return APIRoutes.createRoute(`admins/sections/${id}/subsections`)}
   static createSectionPath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/sections`)}
-=======
 
   // Codes
-
->>>>>>> Adds skeleton for admins to generate sign-up codes. Needs tweaking.
 }
 
 export {

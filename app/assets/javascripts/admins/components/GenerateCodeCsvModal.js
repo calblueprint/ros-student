@@ -31,11 +31,12 @@ class GenerateCodeCsvModal extends React.Component {
         },
       },
       courses: [],
-      active_courses: []
+      activeCourseIds: new Set()
     }
 
     // Get courses for admin to selectively activate
     this.getCourses()
+    this.generateCodes = _.bind(this.generateCodes, this)
   }
 
   handleChange(attr, e) {
@@ -65,13 +66,31 @@ class GenerateCodeCsvModal extends React.Component {
   updateCourseList(course) {
     // Removes `course` if already in active course list
     // Otherwise adds `course` to active course list
-    var index = this.state.active_courses.indexOf(course)
-    if (index >= 0) {
-      this.state.active_courses.splice(index, 1)
+    var activeCourseIds = this.state.activeCourseIds
+    if (activeCourseIds.has(course.id)) {
+      activeCourseIds.delete(course.id)
     } else {
-      this.state.active_courses.push(course)
+      activeCourseIds.add(course.id)
     }
-    console.log(this.state.active_courses)
+  }
+
+  generateCodes(e) {
+    e.preventDefault()
+    const path = APIRoutes.codeCsvListPath()
+    var inputs = getInputToParams(this.state.formFields)
+    var params = {
+      code_csv: {
+        name: inputs.name
+      },
+      code_csv_args: {
+        amount: parseInt(inputs.amount),
+        course_ids: JSON.stringify([...this.state.activeCourseIds])
+      }
+    }
+    request.post(path, params, (response) => {
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   renderCourses() {
@@ -85,8 +104,6 @@ class GenerateCodeCsvModal extends React.Component {
   }
 
   render() {
-    // FIXME Check what is `action`
-    // FIXME Ok to put in ol?
     return (
       <div>
         <Form
@@ -99,7 +116,7 @@ class GenerateCodeCsvModal extends React.Component {
           {this.renderFields()}
           <ol>{this.renderCourses()}</ol>
 
-          <button>Submit</button>
+          <button onClick={this.generateCodes}>Submit</button>
         </Form>
       </div>
     )
