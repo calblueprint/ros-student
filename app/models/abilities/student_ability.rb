@@ -2,7 +2,6 @@ class StudentAbility
   include CanCan::Ability
 
   def initialize(student)
-    puts 'asdfsfdasadffsadasdfasdfasdfdf'
     student ||= Student.new
 
     can [
@@ -13,9 +12,8 @@ class StudentAbility
       :destroy,
     ], Student, id: student.id
 
-    can :show, Course do |course|
-      puts 'asfkasflkasdflkajsfhkjlsfhljasdf'
-      course.is_enrolled
+    can [:show, :outline, :sidebar], Course do |course|
+      course.is_enrolled?(student)
     end
   end
 end

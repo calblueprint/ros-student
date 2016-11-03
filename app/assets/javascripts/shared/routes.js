@@ -55,7 +55,7 @@ class APIRoutes {
   static getAdminPath(id)      { return APIRoutes.createRoute(`admins/${id}`) }
   static getStudentPath(id)    { return APIRoutes.createRoute(`students/${id}`) }
   static getStudentCourseOutlinePath(id) { return APIRoutes.createRoute(`students/courses/${id}/outline`) }
-  static getCourseSidebarPath(id) { return APIRoutes.createRoute(`courses/${id}/sidebar`) }
+  static getStudentCourseSidebarPath(id) { return APIRoutes.createRoute(`students/courses/${id}/sidebar`) }
 
   static verifyCodePath()      { return APIRoutes.createRoute(`codes/verify`) }
 
