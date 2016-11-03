@@ -21,6 +21,8 @@ class SubsectionEdit extends React.Component {
       subsection: this.props.subsection,
       components: this.props.subsection.components,
       newComponentForm: false
+      loaded: false,
+      subsection: this.props.subsection,
     }
     this.deleteSubsection = this.deleteSubsection.bind(this)
     this.onFormCompletion = this.onFormCompletion.bind(this)
