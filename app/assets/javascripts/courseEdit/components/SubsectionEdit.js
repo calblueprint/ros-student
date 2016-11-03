@@ -44,6 +44,24 @@ class SubsectionEdit extends React.Component {
     })
   }
 
+  // componentWillReceiveProps(nextProps) {
+  //   console.log(this.state.loaded)
+  //   if (!this.state.loaded) {
+  //     this.setState({ subsection: nextProps.subsection, loaded: true })
+  //   }
+  // }
+
+  updateTitle(params) {
+    const path = APIRoutes.editSubsectionPath(this.state.subsection.id)
+    request.update(path, params, (response) => {
+      const subsection = this.state.subsection
+      subsection.title = response.subsection.title
+      this.setState({ subsection: subsection })
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
   onBlurTitle(value) {
     const params = {
       subsection: {
