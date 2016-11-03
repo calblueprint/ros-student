@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 
 import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
@@ -27,22 +26,29 @@ class CourseList extends React.Component {
     })
   }
 
-  renderCards() {
-    return this.state.courses.map((value) => {
+  renderCards(list) {
+    return list.map((value) => {
       return (
-        <Link
-          to={ReactRoutes.courseOutlinePath(value.id)}>
-          <CourseCard key={value.id} course={value} />
-        </Link>
+        <CourseCard key={value.id} course={value} />
       )
     })
   }
 
+  sortCards() {
+    return [this.state.courses.filter(function (course) { return course.is_enrolled}),
+      this.state.courses.sort(function(x, y) {return (x.is_enrolled === y.is_enrolled)? 0 : x.is_enrolled? -1 : 1})]
+  }
+
   render() {
+    var lists = this.sortCards()
+    var enrolledList = lists[0]
+    var allList = lists[1]
     return (
       <div>
-        <h1>Courses</h1>
-        <ol>{this.renderCards()}</ol>
+        <h1>Enrolled Courses</h1>
+        <ol>{this.renderCards(enrolledList)}</ol>
+        <h1>All Courses</h1>
+        <ol>{this.renderCards(allList)}</ol>
       </div>
     )
   }

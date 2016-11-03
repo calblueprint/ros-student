@@ -59,6 +59,11 @@ Rails.application.routes.draw do
     end
 
     namespace :students do
+      resources :courses, only: [:show] do
+        member do
+          get :outline
+        end
+      end
     end
 
     scope module: 'students' do
@@ -69,10 +74,7 @@ Rails.application.routes.draw do
       resources :admins, only: [:update]
     end
 
-    resources :courses, only: [:show, :index, :edit], shallow: true do
-      member do
-        get :outline
-      end
+    resources :courses, only: [:index, :edit], shallow: true do
       resources :sections, only: [] do
         resources :subsections, only: [] do
           resources :components, only: [:show]
