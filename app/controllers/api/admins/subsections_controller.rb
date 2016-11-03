@@ -34,14 +34,12 @@ class Api::Admins::SubsectionsController < Api::Admins::BaseController
     end
   end
 
-
   private
 
   def subsection_params
     params.fetch(:subsection, {}).permit(
       :title,
       :section_id,
-      :position
     )
   end
 

@@ -58,4 +58,8 @@ InlineEditInput.propTypes = {
   value: PropTypes.string.isRequired,
 }
 
+InlineEditInput.defaultProps = {
+  value: '',
+}
+
 export default InlineEditInput
