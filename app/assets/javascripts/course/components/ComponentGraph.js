@@ -16,14 +16,12 @@ class ComponentGraph extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.requestSubsection(nextProps.id)
-    console.log(nextProps);
   }
 
   requestSubsection(id) {
     const path = APIRoutes.getSubsectionPath(id)
 
     request.get(path, (response) => {
-      console.log(response)
       this.setState({ subsection: response.subsection })
     }, (error) => {
       console.log(error)
