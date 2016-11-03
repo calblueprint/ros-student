@@ -70,7 +70,7 @@ class APIRoutes {
   static editCoursePath(id)      { return APIRoutes.createRoute(`admins/courses/${id}`)}
 
   // Codes
-
+  static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`)}
 }
 
 export {
