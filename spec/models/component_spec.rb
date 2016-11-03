@@ -34,12 +34,6 @@ RSpec.describe Component, type: :model do
         component.subsection_id = nil
         expect(component.valid?).to be false
       end
-
-      it 'same position' do
-        component.subsection_id = invalid_component.subsection_id
-        component.position = invalid_component.position
-        expect(component.valid?).to be false
-      end
     end
   end
 

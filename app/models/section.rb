@@ -3,7 +3,7 @@
 # Table name: sections
 #
 #  id         :integer          not null, primary key
-#  title      :string
+#  title      :string           default("Section")
 #  course_id  :integer
 #  position   :integer
 #  created_at :datetime         not null
@@ -13,8 +13,6 @@
 class Section < ActiveRecord::Base
   validates :title, presence: true
   validates :course_id, presence: true
-
-  validates :position, uniqueness: { scope: :course_id }
 
   has_many :subsections, -> { order(position: :asc) }
   belongs_to :course

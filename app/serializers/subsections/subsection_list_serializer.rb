@@ -1,0 +1,2 @@
+class SubsectionListSerializer < BaseSubsectionSerializer
+end

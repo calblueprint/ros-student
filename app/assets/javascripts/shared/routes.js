@@ -71,6 +71,8 @@ class APIRoutes {
 
   // Codes
   static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`)}
+  static createSubsectionPath(id) { return APIRoutes.createRoute(`admins/sections/${id}/subsections`)}
+  static createSectionPath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/sections`)}
 }
 
 export {
