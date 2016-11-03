@@ -50,20 +50,9 @@ class LoginForm extends React.Component {
 
           <div className='login-form'>
             {this.renderFields()}
-
-            <div className='flex center center-horizontal marginTopBot-xxs'>
-              <input name='user[remember_me]' type='hidden' value='0' />
-              <label>Remember me</label>
-              <input
-                className='marginLeft-xs'
-                type='checkbox'
-                value='1'
-                name={`${this.props.userType}[remember_me]`}
-              />
-            </div>
           </div>
 
-          <input className='marginTopBot-xxs button' type='submit' name='commit' value='Log in' />
+          <input className='marginTopBot-xs button' type='submit' name='commit' value='Log in' />
         </Form>
       </div>
     )

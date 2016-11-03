@@ -3,15 +3,17 @@
 }
 
 .login-modal {
-  padding: 0 0 80px 0;
+  padding-bottom: 80px;
 }
 
 .login-form {
   width: 250px;
 }
 
-.login-checkbox {
-  float: right;
+.checkbox {
+  width: 15px;
+  height: 15px;
+  background: $blue;
 }
 
 .login-logo {

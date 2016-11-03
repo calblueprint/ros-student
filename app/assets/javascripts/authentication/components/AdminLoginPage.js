@@ -14,7 +14,7 @@ class AdminLoginPage extends React.Component {
           <img className='login-logo' src={Images.rootsLogo} />
           <h2 className='h2 marginTopBot-xxs'>Admin Login</h2>
           <LoginForm userType='admin' action={RailsRoutes.adminsSignInPath()} />
-          <Link to={ReactRoutes.adminsForgotPasswordPath()}>Forgot password?</Link>
+          <Link className='marginTop-xxs' to={ReactRoutes.adminsForgotPasswordPath()}>Forgot password?</Link>
         </div>
       </div>
     )

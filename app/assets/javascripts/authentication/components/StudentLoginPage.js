@@ -13,7 +13,7 @@ class StudentLoginPage extends React.Component {
           <img className='login-logo' src={Images.rootsLogo} />
           <h2 className='h2 marginTopBot-xxs'>Let's get started.</h2>
           <LoginForm userType='student' action={RailsRoutes.studentsSignInPath()} />
-          <Link className='marginTop-xxs' to={ReactRoutes.studentsSignUpPath()}>Sign up</Link>
+          <Link className='marginTop-xs' to={ReactRoutes.studentsSignUpPath()}>Sign up</Link>
           <Link to={ReactRoutes.studentsForgotPasswordPath()}>Forgot password?</Link>
         </div>
       </div>
