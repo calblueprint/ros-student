@@ -1,5 +1,6 @@
 class Api::Admins::SectionsController < Api::Admins::BaseController
-  load_and_authorize_resource
+  load_and_authorize_resource :course
+  load_and_authorize_resource :section, through: :course, shallow: :true
 
   def create
     if @section.save
@@ -18,8 +19,8 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
   end
 
   def destroy
-    if @section.destroy
-      render json: @section, serializer: SectionSerializer
+    if @section.remove_from_list and @section.destroy
+      render json: @section.course.sections, each_serializer: SectionListSerializer
     else
       error_response(@section)
     end
@@ -36,7 +37,7 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
   private
 
   def section_params
-    params.require(:section).permit(
+    params.fetch(:section, {}).permit(
       :title,
       :course_id,
       :position

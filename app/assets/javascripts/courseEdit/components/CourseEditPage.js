@@ -21,17 +21,21 @@ class CourseEditPage extends React.Component {
       }
     }
     this.getCourse()
+    this.createSection = this.createSection.bind(this)
+    this.deleteSection = this.deleteSection.bind(this)
   }
 
   getCourse() {
     const path = APIRoutes.getEditCoursePath(this.id)
     request.get(path, (response) => {
-      this.setState( { course: response.course_edit })
+      console.log(response)
+      this.setState({ course: response.course_edit })
     }, (error) => {
       console.log('error')
     })
   }
 
+<<<<<<< b9992cac86487d98bf5d561e2a39217c9f34ea15
   enableEdit() {
     this.setState({ editable: true })
   }
@@ -48,11 +52,11 @@ class CourseEditPage extends React.Component {
       this.setState({ course: course })
     }, (error) => {
       console.log(error)
-    })    
+    })
   }
 
   onBlurName(value) {
-    const params = { 
+    const params = {
       course: {
         name: value,
       }
@@ -61,19 +65,43 @@ class CourseEditPage extends React.Component {
   }
 
   onBlurDescription(value) {
-    const params = { 
+    const params = {
       course: {
         description: value,
       }
     }
     this.updateCourse(params)
+=======
+  createSection() {
+    const path = APIRoutes.createSectionPath(this.id)
+
+    request.post(path, {}, (response) => {
+      const course = this.state.course
+      course.sections.push(response.section)
+      this.setState({ course: course })
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+  deleteSection(id) {
+    const path = APIRoutes.editSectionPath(id)
+
+    request.delete(path, (response) => {
+      const course = this.state.course
+      course.sections = response.sections
+      this.setState({ course: course })
+    }, (error) => {
+      console.log(error)
+    })
+>>>>>>> Added create/delete buttons for sections and subsections
   }
 
   renderSections() {
     return this.state.course.sections.map((value) => {
       return (
         <li key={value.id}>
-          <SectionEdit section={value} />
+          <SectionEdit section={value} deleteSection={this.deleteSection} />
         </li>
       )
     })
@@ -87,6 +115,7 @@ class CourseEditPage extends React.Component {
           <InlineEditInput value={this.state.course.description} onBlur={this.onBlurDescription.bind(this)} />
         </h1>
         <ol>{this.renderSections()}</ol>
+        <button onClick={this.createSection}>Add section</button>
       </div>
     )
   }

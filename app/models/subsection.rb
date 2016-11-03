@@ -3,7 +3,7 @@
 # Table name: subsections
 #
 #  id         :integer          not null, primary key
-#  title      :string
+#  title      :string           default("Subsection")
 #  section_id :integer
 #  position   :integer
 #  created_at :datetime         not null
@@ -13,8 +13,6 @@
 class Subsection < ActiveRecord::Base
   validates :title, presence: true
   validates :section_id, presence: true
-
-  validates :position, uniqueness: { scope: :section_id }
 
   belongs_to :section
   acts_as_list scope: :section

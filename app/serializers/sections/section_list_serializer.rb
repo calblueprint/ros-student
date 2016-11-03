@@ -1,0 +1,2 @@
+class SectionListSerializer < BaseSectionSerializer
+end

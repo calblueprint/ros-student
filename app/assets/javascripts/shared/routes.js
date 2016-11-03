@@ -67,6 +67,8 @@ class APIRoutes {
   static editSubsectionPath(id)  { return APIRoutes.createRoute(`admins/subsections/${id}`)}
   static editSectionPath(id)     { return APIRoutes.createRoute(`admins/sections/${id}`)}
   static editCoursePath(id)      { return APIRoutes.createRoute(`admins/courses/${id}`)}
+  static createSubsectionPath(id) { return APIRoutes.createRoute(`admins/sections/${id}/subsections`)}
+  static createSectionPath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/sections`)}
 }
 
 export {
