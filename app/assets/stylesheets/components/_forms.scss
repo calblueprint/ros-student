@@ -1,5 +1,6 @@
 .input {
   @include appearance(none);
+  width: 100%;
   background: $white;
   border-radius: 4px;
   border: 1px solid transparent;
@@ -24,4 +25,34 @@
 .input--sm {
   font-size: 12px;
   padding: 5px 10px;
+}
+
+.flash {
+  padding: $xxs $sm;
+  width: 100%;
+  text-align: center;
+}
+
+.alert {
+  background: $yellow-60;
+
+  &-text {
+    color: $white;
+  }
+}
+
+.error {
+  background: $red-60;
+
+  &-text {
+    color: $white;
+  }
+}
+
+.notice {
+  background: $green-60;
+
+  &-text {
+    color: $white;
+  }
 }

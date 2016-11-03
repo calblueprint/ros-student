@@ -10,4 +10,4 @@ render((
   <Router history={browserHistory}>
     <Route path={ReactRoutes.courseEditPath()} component={CourseEditPage} />
   </Router>
-), document.getElementById('main_container'))
+), document.getElementById('main-container'))
