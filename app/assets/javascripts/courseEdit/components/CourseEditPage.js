@@ -35,7 +35,6 @@ class CourseEditPage extends React.Component {
     })
   }
 
-<<<<<<< b9992cac86487d98bf5d561e2a39217c9f34ea15
   enableEdit() {
     this.setState({ editable: true })
   }
@@ -71,7 +70,8 @@ class CourseEditPage extends React.Component {
       }
     }
     this.updateCourse(params)
-=======
+  }
+
   createSection() {
     const path = APIRoutes.createSectionPath(this.id)
 
@@ -94,7 +94,6 @@ class CourseEditPage extends React.Component {
     }, (error) => {
       console.log(error)
     })
->>>>>>> Added create/delete buttons for sections and subsections
   }
 
   renderSections() {
