@@ -11,6 +11,7 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
   end
 
   def update
+    puts section_params
     if @section.update(section_params)
       render json: @section, serializer: SectionSerializer
     else

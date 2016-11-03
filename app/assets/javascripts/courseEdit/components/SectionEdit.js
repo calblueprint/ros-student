@@ -4,14 +4,15 @@ import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
 
 import SubsectionEdit from './SubsectionEdit'
+import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 
 class SectionEdit extends React.Component {
   constructor(props) {
     super(props)
     this.id = this.props.section.id
     this.state = {
-      subsections: this.props.section.subsections,
-      loaded: false
+      loaded: false,
+      section: this.props.section
     }
 
     this.createSubsection = this.createSubsection.bind(this)
@@ -19,19 +20,30 @@ class SectionEdit extends React.Component {
     this.deleteSection = this.deleteSection.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.loaded) {
-      this.setState({ subsections: nextProps.section.subsections, loaded:true })
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (!this.state.loaded) {
+  //     this.setState({ section: nextProps.section, loaded: true })
+  //   }
+  // }
 
   createSubsection() {
     const path = APIRoutes.createSubsectionPath(this.id)
 
     request.post(path, {}, (response) => {
-      const subsections = this.state.subsections
-      subsections.push(response.subsection)
-      this.setState({ subsections: subsections })
+      const section = this.state.section
+      section.subsections.push(response.subsection)
+      this.setState({ section: section })
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+  updateTitle(params) {
+    const path = APIRoutes.editSectionPath(this.state.section.id)
+    request.update(path, params, (response) => {
+      const section = this.state.section
+      section.title = response.section.title
+      this.setState({ section: section })
     }, (error) => {
       console.log(error)
     })
@@ -41,7 +53,9 @@ class SectionEdit extends React.Component {
     const path = APIRoutes.editSubsectionPath(id)
 
     request.delete(path, (response) => {
-      this.setState({ subsections: response.subsections })
+      const section = this.state.section
+      section.subsections = response.subsections
+      this.setState({ section: section })
     }, (error) => {
       console.log(error)
     })
@@ -51,13 +65,22 @@ class SectionEdit extends React.Component {
     this.props.deleteSection(this.props.section.id)
   }
 
+  onBlurTitle(value) {
+    const params = { 
+      section: {
+        title: value,
+      }
+    }
+    this.updateTitle(params)
+  }
+
   renderSubsections() {
-    if (!this.state.subsections) {
+    if (!this.state.section.subsections) {
       return (
         <li>No subsections to show!</li>
       )
     } else {
-      return this.state.subsections.map((value) => {
+      return this.state.section.subsections.map((value) => {
         return (
           <li key={value.id}>
             <SubsectionEdit subsection={value} deleteSubsection={this.deleteSubsection} />
@@ -70,7 +93,9 @@ class SectionEdit extends React.Component {
   render() {
     return (
       <div>
-        <h1>Section: {this.props.section.title}</h1>
+        <h2>
+          <InlineEditInput value={this.state.section.title} onBlur={this.onBlurTitle.bind(this)} />
+        </h2>
         <ul>{this.renderSubsections()}</ul>
         <button onClick={this.createSubsection}>Add subsection</button>
         <button onClick={this.deleteSection}>Delete section</button>
@@ -79,10 +104,11 @@ class SectionEdit extends React.Component {
   }
 }
 
-SectionEdit.defaultProps = {
-  section: {
-    subsections: [],
-  },
-}
+// SectionEdit.defaultProps = {
+//   section: {
+//     title: '',
+//     subsections: [],
+//   }
+// }
 
 export default SectionEdit

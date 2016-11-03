@@ -3,8 +3,6 @@ import React from 'react'
 import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
 
-import { getInputToParams } from '../../utils/form_helpers'
-
 import SectionEdit from './SectionEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 
@@ -12,7 +10,6 @@ class CourseEditPage extends React.Component {
   constructor(props) {
     super(props)
     this.id = this.props.routeParams.id
-    this.enableEdit = this.enableEdit.bind(this)
     this.state = {
       course: {
         name: '',
@@ -28,7 +25,6 @@ class CourseEditPage extends React.Component {
   getCourse() {
     const path = APIRoutes.getEditCoursePath(this.id)
     request.get(path, (response) => {
-      console.log(response)
       this.setState({ course: response.course_edit })
     }, (error) => {
       console.log('error')
@@ -43,11 +39,8 @@ class CourseEditPage extends React.Component {
     const path = APIRoutes.editCoursePath(this.id)
     request.update(path, params, (response) => {
       const course = this.state.course
-      if (params.course.name) {
-        course.name = params.course.name
-      } else {
-        course.description = params.course.description
-      }
+      course.name = response.course.name
+      course.description = response.course.description
       this.setState({ course: course })
     }, (error) => {
       console.log(error)
