@@ -13,7 +13,7 @@ class GenerateCodeCsvCourseCard extends React.Component {
 
   handleClick() {
     this.setState({ selected: !this.state.selected})
-    console.log('YE')
+    this.props.updateActive(this.props.course)
   }
 
   getStyle() {

@@ -30,7 +30,8 @@ class GenerateCodeCsvModal extends React.Component {
           onChange: _.bind(this.handleChange, this, 'numberOfCodes')
         },
       },
-      courses: []
+      courses: [],
+      active_courses: []
     }
 
     // Get courses for admin to selectively activate
@@ -61,11 +62,23 @@ class GenerateCodeCsvModal extends React.Component {
     })
   }
 
+  updateCourseList(course) {
+    // Removes `course` if already in active course list
+    // Otherwise adds `course` to active course list
+    var index = this.state.active_courses.indexOf(course)
+    if (index >= 0) {
+      this.state.active_courses.splice(index, 1)
+    } else {
+      this.state.active_courses.push(course)
+    }
+    console.log(this.state.active_courses)
+  }
+
   renderCourses() {
     return this.state.courses.map((value) => {
       return (
         <li>
-          <GenerateCodeCsvCourseCard course={value} selected={false} />
+          <GenerateCodeCsvCourseCard course={value} selected={false} updateActive={_.bind(this.updateCourseList, this)}/>
         </li>
       )
     })
@@ -85,6 +98,8 @@ class GenerateCodeCsvModal extends React.Component {
           <h1> Generate sign-up codes </h1>
           {this.renderFields()}
           <ol>{this.renderCourses()}</ol>
+
+          <button>Submit</button>
         </Form>
       </div>
     )
