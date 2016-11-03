@@ -13,7 +13,7 @@ class CodeCsv < ActiveRecord::Base
 
   has_many :codes
 
-  # Takes a name for the csv file, the number of codes, and a list of course ids
+  # Takes a `params` map with keys :course_ids (list) and :amount (integer)
   def generate_codes(params)
     begin
       course_ids = ActiveSupport::JSON.decode(params[:course_ids])
