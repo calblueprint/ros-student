@@ -1,9 +1,9 @@
 CarrierWave.configure do |config|
   if Rails.env.test? || Rails.env.cucumber?
-    config.storage  = :aws
-  else
     config.storage = :file
     config.enable_processing = false
+  else
+    config.storage  = :aws
   end
 
   config.aws_bucket = ENV.fetch('S3_BUCKET_NAME')
