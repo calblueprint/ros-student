@@ -1,4 +1,10 @@
 FactoryGirl.define do
+  factory :photo do
+    parent_id 1
+    parent_type "MyString"
+    image {Rack::Test::UploadedFile.new(Tempfile.new([Devise.friendly_token, 'jpg']))}
+  end
+
   factory :code_csv do
     name "MyString"
   end

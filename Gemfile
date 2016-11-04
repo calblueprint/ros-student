@@ -26,6 +26,11 @@ gem 'uglifier', '2.7.2'
 gem 'meta-tags', '2.3.1'
 gem 'acts_as_list', '0.8.0'
 
+# Uploading
+gem 'carrierwave', '~> 0.11.2'
+gem 'carrierwave-aws', '1.0.2'
+gem 'carrierwave-audio', '~> 1.0', '>= 1.0.1'
+
 group :development, :staging, :test do
   gem 'ffaker'
 end

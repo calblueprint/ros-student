@@ -10,6 +10,7 @@
 #  subsection_id  :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  audio          :string
 #
 
 class Component < ActiveRecord::Base
@@ -19,8 +20,17 @@ class Component < ActiveRecord::Base
   validates :content_url, presence: true
   validates :subsection_id, presence: true
 
+  has_one :photo, as: :parent, dependent: :destroy
+  accepts_nested_attributes_for :photo
+
   belongs_to :subsection
   acts_as_list scope: :subsection
+
+  mount_uploader :audio, AudioUploader
+
+  def audio_url
+    audio.url
+  end
 
   def switch(params)
     new_position = params[:position].presence || position

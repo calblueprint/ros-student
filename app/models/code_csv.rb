@@ -24,6 +24,5 @@ class CodeCsv < ActiveRecord::Base
     amount = params[:amount] || 0
     generated_codes = amount.times.map { |_| codes.create(key: Code.generate_auth_token) }
     generated_codes.map { |code| code.assign_to_courses(course_ids) }
-    puts params
   end
 end

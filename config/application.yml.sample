@@ -1,3 +1,28 @@
 # Any secret keys/env variables go here
-SECRET_KEY_BASE: <your key here>
-NODE_ENV: <your key here>
+AWS_ACCESS_KEY_ID: <your key here>
+AWS_SECRET_ACCESS_KEY: <your key here>
+AWS_REGION: <your key here>
+
+development:
+  SECRET_KEY_BASE: <your key here>
+  NODE_ENV: <your key here>
+
+  S3_BUCKET_NAME: <your key here>
+
+test:
+  SECRET_KEY_BASE: <your key here>
+  NODE_ENV: <your key here>
+
+  S3_BUCKET_NAME: <your key here>
+
+staging:
+  SECRET_KEY_BASE: <your key here>
+  NODE_ENV: <your key here>
+
+  S3_BUCKET_NAME: <your key here>
+
+production:
+  SECRET_KEY_BASE: <your key here>
+  NODE_ENV: <your key here>
+
+  S3_BUCKET_NAME: <your key here>
