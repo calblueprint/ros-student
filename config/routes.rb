@@ -75,7 +75,7 @@ Rails.application.routes.draw do
       resources :admins, only: [:update]
     end
 
-    resources :courses, only: [:index, :show, :edit], shallow: true do
+    resources :courses, only: [:index, :edit], shallow: true do
       resources :sections, only: [] do
         resources :subsections, only: [] do
           resources :components, only: [:show]
