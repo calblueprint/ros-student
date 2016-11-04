@@ -16,8 +16,6 @@ class CourseSidebar extends React.Component {
   constructor(props) {
     super(props)
 
-    this.id = this.props.course_id
-
     this.state = {
       courseSidebar: {}
     }
@@ -26,7 +24,7 @@ class CourseSidebar extends React.Component {
   }
 
   requestSidebar() {
-    const path = APIRoutes.getCourseSidebarPath(this.id)
+    const path = APIRoutes.getStudentCourseSidebarPath(this.props.id)
 
     request.get(path, (response) => {
       this.setState({ courseSidebar: response.course_sidebar })

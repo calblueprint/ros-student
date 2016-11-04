@@ -11,5 +11,9 @@ class StudentAbility
       :update,
       :destroy,
     ], Student, id: student.id
+
+    can [:show, :outline, :sidebar], Course do |course|
+      course.is_enrolled?(student)
+    end
   end
 end
