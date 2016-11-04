@@ -11,7 +11,8 @@ import { render } from 'react-dom'
 
 import '../../stylesheets/bundle/students.scss'
 
-import { ReactRoutes } from '../shared/routes'
+import { RailsRoutes, ReactRoutes } from '../shared/routes'
+import { getUser } from '../utils/user_helpers'
 
 import UpdateStudentPage from './components/UpdateStudentPage'
 import StudentDashboard from './components/StudentDashboard'
@@ -29,11 +30,18 @@ class App extends React.Component {
           </Link>
 
           <div className="nav-element right">
-            <p>Dropdown</p>
+            <p>{`${getUser().first_name} ${getUser().last_name}`}</p>
             <div className="dropdown-container">
-              <a className='dropdown-link' href="#">Link 1</a>
-              <a className='dropdown-link' href="#">Link 2</a>
-              <a className='dropdown-link' href="#">Link 3</a>
+              <Link
+                className='dropdown-link'
+                to={ReactRoutes.updateStudentPath(getUser().id)}>
+                Profile
+              </Link>
+              <a
+                href={RailsRoutes.studentsSignOutPath()}
+                data-method="delete"
+                className='dropdown-link'
+                href="#">Sign out</a>
             </div>
           </div>
         </Navbar>
