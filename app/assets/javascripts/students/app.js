@@ -26,7 +26,7 @@ class App extends React.Component {
       <div>
         <Navbar>
           <Link to={ReactRoutes.dashboardPath()}>
-            <p className='nav-element logo'>Roots of Success</p>
+            <header className='nav-element logo'>Roots of Success</header>
           </Link>
 
           <div className="nav-element right">
@@ -41,7 +41,7 @@ class App extends React.Component {
                 href={RailsRoutes.studentsSignOutPath()}
                 data-method="delete"
                 className='dropdown-link'
-                href="#">Sign out</a>
+                >Sign out</a>
             </div>
           </div>
         </Navbar>
