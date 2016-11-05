@@ -28,7 +28,7 @@ class Code < ActiveRecord::Base
   # Generates authentication token unless same token already exists in db
   def self.generate_auth_token
     loop do
-      token = Devise.friendly_token
+      token = Devise.friendly_token(8)
       return token unless Code.find_by(key: token)
     end
   end

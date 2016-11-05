@@ -7,6 +7,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+require 'csv'
 
 class CodeCsv < ActiveRecord::Base
   validates :name, presence: true
@@ -24,5 +25,14 @@ class CodeCsv < ActiveRecord::Base
     amount = params[:amount] || 0
     generated_codes = amount.times.map { |_| codes.create(key: Code.generate_auth_token) }
     generated_codes.map { |code| code.assign_to_courses(course_ids) }
+  end
+
+  def to_csv
+    CSV.generate(headers: true) do |csv|
+      csv << ["key"]
+      codes.each do |code|
+        csv << [code.key]
+      end
+    end
   end
 end

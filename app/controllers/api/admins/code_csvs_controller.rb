@@ -12,6 +12,10 @@ class Api::Admins::CodeCsvsController < Api::Admins::BaseController
   end
 
   def download
+    respond_to do |format|
+      format.csv { show_csv }
+      format.json { index }
+    end
   end
 
   def index
@@ -33,4 +37,8 @@ class Api::Admins::CodeCsvsController < Api::Admins::BaseController
     )
   end
 
+  def show_csv
+    code_csv = CodeCsv.find params[:id]
+    send_data code_csv.to_csv
+  end
 end

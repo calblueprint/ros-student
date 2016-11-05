@@ -8,6 +8,7 @@ const SERIALIZER = {
   currentPassword: 'current_password',
   key: 'key',
   code: 'code',
+  numberOfCodes: 'amount'
 }
 
 export { SERIALIZER }
