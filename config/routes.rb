@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     resources :courses, only: [:create, :edit]
   end
 
-  namespace :api, defaults: { format: :json } do
+  namespace :api, defaults: { format: [:json, :csv] } do
     get '/ping', to: 'pages#ping'
 
     namespace :admins do
@@ -58,7 +58,11 @@ Rails.application.routes.draw do
           end
         end
       end
-      resources :code_csvs, only: [:create, :index]
+      resources :code_csvs, only: [:create, :index] do
+        member do
+          get :download
+        end
+      end
     end
 
     namespace :students do
