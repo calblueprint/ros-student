@@ -6,10 +6,12 @@ const SERIALIZER = {
   newPassword: 'password',
   confirmPassword: 'password_confirmation',
   currentPassword: 'current_password',
+
   // Code
   key: 'key',
   code: 'code',
   numberOfCodes: 'amount',
+
   // AddComponentForm
   componentType: 'component_type',
   audioUrl: 'audio_url',

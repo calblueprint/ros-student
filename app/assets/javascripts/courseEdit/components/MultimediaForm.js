@@ -12,7 +12,7 @@ class MultimediaForm extends React.Component {
       audioUrl: null,
       contentUrl: '',
       audioData: null,
-      imageData: null
+      imageData: null,
     }
 
     this.updateContentURL = this.updateContentURL.bind(this)

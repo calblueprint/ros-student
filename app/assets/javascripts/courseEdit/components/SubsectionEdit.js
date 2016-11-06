@@ -16,14 +16,6 @@ class SubsectionEdit extends React.Component {
       subsection: this.props.subsection,
       components: this.props.subsection.components,
       newComponentForm: false,
-      loaded: false,
-      subsection: this.props.subsection,
-      components: this.props.subsection.components,
-      newComponentForm: false,
-      loaded: false,
-      subsection: this.props.subsection,
-      components: this.props.subsection.components,
-      newComponentForm: false
     }
     this.deleteSubsection = this.deleteSubsection.bind(this)
     this.onFormCompletion = this.onFormCompletion.bind(this)
@@ -103,7 +95,7 @@ class SubsectionEdit extends React.Component {
   renderComponentForm() {
     if (this.state.newComponentForm == true) {
       return (
-          <AddComponentForm subsectionId={this.id} onFormCompletion={this.onFormCompletion.bind(this)} />
+        <AddComponentForm subsectionId={this.id} callback={this.onFormCompletion} />
       )
     }
   }
@@ -121,7 +113,7 @@ class SubsectionEdit extends React.Component {
           <InlineEditInput value={this.state.subsection.title} onBlur={this.onBlurTitle.bind(this)} />
         </h2>
         <ul>{this.renderComponents()}</ul>
-        <button onClick={this.showNewComponentForm.bind(this)}>Add component</button>
+        <button onClick={this.showNewComponentForm.bind(this)} callback={this.onFormCompletion.bind(this)}>Add component</button>
         <button onClick={this.deleteSubsection}>Delete subsection</button>
         <div>{this.renderComponentForm()}</div>
       </div>
