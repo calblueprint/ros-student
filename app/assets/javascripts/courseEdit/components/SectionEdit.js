@@ -66,7 +66,7 @@ class SectionEdit extends React.Component {
   }
 
   onBlurTitle(value) {
-    const params = { 
+    const params = {
       section: {
         title: value,
       }
