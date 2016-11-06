@@ -60,7 +60,7 @@ class AddComponentForm extends React.Component {
         return (
           <QuizForm callback={this.createComponent.bind(this)} />
         )
-        break;
+        break; 
     }
 
   }
