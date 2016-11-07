@@ -7,7 +7,6 @@ import ComponentEdit from './ComponentEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import AddComponentForm from './AddComponentForm'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
-import AddComponentForm from './AddComponentForm'
 
 class SubsectionEdit extends React.Component {
   constructor(props) {
@@ -17,7 +16,7 @@ class SubsectionEdit extends React.Component {
       loaded: false,
       subsection: this.props.subsection,
       components: this.props.subsection.components,
-      newComponentForm: false
+      newComponentForm: false,
       loaded: false,
       subsection: this.props.subsection,
       components: this.props.subsection.components,

@@ -11,7 +11,7 @@ class QuizForm extends React.Component {
     this.state = {
       componentType: 2,
       audioUrl: null,
-      contentUrl: null,
+      contentUrl: '',
       audioData: null,
       imageData: null
     }

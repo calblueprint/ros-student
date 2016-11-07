@@ -10,7 +10,7 @@ class MultimediaForm extends React.Component {
     this.state = {
       componentType: 1,
       audioUrl: null,
-      contentUrl: null,
+      contentUrl: '',
       audioData: null,
       imageData: null
     }
