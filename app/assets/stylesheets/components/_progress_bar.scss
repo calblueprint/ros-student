@@ -1,0 +1,24 @@
+.progress-bar-background {
+  position: relative;
+  width: 85%;
+  height: 8px;
+  background-color: $gray-60;
+  margin: 10px 16px 16px 16px;
+  border-radius: 4px;
+}
+
+.progress-bar {
+  position: absolute;
+  height: 100%;
+  background-color: $blue-60;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.progress-bar-label {
+  font-family: $font-stack;
+  font-size: 12px;
+  font-weight: $regular;
+  color: $blue-60;
+  margin: 30px 16px 0px 16px;
+}

@@ -45,9 +45,9 @@ class CourseList extends React.Component {
     var allList = lists[1]
     return (
       <div>
-        <h1>Enrolled Courses</h1>
+        <h1 className="courses-title">Enrolled Courses</h1>
         <ol>{this.renderCards(enrolledList)}</ol>
-        <h1>All Courses</h1>
+        <h1 className="courses-title">All Courses</h1>
         <ol>{this.renderCards(allList)}</ol>
       </div>
     )

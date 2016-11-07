@@ -10,7 +10,6 @@ class StudentDashboard extends React.Component {
   render() {
     return (
       <div>
-        <h1>Student Homepage</h1>
         <CourseList />
       </div>
     )

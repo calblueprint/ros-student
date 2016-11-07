@@ -4,6 +4,8 @@ class BaseCourseSerializer < ActiveModel::Serializer
              :description,
              :is_enrolled
              :image_url
+             :progress,
+
   has_one :photo, serializer: PhotoSerializer
 
   def is_enrolled
@@ -13,5 +15,8 @@ class BaseCourseSerializer < ActiveModel::Serializer
 
   def image_url
     course.photo.image_url
+
+  def progress
+    object.progress(serialization_options[:user])
   end
 end
