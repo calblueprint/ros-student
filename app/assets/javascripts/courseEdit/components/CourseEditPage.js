@@ -30,7 +30,11 @@ class CourseEditPage extends React.Component {
       const course = this.state.course
       course.name = response.course_edit.name
       course.description = response.course_edit.description
-      course.imageUrl = response.course_edit.photo.image_url
+      course.sections = response.course_edit.sections
+      const photo = response.course_edit.photo
+      if (photo) {
+        course.imageUrl = response.course_edit.photo.image_url
+      }
       this.setState({ course: course })
     }, (error) => {
       console.log('error')
@@ -47,7 +51,9 @@ class CourseEditPage extends React.Component {
       const course = this.state.course
       course.name = response.course.name
       course.description = response.course.description
-      course.imageUrl = response.course.photo.image_url
+      if (response.course.photo) {
+        course.imageUrl = response.course.photo.image_url
+      }
       this.setState({ course: course })
     }, (error) => {
       console.log(error)
