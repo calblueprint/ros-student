@@ -16,6 +16,9 @@ class Course < ActiveRecord::Base
   has_many :code_courses
   has_many :codes, through: :code_courses
 
+  has_one :photo, as: :parent, dependent: :destroy
+  accepts_nested_attributes_for :photo
+
   def is_enrolled?(user)
     StudentCourse.find_by({ course_id: id, student_id: user.id})
   end

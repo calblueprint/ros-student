@@ -5,6 +5,7 @@ import request from '../../shared/requests/request'
 
 import SectionEdit from './SectionEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
+import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
 
 class CourseEditPage extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class CourseEditPage extends React.Component {
         name: '',
         description: '',
         sections: [],
+        imageUrl: '',
       }
     }
     this.getCourse()
@@ -25,7 +27,14 @@ class CourseEditPage extends React.Component {
   getCourse() {
     const path = APIRoutes.getEditCoursePath(this.id)
     request.get(path, (response) => {
-      this.setState({ course: response.course_edit })
+      const course = this.state.course
+      course.name = response.course_edit.name
+      course.description = response.course_edit.description
+      course.sections = response.course_edit.sections
+      if (response.course_edit.photo) {
+        course.imageUrl = response.course_edit.photo.image_url
+      }
+      this.setState({ course: course })
     }, (error) => {
       console.log('error')
     })
@@ -41,6 +50,9 @@ class CourseEditPage extends React.Component {
       const course = this.state.course
       course.name = response.course.name
       course.description = response.course.description
+      if (response.course.photo) {
+        course.imageUrl = response.course.photo.image_url
+      }
       this.setState({ course: course })
     }, (error) => {
       console.log(error)
@@ -61,6 +73,17 @@ class CourseEditPage extends React.Component {
       course: {
         description: value,
       }
+    }
+    this.updateCourse(params)
+  }
+
+  onImage(value) {
+    const params = {
+      course: {
+        photo_attributes: {
+          image_data: value
+        },
+      },
     }
     this.updateCourse(params)
   }
@@ -102,6 +125,8 @@ class CourseEditPage extends React.Component {
   render() {
     return (
       <div>
+        <img src={this.state.course.imageUrl} />
+        <ImageUploadInput label='change cover photo' onChange={this.onImage.bind(this)} />
         <h1>
           <InlineEditInput value={this.state.course.name} onBlur={this.onBlurName.bind(this)} />
           <InlineEditInput value={this.state.course.description} onBlur={this.onBlurDescription.bind(this)} />
