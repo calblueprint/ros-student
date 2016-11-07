@@ -16,7 +16,7 @@ class CourseEditPage extends React.Component {
         name: '',
         description: '',
         sections: [],
-        image: '',
+        imageUrl: ''  ,
       }
     }
     this.getCourse()
@@ -76,8 +76,10 @@ class CourseEditPage extends React.Component {
       },
     }
     const path = APIRoutes.editCoursePath(this.id)
-    request.post(path, params, (response) => {
-      this.setState({ image: response.course.photo.image_url })
+    request.update(path, params, (response) => {
+      this.setState({ imageUrl: response.course.photo.image_url })
+    }, (error) => {
+      console.log(error)
     })
   }
 
@@ -118,8 +120,8 @@ class CourseEditPage extends React.Component {
   render() {
     return (
       <div>
-        <img src={this.state.image} />
-        <ImageUploadInput label='image' onChange={this.onImage.bind(this)} />
+        <img src={this.state.imageUrl} />
+        <ImageUploadInput label='change cover photo' onChange={this.onImage.bind(this)} />
         <h1>
           <InlineEditInput value={this.state.course.name} onBlur={this.onBlurName.bind(this)} />
           <InlineEditInput value={this.state.course.description} onBlur={this.onBlurDescription.bind(this)} />
