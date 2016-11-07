@@ -57,7 +57,7 @@ class GenerateCodeCsvModal extends React.Component {
     const path = APIRoutes.getCourses()
 
     request.get(path, (response) => {
-      this.setState( { courses: response.courses })
+      this.setState({ courses: response.courses })
     }, (error) => {
       console.log('error')
     })
@@ -88,6 +88,8 @@ class GenerateCodeCsvModal extends React.Component {
       }
     }
     request.post(path, params, (response) => {
+      this.props.update(response.code_csv)
+      console.log(response)
     }, (error) => {
       console.log(error)
     })

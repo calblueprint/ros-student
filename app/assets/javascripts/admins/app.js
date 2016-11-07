@@ -18,7 +18,7 @@ import { getUser } from '../utils/user_helpers'
 
 import AdminDashboardPage from './components/AdminDashboardPage'
 import UpdateAdminPage from './components/UpdateAdminPage'
-import GenerateCodeCsvModal from './components/GenerateCodeCsvModal'
+import CodeCsvListPage from './components/CodeCsvListPage'
 
 import Navbar from '../shared/components/widgets/Navbar'
 
@@ -57,7 +57,7 @@ render((
   <Router history={browserHistory}>
     <Route path={ReactRoutes.dashboardPath()} name='AdminDashboardPage' component={AdminDashboardPage} />
     <Route path={ReactRoutes.updateAdminPath()} name='UpdateAdminPage' component={UpdateAdminPage} />
-    <Route path={ReactRoutes.codeCsvListPath()} name='CodeCsvListPage' component={GenerateCodeCsvModal} />
+    <Route path={ReactRoutes.codeCsvListPath()} name='CodeCsvListPage' component={CodeCsvListPage} />
     <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />
   </Router>
 ), document.getElementById('main-container'))
