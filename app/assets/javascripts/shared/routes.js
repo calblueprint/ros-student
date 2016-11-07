@@ -26,6 +26,9 @@ class ReactRoutes {
 
   // Course Edit Flow
   static courseEditPath(id)           { return `/courses/${ReactRoutes.getId(id, 'id')}/edit` }
+
+  // Codes
+  static codeCsvListPath() { return `/admins/code_csvs` }
 }
 
 

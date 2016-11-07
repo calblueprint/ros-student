@@ -5,6 +5,7 @@ import request from '../../shared/requests/request'
 
 import SectionEdit from './SectionEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
+import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
 
 class CourseEditPage extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class CourseEditPage extends React.Component {
         name: '',
         description: '',
         sections: [],
+        image: '',
       }
     }
     this.getCourse()
@@ -65,6 +67,20 @@ class CourseEditPage extends React.Component {
     this.updateCourse(params)
   }
 
+  onImage(value) {
+    const params = {
+      course: {
+        photo_attributes: {
+          image_data: value
+        },
+      },
+    }
+    const path = APIRoutes.editCoursePath(this.id)
+    request.post(path, params, (response) => {
+      this.setState({ image: response.course.photo.image_url })
+    })
+  }
+
   createSection() {
     const path = APIRoutes.createSectionPath(this.id)
 
@@ -102,6 +118,8 @@ class CourseEditPage extends React.Component {
   render() {
     return (
       <div>
+        <img src={this.state.image} />
+        <ImageUploadInput label='image' onChange={this.onImage.bind(this)} />
         <h1>
           <InlineEditInput value={this.state.course.name} onBlur={this.onBlurName.bind(this)} />
           <InlineEditInput value={this.state.course.description} onBlur={this.onBlurDescription.bind(this)} />
