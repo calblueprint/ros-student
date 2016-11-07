@@ -11,7 +11,7 @@ import { render } from 'react-dom'
 
 import '../../stylesheets/bundle/students.scss'
 
-import { RailsRoutes, ReactRoutes } from '../shared/routes'
+import { RailsRoutes, ReactRoutes } from '../shared/routes' 
 import { getUser } from '../utils/user_helpers'
 
 import UpdateStudentPage from './components/UpdateStudentPage'

@@ -17,7 +17,6 @@ class Component < ActiveRecord::Base
   enum component_type: [ :slide, :form, :multimedia ]
 
   validates :component_type, presence: true
-  validates :content_url, presence: true
   validates :subsection_id, presence: true
 
   has_one :photo, as: :parent, dependent: :destroy
