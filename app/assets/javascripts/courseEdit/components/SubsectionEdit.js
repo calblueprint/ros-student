@@ -6,7 +6,6 @@ import request from '../../shared/requests/request'
 import ComponentEdit from './ComponentEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import AddComponentForm from './AddComponentForm'
-import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 
 class SubsectionEdit extends React.Component {
   constructor(props) {
