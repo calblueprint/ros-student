@@ -15,6 +15,7 @@ class ReactRoutes {
 
   // Admin Flow
   static updateAdminPath(id)          { return `/admins/${ReactRoutes.getId(id, 'id')}/edit`}
+  static codeCsvListPath()            { return `/admins/code_csvs`}
 
   // Student Flow
   static updateStudentPath(id)        { return `/students/${ReactRoutes.getId(id, 'id')}/edit` }
@@ -75,6 +76,9 @@ class APIRoutes {
   static createSectionPath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/sections`)}
   static createSubsectionPath(id) { return APIRoutes.createRoute(`admins/sections/${id}/subsections`)}
   static createComponentPath(id) { return APIRoutes.createRoute(`admins/subsections/${id}/components`)}
+
+  // Codes
+  static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`)}
 }
 
 export {
