@@ -2,6 +2,8 @@ import React from 'react'
 import { RouteHandler, Router, Route, Redirect, browserHistory } from 'react-router'
 import { render } from 'react-dom'
 
+import '../../stylesheets/bundle/students.scss'
+
 import { ReactRoutes } from '../shared/routes'
 
 import UpdateStudentPage from './components/UpdateStudentPage'
