@@ -57,6 +57,7 @@ class APIRoutes {
   static getStudentCourseOutlinePath(id) { return APIRoutes.createRoute(`students/courses/${id}/outline`) }
   static getStudentCourseSidebarPath(id) { return APIRoutes.createRoute(`students/courses/${id}/sidebar`) }
 
+  // Codes
   static verifyCodePath()      { return APIRoutes.createRoute(`codes/verify`) }
 
   // Courses
@@ -69,8 +70,6 @@ class APIRoutes {
   static editSectionPath(id)     { return APIRoutes.createRoute(`admins/sections/${id}`)}
   static editCoursePath(id)      { return APIRoutes.createRoute(`admins/courses/${id}`)}
   static createSectionPath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/sections`)}
-
-  // Codes
   static createSubsectionPath(id) { return APIRoutes.createRoute(`admins/sections/${id}/subsections`)}
   static createComponentPath(id) { return APIRoutes.createRoute(`admins/subsections/${id}/components`)}
 }
