@@ -32,7 +32,7 @@ class AddComponentForm extends React.Component {
     }
 
     const componentParams = { component: getInputToParams(form) }
-    componentParams.component.photo_attributes = { image_data: componentParams.component.image_data}
+    componentParams.component.photo_attributes = { image_data: componentParams.component.image_data }
 
     request.post(path, componentParams, (response) => {
       this.props.onFormCompletion(response)
