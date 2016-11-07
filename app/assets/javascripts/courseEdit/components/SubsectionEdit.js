@@ -18,6 +18,7 @@ class SubsectionEdit extends React.Component {
       newComponentForm: false
     }
     this.deleteSubsection = this.deleteSubsection.bind(this)
+    this.onFormCompletion = this.onFormCompletion.bind(this)
   }
 
   // componentWillReceiveProps(nextProps) {
@@ -76,14 +77,15 @@ class SubsectionEdit extends React.Component {
   renderComponentForm() {
     if (this.state.newComponentForm == true) {
       return (
-          <AddComponentForm subsectionId={this.id} callback={this.onFormCompletion} />
+          <AddComponentForm subsectionId={this.id} onFormCompletion={this.onFormCompletion.bind(this)} />
       )
     }
   }
 
   onFormCompletion(newComponent) {
-    console.log(this.state);
-    this.state.components.append(newComponent)
+    const components = this.state.components
+    components.push(newComponent.component)
+    this.setState({ components: components })
   }
 
   render() {
@@ -93,7 +95,7 @@ class SubsectionEdit extends React.Component {
           <InlineEditInput value={this.state.subsection.title} onBlur={this.onBlurTitle.bind(this)} />
         </h2>
         <ul>{this.renderComponents()}</ul>
-        <button onClick={this.showNewComponentForm.bind(this)} callback={this.onFormCompletion.bind(this)}>Add component</button>
+        <button onClick={this.showNewComponentForm.bind(this)}>Add component</button>
         <button onClick={this.deleteSubsection}>Delete subsection</button>
         <div>{this.renderComponentForm()}</div>
       </div>

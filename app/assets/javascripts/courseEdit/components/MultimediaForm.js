@@ -11,6 +11,8 @@ class MultimediaForm extends React.Component {
       componentType: 1,
       audioUrl: null,
       contentUrl: null,
+      audioData: null,
+      imageData: null
     }
 
     this.updateContentURL = this.updateContentURL.bind(this)
@@ -26,7 +28,6 @@ class MultimediaForm extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <div>Multimedia Component</div>

@@ -9,12 +9,14 @@ const SERIALIZER = {
   // Code
   key: 'key',
   code: 'code',
-  numberOfCodes: 'amount'
+  numberOfCodes: 'amount',
   // AddComponentForm
   componentType: 'component_type',
   audioUrl: 'audio_url',
   contentUrl: 'content_url',
   subsectionId: 'subsection_id',
+  audioData: 'audio_data',
+  imageData: 'image_data',
 }
 
 export { SERIALIZER }

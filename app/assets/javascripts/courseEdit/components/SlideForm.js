@@ -11,24 +11,36 @@ class SlideForm extends React.Component {
     this.state = {
       componentType: 0,
       audioUrl: null,
-      contentUrl: null
+      contentUrl: null,
+      audioData: null,
+      imageData: null
     }
+
+    this.updateImageData = this.updateImageData.bind(this)
+    this.updateAudioData = this.updateAudioData.bind(this)
   }
 
-  submit() {
-    this.setState(bs)
+  updateImageData(image) {
+    this.setState({imageData: image})
+  }
+
+  updateAudioData(audio) {
+    this.setState({audioData: audio})
+  }
+
+  submit(e) {
+    e.preventDefault()
     this.props.callback(this.state)
   }
 
   render() {
     return (
       <div>
-        <div>Slide Component</div>
+        <div>Image Component</div>
         <form>
-          <input type="text" name="name" value="" placeholder="Name"></input>
-          <ImageUploadInput label="Image" />
-          <AudioUploadInput label="Audio" />
-          <input type="submit" value="Submit"></input>
+          <ImageUploadInput label="Image" onChange={this.updateImageData}/>
+          <AudioUploadInput label="Audio" onChange={this.updateAudioData} />
+          <button onClick={this.submit.bind(this)}>Submit</button>
         </form>
       </div>
     )
