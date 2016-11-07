@@ -61,6 +61,26 @@ class Request {
     };
     request.send(JSON.stringify(params));
   }
+
+  csv(route, resolve, reject) {
+    var request = this.initialize('GET', route, 'text/csv')
+    request.onreadystatechange = () => {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        if (request.status === 200) {
+          var a = document.createElement('a')
+          var encoding = 'data:attachment/csv'
+          a.href = `${encoding}, ${encodeURIComponent(request.response)}`
+          a.target = '_blank'
+          a.download = `download.csv`
+          document.body.appendChild(a)
+          a.click()
+          document.body.removeChild(a)
+        }
+      }
+    }
+    request.send()
+  }
+
 }
 
 export default new Request()

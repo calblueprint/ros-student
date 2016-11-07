@@ -79,6 +79,7 @@ class APIRoutes {
 
   // Codes
   static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`)}
+  static codeCsvDownloadPath(id) { return APIRoutes.createRoute(`admins/code_csvs/${id}/download.csv`)}
 }
 
 export {
