@@ -9,9 +9,7 @@ class AdminDashboardPage extends React.Component {
     return (
       <div>
         <h1>Welcome to the Admin Dashboard</h1>
-        <Link to={ReactRoutes.updateAdminPath(getUser().id)}>Update Admin</Link>
         <a href={RailsRoutes.courseCreatePath()} data-method='post'>Create Course</a>
-        <a href={RailsRoutes.adminsSignOutPath()} data-method='delete'>Log out</a>
       </div>
     )
   }
