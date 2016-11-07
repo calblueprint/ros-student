@@ -31,8 +31,7 @@ class CourseEditPage extends React.Component {
       course.name = response.course_edit.name
       course.description = response.course_edit.description
       course.sections = response.course_edit.sections
-      const photo = response.course_edit.photo
-      if (photo) {
+      if (response.course_edit.photo) {
         course.imageUrl = response.course_edit.photo.image_url
       }
       this.setState({ course: course })
