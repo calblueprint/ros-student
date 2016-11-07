@@ -16,7 +16,7 @@ class CourseEditPage extends React.Component {
         name: '',
         description: '',
         sections: [],
-        imageUrl: ''  ,
+        imageUrl: '',
       }
     }
     this.getCourse()
@@ -27,7 +27,11 @@ class CourseEditPage extends React.Component {
   getCourse() {
     const path = APIRoutes.getEditCoursePath(this.id)
     request.get(path, (response) => {
-      this.setState({ course: response.course_edit })
+      const course = this.state.course
+      course.name = response.course_edit.name
+      course.description = response.course_edit.description
+      course.imageUrl = response.course_edit.photo.image_url
+      this.setState({ course: course })
     }, (error) => {
       console.log('error')
     })
@@ -43,6 +47,7 @@ class CourseEditPage extends React.Component {
       const course = this.state.course
       course.name = response.course.name
       course.description = response.course.description
+      course.imageUrl = response.course.photo.image_url
       this.setState({ course: course })
     }, (error) => {
       console.log(error)
@@ -75,12 +80,7 @@ class CourseEditPage extends React.Component {
         },
       },
     }
-    const path = APIRoutes.editCoursePath(this.id)
-    request.update(path, params, (response) => {
-      this.setState({ imageUrl: response.course.photo.image_url })
-    }, (error) => {
-      console.log(error)
-    })
+    this.updateCourse(params)
   }
 
   createSection() {
@@ -120,7 +120,7 @@ class CourseEditPage extends React.Component {
   render() {
     return (
       <div>
-        <img src={this.state.imageUrl} />
+        <img src={this.state.course.imageUrl} />
         <ImageUploadInput label='change cover photo' onChange={this.onImage.bind(this)} />
         <h1>
           <InlineEditInput value={this.state.course.name} onBlur={this.onBlurName.bind(this)} />

@@ -12,6 +12,6 @@ class BaseCourseSerializer < ActiveModel::Serializer
   end
 
   def image_url
-    course.photo.url
+    course.photo.image_url
   end
 end
