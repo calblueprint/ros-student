@@ -29,7 +29,7 @@ class CourseList extends React.Component {
   renderCards(list) {
     return list.map((value) => {
       return (
-        <CourseCard key={value.id} course={value} />
+        <CourseCard key={value.id} course={value} route={ReactRoutes.courseOutlinePath(value.id)}/>
       )
     })
   }
@@ -45,9 +45,9 @@ class CourseList extends React.Component {
     var allList = lists[1]
     return (
       <div>
-        <h1 className="courses-title">Enrolled Courses</h1>
+        <h1 className="enrolled-courses-title">Enrolled Courses</h1>
         <ol>{this.renderCards(enrolledList)}</ol>
-        <h1 className="courses-title">All Courses</h1>
+        <h1 className="all-courses-title">All Courses</h1>
         <ol>{this.renderCards(allList)}</ol>
       </div>
     )

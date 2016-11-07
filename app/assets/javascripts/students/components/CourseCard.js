@@ -13,11 +13,19 @@ class CourseCard extends React.Component {
     }
   }
 
+  getCourseCardStyle() {
+    const newOpacity = this.props.course.is_enrolled ? 1 : 0.5
+
+    return ({
+      opacity: `${newOpacity}`
+    })
+  }
+
   render() {
     return (
       <Link onClick={this.disableLink.bind(this)}
-        to={ReactRoutes.courseOutlinePath(this.props.course.id)}>
-        <div className="card">
+        to={this.props.route}>
+        <div className="card" style={this.getCourseCardStyle()}>
           <img className="card-img-container" src={Images.doge}/>
           <h2 className="card-title">{this.props.course.name}</h2>
           <ProgressBar className="card-progress-bar" progress={this.props.course.progress} />
@@ -29,8 +37,13 @@ class CourseCard extends React.Component {
 
 CourseCard.propTypes = {
   course: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-    })
+    id: PropTypes.number.isRequired,
+    progress: PropTypes.number.isRequired,
+    is_enrolled: PropTypes.bool.isRequired,
+    name: PropTypes.string.isRequired,
+  }),
+
+  route: PropTypes.string.isRequired,
 }
 
 export default CourseCard

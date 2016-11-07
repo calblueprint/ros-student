@@ -2,7 +2,7 @@
   position: relative;
   background: $white;
   width: 300px;
-  height: 350px;
+  height: 340px;
   margin: 50px;
   display: inline-block;
 }
@@ -15,13 +15,15 @@
 
 .card-title {
   color: $black;
-  font-family: $font-stack;
   font-size: 20px;
-  font-weight: $regular;
   margin: 16px;
 }
 
 .card-progress-bar {
   position: absolute;
+  bottom: 0;
+  margin: 16px;
+  width: 85%;
 }
+
 
