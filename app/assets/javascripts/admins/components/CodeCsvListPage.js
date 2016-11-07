@@ -8,6 +8,7 @@ import { getInputToParams } from '../../utils/form_helpers'
 import { APIRoutes } from '../../shared/routes'
 
 import CodeCsvCard from './CodeCsvCard.js'
+import GenerateCodeCsvModal from './GenerateCodeCsvModal.js'
 
 class CodeCsvListPage extends React.Component {
   constructor(props) {
@@ -16,9 +17,9 @@ class CodeCsvListPage extends React.Component {
       code_csvs: []
     }
     this.getCodeCsvs()
+    this.updateCodeCsvs = this.updateCodeCsvs.bind(this)
   }
 
-  //done
   getCodeCsvs() {
     const path = APIRoutes.codeCsvListPath()
 
@@ -29,26 +30,34 @@ class CodeCsvListPage extends React.Component {
     })
   }
 
+  updateCodeCsvs(code_csv) {
+    var new_code_csvs = this.state.code_csvs
+    new_code_csvs.push(code_csv)
+    this.setState({ code_csvs: new_code_csvs })
+  }
+
   showCodeCsvGenerateModal(e) {
     e.preventDefault()
   }
 
-  //done
   renderCodeCsvs() {
-    return this.state.code_csvs.map((value) => {
+    var cc = this.state.code_csvs
+    return Array.from({length: cc.length}, (v, k) => k).map((index) => {
       return (
         <li>
-          <CodeCsvCard code_csv={value}/>
+          <CodeCsvCard code_csv={cc[cc.length-index-1]} />
         </li>
       )
     })
   }
 
-  //done
   render() {
+    // <button onClick={this.showCodeCsvGenerateModal}> Generate new codes </button>
+    // NOTE: Add button later when modal is ready
     return (
       <div>
-        <button onClick={this.showCodeCsvGenerateModal}> Generate new codes </button>
+        <GenerateCodeCsvModal update={this.updateCodeCsvs}/>
+        <h1>List of Codes</h1>
         <ul>{this.renderCodeCsvs()}</ul>
       </div>
     )

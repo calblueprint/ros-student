@@ -88,6 +88,8 @@ class GenerateCodeCsvModal extends React.Component {
       }
     }
     request.post(path, params, (response) => {
+      this.props.update(response.code_csv)
+      console.log(response)
     }, (error) => {
       console.log(error)
     })
