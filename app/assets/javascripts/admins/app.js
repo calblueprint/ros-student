@@ -55,9 +55,11 @@ class App extends React.Component {
 
 render((
   <Router history={browserHistory}>
-    <Route path={ReactRoutes.dashboardPath()} name='AdminDashboardPage' component={AdminDashboardPage} />
-    <Route path={ReactRoutes.updateAdminPath()} name='UpdateAdminPage' component={UpdateAdminPage} />
-    <Route path={ReactRoutes.codeCsvListPath()} name='CodeCsvListPage' component={CodeCsvListPage} />
-    <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />
+    <Route path={ReactRoutes.rootPath()} component={App}  >
+      <Route path={ReactRoutes.dashboardPath()} name='AdminDashboardPage' component={AdminDashboardPage} />
+      <Route path={ReactRoutes.updateAdminPath()} name='UpdateAdminPage' component={UpdateAdminPage} />
+      <Route path={ReactRoutes.codeCsvListPath()} name='CodeCsvListPage' component={CodeCsvListPage} />
+      <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />
+    </Route>
   </Router>
 ), document.getElementById('main-container'))
