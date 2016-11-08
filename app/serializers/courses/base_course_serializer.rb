@@ -15,6 +15,7 @@ class BaseCourseSerializer < ActiveModel::Serializer
 
   def image_url
     course.photo.image_url
+  end
 
   def progress
     object.progress(serialization_options[:user])
