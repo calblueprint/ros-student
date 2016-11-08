@@ -2,9 +2,9 @@ class BaseCourseSerializer < ActiveModel::Serializer
   attributes :id,
              :name,
              :description,
-             :is_enrolled
-             :image_url
-             :progress,
+             :is_enrolled,
+             :image_url,
+             :progress
 
   has_one :photo, serializer: PhotoSerializer
 
