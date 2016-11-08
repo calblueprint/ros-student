@@ -11,7 +11,7 @@ import { render } from 'react-dom'
 
 import '../../stylesheets/bundle/students.scss'
 
-import { RailsRoutes, ReactRoutes } from '../shared/routes' 
+import { RailsRoutes, ReactRoutes } from '../shared/routes'
 import { getUser } from '../utils/user_helpers'
 
 import UpdateStudentPage from './components/UpdateStudentPage'
@@ -53,7 +53,7 @@ class App extends React.Component {
 
 render((
   <Router history={browserHistory}>
-    <Route path="/" component={App}>
+    <Route path={ReactRoutes.rootPath()} component={App}>
       <Route path={ReactRoutes.updateStudentPath()} component={UpdateStudentPage} />
       <Route path={ReactRoutes.dashboardPath()} component={StudentDashboard} />
       <Route path={ReactRoutes.courseOutlinePath()} component={CourseOutlinePage} />
