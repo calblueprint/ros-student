@@ -28,7 +28,6 @@ class ImageUploadInput extends React.Component {
   render() {
     return (
       <div>
-        {this.renderImage()}
         <div>{this.props.label}</div>
         <UploadInput
           onChange={this.setChosenImage}
