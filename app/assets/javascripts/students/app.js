@@ -45,7 +45,9 @@ class App extends React.Component {
             </div>
           </div>
         </Navbar>
-        {this.props.children}
+        <div className='flex center'>
+          {this.props.children}
+        </div>
       </div>
     )
   }

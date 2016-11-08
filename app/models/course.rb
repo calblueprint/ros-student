@@ -23,6 +23,8 @@ class Course < ActiveRecord::Base
     StudentCourse.find_by({ course_id: id, student_id: user.id})
   end
 
+
+
   def current_subsection(user)
     sections.each do |section|
       section.subsections.each do |subsection|
@@ -31,5 +33,19 @@ class Course < ActiveRecord::Base
         end
       end
     end
+  end
+
+
+  def progress(user)
+    completed = 0.0
+
+    sections.each do |section|
+      completed += section.progress(user)
+    end
+    if sections.size == 0
+      return 0
+    end
+    # TODO: Change back to return completed / sections.size * 100
+    return rand(100)
   end
 end
