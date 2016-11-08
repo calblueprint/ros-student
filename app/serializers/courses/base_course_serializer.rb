@@ -14,7 +14,7 @@ class BaseCourseSerializer < ActiveModel::Serializer
   end
 
   def image_url
-    course.photo.image_url
+    object.photo.url if object.photo
   end
 
   def progress
