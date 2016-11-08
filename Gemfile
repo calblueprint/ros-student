@@ -18,6 +18,8 @@ gem 'pg_search', '1.0.5'
 # Building javascript
 gem 'webpack-rails', '0.9.9'
 
+gem 'pry-rails'
+
 # Client
 gem 'font-awesome-rails', '4.5.0'
 gem 'jquery-rails', '3.1.4'
@@ -47,6 +49,7 @@ group :development, :test do
   gem "guard-livereload"
   gem 'rspec-rails'
   gem 'rubocop'
+  gem 'pry-byebug'
 end
 
 group :development do
