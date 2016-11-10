@@ -15,7 +15,7 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
 
   def update
     if @component.update(component_params)
-      render json: @component, serializer: ComponentSerializer
+      render json: @component, user: current_user, serializer: ComponentSerializer
     else
       error_response(@component)
     end
