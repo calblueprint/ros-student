@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 
-import { ReactRoutes } from '../../shared/routes'
-import { Images } from '../../utils/image_helpers'
+import { ReactRoutes } from '../../../shared/routes'
+import { Images } from '../../../utils/image_helpers'
 
-import ProgressBar from '../../shared/components/widgets/ProgressBar'
+import ProgressBar from '../widgets/ProgressBar'
 
 class CourseCard extends React.Component {
   disableLink(e) {

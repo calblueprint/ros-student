@@ -4,36 +4,10 @@ import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
 import { ReactRoutes } from '../../shared/routes'
 
-import CourseCard from './CourseCard'
+import CourseCard from '../../shared/components/courses/CourseCard'
+import CourseList from '../../shared/components/courses/CourseList'
 
-class CourseList extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      courses: [],
-    }
-
-    this.getCourses()
-  }
-
-  getCourses() {
-    const path = APIRoutes.getCourses()
-
-    request.get(path, (response) => {
-      this.setState( { courses: response.courses })
-    }, (error) => {
-      console.log('error')
-    })
-  }
-
-  renderCards(list) {
-    return list.map((value) => {
-      return (
-        <CourseCard key={value.id} course={value} route={ReactRoutes.courseOutlinePath(value.id)}/>
-      )
-    })
-  }
-
+class StudentCourseList extends CourseList {
   sortCards() {
     return [this.state.courses.filter(function (course) { return course.is_enrolled}),
       this.state.courses.sort(function(x, y) {return (x.is_enrolled === y.is_enrolled)? 0 : x.is_enrolled? -1 : 1})]
@@ -54,4 +28,4 @@ class CourseList extends React.Component {
   }
 }
 
-export default CourseList
+export default StudentCourseList
