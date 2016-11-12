@@ -5,19 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-student = Student.create(first_name: 'First', last_name: 'Last', password: 'password', username:'student', email: 'student@gmail.com')
-
-admin = Admin.create(first_name: 'First', last_name: 'Last', password: 'password', username:'admin', email: 'admin@gmail.com')
-
-
-def create_student
+def create_student_and_codes
   puts 'creating students'
   5.times do |n|
-    Student.create first_name: "Student#{n}",
+    student = Student.new first_name: "Student#{n}",
                    last_name: 'Last',
                    password: 'password',
                    username: "student#{n}",
                    email: "student#{n}@gmail.com"
+
+    code = Code.create key: Devise.friendly_token(8)
+    CodeCourse.create code_id: code.id, course_id: Course.first.id
+    student.code = code
+    student.save
   end
 end
 
@@ -29,13 +29,6 @@ def create_admin
                  password: 'password',
                  username: "admin#{n}",
                  email: "admin#{n}@gmail.com"
-  end
-end
-
-def create_codes
-  puts 'create codes'
-  5.times do |n|
-    Code.create key: Devise.friendly_token(8)
   end
 end
 
@@ -67,7 +60,6 @@ def create_courses
   end
 end
 
-create_student
-create_admin
-create_codes
 create_courses
+create_student_and_codes
+create_admin
