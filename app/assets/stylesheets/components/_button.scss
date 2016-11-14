@@ -39,6 +39,12 @@
 }
 
 /* Button colors */
+.button--red {
+  background: $red;
+  border-color: $red;
+  color: $snow;
+}
+
 .button--black {
   background: $black;
   border-color: $black;

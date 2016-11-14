@@ -56,7 +56,7 @@ class Form extends React.Component {
 }
 
 Form.defaultProps = {
-  className: 'flex center center-vertical',
+  className: 'flex center flex-vertical',
   id: '',
   action: 'post',
   method: '',

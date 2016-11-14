@@ -59,14 +59,14 @@ $space-list: $xxs, $xs, $sm, $md, $lg, $xl, $xxl;
 
     align-items: center;
     justify-content: center;
+  }
 
-    &-vertical {
-      flex-direction: column;
-    }
+  &-vertical {
+    flex-direction: column;
+  }
 
-    &-horizontal {
-      flex-direction: row;
-    }
+  &-horizontal {
+    flex-direction: row;
   }
 }
 

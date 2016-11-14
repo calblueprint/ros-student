@@ -8,8 +8,8 @@ import LoginForm from './LoginForm'
 class StudentLoginPage extends React.Component {
   render() {
     return (
-      <div className='flex center center-vertical login-container'>
-        <div className='flex center center-vertical login-modal'>
+      <div className='flex center flex-vertical login-container'>
+        <div className='flex center flex-vertical login-modal'>
           <img className='login-logo' src={Images.rootsLogo} />
           <h2 className='h2 marginTopBot-xxs'>Let's get started.</h2>
           <LoginForm userType='student' action={RailsRoutes.studentsSignInPath()} />

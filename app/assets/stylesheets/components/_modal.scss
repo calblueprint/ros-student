@@ -31,9 +31,7 @@
 
 .modal-dialog {
   background: $snow;
-  overflow: auto;
   max-width: 700px;
-  max-height: 500px;
   margin: 80px auto;
 }
 
@@ -42,7 +40,7 @@
 }
 
 .modal-header {
-  padding: 20px 25px;
+  padding: 10px 25px;
 }
 
 .modal-title {
@@ -55,7 +53,7 @@
 }
 
 .modal-footer {
-  padding: 25px;
+  padding: 10px 25px;
   text-align: right;
 }
 

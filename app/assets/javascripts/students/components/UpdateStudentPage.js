@@ -1,5 +1,6 @@
 import _ from 'underscore'
 import React from 'react'
+import Modal from 'react-bootstrap-modal'
 
 import request from '../../shared/requests/request'
 
@@ -9,6 +10,7 @@ import { APIRoutes } from '../../shared/routes'
 
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
+import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
 
 class UpdateStudentPage extends React.Component {
   constructor(props) {
@@ -17,7 +19,14 @@ class UpdateStudentPage extends React.Component {
     this.id = this.props.routeParams.id
     // Assume we're modifying only our user
     this.user = getUser()
-    this.state = this.getUserFields()
+    this.state = _.extend(this.getUserFields(), {
+      previousImage: '',
+      isModalOpen: false,
+    })
+
+    this.updateUser = this.updateUser.bind(this)
+    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   getUserFields() {
@@ -25,9 +34,9 @@ class UpdateStudentPage extends React.Component {
       formFields: {
         image: {
           label: 'Profile Image',
-          type: 'file',
+          value: '',
+          imageUrl: this.user.
           onChange: _.bind(this.handleImage, this),
-          accept: 'image/*',
         },
         email: {
           label: 'Email',
@@ -104,25 +113,84 @@ class UpdateStudentPage extends React.Component {
   handleImage(e) {
   }
 
-  renderFields() {
-    return (
-      _.pairs(this.state.formFields).map((values) => {
-        return <Input key={values[0]} {...values[1]} />
-      })
-    )
+  openModal() {
+    this.setState({ isModalOpen: true })
+  }
+
+  closeModal() {
+    this.setState({ isModalOpen: false })
   }
 
   render() {
     return (
       <div>
         <h1>Update Profile</h1>
-        <Form fields={this.state.formFields}>
-          {this.renderFields()}
+        <button onClick={this.openModal}>Edit Profile</button>
+        <Modal
+          show={this.state.isModalOpen}
+          onHide={this.closeModal}
+        >
+          <Modal.Header>
+            <Modal.Title className='update-user-header'>Edit Profile</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form fields={this.state.formFields}>
+              <div className='flex flex-horizontal update-user-container'>
+                <div className='flex center update-user-column update-user-input'>
+                  <ImageUploadInput {...this.state.formFields.image} />
+                </div>
 
-          <div className='actions'>
-            <input type='submit' name='commit' value='Update user' onClick={this.updateUser.bind(this)} />
-          </div>
-        </Form>
+                <div className='update-user-column'>
+                  <div className='flex flex-horizontal update-user-container'>
+                    <div className='update-user-column update-user-input'>
+                      <Input {...this.state.formFields.firstName} />
+                    </div>
+
+                    <div className='update-user-column update-user-input'>
+                      <Input {...this.state.formFields.lastName} />
+                    </div>
+                  </div>
+                  <div className='update-user-input'>
+                    <Input {...this.state.formFields.email} />
+                  </div>
+                  <div className='update-user-input'>
+                    <Input {...this.state.formFields.username} />
+                  </div>
+                  <div className='update-user-input'>
+                    <Input {...this.state.formFields.newPassword} />
+                  </div>
+                  <div className='update-user-input'>
+                    <Input {...this.state.formFields.confirmPassword} />
+                  </div>
+                  <div className='update-user-input'>
+                    <Input {...this.state.formFields.currentPassword} />
+                  </div>
+                </div>
+              </div>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <div className='flex flex-horizontal update-user-container'>
+              <div className='update-user-column update-user-input'>
+                <input
+                  type='submit'
+                  className='button button--red marginTop-xs update-user-button'
+                  value='Cancel'
+                  onClick={this.closeModal}
+                />
+              </div>
+
+              <div className='update-user-column update-user-input'>
+                <input
+                  type='submit'
+                  className='button marginTop-xs update-user-button'
+                  value='Update user'
+                  onClick={this.updateUser}
+                />
+              </div>
+            </div>
+          </Modal.Footer>
+        </Modal>
       </div>
     )
   }

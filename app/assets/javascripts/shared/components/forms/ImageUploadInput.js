@@ -6,23 +6,11 @@ import UploadInput from './UploadInput'
 class ImageUploadInput extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      image: '',
-    }
-
     this.setChosenImage = this.setChosenImage.bind(this)
   }
 
   setChosenImage(image) {
-    this.setState({ image: image })
     this.props.onChange(image)
-  }
-
-  renderImage() {
-    if (!_.isEmpty(this.state.image)) {
-      return <img src={this.state.image} />
-    }
   }
 
   render() {
