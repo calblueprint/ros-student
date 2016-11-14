@@ -13,7 +13,7 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
 
   def update
     if @course.update(course_params)
-      render json: @course, serializer: CourseSerializer
+      render json: @course, user: current_user, serializer: CourseSerializer
     else
       error_response(@course)
     end

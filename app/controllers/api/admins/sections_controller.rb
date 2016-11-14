@@ -13,7 +13,7 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
   def update
     puts section_params
     if @section.update(section_params)
-      render json: @section, serializer: SectionSerializer
+      render json: @section, user: current_user, serializer: SectionSerializer
     else
       error_response(@section)
     end

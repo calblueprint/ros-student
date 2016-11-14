@@ -113,7 +113,7 @@ class SubsectionEdit extends React.Component {
           <InlineEditInput value={this.state.subsection.title} onBlur={this.onBlurTitle.bind(this)} />
         </h2>
         <ul>{this.renderComponents()}</ul>
-        <button onClick={this.showNewComponentForm.bind(this)} callback={this.onFormCompletion.bind(this)}>Add component</button>
+        <button onClick={this.showNewComponentForm.bind(this)}>Add component</button>
         <button onClick={this.deleteSubsection}>Delete subsection</button>
         <div>{this.renderComponentForm()}</div>
       </div>

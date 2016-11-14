@@ -12,7 +12,7 @@ class Api::Admins::SubsectionsController < Api::Admins::BaseController
 
   def update
     if @subsection.update(subsection_params)
-      render json: @subsection, serializer: SubsectionSerializer
+      render json: @subsection, user: current_user, serializer: SubsectionSerializer
     else
       error_response(@subsection)
     end
