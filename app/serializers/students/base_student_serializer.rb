@@ -3,5 +3,6 @@ class BaseStudentSerializer < ActiveModel::Serializer
              :email,
              :username,
              :first_name,
-             :last_name
+             :last_name,
+             :image_url
 end
