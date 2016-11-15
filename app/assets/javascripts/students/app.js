@@ -14,7 +14,7 @@ import '../../stylesheets/bundle/students.scss'
 import { RailsRoutes, ReactRoutes } from '../shared/routes'
 import { getUser } from '../utils/user_helpers'
 
-import UpdateStudentPage from './components/UpdateStudentPage'
+import ProfilePage from './components/ProfilePage'
 import StudentDashboard from './components/StudentDashboard'
 import CourseOutlinePage from './components/CourseOutlinePage'
 
@@ -34,7 +34,7 @@ class App extends React.Component {
             <div className="dropdown-container">
               <Link
                 className='dropdown-link'
-                to={ReactRoutes.updateStudentPath(getUser().id)}>
+                to={ReactRoutes.studentProfilePath(getUser().id)}>
                 Profile
               </Link>
               <a
@@ -56,7 +56,7 @@ class App extends React.Component {
 render((
   <Router history={browserHistory}>
     <Route path={ReactRoutes.rootPath()} component={App}>
-      <Route path={ReactRoutes.updateStudentPath()} component={UpdateStudentPage} />
+      <Route path={ReactRoutes.studentProfilePath()} component={ProfilePage} />
       <Route path={ReactRoutes.dashboardPath()} component={StudentDashboard} />
       <Route path={ReactRoutes.courseOutlinePath()} component={CourseOutlinePage} />
       <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />
