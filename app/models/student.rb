@@ -43,7 +43,14 @@ class Student < ActiveRecord::Base
   has_many :subsection_progresses
   has_many :subsections, through: :subsection_progresses
 
+  has_one :photo, as: :parent, dependent: :destroy
+  accepts_nested_attributes_for :photo
+
   after_create :subscribe_to_courses
+
+  def image_url
+    photo.url if photo
+  end
 
   private
 

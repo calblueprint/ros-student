@@ -31,7 +31,6 @@ class Form extends React.Component {
 
 
   render() {
-    console.log(this.state.flash)
     return (
       <form
         className={this.props.className}
@@ -56,7 +55,7 @@ class Form extends React.Component {
 }
 
 Form.defaultProps = {
-  className: 'flex center center-vertical',
+  className: 'flex center flex-vertical',
   id: '',
   action: 'post',
   method: '',

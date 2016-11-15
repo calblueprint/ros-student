@@ -9,8 +9,8 @@ import LoginForm from './LoginForm'
 class AdminLoginPage extends React.Component {
   render() {
     return (
-      <div className='flex center center-vertical login-container'>
-        <div className='flex center center-vertical login-modal'>
+      <div className='flex center flex-vertical login-container'>
+        <div className='flex center flex-vertical login-modal'>
           <img className='login-logo' src={Images.rootsLogo} />
           <h2 className='h2 marginTopBot-xxs'>Admin Login</h2>
           <LoginForm userType='admin' action={RailsRoutes.adminsSignInPath()} />

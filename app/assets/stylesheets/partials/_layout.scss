@@ -7,6 +7,10 @@ body {
   background-color: $snow;
 }
 
+img {
+  object-fit: cover;
+}
+
 $xxs: 6px;
 $xs: 12px;
 $sm: 16px;
@@ -59,14 +63,14 @@ $space-list: $xxs, $xs, $sm, $md, $lg, $xl, $xxl;
 
     align-items: center;
     justify-content: center;
+  }
 
-    &-vertical {
-      flex-direction: column;
-    }
+  &-vertical {
+    flex-direction: column;
+  }
 
-    &-horizontal {
-      flex-direction: row;
-    }
+  &-horizontal {
+    flex-direction: row;
   }
 }
 
