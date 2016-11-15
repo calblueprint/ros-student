@@ -7,6 +7,7 @@ import request from '../../shared/requests/request'
 import { getUser, setUser } from '../../utils/user_helpers'
 import { getInputToParams, mapErrorToFormFields } from '../../utils/form_helpers'
 import { APIRoutes } from '../../shared/routes'
+import { Images, convertImage } from '../../utils/image_helpers'
 
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
@@ -27,17 +28,14 @@ class UpdateStudentPage extends React.Component {
     this.updateUser = this.updateUser.bind(this)
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.handleImage = this.handleImage.bind(this)
+    this.removeImage = this.removeImage.bind(this)
+    this.setImage = this.setImage.bind(this)
   }
 
   getUserFields() {
     return {
       formFields: {
-        image: {
-          label: 'Profile Image',
-          value: '',
-          imageUrl: this.user.
-          onChange: _.bind(this.handleImage, this),
-        },
         email: {
           label: 'Email',
           value: this.user.email,
@@ -83,15 +81,49 @@ class UpdateStudentPage extends React.Component {
           onChange: _.bind(this.handleChange, this, 'currentPassword'),
           error: '',
         },
+      },
+      imageField: {
+        imageData: {
+          label: 'Profile Image',
+          value: '',
+          imageUrl: this.user.image_url,
+          onChange: _.bind(this.handleImage, this),
+        },
       }
     }
+  }
+
+  setImage(image) {
+    const imageField = this.state.imageField
+    imageField.imageData.value = image
+    imageField.imageData.imageUrl = image
+    this.setState({ imageField: imageField })
+  }
+
+  removeImage(e) {
+    e.preventDefault()
+    this.setImage('')
+  }
+
+  openModal() {
+    this.setState({ isModalOpen: true })
+  }
+
+  closeModal() {
+    this.setState({ isModalOpen: false })
   }
 
   updateUser(e) {
     e.preventDefault()
 
     const path = APIRoutes.updateStudentPath(this.id)
-    const params = { student: getInputToParams(this.state.formFields) }
+    const params = {
+      student: getInputToParams(this.state.formFields)
+    }
+
+    if (!_.isEmpty(this.state.imageField.value)) {
+      params.student.photo_attributes = getInputToParams(this.state.imageField)
+    }
 
     request.update(path, params, (response) => {
       setUser(response.student)
@@ -111,14 +143,12 @@ class UpdateStudentPage extends React.Component {
   }
 
   handleImage(e) {
+    convertImage(e, this.setImage)
   }
 
-  openModal() {
-    this.setState({ isModalOpen: true })
-  }
-
-  closeModal() {
-    this.setState({ isModalOpen: false })
+  renderImage() {
+    const imageState = this.state.imageField.imageData
+    return imageState.value || imageState.imageUrl || Images.default_profile
   }
 
   render() {
@@ -134,10 +164,36 @@ class UpdateStudentPage extends React.Component {
             <Modal.Title className='update-user-header'>Edit Profile</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form fields={this.state.formFields}>
+            <Form>
               <div className='flex flex-horizontal update-user-container'>
-                <div className='flex center update-user-column update-user-input'>
-                  <ImageUploadInput {...this.state.formFields.image} />
+                <div className='update-user-column update-user-input'>
+                  <div className='flex center update-user-image-flex'>
+                    <div className='update-user-image-container'>
+                      <img
+                        className='update-user-image'
+                        src={this.renderImage()} />
+                      <div className='update-user-image-upload'>
+                        <button
+                          className='button button--red update-user-image-button margin'
+                          onClick={this.removeImage}>
+                          Remove Image
+                        </button>
+                        <label
+                          htmlFor='update-user-image-upload'
+                          className='button update-user-image-button'
+                          onChange={this.handleImage}>
+                          Upload Image
+                        </label>
+                        <input
+                          id='update-user-image-upload'
+                          className='hidden-input'
+                          type='file'
+                          onChange={this.handleImage}
+                          accept='image/jpg, image/jpeg, image/png'
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div className='update-user-column'>

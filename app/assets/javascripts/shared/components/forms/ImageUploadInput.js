@@ -15,7 +15,7 @@ class ImageUploadInput extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={this.props.className}>
         <div>{this.props.label}</div>
         <UploadInput
           onChange={this.setChosenImage}
@@ -29,6 +29,7 @@ class ImageUploadInput extends React.Component {
 ImageUploadInput.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  className: PropTypes.string,
 }
 
 export default ImageUploadInput

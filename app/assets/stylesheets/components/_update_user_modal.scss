@@ -16,3 +16,51 @@
 .update-user-button {
   width: 100%;
 }
+
+.update-user-image-flex {
+  width: 100%;
+  height: 100%;
+}
+
+.update-user-image-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.update-user-image {
+  width: 100%;
+  height: 300px;
+}
+
+.update-user-image-upload {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: $xxs;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  transition: 100ms;
+  transform: translateY(100%);
+}
+
+.update-user-image:hover + .update-user-image-upload {
+  transform: translateY(0);
+}
+
+.update-user-image-upload:hover {
+  transform: translateY(0);
+}
+
+.update-user-image-button {
+  width: 49%;
+  cursor: pointer;
+
+  &.margin {
+    margin-right: $xxs;
+  }
+}

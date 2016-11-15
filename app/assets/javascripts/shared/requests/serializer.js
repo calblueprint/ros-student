@@ -19,6 +19,9 @@ const SERIALIZER = {
   subsectionId: 'subsection_id',
   audioData: 'audio_data',
   imageData: 'image_data',
+
+  // Photo
+  imageData: 'image_data',
 }
 
 export { SERIALIZER }

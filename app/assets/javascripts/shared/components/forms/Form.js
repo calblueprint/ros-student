@@ -31,7 +31,6 @@ class Form extends React.Component {
 
 
   render() {
-    console.log(this.state.flash)
     return (
       <form
         className={this.props.className}

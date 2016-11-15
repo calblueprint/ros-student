@@ -1,7 +1,7 @@
 class Api::Students::StudentsController < Api::Students::BaseController
   load_and_authorize_resource
 
-  prepend_before_filter :convert_audio, only: :update
+  prepend_before_filter :convert_image, only: :update
 
   def update
     if @student.update_with_password(update_params)

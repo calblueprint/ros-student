@@ -7,6 +7,10 @@ body {
   background-color: $snow;
 }
 
+img {
+  object-fit: cover;
+}
+
 $xxs: 6px;
 $xs: 12px;
 $sm: 16px;
