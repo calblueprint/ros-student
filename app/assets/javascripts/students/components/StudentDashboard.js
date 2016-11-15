@@ -1,3 +1,4 @@
+import _ from 'underscore'
 import React from 'react'
 import { Link } from 'react-router'
 
@@ -8,9 +9,11 @@ import StudentCourseList from './StudentCourseList'
 
 class StudentDashboard extends React.Component {
   render() {
+    var routeFunction = _.partial(ReactRoutes.courseOutlinePath);
+
     return (
       <div>
-        <StudentCourseList route={ReactRoutes.courseOutlinePath(value.id)}/>
+        <StudentCourseList routeFunction={routeFunction}/>
       </div>
     )
   }

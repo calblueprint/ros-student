@@ -47,6 +47,7 @@ class RailsRoutes {
   static coursePath(id)        { return `/courses/${id}` }
 
   static courseCreatePath() { return '/courses' }
+  static courseEditPath(id) { return `/courses/${id}/edit` }
 }
 
 class APIRoutes {

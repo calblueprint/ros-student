@@ -4,10 +4,18 @@ import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
 import { ReactRoutes } from '../../shared/routes'
 
-import CourseCard from '../../shared/components/courses/CourseCard'
+import AdminCourseCard from './AdminCourseCard'
 import CourseList from '../../shared/components/courses/CourseList'
 
 class AdminCourseList extends CourseList {
+  renderCards(list) {
+    return list.map((value) => {
+      return (
+        <AdminCourseCard key={value.id} course={value} route={this.props.routeFunction(value.id)}/>
+      )
+    })
+  }
+
   render() {
     return (
       <div>

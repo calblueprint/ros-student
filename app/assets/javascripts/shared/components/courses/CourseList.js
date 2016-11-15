@@ -28,14 +28,14 @@ class CourseList extends React.Component {
   renderCards(list) {
     return list.map((value) => {
       return (
-        <CourseCard key={value.id} course={value} route={this.props.route}/>
+        <CourseCard key={value.id} course={value} route={this.props.routeFunction(value.id)}/>
       )
     })
   }
 }
 
 CourseList.propTypes = {
-  route: PropTypes.string.isRequired,
+  routeFunction: PropTypes.func.isRequired,
 }
 
 export default CourseList
