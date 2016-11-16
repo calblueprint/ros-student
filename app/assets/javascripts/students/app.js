@@ -28,13 +28,13 @@ class App extends React.Component {
       user: getUser()
     }
 
-    this.observer = observeUser(() => {
+    this.observeUser = observeUser(() => {
       this.setState({ user: getUser() })
     })
   }
 
   componentWillUnmount() {
-    this.observer.disconnect()
+    this.observeUser.disconnect()
   }
 
   render() {

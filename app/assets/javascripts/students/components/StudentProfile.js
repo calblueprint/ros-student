@@ -24,7 +24,7 @@ class StudentProfile extends React.Component {
   }
 
   componentWillUnmount() {
-    this.observer.disconnect()
+    this.observeUser.disconnect()
   }
 
   getUser() {
