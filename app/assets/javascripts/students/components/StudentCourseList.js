@@ -27,10 +27,10 @@ class StudentCourseList extends CourseList {
     var allList = lists[1]
     return (
       <div>
-        <h1 className="enrolled-courses-title">Enrolled Courses</h1>
-        <ol>{this.renderCards(enrolledList)}</ol>
-        <h1 className="all-courses-title">All Courses</h1>
-        <ol>{this.renderCards(allList)}</ol>
+        <h1 className="courses-title courses-header">Enrolled Courses</h1>
+        <ol className="course-list">{this.renderCards(enrolledList)}</ol>
+        <h1 className="courses-title">All Courses</h1>
+        <ol className="course-list">{this.renderCards(allList)}</ol>
       </div>
     )
   }

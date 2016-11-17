@@ -19,11 +19,11 @@ class AdminCourseList extends CourseList {
   render() {
     return (
       <div>
-        <div className="flex ghetto">
-          <h1 className="enrolled-courses-title">Courses</h1>
+        <div className="courses-header flex">
+          <h1 className="courses-title">Courses</h1>
           <a className="button " href={RailsRoutes.courseCreatePath()} data-method='post'>Create Course</a>
         </div>
-        <ol>{this.renderCards(this.state.courses)}</ol>
+        <ol className="course-list">{this.renderCards(this.state.courses)}</ol>
       </div>
     )
   }

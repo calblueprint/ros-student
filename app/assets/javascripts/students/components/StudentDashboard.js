@@ -12,8 +12,10 @@ class StudentDashboard extends React.Component {
     var routeFunction = _.partial(ReactRoutes.courseOutlinePath);
 
     return (
-      <div>
-        <StudentCourseList routeFunction={routeFunction}/>
+      <div className="flex center">
+        <div className="container">
+          <StudentCourseList routeFunction={routeFunction}/>
+        </div>
       </div>
     )
   }

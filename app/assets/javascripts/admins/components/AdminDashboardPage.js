@@ -12,8 +12,10 @@ class AdminDashboardPage extends React.Component {
     var routeFunction = _.partial(RailsRoutes.courseEditPath);
 
     return (
-      <div className="container flex center">
-        <AdminCourseList routeFunction={routeFunction}/>
+      <div className="flex center">
+        <div className="container">
+          <AdminCourseList routeFunction={routeFunction}/>
+        </div>
       </div>
     )
   }
