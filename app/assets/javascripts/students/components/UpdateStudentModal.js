@@ -110,7 +110,7 @@ class UpdateStudentModal extends React.Component {
       student: getInputToParams(this.state.formFields)
     }
 
-    if (!_.isEmpty(this.state.imageField.value)) {
+    if (!_.isEmpty(this.state.imageField.imageData.value)) {
       params.student.photo_attributes = getInputToParams(this.state.imageField)
     }
 
@@ -118,6 +118,7 @@ class UpdateStudentModal extends React.Component {
       setUser(response.student)
       this.user = response.student
       this.setState(this.getUserFields())
+      this.props.closeModal
     }, (error) => {
       this.setState({
         formFields: mapErrorToFormFields(error, this.state.formFields)
