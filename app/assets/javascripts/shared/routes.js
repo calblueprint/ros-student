@@ -66,6 +66,7 @@ class APIRoutes {
 
   // Courses
   static getCourses()          { return APIRoutes.createRoute(`courses`)}
+  static getSubsection(id)       { return APIRoutes.createRoute(`subsections/${id}`)}
 
   // Course Edit
   static getEditCoursePath(id)   { return APIRoutes.createRoute(`courses/${id}/edit`)}

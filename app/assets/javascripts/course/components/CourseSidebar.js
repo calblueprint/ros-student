@@ -38,7 +38,7 @@ class CourseSidebar extends React.Component {
       return "Loading"
     } else {
       return this.state.courseSidebar.sections.map((value) => {
-        return <SectionSidebar key={value.id} section={value} current_subsection={this.state.courseSidebar.current_subsection} />
+        return <SectionSidebar key={value.id} section={value} current_subsection={this.state.courseSidebar.current_subsection} callback={this.props.callback}/>
       })
     }
   }
