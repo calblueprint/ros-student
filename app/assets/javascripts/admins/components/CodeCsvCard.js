@@ -34,9 +34,13 @@ class CodeCsvCard extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3 >{this.props.code_csv.name}</h3>
-        <button onClick={this.downloadCodeCsv}>Download</button>
+      <div className='flex flex-horizontal code-csv-container'>
+        <div className='code-csv-name'>
+          <h3>{this.props.code_csv.name}</h3>
+        </div>
+        <div className='code-csv-download'>
+          <button className='button' onClick={this.downloadCodeCsv}>Download</button>
+        </div>
       </div>
     )
   }

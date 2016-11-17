@@ -1,0 +1,20 @@
+.code-csv-container {
+  justify-content: space-between;
+  width: 66%;
+  height: 60px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 15px 20px;
+  background: $white;
+}
+
+.code-csv-name {
+  margin: auto 0;
+  float: left;
+}
+
+.code-csv-download {
+  margin: auto 0;
+  float: right;
+}
