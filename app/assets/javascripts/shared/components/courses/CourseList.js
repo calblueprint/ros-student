@@ -3,8 +3,6 @@ import React, { PropTypes } from 'react'
 import { APIRoutes } from '../../../shared/routes'
 import request from '../../../shared/requests/request'
 
-import CourseCard from './CourseCard'
-
 class CourseList extends React.Component {
   constructor(props) {
     super(props)
@@ -22,14 +20,6 @@ class CourseList extends React.Component {
       this.setState( { courses: response.courses })
     }, (error) => {
       console.log('error')
-    })
-  }
-
-  renderCards(list) {
-    return list.map((value) => {
-      return (
-        <CourseCard key={value.id} course={value} route={this.props.routeFunction(value.id)}/>
-      )
     })
   }
 }

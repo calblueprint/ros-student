@@ -2,7 +2,7 @@ import React from 'react'
 
 import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
-import { ReactRoutes } from '../../shared/routes'
+import { ReactRoutes, RailsRoutes } from '../../shared/routes'
 
 import AdminCourseCard from './AdminCourseCard'
 import CourseList from '../../shared/components/courses/CourseList'
@@ -19,7 +19,10 @@ class AdminCourseList extends CourseList {
   render() {
     return (
       <div>
-        <h1>Courses</h1>
+        <div className="flex ghetto">
+          <h1 className="enrolled-courses-title">Courses</h1>
+          <a className="button " href={RailsRoutes.courseCreatePath()} data-method='post'>Create Course</a>
+        </div>
         <ol>{this.renderCards(this.state.courses)}</ol>
       </div>
     )

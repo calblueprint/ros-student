@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 
-import { ReactRoutes } from '../../../shared/routes'
-import { Images } from '../../../utils/image_helpers'
+import { ReactRoutes } from '../../shared/routes'
+import { Images } from '../../utils/image_helpers'
 
-import ProgressBar from '../widgets/ProgressBar'
+import ProgressBar from '../../shared/components/widgets/ProgressBar'
 
-class CourseCard extends React.Component {
+class StudentCourseCard extends React.Component {
   disableLink(e) {
     if (!this.props.course.is_enrolled) {
       e.preventDefault()
@@ -35,7 +35,7 @@ class CourseCard extends React.Component {
   }
 }
 
-CourseCard.propTypes = {
+StudentCourseCard.propTypes = {
   course: PropTypes.shape({
     id: PropTypes.number.isRequired,
     progress: PropTypes.number.isRequired,
@@ -46,4 +46,4 @@ CourseCard.propTypes = {
   route: PropTypes.string.isRequired,
 }
 
-export default CourseCard
+export default StudentCourseCard

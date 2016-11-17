@@ -4,10 +4,18 @@ import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
 import { ReactRoutes } from '../../shared/routes'
 
-import CourseCard from '../../shared/components/courses/CourseCard'
+import StudentCourseCard from './StudentCourseCard'
 import CourseList from '../../shared/components/courses/CourseList'
 
 class StudentCourseList extends CourseList {
+  renderCards(list) {
+    return list.map((value) => {
+      return (
+        <StudentCourseCard key={value.id} course={value} route={this.props.routeFunction(value.id)}/>
+      )
+    })
+  }
+
   sortCards() {
     return [this.state.courses.filter(function (course) { return course.is_enrolled}),
       this.state.courses.sort(function(x, y) {return (x.is_enrolled === y.is_enrolled)? 0 : x.is_enrolled? -1 : 1})]
