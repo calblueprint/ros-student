@@ -5,6 +5,7 @@ import request from '../../shared/requests/request'
 
 import SubsectionEdit from './SubsectionEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
+import { Images } from '../../utils/image_helpers'
 
 class SectionEdit extends React.Component {
   constructor(props) {
@@ -77,14 +78,14 @@ class SectionEdit extends React.Component {
   renderSubsections() {
     if (!this.state.section.subsections) {
       return (
-        <li>No subsections to show!</li>
+        <div>No subsections to show!</div>
       )
     } else {
       return this.state.section.subsections.map((value) => {
         return (
-          <li key={value.id}>
+          <div className='subsection' key={value.id}>
             <SubsectionEdit subsection={value} deleteSubsection={this.deleteSubsection} />
-          </li>
+          </div>
         )
       })
     }
@@ -93,12 +94,17 @@ class SectionEdit extends React.Component {
   render() {
     return (
       <div>
-        <h2>
-          <InlineEditInput value={this.state.section.title} onBlur={this.onBlurTitle.bind(this)} />
-        </h2>
-        <ul>{this.renderSubsections()}</ul>
-        <button onClick={this.createSubsection}>Add subsection</button>
-        <button onClick={this.deleteSection}>Delete section</button>
+        <div className='h2'>
+          <InlineEditInput className='inline_block' value={this.state.section.title} onBlur={this.onBlurTitle.bind(this)} />
+          <button className='button' onClick={this.deleteSection}>Delete section</button>
+        </div>
+        <div>{this.renderSubsections()}</div>
+        <button className='button button--white subsection' onClick={this.createSubsection}>
+          <div className='flex center'>
+            <div className='inline_block'><img className='list_image' src={Images.empty_plus} /></div>
+            <div className='inline_block'>Add new subsection</div>
+          </div>
+        </button>
       </div>
     )
   }

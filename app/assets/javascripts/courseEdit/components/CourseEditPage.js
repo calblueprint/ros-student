@@ -6,6 +6,7 @@ import request from '../../shared/requests/request'
 import SectionEdit from './SectionEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
+import { Images } from '../../utils/image_helpers'
 
 class CourseEditPage extends React.Component {
   constructor(props) {
@@ -115,24 +116,36 @@ class CourseEditPage extends React.Component {
   renderSections() {
     return this.state.course.sections.map((value) => {
       return (
-        <li key={value.id}>
+        <div className='section' key={value.id}>
           <SectionEdit section={value} deleteSection={this.deleteSection} />
-        </li>
+        </div>
       )
     })
   }
 
   render() {
     return (
-      <div>
-        <img src={this.state.course.imageUrl} />
-        <ImageUploadInput label='change cover photo' onChange={this.onImage.bind(this)} />
-        <h1>
-          <InlineEditInput value={this.state.course.name} onBlur={this.onBlurName.bind(this)} />
-          <InlineEditInput value={this.state.course.description} onBlur={this.onBlurDescription.bind(this)} />
-        </h1>
-        <ol>{this.renderSections()}</ol>
-        <button onClick={this.createSection}>Add section</button>
+      <div className='flex center'>
+        <div className='container'>
+          <div className='heading edit_text'>Edit Module</div>
+          <div className='h1 course'><InlineEditInput value={this.state.course.name} onBlur={this.onBlurName.bind(this)} /></div>
+          <div className='h2 course'><InlineEditInput value={this.state.course.description} onBlur={this.onBlurDescription.bind(this)} /></div>
+          <div className='cover_container'><img className='cover_image' src={this.state.course.imageUrl} /></div>
+          <div className='white_box'>
+            <ImageUploadInput onChange={this.onImage.bind(this)} />
+          </div>
+          <div className='white_box'>
+            <div className="inline_block">{this.renderSections()}</div>
+          </div>
+          <div className='white_box'>
+            <button className='button button--white' onClick={this.createSection}>
+              <div className='flex center'>
+                <div className='inline_block'><img className='big_blue_plus' src={Images.big_blue_plus} /></div>
+                <div className='inline_block'>Add new section</div>
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
     )
   }

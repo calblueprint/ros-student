@@ -4,6 +4,8 @@ import { render } from 'react-dom'
 
 import { ReactRoutes } from '../shared/routes'
 
+import '../../stylesheets/bundle/course_edit.scss'
+
 import CourseEditPage from './components/CourseEditPage'
 
 render((

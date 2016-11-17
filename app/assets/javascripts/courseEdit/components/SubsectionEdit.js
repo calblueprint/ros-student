@@ -6,6 +6,7 @@ import request from '../../shared/requests/request'
 import ComponentEdit from './ComponentEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import AddComponentForm from './AddComponentForm'
+import { Images } from '../../utils/image_helpers'
 
 class SubsectionEdit extends React.Component {
   constructor(props) {
@@ -73,14 +74,14 @@ class SubsectionEdit extends React.Component {
   renderComponents() {
     if (!this.state.subsection.components) {
       return (
-        <li>No components to show!</li>
+        <div className='component'>No components to show!</div>
       )
     } else {
       return this.state.subsection.components.map((value) => {
         return (
-          <li key={value.id}>
+          <div className='component' key={value.id}>
             <ComponentEdit component={value} />
-          </li>
+          </div>
         )
       })
     }
@@ -109,12 +110,18 @@ class SubsectionEdit extends React.Component {
   render() {
     return (
       <div>
-        <h2>
+        <div className='h3'>
+          <div className='inline_block'><img className='list_image' src={Images.dropdown_arrow} /></div>
           <InlineEditInput value={this.state.subsection.title} onBlur={this.onBlurTitle.bind(this)} />
-        </h2>
-        <ul>{this.renderComponents()}</ul>
-        <button onClick={this.showNewComponentForm.bind(this)}>Add component</button>
-        <button onClick={this.deleteSubsection}>Delete subsection</button>
+          <button className='button' onClick={this.deleteSubsection}>Delete subsection</button>
+        </div>
+        <div>{this.renderComponents()}</div>
+        <button className='button button--white component' onClick={this.showNewComponentForm.bind(this)}>
+          <div className='flex'>
+            <div className='inline_block'><img className='list_image' src={Images.empty_plus} /></div>
+            <div className='inline_block'>Add new component</div>
+          </div>
+        </button>
         <div>{this.renderComponentForm()}</div>
       </div>
     )

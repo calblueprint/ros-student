@@ -36,15 +36,15 @@ class InlineEditInput extends React.Component {
   renderValue() {
     return (
       <div>
-        <button onClick={this.enableEdit}>Click</button>
-        <p>{this.props.value}</p>
+        <div className='inline_block'>{this.props.value}</div>
+        <button className='button' onClick={this.enableEdit}>Edit</button>
       </div>
     )
   }
 
   render() {
     return (
-      <div>
+      <div className='inline_block'>
         {this.state.editable ?
           this.renderInput() :
           this.renderValue()}
