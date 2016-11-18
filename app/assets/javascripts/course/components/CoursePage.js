@@ -128,7 +128,6 @@ class CoursePage extends React.Component {
   render() {
     return (
       <div>
-        <h1>This is a course page</h1>
         <ParentComponent component={this.state.displayedComponent}/>
         <ComponentGraph subsection={this.state.displayedSubsection} callback={this.displayComponent}/>
         <button onClick={this.displayPrevComponent}>Previous</button>
