@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Images } from '../../utils/image_helpers'
+
 class ComponentEdit extends React.Component {
   constructor(props) {
     super(props)
@@ -12,10 +14,33 @@ class ComponentEdit extends React.Component {
     this.setState({ component: nextProps.component })
   }
 
+  renderComponentImage() {
+    switch(this.state.component.component_type) {
+      case 1:
+        // slide
+        return (
+          <div className='inline-block'><img className='list-image' src={Images.empty_basic} /></div>
+        )
+      case 2:
+        // form
+        return (
+          <div className='inline-block'><img className='list-image' src={Images.empty_quiz} /></div>
+        )
+      case 3:
+        // multimedia
+        return (
+          <div className='inline-block'><img className='list-image' src={Images.open_play} /></div>
+        )
+    }
+  }
+
   render() {
     return (
       <div>
-        <h3>Component: {this.state.component.type}: {this.state.component.content_url}</h3>
+        <div className='flex'>
+          {this.renderComponentImage()}
+          <a target='blank' href={this.state.component.content_url}>link</a>
+        </div>
       </div>
     )
   }

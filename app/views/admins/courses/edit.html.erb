@@ -1,1 +1,20 @@
+<% set_meta_tags images: {
+    dropdown_arrow: asset_path('roots_dropdown-arrow.svg'),
+    empty_basic: asset_path('roots_empty-basic.svg'),
+    empty_audio: asset_path('roots_empty-audio.svg'),
+    empty_plus: asset_path('roots_empty-plus.svg'),
+    open_play: asset_path('roots_open-play.svg'),
+    open_quiz: asset_path('roots_open-quiz.svg'),
+    filled_basic: asset_path('roots_filled-basic.svg'),
+    filled_audio: asset_path('roots_filled-audio.svg'),
+    filled_plus: asset_path('roots_filled-plus.svg'),
+    filled_play: asset_path('roots_filled-play.svg'),
+    filled_quiz: asset_path('roots_filled-quiz.svg'),
+    big_blue_plus: asset_path('roots_big-blue-plus.svg'),
+    filled_basic: asset_path('roots_filled-basic.svg'),
+    empty_basic: asset_path('roots_empty-basic.svg'),
+  }.to_json
+%>
+<%= display_meta_tags %>
+
 <%= javascript_include_tag *webpack_asset_paths("courseEdit") %>

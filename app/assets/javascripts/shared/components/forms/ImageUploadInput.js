@@ -18,6 +18,7 @@ class ImageUploadInput extends React.Component {
       <div className={this.props.className}>
         <div>{this.props.label}</div>
         <UploadInput
+          className="upload_image"
           onChange={this.setChosenImage}
           accept='image/jpg, image/jpeg, image/png'
         />

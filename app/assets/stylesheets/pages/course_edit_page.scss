@@ -1,0 +1,48 @@
+$white: #FFFFFF;
+
+.edit-course {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  word-wrap: inherit;
+}
+
+.edit-module-text {
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+.edit-section {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.edit-subsection {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.edit-component {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.white-box {
+  background-color: $white;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.list-image {
+  width: 20px;
+  margin-right: 15px;  
+}
+
+.big-blue-plus {
+  width: 30px;
+  margin-right: 20px;
+}
