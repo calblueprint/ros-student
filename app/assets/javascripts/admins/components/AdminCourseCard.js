@@ -5,11 +5,17 @@ import { ReactRoutes } from '../../shared/routes'
 import { Images } from '../../utils/image_helpers'
 
 class AdminCourseCard extends React.Component {
+  getImgStyle() {
+    const image_url = this.props.course.image_url ? this.props.course.image_url : Images.doge
+
+    return image_url
+  }
+
   render() {
     return (
       <a href={this.props.route} data-method='get'>
         <div className="card">
-          <img className="card-img-container" src={Images.doge}/>
+          <img className="card-img-container" src={this.getImgStyle()}/>
           <h2 className="card-title">{this.props.course.name}</h2>
         </div>
       </a>
