@@ -65,22 +65,23 @@ class APIRoutes {
   static verifyCodePath()      { return APIRoutes.createRoute(`codes/verify`) }
 
   // Courses
-  static getCourses()          { return APIRoutes.createRoute(`courses`)}
-  static getSubsection(id)       { return APIRoutes.createRoute(`subsections/${id}`)}
+  static getCourses()                { return APIRoutes.createRoute(`courses`) }
+  static getSubsectionPath(id)       { return APIRoutes.createRoute(`subsections/${id}`) }
+  static getCoursePath(id)           { return APIRoutes.createRoute(`courses/${id}`) }
 
   // Course Edit
-  static getEditCoursePath(id)   { return APIRoutes.createRoute(`courses/${id}/edit`)}
-  static editComponentPath(id)   { return APIRoutes.createRoute(`admins/components/${id}`)}
-  static editSubsectionPath(id)  { return APIRoutes.createRoute(`admins/subsections/${id}`)}
-  static editSectionPath(id)     { return APIRoutes.createRoute(`admins/sections/${id}`)}
-  static editCoursePath(id)      { return APIRoutes.createRoute(`admins/courses/${id}`)}
-  static createSectionPath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/sections`)}
-  static createSubsectionPath(id) { return APIRoutes.createRoute(`admins/sections/${id}/subsections`)}
-  static createComponentPath(id) { return APIRoutes.createRoute(`admins/subsections/${id}/components`)}
+  static getEditCoursePath(id)   { return APIRoutes.createRoute(`courses/${id}/edit`) }
+  static editComponentPath(id)   { return APIRoutes.createRoute(`admins/components/${id}`) }
+  static editSubsectionPath(id)  { return APIRoutes.createRoute(`admins/subsections/${id}`) }
+  static editSectionPath(id)     { return APIRoutes.createRoute(`admins/sections/${id}`) }
+  static editCoursePath(id)      { return APIRoutes.createRoute(`admins/courses/${id}`) }
+  static createSectionPath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/sections`) }
+  static createSubsectionPath(id) { return APIRoutes.createRoute(`admins/sections/${id}/subsections`) }
+  static createComponentPath(id) { return APIRoutes.createRoute(`admins/subsections/${id}/components`) }
 
   // Codes
-  static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`)}
-  static codeCsvDownloadPath(id) { return APIRoutes.createRoute(`admins/code_csvs/${id}/download.csv`)}
+  static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`) }
+  static codeCsvDownloadPath(id) { return APIRoutes.createRoute(`admins/code_csvs/${id}/download.csv`) }
 }
 
 export {
