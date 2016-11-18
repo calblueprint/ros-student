@@ -13,11 +13,10 @@ import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
 import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
 
-class UpdateStudentPage extends React.Component {
+class UpdateStudentModal extends React.Component {
   constructor(props) {
     super(props)
 
-    this.id = this.props.routeParams.id
     // Assume we're modifying only our user
     this.user = getUser()
     this.state = _.extend(this.getUserFields(), {
@@ -26,8 +25,6 @@ class UpdateStudentPage extends React.Component {
     })
 
     this.updateUser = this.updateUser.bind(this)
-    this.openModal = this.openModal.bind(this)
-    this.closeModal = this.closeModal.bind(this)
     this.handleImage = this.handleImage.bind(this)
     this.removeImage = this.removeImage.bind(this)
     this.setImage = this.setImage.bind(this)
@@ -105,18 +102,10 @@ class UpdateStudentPage extends React.Component {
     this.setImage('')
   }
 
-  openModal() {
-    this.setState({ isModalOpen: true })
-  }
-
-  closeModal() {
-    this.setState({ isModalOpen: false })
-  }
-
   updateUser(e) {
     e.preventDefault()
 
-    const path = APIRoutes.updateStudentPath(this.id)
+    const path = APIRoutes.updateStudentPath(this.props.id)
     const params = {
       student: getInputToParams(this.state.formFields)
     }
@@ -154,11 +143,9 @@ class UpdateStudentPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Update Profile</h1>
-        <button onClick={this.openModal}>Edit Profile</button>
         <Modal
-          show={this.state.isModalOpen}
-          onHide={this.closeModal}
+          show={this.props.openEditModal}
+          onHide={this.props.closeModal}
         >
           <Modal.Header>
             <Modal.Title className='update-user-header'>Edit Profile</Modal.Title>
@@ -232,7 +219,7 @@ class UpdateStudentPage extends React.Component {
                   type='submit'
                   className='button button--red marginTop-xs update-user-button'
                   value='Cancel'
-                  onClick={this.closeModal}
+                  onClick={this.props.closeModal}
                 />
               </div>
 
@@ -252,4 +239,4 @@ class UpdateStudentPage extends React.Component {
   }
 }
 
-export default UpdateStudentPage
+export default UpdateStudentModal
