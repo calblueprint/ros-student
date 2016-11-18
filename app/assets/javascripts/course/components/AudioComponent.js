@@ -1,3 +1,4 @@
+import _ from 'underscore'
 import React from 'react'
 import ReactPlayer from 'react-player'
 
@@ -7,29 +8,34 @@ class AudioComponent extends React.Component {
     super(props)
 
     this.state = { playing: true }
-    this.audioUrl = this.props.audioUrl
+    this.onEnd = this.onEnd.bind(this)
   }
-
 
   onEnd() {
     this.setState({ playing: false })
     this.props.callback()
   }
 
-  render() {
-
+  renderAudio() {
     return (
       <div>
         <p>This is an audio component</p>
-        <a href={this.audioUrl}>audio link</a>
+        <a href={this.props.audioUrl}>audio link</a>
         <ReactPlayer
-          ref={player => { this.player = player }}
-          url={this.audioUrl}
+          url={this.props.audioUrl}
           playing={this.state.playing}
           controls={true}
           height={0}
-          onEnded={this.onEnd.bind(this)}
+          onEnded={this.onEnd}
         />
+      </div>
+    )
+  }
+
+  render() {
+    return (
+      <div>
+        {!_.isUndefined(this.props.audioUrl) ? this.renderAudio : ''}
       </div>
     )
   }

@@ -16,41 +16,43 @@ import CoursePage from './components/CoursePage'
 
 import Navbar from '../shared/components/widgets/Navbar'
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Navbar>
-          <Link to={ReactRoutes.dashboardPath()}>
-            <header className='nav-element logo'>Roots of Success</header>
-          </Link>
+// class App extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <Navbar>
+//           <Link to={ReactRoutes.dashboardPath()}>
+//             <header className='nav-element logo'>Roots of Success</header>
+//           </Link>
 
-          <div className="nav-element right">
-            <p>{`${getUser().first_name} ${getUser().last_name}`}</p>
-            <div className="dropdown-container">
-              <Link
-                className='dropdown-link'
-                to={ReactRoutes.updateAdminPath(getUser().id)}>
-                Profile
-              </Link>
-              <a
-                href={RailsRoutes.adminsSignOutPath()}
-                data-method="delete"
-                className='dropdown-link'
-                >Sign out</a>
-            </div>
-          </div>
-        </Navbar>
-        {this.props.children}
-      </div>
-    )
-  }
-}
+//           <div className="nav-element right">
+//             <p>{`${getUser().first_name} ${getUser().last_name}`}</p>
+//             <div className="dropdown-container">
+//               <Link
+//                 className='dropdown-link'
+//                 to={ReactRoutes.updateAdminPath(getUser().id)}>
+//                 Profile
+//               </Link>
+//               <a
+//                 href={RailsRoutes.adminsSignOutPath()}
+//                 data-method="delete"
+//                 className='dropdown-link'
+//                 >Sign out</a>
+//             </div>
+//           </div>
+//         </Navbar>
+//         {this.props.children}
+//       </div>
+//     )
+//   }
+// }
 
 render((
   <Router history={browserHistory}>
-    <Route path={ReactRoutes.rootPath()} component={App}>
-      <Route path={ReactRoutes.coursePath()} component={CoursePage} />
-    </Route>
+    <Route path={ReactRoutes.coursePath()} component={CoursePage} />
   </Router>
 ), document.getElementById('main-container'))
+
+// <Route path={ReactRoutes.rootPath()} component={App}>
+//   <Route path={ReactRoutes.coursePath()} component={CoursePage} />
+// </Route>

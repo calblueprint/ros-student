@@ -128,11 +128,38 @@ class CoursePage extends React.Component {
   render() {
     return (
       <div>
-        <ParentComponent component={this.state.displayedComponent}/>
-        <ComponentGraph subsection={this.state.displayedSubsection} callback={this.displayComponent}/>
-        <button onClick={this.displayPrevComponent}>Previous</button>
-        <button onClick={this.displayNextComponent}>Next</button>
-        <CourseSidebar courseSidebar={this.state.courseSidebar} callback={this.displaySubsection}/>
+        <div className='course-sidebar-container'>
+          <CourseSidebar
+            courseSidebar={this.state.courseSidebar}
+            callback={this.displaySubsection}
+          />
+        </div>
+        <div className='flex component-display-container'>
+          <div className='flex flex-vertical flex-grow'>
+            <div>
+              <ComponentGraph subsection={this.state.displayedSubsection} callback={this.displayComponent}/>
+            </div>
+
+            <div className='flex flex-vertical flex-grow center'>
+              <div>
+                <ParentComponent component={this.state.displayedComponent}/>
+              </div>
+            </div>
+
+            <div>
+              <button
+                className='button'
+                onClick={this.displayPrevComponent}>
+                Previous
+              </button>
+              <button
+                className='button'
+                onClick={this.displayNextComponent}>
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
