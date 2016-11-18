@@ -1,0 +1,27 @@
+.course-container {
+  position: relative;
+}
+
+.course-sidebar-container {
+  width: 40%;
+  display: inline-block;
+  height: 100%;
+  overflow: scroll;
+  float: left;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.parent-component-container {
+  width: 60%;
+  height: 100%;
+  display: inline-block;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
