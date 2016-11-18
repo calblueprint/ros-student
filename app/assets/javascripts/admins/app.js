@@ -30,7 +30,6 @@ class App extends React.Component {
           <Link to={ReactRoutes.dashboardPath()}>
             <header className='nav-element logo'>Roots of Success</header>
           </Link>
-
           <div className="nav-element right">
             <p>{`${getUser().first_name} ${getUser().last_name}`}</p>
             <div className="dropdown-container">
@@ -46,6 +45,11 @@ class App extends React.Component {
                 >Sign out</a>
             </div>
           </div>
+
+          <Link
+            to={ReactRoutes.codeCsvListPath()}>
+            <div className="nav-element marginRight-xl right">Codes</div>
+          </Link>
         </Navbar>
         {this.props.children}
       </div>
