@@ -6,7 +6,13 @@ import { Images } from '../../utils/image_helpers'
 
 import ProgressBar from '../../shared/components/widgets/ProgressBar'
 
-class CourseCard extends React.Component {
+class StudentCourseCard extends React.Component {
+  getImgStyle() {
+    const image_url = this.props.course.image_url ? this.props.course.image_url : Images.doge
+
+    return image_url
+  }
+
   disableLink(e) {
     if (!this.props.course.is_enrolled) {
       e.preventDefault()
@@ -22,11 +28,13 @@ class CourseCard extends React.Component {
   }
 
   render() {
+    console.log(this.props.course)
+
     return (
       <Link onClick={this.disableLink.bind(this)}
         to={this.props.route}>
         <div className="card" style={this.getCourseCardStyle()}>
-          <img className="card-img-container" src={Images.doge}/>
+          <img className="card-img-container" src={this.getImgStyle()}/>
           <h2 className="card-title">{this.props.course.name}</h2>
           <ProgressBar className="card-progress-bar" progress={this.props.course.progress} />
         </div>
@@ -35,7 +43,7 @@ class CourseCard extends React.Component {
   }
 }
 
-CourseCard.propTypes = {
+StudentCourseCard.propTypes = {
   course: PropTypes.shape({
     id: PropTypes.number.isRequired,
     progress: PropTypes.number.isRequired,
@@ -46,4 +54,4 @@ CourseCard.propTypes = {
   route: PropTypes.string.isRequired,
 }
 
-export default CourseCard
+export default StudentCourseCard

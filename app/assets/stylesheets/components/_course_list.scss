@@ -1,10 +1,24 @@
-.enrolled-courses-title {
+// Shared
+
+.courses-title {
   font-size: 28px;
-  margin-left: 50px;
-  margin-top: 20px;
 }
 
-.all-courses-title {
-  font-size: 28px;
-  margin-left: 50px;
+.course-list {
+  margin-right: -30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
+
+.courses-header {
+  justify-content: space-between;
+  margin: 30px 0px 0px 0px;
+}
+
+// Student
+
+
+// Admin
+
+
