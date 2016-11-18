@@ -1,0 +1,42 @@
+.course-outline-header {
+  width: 100vw;
+  height: 400px;
+  overflow: hidden;
+}
+
+.course-outline-header-container {
+  height: 100%;
+  position: relative;
+}
+
+.course-outline-header-text {
+  color: white;
+  position: absolute;
+  bottom: 10%;
+  width: 40%;
+}
+
+.course-outline-header-title {
+  font-weight: bold;
+  font-size: 36px;
+  margin-bottom: 8%;
+}
+
+.course-outline-header-progress {
+  width: 30%;
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+}
+
+.course-outline-header-button {
+  float: right;
+}
+
+.course-outline-header-bar {
+  clear: both;
+}
+
+.course-outline-bottom {
+
+}
