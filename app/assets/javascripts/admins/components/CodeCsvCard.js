@@ -20,23 +20,15 @@ class CodeCsvCard extends React.Component {
     })
   }
 
-  floatLeftStyle() {
-    return {
-      float: 'left'
-    }
-  }
-
-  floatRightStyle() {
-    return {
-      float: 'right'
-    }
-  }
-
   render() {
     return (
-      <div>
-        <h3 >{this.props.code_csv.name}</h3>
-        <button onClick={this.downloadCodeCsv}>Download</button>
+      <div className='flex flex-horizontal code-csv-card'>
+        <div className='code-csv-name'>
+          <h3>{this.props.code_csv.name}</h3>
+        </div>
+        <div className='code-csv-download'>
+          <button className='button' onClick={this.downloadCodeCsv}>Download</button>
+        </div>
       </div>
     )
   }

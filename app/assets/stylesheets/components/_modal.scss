@@ -40,12 +40,36 @@
 }
 
 .modal-header {
-  padding: 10px 25px;
+  display: flex;
+  height: 60px;
+  padding: 5px 25px;
+  justify-content: space-between;
+  align-items: center;
+  background: $dark-gray;
 }
 
 .modal-title {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 360;
+  color: $white;
+}
+
+/* LOOKS HORRIBLE RIGHT NOW */
+.modal-dismiss {
+  background: transparent;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  padding: auto 0px;
+  font-size: 36px;
+  font-weight: 200;
+  color: $white;
+  &:after {
+    content: '×';
+  }
+  &:hover {
+    background: $snow-20;
+  }
 }
 
 .modal-body {

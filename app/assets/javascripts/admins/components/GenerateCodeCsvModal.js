@@ -93,6 +93,7 @@ class GenerateCodeCsvModal extends React.Component {
     }, (error) => {
       console.log(error)
     })
+    this.props.closeModal()
   }
 
   renderCourses() {
@@ -114,11 +115,13 @@ class GenerateCodeCsvModal extends React.Component {
           method='post'
           action={this.props.action}>
 
-          <h1> Generate sign-up codes </h1>
           {this.renderFields()}
-          <ol>{this.renderCourses()}</ol>
-
-          <button onClick={this.generateCodes}>Submit</button>
+          
+          <h3>Select courses</h3>
+          <div className='generate-code-csv-course-list'>
+            <ul>{this.renderCourses()}</ul>
+          </div>
+          <button className='button' onClick={this.generateCodes}>Submit</button>
         </Form>
       </div>
     )
