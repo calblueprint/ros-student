@@ -1,24 +1,37 @@
 .code-csv-container {
-  justify-content: space-between;
   width: 66%;
-  height: 60px;
-  margin: 0 auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 15px 20px;
-  background: $white;
+  margin-top: 30px;
 }
 
 .code-csv-card {
-  
+  justify-content: space-between;
+  height: 60px;
+  padding: 15px 20px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: $white;
+  &.empty {
+    opacity: 0.6;
+    font-weight: bold;
+    &:hover {
+      opacity: 0.8;
+      background-color: $blue;
+      color: $white;
+      box-shadow: 0 2px 8px $black-40;
+      transition: 200ms;
+      transform-origin: 50% 50%;
+      transform: scale(1.02);
+    }
+  }
 }
 
 .code-csv-name {
-  margin: auto 0;
+  margin: auto 0px;
   float: left;
 }
 
 .code-csv-download {
-  margin: auto 0;
+  margin: auto 0px;
   float: right;
 }

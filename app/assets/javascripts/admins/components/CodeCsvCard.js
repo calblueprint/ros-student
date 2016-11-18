@@ -22,7 +22,7 @@ class CodeCsvCard extends React.Component {
 
   render() {
     return (
-      <div className='flex flex-horizontal code-csv-container'>
+      <div className='flex flex-horizontal code-csv-card'>
         <div className='code-csv-name'>
           <h3>{this.props.code_csv.name}</h3>
         </div>

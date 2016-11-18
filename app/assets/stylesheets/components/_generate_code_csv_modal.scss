@@ -1,0 +1,27 @@
+.generate-code-csv-course-list {
+  ol {
+    list-style-position: inside;
+  }
+  margin-bottom: 30px;
+}
+
+.generate-code-csv-course-card {
+  height: 60px;
+  margin: 10px 0px;
+  padding: 15px 20px;
+  background: $white;
+  &:hover {
+    background: $dark-gray-10;
+  }
+  &.active {
+    border-style: solid;
+    border-left-color: $blue;
+    border-left-width: 5px;
+    font-weight: bold;
+  }
+}
+
+.generate-code-csv-course-text {
+  margin: auto 0px;
+  float: left;
+}

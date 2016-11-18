@@ -48,6 +48,16 @@ class CodeCsvListPage extends React.Component {
     this.setState({ isModalOpen: false })
   }
 
+  renderCodeCsvBlank() {
+    return (
+      <li>
+        <div className="flex flex-horizontal code-csv-card empty" onClick={this.openModal}>
+          <h3 className="code-csv-name">Generate new codes</h3>
+        </div>
+      </li>
+    )
+  }
+
   renderCodeCsvs() {
     var cc = this.state.code_csvs
     return Array.from({length: cc.length}, (v, k) => k).map((index) => {
@@ -62,8 +72,7 @@ class CodeCsvListPage extends React.Component {
   render() {
     return (
       <div className='flex center'>
-        <div className='container'>
-          <button onClick={this.openModal}>Generate New Codes</button>
+        <div className='container code-csv-container'>
 
           <Modal
             show={this.state.isModalOpen}
@@ -81,7 +90,10 @@ class CodeCsvListPage extends React.Component {
           </Modal>
 
           <h2 className='h2'>List of codes</h2>
-          <ul>{this.renderCodeCsvs()}</ul>
+          <ul>
+            {this.renderCodeCsvBlank()}
+            {this.renderCodeCsvs()}
+          </ul>
         </div>
       </div>
     )
