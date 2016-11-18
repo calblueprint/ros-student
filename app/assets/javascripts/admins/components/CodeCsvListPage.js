@@ -1,5 +1,6 @@
 import _ from 'underscore'
 import React from 'react'
+import Modal from 'react-bootstrap-modal'
 
 import request from '../../shared/requests/request'
 
@@ -14,10 +15,13 @@ class CodeCsvListPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      code_csvs: []
+      code_csvs: [],
+      isModalOpen: false
     }
     this.getCodeCsvs()
     this.updateCodeCsvs = this.updateCodeCsvs.bind(this)
+    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   getCodeCsvs() {
@@ -36,8 +40,12 @@ class CodeCsvListPage extends React.Component {
     this.setState({ code_csvs: new_code_csvs })
   }
 
-  showCodeCsvGenerateModal(e) {
-    e.preventDefault()
+  openModal() {
+    this.setState({ isModalOpen: true })
+  }
+
+  closeModal() {
+    this.setState({ isModalOpen: false })
   }
 
   renderCodeCsvs() {
@@ -52,13 +60,29 @@ class CodeCsvListPage extends React.Component {
   }
 
   render() {
-    // <button onClick={this.showCodeCsvGenerateModal}> Generate new codes </button>
-    // NOTE: Add button later when modal is ready
     return (
-      <div>
-        <GenerateCodeCsvModal update={this.updateCodeCsvs}/>
-        <h1>List of Codes</h1>
-        <ul>{this.renderCodeCsvs()}</ul>
+      <div className='flex center'>
+        <div className='container'>
+          <button onClick={this.openModal}>Generate New Codes</button>
+
+          <Modal
+            show={this.state.isModalOpen}
+            onHide={this.closeModal}
+          >
+            <Modal.Header>
+              <Modal.Title>Generate New Codes</Modal.Title>
+              <Modal.Dismiss className='modal-dismiss' onClick={this.closeModal}/>
+            </Modal.Header>
+            <Modal.Body>
+              <GenerateCodeCsvModal update={this.updateCodeCsvs} closeModal={this.closeModal}/>
+            </Modal.Body>
+            <Modal.Footer>
+            </Modal.Footer>
+          </Modal>
+
+          <h2 className='h2'>List of codes</h2>
+          <ul>{this.renderCodeCsvs()}</ul>
+        </div>
       </div>
     )
   }

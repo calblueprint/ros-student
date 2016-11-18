@@ -20,18 +20,6 @@ class CodeCsvCard extends React.Component {
     })
   }
 
-  floatLeftStyle() {
-    return {
-      float: 'left'
-    }
-  }
-
-  floatRightStyle() {
-    return {
-      float: 'right'
-    }
-  }
-
   render() {
     return (
       <div className='flex flex-horizontal code-csv-container'>

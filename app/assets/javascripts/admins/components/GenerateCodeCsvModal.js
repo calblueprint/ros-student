@@ -93,6 +93,7 @@ class GenerateCodeCsvModal extends React.Component {
     }, (error) => {
       console.log(error)
     })
+    this.props.closeModal()
   }
 
   renderCourses() {
@@ -114,7 +115,6 @@ class GenerateCodeCsvModal extends React.Component {
           method='post'
           action={this.props.action}>
 
-          <h1> Generate sign-up codes </h1>
           {this.renderFields()}
           <ol>{this.renderCourses()}</ol>
 
