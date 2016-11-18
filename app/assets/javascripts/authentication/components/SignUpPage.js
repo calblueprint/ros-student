@@ -3,6 +3,7 @@ import React from 'react'
 
 import { RailsRoutes, APIRoutes } from '../../shared/routes'
 import { getInputToParams, getFormErrors, getFormFields, getErrors } from '../../utils/form_helpers'
+import { Images } from '../../utils/image_helpers'
 import request from '../../shared/requests/request'
 
 import Form from '../../shared/components/forms/Form'
@@ -114,13 +115,18 @@ class SignUpPage extends React.Component {
 
   renderCodeForm() {
     return (
-      <div>
-        <h1 className='h1'>Enter 8 Digit Code</h1>
+      <div className='flex center flex-vertical code-modal'>
+        <h2 className='h2 marginTopBot-xxs'>Enter 8 Digit Code</h2>
         <Form>
-          {this.renderFields(this.state.codeFormFields)}
-          <div className='actions'>
-            <input type='submit' value='Update user' onClick={this.makeVerifyRequest.bind(this)} />
+          <div className='marginTopBot-xxs'>
+            {this.renderFields(this.state.codeFormFields)}
           </div>
+          <input
+            className='button marginTopBot-xxs'
+            type='submit'
+            value='Update user'
+            onClick={this.makeVerifyRequest.bind(this)}
+          />
         </Form>
       </div>
     )
@@ -128,13 +134,9 @@ class SignUpPage extends React.Component {
 
   renderSignUpForm() {
     return (
-      <div>
-        <h1 className='h1'>Sign Up Page</h1>
-        <Form
-          className='sign_up_form'
-          id='sign_up_form'
-          action={RailsRoutes.studentsSignUpPath()}
-          method='post'>
+      <div className='flex center flex-vertical'>
+        <h2 className='h2 marginTopBot-xxs'>Getting Started</h2>
+        <Form action={RailsRoutes.studentsSignUpPath()}>
 
           {this.renderFields(this.state.signUpFormFields)}
 
@@ -143,9 +145,11 @@ class SignUpPage extends React.Component {
             name='code[key]'
             value={this.state.codeFormFields.key.value} />
 
-          <div className='actions'>
-            <input type='submit' name='commit' value='Sign up' />
-          </div>
+          <input
+            className='button marginTopBot-xxs'
+            type='submit'
+            name='commit'
+            value='Sign up' />
         </Form>
       </div>
     )
@@ -153,7 +157,10 @@ class SignUpPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='flex center flex-vertical sign-up-container'>
+        <div className='flex center flex-vertical'>
+          <img className='login-logo' src={Images.rootsLogo} />
+        </div>
         {this.state.verified ?
           this.renderSignUpForm() :
           this.renderCodeForm()}
