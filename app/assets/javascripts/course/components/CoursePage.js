@@ -16,104 +16,103 @@ class CoursePage extends React.Component {
 
     this.state = {
       courseSidebar: this.requestSidebar(),
-      displayed_section: null,
-      displayed_subsection: null,
-      displayed_component: {}
+      displayedSection: {},
+      displayedSubsection: {},
+      displayedComponent: {}
     }
 
-    this.changeDisplayedSubsection = this.changeDisplayedSubsection.bind(this)
-    this.changeDisplayedSubsectionStartingFromLastComponent = this.changeDisplayedSubsectionStartingFromLastComponent.bind(this)
-    this.changeDisplayedComponent = this.changeDisplayedComponent.bind(this)
+    this.displaySubsection = this.displaySubsection.bind(this)
+    this.displayComponent = this.displayComponent.bind(this)
     this.displayNextComponent = this.displayNextComponent.bind(this)
-    this.displayPreviousComponent = this.displayPreviousComponent.bind(this)
+    this.displayNextSubsection = this.displayNextSubsection.bind(this)
+    this.displayPrevComponent = this.displayPrevComponent.bind(this)
+    this.displayPrevSubsection = this.displayPrevSubsection.bind(this)
+    this.getDisplayedSection = this.getDisplayedSection.bind(this)
   }
 
-  changeDisplayedSubsection(id) {
+  displaySubsection(id, componentIndex) {
     const path = APIRoutes.getSubsectionPath(id)
 
     request.get(path, (response) => {
-      this.setState({ displayed_component: response.subsection.components[0]})
-      this.setState({ displayed_subsection: response.subsection })
-    }, (error) => {
-      console.log(error)
-    })
-  }
-
-  changeDisplayedSubsectionStartingFromLastComponent(id) {
-    const path = APIRoutes.getSubsectionPath(id)
-
-    request.get(path, (response) => {
-      var indexOfLastComponent = response.subsection.components.length - 1
-      this.setState({ displayed_component: response.subsection.components[indexOfLastComponent]})
-      this.setState({ displayed_subsection: response.subsection })
-    }, (error) => {
-      console.log(error)
-    })
-  }
-
-  changeDisplayedComponent(id) {
-    var targetComponent = null
-
-    for (var component of this.state.displayed_subsection.components) {
-      if (component.id == id) {
-        targetComponent = component
-        break
+      var length = response.subsection.components.length
+      if (componentIndex == -1) {
+        this.setState({ displayedComponent: response.subsection.components[length - 1]})
+      } else {
+        this.setState({ displayedComponent: response.subsection.components[componentIndex]})
       }
+      this.setState({ displayedSubsection: response.subsection })
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+  displayComponent(id) {
+    function byId(element) {
+      return element.id === id
     }
 
-    this.setState({ displayed_component: targetComponent})
+    this.setState({ displayedComponent: this.state.displayedSubsection.components.find(byId)})
   }
 
   displayNextComponent() {
-    var components = this.state.displayed_subsection.components;
-    for (var index = 0; index < components.length; index++) {
-      if (components[index].id == this.state.displayed_component.id) {
-        if (index + 1 < components.length) {
-          this.changeDisplayedComponent(components[index + 1].id)
-          return
-        }
-      }
-    }
+    var components = this.state.displayedSubsection.components;
 
-    var subsections = this.getCurrentSection(this.state.displayed_subsection.section_id).subsections
-    for (var index = 0; index < subsections.length; index++) {
-      if (subsections[index].id == this.state.displayed_subsection.id) {
-        if (index + 1 < subsections.length) {
-          this.changeDisplayedSubsection(subsections[index + 1].id)
-          return
-        }
-      }
+    var index = components.indexOf(this.state.displayedComponent)
+    if (index + 1 < components.length) {
+      this.displayComponent(components[index + 1].id)
+    } else {
+      this.displayNextSubsection()
     }
   }
 
-  displayPreviousComponent() {
-    var components = this.state.displayed_subsection.components;
-    for (var index = 0; index < components.length; index++) {
-      if (components[index].id == this.state.displayed_component.id) {
-        if (index - 1 >= 0) {
-          this.changeDisplayedComponent(components[index - 1].id)
-          return
-        }
+  displayNextSubsection() {
+    var displayedSubsection = this.state.displayedSubsection
+    var subsections = this.getDisplayedSection(displayedSubsection).subsections
+    function next(element, index) {
+      if (index > 0 && displayedSubsection.id == subsections[index - 1].id) {
+        return element
       }
     }
 
-    var subsections = this.getCurrentSection(this.state.displayed_subsection.section_id).subsections
-    for (var index = 0; index < subsections.length; index++) {
-      if (subsections[index].id == this.state.displayed_subsection.id) {
-        if (index - 1 >= 0) {
-          this.changeDisplayedSubsectionStartingFromLastComponent(subsections[index - 1].id)
-          return
-        }
-      }
+    var nextSubsection = subsections.find(next)
+    if (nextSubsection != null) {
+      this.displaySubsection(nextSubsection.id, 0)
     }
   }
 
-  getCurrentSection(secId) {
-    for (var section of this.state.courseSidebar.sections) {
-      if (section.id == secId) {
-        return section
+  displayPrevComponent() {
+    var components = this.state.displayedSubsection.components;
+
+    var index = components.indexOf(this.state.displayedComponent)
+    if (index - 1 >= 0) {
+      this.displayComponent(components[index - 1].id)
+    } else {
+      this.displayPrevSubsection()
+    }
+  }
+
+  displayPrevSubsection() {
+    var displayedSubsection = this.state.displayedSubsection
+    var subsections = this.getDisplayedSection(displayedSubsection).subsections
+    function prev(element, index, array) {
+      if (index + 1 < array.length && displayedSubsection.id == subsections[index + 1].id) {
+        return element
       }
     }
+
+    var prevSubsection = subsections.find(prev)
+    if (prevSubsection != null) {
+      this.displaySubsection(prevSubsection.id, -1)
+    }
+  }
+
+  getDisplayedSection(displayedSubsection) {
+    var sectionId = displayedSubsection.section_id
+    function byId(element) {
+      return element.id === sectionId
+    }
+
+    return this.state.courseSidebar.sections.find(byId)
   }
 
   requestSidebar() {
@@ -130,11 +129,11 @@ class CoursePage extends React.Component {
     return (
       <div>
         <h1>This is a course page</h1>
-        <ParentComponent component={this.state.displayed_component}/>
-        <ComponentGraph subsection={this.state.displayed_subsection} callback={this.changeDisplayedComponent}/>
-        <button onClick={this.displayPreviousComponent}>Previous</button>
+        <ParentComponent component={this.state.displayedComponent}/>
+        <ComponentGraph subsection={this.state.displayedSubsection} callback={this.displayComponent}/>
+        <button onClick={this.displayPrevComponent}>Previous</button>
         <button onClick={this.displayNextComponent}>Next</button>
-        <CourseSidebar courseSidebar={this.state.courseSidebar} callback={this.changeDisplayedSubsection}/>
+        <CourseSidebar courseSidebar={this.state.courseSidebar} callback={this.displaySubsection}/>
       </div>
     )
   }
