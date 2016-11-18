@@ -136,7 +136,9 @@ class SignUpPage extends React.Component {
     return (
       <div className='flex center flex-vertical'>
         <h2 className='h2 marginTopBot-xxs'>Getting Started</h2>
-        <Form action={RailsRoutes.studentsSignUpPath()}>
+        <Form
+          action={RailsRoutes.studentsSignUpPath()}
+          method='post'>
 
           {this.renderFields(this.state.signUpFormFields)}
 
