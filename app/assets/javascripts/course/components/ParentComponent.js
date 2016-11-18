@@ -15,21 +15,46 @@ class ParentComponent extends React.Component {
     if (this.props.component == null) {
       return
     }
-    
+
     switch(this.props.component.component_type) {
       case 0:
-        return <div>id: {this.props.component.id}<ImageComponent audioUrl={this.props.component.audio_url} imgUrl={this.props.component.content_url} callback={this.onEnd} /></div>
+        return (
+          <div>
+            <p>id: {this.props.component.id}</p>
+            <ImageComponent
+              audioUrl={this.props.component.audio_url}
+              imgUrl={this.props.component.content_url}
+              callback={this.onEnd}
+            />
+          </div>
+        )
       case 1:
-        return <div>id: {this.props.component.id}<FormComponent audioUrl={this.props.component.audio_url} formUrl={this.props.component.content_url} callback={this.onEnd} /></div>
+        return (
+          <div>
+            <p>id: {this.props.component.id}</p>
+            <FormComponent
+              audioUrl={this.props.component.audio_url}
+              formUrl={this.props.component.content_url}
+              callback={this.onEnd}
+            />
+          </div>
+        )
       case 2:
-        return <div>id: {this.props.component.id}<VideoComponent videoUrl={this.props.component.content_url} callback={this.onEnd} /></div>
+        return (
+          <div>
+            <p>id: {this.props.component.id}</p>
+            <VideoComponent
+              videoUrl={this.props.component.content_url}
+              callback={this.onEnd}
+            />
+          </div>
+        )
     }
   }
 
   render() {
     return (
       <div>
-
         {this.renderComponent()}
       </div>
     )

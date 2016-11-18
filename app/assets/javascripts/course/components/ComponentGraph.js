@@ -21,7 +21,6 @@ class ComponentGraph extends React.Component {
   render() {
     return (
       <div>
-        <h2>Component Graph</h2>
         <div>{this.renderComponents()}</div>
       </div>
     )
