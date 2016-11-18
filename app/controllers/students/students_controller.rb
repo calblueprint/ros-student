@@ -34,7 +34,7 @@ class Students::StudentsController < Students::BaseController
   end
 
   def code_params
-    params.require(:code).permit(
+    params.fetch(:code, {}).permit(
       :key,
     )
   end

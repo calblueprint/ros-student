@@ -61,6 +61,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    byebug (9.0.6)
     cancancan (1.15.0)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -195,6 +196,11 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.4.0)
+      byebug (~> 9.0)
+      pry (~> 0.10)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -345,6 +351,8 @@ DEPENDENCIES
   nokogiri
   pg (= 0.18.4)
   pg_search (= 1.0.5)
+  pry-byebug
+  pry-rails
   quiet_assets
   rails (= 4.2.1)
   rails_12factor
