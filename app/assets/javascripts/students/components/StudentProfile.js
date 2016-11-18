@@ -2,7 +2,7 @@ import _ from 'underscore'
 import React from 'react'
 
 import { request } from '../../shared/requests/request'
-import { getUser } from '../../utils/user_helpers'
+import { getUser, observeUser } from '../../utils/user_helpers'
 import { Image } from '../../utils/image_helpers'
 
 import UpdateStudentModal from './UpdateStudentModal'
@@ -18,6 +18,13 @@ class StudentProfile extends React.Component {
 
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.observeUser = observeUser(() => {
+      this.setState({ user: getUser() })
+    })
+  }
+
+  componentWillUnmount() {
+    this.observeUser.disconnect()
   }
 
   getUser() {

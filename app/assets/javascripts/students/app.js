@@ -12,7 +12,7 @@ import { render } from 'react-dom'
 import '../../stylesheets/bundle/students.scss'
 
 import { RailsRoutes, ReactRoutes } from '../shared/routes'
-import { getUser } from '../utils/user_helpers'
+import { getUser, observeUser } from '../utils/user_helpers'
 
 import ProfilePage from './components/ProfilePage'
 import StudentDashboard from './components/StudentDashboard'
@@ -21,6 +21,22 @@ import CourseOutlinePage from './components/CourseOutlinePage'
 import Navbar from '../shared/components/widgets/Navbar'
 
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      user: getUser()
+    }
+
+    this.observeUser = observeUser(() => {
+      this.setState({ user: getUser() })
+    })
+  }
+
+  componentWillUnmount() {
+    this.observeUser.disconnect()
+  }
+
   render() {
     return (
       <div>
