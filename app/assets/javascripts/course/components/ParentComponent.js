@@ -9,10 +9,6 @@ class ParentComponent extends React.Component {
 
   constructor(props) {
     super(props)
-
-    this.type = this.props.component.type
-    this.contentUrl = this.props.component.content_url
-    this.audioUrl = this.props.component.audio_url
   }
 
   onEnd() {
@@ -20,16 +16,13 @@ class ParentComponent extends React.Component {
   }
 
   renderComponent() {
-    switch(this.type) {
+    switch(this.props.component.component_type) {
       case 0:
-        return <ImageComponent audioUrl={this.audioUrl} imgUrl={this.contentUrl} callback={this.onEnd} />
-        break;
+        return <ImageComponent audioUrl={this.props.component.audio_url} imgUrl={this.props.component.content_url} callback={this.onEnd} />
       case 1:
-        return <FormComponent audioUrl={this.audioUrl} formUrl={this.contentUrl} callback={this.onEnd} />
-        break;
+        return <FormComponent audioUrl={this.props.component.audio_url} formUrl={this.props.component.content_url} callback={this.onEnd} />
       case 2:
-        return <VideoComponent videoUrl={this.contentUrl} callback={this.onEnd} />
-        break;
+        return <VideoComponent videoUrl={this.props.component.content_url} callback={this.onEnd} />
     }
   }
 
