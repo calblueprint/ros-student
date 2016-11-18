@@ -7,8 +7,8 @@ class GenerateCodeCsvCourseCard extends React.Component {
     this.state = {
       selected: false
     }
+
     this.handleClick = this.handleClick.bind(this);
-    this.getStyle = this.getStyle.bind(this);
   }
 
   handleClick() {
@@ -19,7 +19,9 @@ class GenerateCodeCsvCourseCard extends React.Component {
   render() {
     return (
       <div
-        className={`flex generate-code-csv-course-card ${this.state.selected ? ' active' : ''}`} onClick={this.handleClick}>
+        className={`flex generate-code-csv-course-card ${this.state.selected ? ' active' : ''}`}
+        onClick={this.handleClick}
+      >
           <h2 className='generate-code-csv-course-text'>{this.props.course.name}</h2>
       </div>
     )

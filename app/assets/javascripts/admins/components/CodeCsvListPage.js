@@ -59,11 +59,10 @@ class CodeCsvListPage extends React.Component {
   }
 
   renderCodeCsvs() {
-    var cc = this.state.code_csvs
-    return Array.from({length: cc.length}, (v, k) => k).map((index) => {
+    return this.state.code_csvs.map((codeCsv) => {
       return (
-        <li>
-          <CodeCsvCard code_csv={cc[cc.length-index-1]} />
+        <li key={codeCsv.id}  >
+          <CodeCsvCard code_csv={codeCsv} />
         </li>
       )
     })
