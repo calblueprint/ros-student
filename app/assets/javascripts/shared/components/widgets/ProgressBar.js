@@ -15,9 +15,6 @@ class ProgressBar extends React.Component {
           <div className="progress-bar-background">
             <div className="progress-bar" style={this.getProgressBarStyle()}></div>
           </div>
-          <script>
-            document.getElementById('progress').style.width = {this.props.progress} + "%";
-          </script>
       </div>
     )
   }

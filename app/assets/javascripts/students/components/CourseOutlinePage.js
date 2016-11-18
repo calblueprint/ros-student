@@ -10,6 +10,10 @@ import { RailsRoutes, ReactRoutes } from '../../shared/routes'
 import { APIRoutes } from '../../shared/routes'
 import SectionOutline from './SectionOutline'
 
+import { Images } from '../../utils/image_helpers'
+
+import ProgressBar from '../../shared/components/widgets/ProgressBar'
+
 class CourseOutlinePage extends React.Component {
 
   constructor(props) {
@@ -35,6 +39,16 @@ class CourseOutlinePage extends React.Component {
     })
   }
 
+  getOutlineStyle() {
+    const image_url = this.state.courseOutline.image_url ? this.state.courseOutline.image_url : Images.default_course
+
+    return ({
+      backgroundImage: `url(${image_url})`,
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+    })
+  }
+
   renderSections() {
     if (_.isEmpty(this.state.courseOutline.sections)) {
       return "Loading"
@@ -48,11 +62,27 @@ class CourseOutlinePage extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.state.courseOutline.name}</h1>
-        <div>{this.state.courseOutline.description}</div>
-        <ol>{this.renderSections()}</ol>
-
-        <a href={RailsRoutes.coursePath(this.state.courseOutline.id)}>Continue</a>
+        <div className="flex center course-outline-header" style={this.getOutlineStyle()}>
+          <div className="course-outline-header-container container">
+            <div className="course-outline-header-text">
+              <h1 className="course-outline-header-title">{this.state.courseOutline.name}</h1>
+              <div>{this.state.courseOutline.description}</div>
+            </div>
+            <div className="course-outline-header-progress">
+              <div className="course-outline-header-button marginBot-sm">
+                <a className="button" href={RailsRoutes.coursePath(this.state.courseOutline.id)}>Continue course</a>
+              </div>
+              <div className="course-outline-header-bar">
+                <ProgressBar progress={this.state.courseOutline.progress}/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex center">
+          <div className="container course-outline-bottom">
+            <ol>{this.renderSections()}</ol>
+          </div>
+        </div>
       </div>
     )
   }
