@@ -74,12 +74,12 @@ class SubsectionEdit extends React.Component {
   renderComponents() {
     if (!this.state.subsection.components) {
       return (
-        <div className='component'>No components to show!</div>
+        <div className='edit-component'>No components to show!</div>
       )
     } else {
       return this.state.subsection.components.map((value) => {
         return (
-          <div className='component' key={value.id}>
+          <div className='edit-component' key={value.id}>
             <ComponentEdit component={value} />
           </div>
         )
@@ -111,15 +111,15 @@ class SubsectionEdit extends React.Component {
     return (
       <div>
         <div className='h3'>
-          <div className='inline_block'><img className='list_image' src={Images.dropdown_arrow} /></div>
+          <div className='inline-block'><img className='list-image' src={Images.dropdown_arrow} /></div>
           <InlineEditInput value={this.state.subsection.title} onBlur={this.onBlurTitle.bind(this)} />
           <button className='button' onClick={this.deleteSubsection}>Delete subsection</button>
         </div>
         <div>{this.renderComponents()}</div>
-        <button className='button button--white component' onClick={this.showNewComponentForm.bind(this)}>
+        <button className='button button--white edit-component' onClick={this.showNewComponentForm.bind(this)}>
           <div className='flex'>
-            <div className='inline_block'><img className='list_image' src={Images.empty_plus} /></div>
-            <div className='inline_block'>Add new component</div>
+            <div className='inline-block'><img className='list-image' src={Images.empty_plus} /></div>
+            <div className='inline-block'>Add new component</div>
           </div>
         </button>
         <div>{this.renderComponentForm()}</div>

@@ -83,7 +83,7 @@ class SectionEdit extends React.Component {
     } else {
       return this.state.section.subsections.map((value) => {
         return (
-          <div className='subsection' key={value.id}>
+          <div className='edit-subsection' key={value.id}>
             <SubsectionEdit subsection={value} deleteSubsection={this.deleteSubsection} />
           </div>
         )
@@ -95,14 +95,14 @@ class SectionEdit extends React.Component {
     return (
       <div>
         <div className='h2'>
-          <InlineEditInput className='inline_block' value={this.state.section.title} onBlur={this.onBlurTitle.bind(this)} />
+          <InlineEditInput className='inline-block' value={this.state.section.title} onBlur={this.onBlurTitle.bind(this)} />
           <button className='button' onClick={this.deleteSection}>Delete section</button>
         </div>
         <div>{this.renderSubsections()}</div>
-        <button className='button button--white subsection' onClick={this.createSubsection}>
+        <button className='button button--white edit-subsection' onClick={this.createSubsection}>
           <div className='flex center'>
-            <div className='inline_block'><img className='list_image' src={Images.empty_plus} /></div>
-            <div className='inline_block'>Add new subsection</div>
+            <div className='inline-block'><img className='list-image' src={Images.empty_plus} /></div>
+            <div className='inline-block'>Add new subsection</div>
           </div>
         </button>
       </div>

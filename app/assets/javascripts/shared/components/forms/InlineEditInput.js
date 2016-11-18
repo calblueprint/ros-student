@@ -36,7 +36,7 @@ class InlineEditInput extends React.Component {
   renderValue() {
     return (
       <div>
-        <div className='inline_block'>{this.props.value}</div>
+        <div className='inline-block'>{this.props.value}</div>
         <button className='button' onClick={this.enableEdit}>Edit</button>
       </div>
     )
@@ -44,7 +44,7 @@ class InlineEditInput extends React.Component {
 
   render() {
     return (
-      <div className='inline_block'>
+      <div className='inline-block'>
         {this.state.editable ?
           this.renderInput() :
           this.renderValue()}

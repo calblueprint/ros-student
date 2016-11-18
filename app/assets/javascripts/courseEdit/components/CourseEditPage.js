@@ -116,7 +116,7 @@ class CourseEditPage extends React.Component {
   renderSections() {
     return this.state.course.sections.map((value) => {
       return (
-        <div className='section' key={value.id}>
+        <div className='edit-section' key={value.id}>
           <SectionEdit section={value} deleteSection={this.deleteSection} />
         </div>
       )
@@ -127,21 +127,21 @@ class CourseEditPage extends React.Component {
     return (
       <div className='flex center'>
         <div className='container'>
-          <div className='heading edit_text'>Edit Module</div>
-          <div className='h1 course'><InlineEditInput value={this.state.course.name} onBlur={this.onBlurName.bind(this)} /></div>
-          <div className='h2 course'><InlineEditInput value={this.state.course.description} onBlur={this.onBlurDescription.bind(this)} /></div>
-          <div className='cover_container'><img className='cover_image' src={this.state.course.imageUrl} /></div>
-          <div className='white_box'>
+          <div className='heading edit-module-text'>Edit Module</div>
+          <div className='h1 edit-course'><InlineEditInput value={this.state.course.name} onBlur={this.onBlurName.bind(this)} /></div>
+          <div className='h2 edit-course'><InlineEditInput value={this.state.course.description} onBlur={this.onBlurDescription.bind(this)} /></div>
+          <div className='cover-container'><img className='cover-image' src={this.state.course.imageUrl} /></div>
+          <div className='white-box'>
             <ImageUploadInput onChange={this.onImage.bind(this)} />
           </div>
-          <div className='white_box'>
-            <div className="inline_block">{this.renderSections()}</div>
+          <div className='white-box'>
+            <div className="inline-block">{this.renderSections()}</div>
           </div>
-          <div className='white_box'>
+          <div className='white-box'>
             <button className='button button--white' onClick={this.createSection}>
               <div className='flex center'>
-                <div className='inline_block'><img className='big_blue_plus' src={Images.big_blue_plus} /></div>
-                <div className='inline_block'>Add new section</div>
+                <div className='inline-block'><img className='big-blue-plus' src={Images.big_blue_plus} /></div>
+                <div className='inline-block'>Add new section</div>
               </div>
             </button>
           </div>

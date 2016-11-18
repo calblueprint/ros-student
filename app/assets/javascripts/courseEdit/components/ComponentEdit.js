@@ -14,19 +14,23 @@ class ComponentEdit extends React.Component {
     this.setState({ component: nextProps.component })
   }
 
-  renderComponentImage(type) {
-    if (type == 'slide') {
-      return (
-        <div className='inline_block'><img className='list_image' src={Images.empty_basic} /></div>
-      )
-    } else if (type == 'form') {
-      return (
-        <div className='inline_block'><img className='list_image' src={Images.empty_quiz} /></div>
-      )
-    } else if (type == 'multimedia') {
-      return (
-        <div className='inline_block'><img className='list_image' src={Images.open_play} /></div>
-      )
+  renderComponentImage() {
+    switch(this.state.component.component_type) {
+      case 1:
+        // slide
+        return (
+          <div className='inline-block'><img className='list-image' src={Images.empty_basic} /></div>
+        )
+      case 2:
+        // form
+        return (
+          <div className='inline-block'><img className='list-image' src={Images.empty_quiz} /></div>
+        )
+      case 3:
+        // multimedia
+        return (
+          <div className='inline-block'><img className='list-image' src={Images.open_play} /></div>
+        )
     }
   }
 
@@ -34,7 +38,7 @@ class ComponentEdit extends React.Component {
     return (
       <div>
         <div className='flex'>
-          {this.renderComponentImage(this.state.component.component_type)}
+          {this.renderComponentImage()}
           <a target='blank' href={this.state.component.content_url}>link</a>
         </div>
       </div>
