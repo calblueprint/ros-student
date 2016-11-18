@@ -50,7 +50,6 @@ class CoursePage extends React.Component {
     function byId(element) {
       return element.id === id
     }
-
     this.setState({ displayedComponent: this.state.displayedSubsection.components.find(byId)})
   }
 
@@ -137,7 +136,10 @@ class CoursePage extends React.Component {
         <div className='flex component-display-container'>
           <div className='flex flex-vertical flex-grow'>
             <div>
-              <ComponentGraph subsection={this.state.displayedSubsection} callback={this.displayComponent}/>
+              <ComponentGraph
+                subsection={this.state.displayedSubsection}
+                callback={this.displayComponent}
+              />
             </div>
 
             <div className='flex flex-vertical flex-grow center'>

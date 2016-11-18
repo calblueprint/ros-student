@@ -38,7 +38,7 @@ class AddComponentForm extends React.Component {
     }
 
     request.post(path, componentParams, (response) => {
-      this.props.onFormCompletion(response)
+      this.props.callback(response)
     }, (error) => {
       console.log(error)
     })
@@ -50,17 +50,14 @@ class AddComponentForm extends React.Component {
         return (
           <SlideForm callback={this.createComponent.bind(this)} />
         )
-        break;
       case 1:
         return (
           <MultimediaForm callback={this.createComponent.bind(this)} />
         )
-        break;
       case 2:
         return (
           <QuizForm callback={this.createComponent.bind(this)} />
         )
-        break;
     }
 
   }
@@ -69,13 +66,12 @@ class AddComponentForm extends React.Component {
     this.setState({formType: n})
   }
 
-
   render() {
     return (
       <div>
         <button onClick={this.changeFormType.bind(this, 0)}>Slide</button>
-        <button onClick={this.changeFormType.bind(this, 1)}>Multimedia</button>
-        <button onClick={this.changeFormType.bind(this, 2)}>Quiz</button>
+        <button onClick={this.changeFormType.bind(this, 1)}>Quiz</button>
+        <button onClick={this.changeFormType.bind(this, 2)}>Multimedia</button>
         {this.renderForm()}
       </div>
     )

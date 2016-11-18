@@ -88,13 +88,13 @@ class SubsectionEdit extends React.Component {
   }
 
   showNewComponentForm() {
-    if (this.state.newComponentForm == false) {
+    if (!this.state.newComponentForm) {
       this.setState({ newComponentForm: true })
     }
   }
 
   renderComponentForm() {
-    if (this.state.newComponentForm == true) {
+    if (this.state.newComponentForm) {
       return (
         <AddComponentForm subsectionId={this.id} callback={this.onFormCompletion} />
       )
@@ -104,7 +104,7 @@ class SubsectionEdit extends React.Component {
   onFormCompletion(newComponent) {
     const components = this.state.components
     components.push(newComponent.component)
-    this.setState({ components: components })
+    this.setState({ components: components, newComponentForm: false })
   }
 
   render() {
