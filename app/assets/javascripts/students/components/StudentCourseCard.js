@@ -31,7 +31,9 @@ class StudentCourseCard extends React.Component {
     console.log(this.props.course)
 
     return (
-      <Link onClick={this.disableLink.bind(this)}
+      <Link
+        className='card-column'
+        onClick={this.disableLink.bind(this)}
         to={this.props.route}>
         <div className="card" style={this.getCourseCardStyle()}>
           <img className="card-img-container" src={this.getImgStyle()}/>

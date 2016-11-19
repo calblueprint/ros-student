@@ -5,15 +5,15 @@
 }
 
 .course-list {
-  margin-right: -30px;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  margin-right: -40px;
 }
 
 .courses-header {
   justify-content: space-between;
-  margin: 30px 0px 0px 0px;
+  margin: 30px 0px 30px 0px;
 }
 
 // Student
