@@ -77,20 +77,20 @@ class AddComponentForm extends React.Component {
           onHide={this.props.closeModal}
         >
           <Modal.Header>
-            <Modal.Title className='update-user-header'>Add New Component</Modal.Title>
+            <Modal.Title className='update-user-header'>New Component</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className='white'>
             <div className='flex flex-vertical'>
-              <div>Type</div>
-              <div className='flex flex-horizontal'>
-                <button onClick={this.changeFormType.bind(this, 0)}>Slide</button>
-                <button onClick={this.changeFormType.bind(this, 1)}>Quiz</button>
-                <button onClick={this.changeFormType.bind(this, 2)}>Multimedia</button>
+              <div className='add-component-body-text'>Type</div>
+              <div className='flex flex-horizontal button-container'>
+                <button className='button button--white' onClick={this.changeFormType.bind(this, 0)}>Slide</button>
+                <button className='button button--white' onClick={this.changeFormType.bind(this, 1)}>Quiz</button>
+                <button className='button button--white' onClick={this.changeFormType.bind(this, 2)}>Multimedia</button>
               </div>
               <div className='component-form'>{this.renderForm()}</div>
             </div>
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer className='white'>
             <div className='flex flex-horizontal'>
               <div>
                 <input

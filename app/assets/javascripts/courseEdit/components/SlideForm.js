@@ -35,12 +35,12 @@ class SlideForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>Image Component</div>
+      <div className='add-component-body-text'>
+        <div>Slide Component</div>
         <form>
-          <ImageUploadInput label="Image" onChange={this.updateImageData}/>
-          <AudioUploadInput label="Audio" onChange={this.updateAudioData} />
-          <button onClick={this.submit.bind(this)}>Create</button>
+          <div className='add-component-form-item'><ImageUploadInput label="Image" onChange={this.updateImageData}/></div>
+          <div className='add-component-form-item'><AudioUploadInput label="Audio" onChange={this.updateAudioData}/></div>
+          <div className='add-component-form-item'><button className='button button--blue' onClick={this.submit.bind(this)}>Create</button></div>
         </form>
       </div>
     )
