@@ -21,7 +21,7 @@ class SubsectionSidebar extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="sidebar-subsection-card">
         <li onClick={_.partial(this.props.callback, this.props.subsection.id, 0)}>{this.props.subsection.id} {this.props.subsection.title} {this.current()}</li>
       </div>
     )
