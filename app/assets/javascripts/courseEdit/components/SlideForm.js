@@ -40,7 +40,7 @@ class SlideForm extends React.Component {
         <form>
           <ImageUploadInput label="Image" onChange={this.updateImageData}/>
           <AudioUploadInput label="Audio" onChange={this.updateAudioData} />
-          <button onClick={this.submit.bind(this)}>Submit</button>
+          <button onClick={this.submit.bind(this)}>Create</button>
         </form>
       </div>
     )

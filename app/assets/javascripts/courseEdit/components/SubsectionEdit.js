@@ -16,8 +16,9 @@ class SubsectionEdit extends React.Component {
       loaded: false,
       subsection: this.props.subsection,
       components: this.props.subsection.components,
-      newComponentForm: false,
+      openEditModal: false,
     }
+
     this.deleteSubsection = this.deleteSubsection.bind(this)
     this.onFormCompletion = this.onFormCompletion.bind(this)
   }
@@ -88,23 +89,17 @@ class SubsectionEdit extends React.Component {
   }
 
   showNewComponentForm() {
-    if (!this.state.newComponentForm) {
-      this.setState({ newComponentForm: true })
-    }
+    this.setState({ openEditModal: true })
   }
 
-  renderComponentForm() {
-    if (this.state.newComponentForm) {
-      return (
-        <AddComponentForm subsectionId={this.id} callback={this.onFormCompletion} />
-      )
-    }
+  closeNewComponentForm() {
+    this.setState({ openEditModal: false })
   }
 
   onFormCompletion(newComponent) {
     const components = this.state.components
     components.push(newComponent.component)
-    this.setState({ components: components, newComponentForm: false })
+    this.setState({ components: components })
   }
 
   render() {
@@ -116,13 +111,17 @@ class SubsectionEdit extends React.Component {
           <button className='button' onClick={this.deleteSubsection}>Delete subsection</button>
         </div>
         <div>{this.renderComponents()}</div>
+        <AddComponentForm
+          openEditModal={this.state.openEditModal}
+          closeModal={this.closeNewComponentForm.bind(this)}
+          subsectionId={this.id}
+          callback={this.onFormCompletion} />
         <button className='button button--white edit-component' onClick={this.showNewComponentForm.bind(this)}>
           <div className='flex'>
             <div className='inline-block'><img className='list-image' src={Images.empty_plus} /></div>
             <div className='inline-block'>Add new component</div>
           </div>
         </button>
-        <div>{this.renderComponentForm()}</div>
       </div>
     )
   }
