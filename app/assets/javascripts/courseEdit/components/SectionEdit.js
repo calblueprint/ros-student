@@ -93,7 +93,7 @@ class SectionEdit extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='white-box'>
         <div className='h2'>
           <InlineEditInput className='inline-block' value={this.state.section.title} onBlur={this.onBlurTitle.bind(this)} />
           <button className='button' onClick={this.deleteSection}>Delete section</button>

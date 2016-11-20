@@ -29,11 +29,11 @@ class MultimediaForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='add-component-body-text'>
         <div>Multimedia Component</div>
         <form>
-          <Input type='text' label='Youtube Url' value={this.state.contentUrl} onChange={this.updateContentURL} />
-          <button onClick={this.submit.bind(this)}>Submit</button>
+          <div className='add-component-form-item'><Input type='text' label='Youtube Url' value={this.state.contentUrl} onChange={this.updateContentURL} /></div>
+          <div className='add-component-form-item'><button onClick={this.submit.bind(this)}>Submit</button></div>
         </form>
       </div>
     )

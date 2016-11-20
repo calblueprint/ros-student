@@ -1,0 +1,32 @@
+.white {
+  background-color: $white;
+}
+
+.component-form {
+  display: block;
+}
+
+.component-button {
+  background-color: $white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.button-container {
+  margin: 10px 0px;
+}
+
+.add-component-body-text {
+  margin: 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: $extra-bold;
+  color: $silver-60;
+}
+
+.add-component-form-item {
+  margin: 20px;
+}

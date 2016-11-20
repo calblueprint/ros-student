@@ -35,12 +35,12 @@ class QuizForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='add-component-body-text'>
         <div>Quiz Component</div>
         <form>
-          <Input type='text' label='Google Forms URL' value={this.state.contentUrl} onChange={this.updateContentURL} />
-          <AudioUploadInput label="Audio" onChange={this.updateAudioData} />
-          <button onClick={this.submit.bind(this)}>Submit</button>
+          <div className='add-component-form-item'><Input type='text' label='Google Forms URL' value={this.state.contentUrl} onChange={this.updateContentURL} /></div>
+          <div className='add-component-form-item'><AudioUploadInput label="Audio" onChange={this.updateAudioData} /></div>
+          <div className='add-component-form-item'><button onClick={this.submit.bind(this)}>Submit</button></div>
         </form>
       </div>
     )

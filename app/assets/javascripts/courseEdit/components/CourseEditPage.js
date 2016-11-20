@@ -134,9 +134,7 @@ class CourseEditPage extends React.Component {
           <div className='white-box'>
             <ImageUploadInput onChange={this.onImage.bind(this)} />
           </div>
-          <div className='white-box'>
-            <div className="inline-block">{this.renderSections()}</div>
-          </div>
+          <div>{this.renderSections()}</div>
           <div className='white-box'>
             <button className='button button--white' onClick={this.createSection}>
               <div className='flex center'>

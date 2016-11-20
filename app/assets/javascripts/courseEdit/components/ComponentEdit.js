@@ -24,9 +24,9 @@ class ComponentEdit extends React.Component {
       case 2:
         // form
         return (
-          <div className='inline-block'><img className='list-image' src={Images.empty_quiz} /></div>
+          <div className='inline-block'><img className='list-image' src={Images.open_quiz} /></div>
         )
-      case 3:
+      default:
         // multimedia
         return (
           <div className='inline-block'><img className='list-image' src={Images.open_play} /></div>
@@ -39,7 +39,7 @@ class ComponentEdit extends React.Component {
       <div>
         <div className='flex'>
           {this.renderComponentImage()}
-          <a target='blank' href={this.state.component.content_url}>link</a>
+          <a target='blank' href={this.state.component.content_url}>{this.state.component.component_type}</a>
         </div>
       </div>
     )

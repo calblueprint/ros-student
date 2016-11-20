@@ -1,8 +1,10 @@
 import React from 'react'
+import Modal from 'react-bootstrap-modal'
 
 import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
 
+import Form from '../../shared/components/forms/Form'
 import SlideForm from './SlideForm'
 import QuizForm from './QuizForm'
 import MultimediaForm from './MultimediaForm'
@@ -15,7 +17,8 @@ class AddComponentForm extends React.Component {
 
     this.state = {
       formType: 0,
-      subsectionId: this.props.subsectionId
+      subsectionId: this.props.subsectionId,
+      isModalOpen: false,
     }
   }
 
@@ -52,11 +55,11 @@ class AddComponentForm extends React.Component {
         )
       case 1:
         return (
-          <MultimediaForm callback={this.createComponent.bind(this)} />
+          <QuizForm callback={this.createComponent.bind(this)} />
         )
       case 2:
         return (
-          <QuizForm callback={this.createComponent.bind(this)} />
+          <MultimediaForm callback={this.createComponent.bind(this)} />
         )
     }
 
@@ -69,10 +72,37 @@ class AddComponentForm extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.changeFormType.bind(this, 0)}>Slide</button>
-        <button onClick={this.changeFormType.bind(this, 1)}>Quiz</button>
-        <button onClick={this.changeFormType.bind(this, 2)}>Multimedia</button>
-        {this.renderForm()}
+        <Modal
+          show={this.props.openEditModal}
+          onHide={this.props.closeModal}
+        >
+          <Modal.Header>
+            <Modal.Title className='update-user-header'>New Component</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className='white'>
+            <div className='flex flex-vertical'>
+              <div className='add-component-body-text'>Type</div>
+              <div className='flex flex-horizontal button-container'>
+                <button className='button button--white' onClick={this.changeFormType.bind(this, 0)}>Slide</button>
+                <button className='button button--white' onClick={this.changeFormType.bind(this, 1)}>Quiz</button>
+                <button className='button button--white' onClick={this.changeFormType.bind(this, 2)}>Multimedia</button>
+              </div>
+              <div className='component-form'>{this.renderForm()}</div>
+            </div>
+          </Modal.Body>
+          <Modal.Footer className='white'>
+            <div className='flex flex-horizontal'>
+              <div>
+                <input
+                  type='submit'
+                  className='button button--red marginTop-xs update-user-button'
+                  value='Cancel'
+                  onClick={this.props.closeModal}
+                />
+              </div>
+            </div>
+          </Modal.Footer>
+        </Modal>
       </div>
     )
   }
