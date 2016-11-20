@@ -29,7 +29,7 @@ class StudentCourseList extends CourseList {
       <div>
         <h1 className="courses-title courses-header">Enrolled Courses</h1>
         <ol className="course-list">{this.renderCards(enrolledList)}</ol>
-        <h1 className="courses-title">All Courses</h1>
+        <h1 className="courses-title courses-header">All Courses</h1>
         <ol className="course-list">{this.renderCards(allList)}</ol>
       </div>
     )

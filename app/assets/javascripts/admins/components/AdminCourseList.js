@@ -21,7 +21,7 @@ class AdminCourseList extends CourseList {
       <div>
         <div className="courses-header flex">
           <h1 className="courses-title">Courses</h1>
-          <a className="button " href={RailsRoutes.courseCreatePath()} data-method='post'>Create Course</a>
+          <a className="button" href={RailsRoutes.courseCreatePath()} data-method='post'>Create Course</a>
         </div>
         <ol className="course-list">{this.renderCards(this.state.courses)}</ol>
       </div>

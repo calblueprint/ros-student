@@ -13,7 +13,7 @@ class AdminCourseCard extends React.Component {
 
   render() {
     return (
-      <a href={this.props.route} data-method='get'>
+      <a className="card-column" href={this.props.route} data-method='get'>
         <div className="card">
           <img className="card-img-container" src={this.getImgStyle()}/>
           <h2 className="card-title">{this.props.course.name}</h2>
