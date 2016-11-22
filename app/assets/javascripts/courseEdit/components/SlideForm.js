@@ -11,6 +11,7 @@ class SlideForm extends React.Component {
 
     this.state = {
       componentType: 0,
+      title: '',
       audioUrl: null,
       contentUrl: null,
       audioData: null,
@@ -19,14 +20,19 @@ class SlideForm extends React.Component {
 
     this.updateImageData = this.updateImageData.bind(this)
     this.updateAudioData = this.updateAudioData.bind(this)
+    this.updateTitle = this.updateTitle.bind(this)
   }
 
   updateImageData(image) {
-    this.setState({imageData: image})
+    this.setState({ imageData: image })
   }
 
   updateAudioData(audio) {
-    this.setState({audioData: audio})
+    this.setState({ audioData: audio })
+  }
+
+  updateTitle(e) {
+    this.setState({ title: e.target.value })
   }
 
   submit(e) {
@@ -41,6 +47,7 @@ class SlideForm extends React.Component {
         <form>
           <div className='add-component-form-item'><ImageUploadInput label="Image" onChange={this.updateImageData}/></div>
           <div className='add-component-form-item'><AudioUploadInput label="Audio" onChange={this.updateAudioData}/></div>
+          <div className='add-component-form-item'><Input type='text' label='Title' value={this.state.title} onChange={this.updateTitle}/></div>
           <div className='add-component-form-item'><button className='button button--blue create-component-button' onClick={this.submit.bind(this)}>Create</button></div>
         </form>
       </div>
