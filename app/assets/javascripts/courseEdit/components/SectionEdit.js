@@ -1,4 +1,5 @@
 import React from 'react'
+import Collapse from 'react-collapse'
 
 import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
@@ -13,12 +14,15 @@ class SectionEdit extends React.Component {
     this.id = this.props.section.id
     this.state = {
       loaded: false,
-      section: this.props.section
+      section: this.props.section,
+      isOpen: true,
     }
 
     this.createSubsection = this.createSubsection.bind(this)
     this.deleteSubsection = this.deleteSubsection.bind(this)
     this.deleteSection = this.deleteSection.bind(this)
+    this.toggleSubsections = this.toggleSubsections.bind(this)
+    this.onBlurTitle = this.onBlurTitle.bind(this)
   }
 
   // componentWillReceiveProps(nextProps) {
@@ -75,6 +79,11 @@ class SectionEdit extends React.Component {
     this.updateTitle(params)
   }
 
+  toggleSubsections() {
+    const isOpen = this.state.isOpen
+    this.setState({ isOpen: !isOpen })
+  }
+
   renderSubsections() {
     if (!this.state.section.subsections) {
       return (
@@ -95,16 +104,23 @@ class SectionEdit extends React.Component {
     return (
       <div className='white-box'>
         <div className='h2'>
-          <InlineEditInput className='inline-block' value={this.state.section.title} onBlur={this.onBlurTitle.bind(this)} />
+          <img
+            className='list-image'
+            src={Images.dropdown_arrow}
+            onClick={this.toggleSubsections}
+          />
+          <InlineEditInput className='inline-block' value={this.state.section.title} onBlur={this.onBlurTitle} />
           <button className='button' onClick={this.deleteSection}>Delete section</button>
         </div>
-        <div>{this.renderSubsections()}</div>
-        <button className='button button--white edit-subsection' onClick={this.createSubsection}>
-          <div className='flex center'>
-            <div className='inline-block'><img className='list-image' src={Images.empty_plus} /></div>
-            <div className='inline-block'>Add new subsection</div>
-          </div>
-        </button>
+        <Collapse isOpened={this.state.isOpen}>
+          <div>{this.renderSubsections()}</div>
+          <button className='button button--white edit-subsection' onClick={this.createSubsection}>
+            <div className='flex center'>
+              <div className='inline-block'><img className='list-image' src={Images.empty_plus} /></div>
+              <div className='inline-block'>Add new subsection</div>
+            </div>
+          </button>
+        </Collapse>
       </div>
     )
   }
