@@ -29,19 +29,20 @@ class AddComponentForm extends React.Component {
 
     const form = {
       componentType: { value: componentJson.componentType },
-      componentTitle: { value: componentJson.componentTitle },
+      title: { value: componentJson.title },
       audioUrl: { value: componentJson.audioUrl },
       contentUrl: { value: componentJson.contentUrl },
       subsectionId: { value: this.props.subsectionId },
       audioData: { value: componentJson.audioData },
       imageData: { value: componentJson.imageData }
     }
-
     const componentParams = { component: getInputToParams(form) }
 
     if (componentParams.component.image_data != null) {
       componentParams.component.photo_attributes = { image_data: componentParams.component.image_data }
     }
+
+    console.log(componentParams.component)
 
     request.post(path, componentParams, (response) => {
       this.props.callback(response)
