@@ -40,7 +40,7 @@ class QuizForm extends React.Component {
         <form>
           <div className='add-component-form-item'><Input type='text' label='Google Forms URL' value={this.state.contentUrl} onChange={this.updateContentURL} /></div>
           <div className='add-component-form-item'><AudioUploadInput label="Audio" onChange={this.updateAudioData} /></div>
-          <div className='add-component-form-item'><button onClick={this.submit.bind(this)}>Submit</button></div>
+          <div className='add-component-form-item'><button className='button button--blue create-component-button' onClick={this.submit.bind(this)}>Create</button></div>
         </form>
       </div>
     )

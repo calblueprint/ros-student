@@ -33,7 +33,7 @@ class MultimediaForm extends React.Component {
         <div>Multimedia Component</div>
         <form>
           <div className='add-component-form-item'><Input type='text' label='Youtube Url' value={this.state.contentUrl} onChange={this.updateContentURL} /></div>
-          <div className='add-component-form-item'><button onClick={this.submit.bind(this)}>Submit</button></div>
+          <div className='add-component-form-item'><button className='button button--blue create-component-button' onClick={this.submit.bind(this)}>Create</button></div>
         </form>
       </div>
     )
