@@ -12,7 +12,7 @@
 #  updated_at     :datetime         not null
 #  audio          :string
 #  title          :string
-#  key            :string
+#  form_key       :string
 #
 
 class Component < ActiveRecord::Base

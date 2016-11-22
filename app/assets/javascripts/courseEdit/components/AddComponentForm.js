@@ -20,7 +20,7 @@ class AddComponentForm extends React.Component {
       formType: 0,
       subsectionId: this.props.subsectionId,
       isModalOpen: false,
-      activeForm: null,
+      activeForm: 0,
     }
   }
 
@@ -30,6 +30,7 @@ class AddComponentForm extends React.Component {
     const form = {
       componentType: { value: componentJson.componentType },
       title: { value: componentJson.title },
+      formKey: { value: componentJson.formKey },
       audioUrl: { value: componentJson.audioUrl },
       contentUrl: { value: componentJson.contentUrl },
       subsectionId: { value: this.props.subsectionId },
@@ -41,9 +42,7 @@ class AddComponentForm extends React.Component {
     if (componentParams.component.image_data != null) {
       componentParams.component.photo_attributes = { image_data: componentParams.component.image_data }
     }
-
-    console.log(componentParams.component)
-
+    
     request.post(path, componentParams, (response) => {
       this.props.callback(response)
     }, (error) => {

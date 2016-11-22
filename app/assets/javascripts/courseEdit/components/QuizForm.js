@@ -11,6 +11,7 @@ class QuizForm extends React.Component {
     this.state = {
       componentType: 2,
       title: '',
+      formKey: '',
       audioUrl: null,
       contentUrl: '',
       audioData: null,
@@ -20,6 +21,7 @@ class QuizForm extends React.Component {
     this.updateContentURL = this.updateContentURL.bind(this)
     this.updateAudioData = this.updateAudioData.bind(this)
     this.updateTitle = this.updateTitle.bind(this)
+    this.updateQuizKey = this.updateQuizKey.bind(this)
   }
 
   updateContentURL(e) {
@@ -31,9 +33,12 @@ class QuizForm extends React.Component {
   }
 
   updateTitle(e) {
-    this.setState({title: e.target.value })
+    this.setState({title: e.target.value})
   }
 
+  updateQuizKey(e) {
+    this.setState({formKey: e.target.value})
+  }
 
   submit(e) {
     e.preventDefault()
@@ -48,6 +53,7 @@ class QuizForm extends React.Component {
           <div className='add-component-form-item'><Input type='text' label='Google Forms URL' value={this.state.contentUrl} onChange={this.updateContentURL} /></div>
           <div className='add-component-form-item'><AudioUploadInput label="Audio" onChange={this.updateAudioData} /></div>
           <div className='add-component-form-item'><Input type='text' label='Title' value={this.state.title} onChange={this.updateTitle}/></div>
+          <div className='add-component-form-item'><Input type='text' label='Quiz Key' value={this.state.formKey} onChange={this.updateQuizKey}/></div>
           <div className='add-component-form-item'><button className='button button--blue create-component-button' onClick={this.submit.bind(this)}>Create</button></div>
         </form>
       </div>

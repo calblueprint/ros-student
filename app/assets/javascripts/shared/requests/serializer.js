@@ -15,6 +15,7 @@ const SERIALIZER = {
   // AddComponentForm
   componentType: 'component_type',
   title: 'title',
+  formKey: 'form_key',
   audioUrl: 'audio_url',
   contentUrl: 'content_url',
   subsectionId: 'subsection_id',
