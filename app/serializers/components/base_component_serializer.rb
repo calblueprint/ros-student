@@ -2,6 +2,7 @@ class BaseComponentSerializer < ActiveModel::Serializer
   attributes  :id,
               :component_type,
               :title,
+              :form_key,
               :audio_url,
               :content_url,
               :position,

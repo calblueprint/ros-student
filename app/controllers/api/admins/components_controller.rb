@@ -44,6 +44,7 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
     params.require(:component).permit(
       :component_type,
       :title,
+      :form_key,
       :audio,
       :audio_url,
       :content_url,
