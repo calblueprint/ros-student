@@ -21,9 +21,8 @@ class CourseSidebar extends React.Component {
 
   renderInfo() {
     return (
-      <div>
-        <h1>{this.props.courseSidebar.name}</h1>
-        <div>{this.props.courseSidebar.description}</div>
+      <div className="sidebar-course-title-container">
+        <h1 className="sidebar-course-title">{this.props.courseSidebar.name}</h1>
       </div>
     )
   }
