@@ -42,6 +42,8 @@ class AddComponentForm extends React.Component {
       componentParams.component.photo_attributes = { image_data: componentParams.component.image_data }
     }
 
+    console.log(componentParams.component)
+
     request.post(path, componentParams, (response) => {
       this.props.callback(response)
     }, (error) => {
