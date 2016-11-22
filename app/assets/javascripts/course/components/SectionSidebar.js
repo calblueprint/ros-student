@@ -22,8 +22,10 @@ class SectionSidebar extends React.Component {
 
   render() {
     return (
-      <div>
-        <li><h2>{this.props.section.title}</h2></li>
+      <div className='sidebar-section-card'>
+        <div className='sidebar-section-title-container'>
+          <h2>{this.props.section.title}</h2>
+        </div>
         <ul>{this.renderSubsections()}</ul>
       </div>
     )

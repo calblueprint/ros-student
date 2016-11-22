@@ -1,0 +1,43 @@
+.sidebar-course-title-container {
+  margin: 10px 20px;
+  min-height: 50px;
+  line-height: 50px;
+}
+
+.sidebar-course-title {
+  width: inherit;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.sidebar-section-card {
+  min-height: 60px;
+  padding: 0px;
+  margin: 10px;
+  border-bottom: solid 5px $gray;
+  border-radius: 5px;
+  background: $white;
+  &:hover {
+    outline: 1px solid $blue;
+  }
+}
+
+.sidebar-subsection-card {
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 15px 0px 30px;
+  margin: 0px;
+  background: $white;
+
+  &:hover {
+    background-color: $gray-40;
+  }
+}
+
+.sidebar-section-title-container {
+  width: 100%;
+  min-height: 50px;
+  line-height: 50px;
+  padding: 0px 15px;
+  font-size: 20px;
+}
