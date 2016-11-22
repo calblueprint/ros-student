@@ -9,6 +9,7 @@ import SlideForm from './SlideForm'
 import QuizForm from './QuizForm'
 import MultimediaForm from './MultimediaForm'
 import { getInputToParams } from '../../utils/form_helpers'
+import { Images } from '../../utils/image_helpers'
 
 class AddComponentForm extends React.Component {
 
@@ -79,13 +80,7 @@ class AddComponentForm extends React.Component {
         >
           <Modal.Header>
             <Modal.Title className='update-user-header'>New Component</Modal.Title>
-            <div>
-              <input
-                type='submit'
-                value='X'
-                onClick={this.props.closeModal}
-              />
-            </div>
+            <div onClick={this.props.closeModal}><img className='list-image' src={Images.close_modal} /></div>
           </Modal.Header>
           <Modal.Body className='white'>
             <div className='flex flex-vertical'>
