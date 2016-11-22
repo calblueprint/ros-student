@@ -1,4 +1,5 @@
 import React from 'react'
+import Collapse from 'react-collapse'
 
 import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
@@ -17,10 +18,15 @@ class SubsectionEdit extends React.Component {
       subsection: this.props.subsection,
       components: this.props.subsection.components,
       openEditModal: false,
+      isOpen: true,
     }
 
     this.deleteSubsection = this.deleteSubsection.bind(this)
     this.onFormCompletion = this.onFormCompletion.bind(this)
+    this.toggleComponents = this.toggleComponents.bind(this)
+    this.onBlurTitle      = this.onBlurTitle.bind(this)
+    this.closeNewComponentForm = this.closeNewComponentForm.bind(this)
+    this.showNewComponentForm = this.showNewComponentForm.bind(this)
   }
 
   // componentWillReceiveProps(nextProps) {
@@ -102,26 +108,37 @@ class SubsectionEdit extends React.Component {
     this.setState({ components: components })
   }
 
+  toggleComponents() {
+    const isOpen = this.state.isOpen
+    this.setState({ isOpen: !isOpen })
+  }
+
   render() {
     return (
       <div>
         <div className='h3'>
-          <div className='inline-block'><img className='list-image' src={Images.dropdown_arrow} /></div>
-          <InlineEditInput value={this.state.subsection.title} onBlur={this.onBlurTitle.bind(this)} />
+          <img
+            className='list-image'
+            src={Images.dropdown_arrow}
+            onClick={this.toggleComponents}
+          />
+          <InlineEditInput value={this.state.subsection.title} onBlur={this.onBlurTitle} />
           <button className='button' onClick={this.deleteSubsection}>Delete subsection</button>
         </div>
-        <div>{this.renderComponents()}</div>
-        <AddComponentForm
-          openEditModal={this.state.openEditModal}
-          closeModal={this.closeNewComponentForm.bind(this)}
-          subsectionId={this.id}
-          callback={this.onFormCompletion} />
-        <button className='button button--white edit-component' onClick={this.showNewComponentForm.bind(this)}>
-          <div className='flex'>
-            <div className='inline-block'><img className='list-image' src={Images.empty_plus} /></div>
-            <div className='inline-block'>Add new component</div>
-          </div>
-        </button>
+        <Collapse isOpened={this.state.isOpen}>
+          <div>{this.renderComponents()}</div>
+          <AddComponentForm
+            openEditModal={this.state.openEditModal}
+            closeModal={this.closeNewComponentForm}
+            subsectionId={this.id}
+            callback={this.onFormCompletion} />
+          <button className='button button--white edit-component' onClick={this.showNewComponentForm}>
+            <div className='flex'>
+              <div className='inline-block'><img className='list-image' src={Images.empty_plus} /></div>
+              <div className='inline-block'>Add new component</div>
+            </div>
+          </button>
+        </Collapse>
       </div>
     )
   }
