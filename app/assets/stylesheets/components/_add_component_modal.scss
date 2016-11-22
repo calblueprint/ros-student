@@ -10,10 +10,12 @@
   font-family: $font-stack;
   background-color: $white;
   border: none;
+  outline: none;
   padding: 10px 20px;
   margin: 0px;
   font-size: 16px;
   text-align: center;
+
   &:hover {
     background-color: $gray;
   };
