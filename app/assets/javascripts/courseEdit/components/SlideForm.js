@@ -2,6 +2,7 @@ import React from 'react'
 
 import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
 import AudioUploadInput from '../../shared/components/forms/AudioUploadInput'
+import Input from '../../shared/components/forms/Input'
 
 class SlideForm extends React.Component {
 
@@ -40,7 +41,7 @@ class SlideForm extends React.Component {
         <form>
           <div className='add-component-form-item'><ImageUploadInput label="Image" onChange={this.updateImageData}/></div>
           <div className='add-component-form-item'><AudioUploadInput label="Audio" onChange={this.updateAudioData}/></div>
-          <div className='add-component-form-item'><button className='button button--blue' onClick={this.submit.bind(this)}>Create</button></div>
+          <div className='add-component-form-item'><button className='button button--blue create-component-button' onClick={this.submit.bind(this)}>Create</button></div>
         </form>
       </div>
     )

@@ -7,16 +7,28 @@
 }
 
 .component-button {
+  font-family: $font-stack;
   background-color: $white;
   border: none;
   padding: 10px 20px;
   margin: 0px;
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
+  &:hover {
+    background-color: $gray;
+  };
+  &.active {
+    border-bottom: 4px $blue-80 solid;
+    font-weight: $bold;
+  };
+}
+
+.create-component-button {
+  float: right;
 }
 
 .button-container {
-  margin: 10px 0px;
+  margin: 10px 0px 0px 10px;
 }
 
 .add-component-body-text {

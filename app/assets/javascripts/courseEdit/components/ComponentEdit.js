@@ -39,7 +39,7 @@ class ComponentEdit extends React.Component {
       <div>
         <div className='flex'>
           {this.renderComponentImage()}
-          <a target='blank' href={this.state.component.content_url}>{this.state.component.component_type}</a>
+          <a target='blank' href={this.state.component.content_url}>{this.state.title}</a>
         </div>
       </div>
     )
