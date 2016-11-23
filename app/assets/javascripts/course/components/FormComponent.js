@@ -3,12 +3,14 @@ import Input from '../../shared/components/forms/Input'
 
 class FormComponent extends React.Component {
   render() {
+    console.log(this.props.formUrl);
     return (
       <div>
         <p>This is an form component</p>
         <a href={this.props.formUrl}>form url</a>
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScs6BR2CcmlwVEp_ksgtlUq-ukBOmuSI5_qBcK2vNfpsO_CyQ/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+        <iframe src={this.props.formUrl} width="760" height="500" frameBorder="0" marginHeight="0" marginWidth="0">Loading...</iframe>
         <Input name='keyword'/>
+        <button onClick={this.props.onEnd}>Damn</button>
       </div>
     )
   }

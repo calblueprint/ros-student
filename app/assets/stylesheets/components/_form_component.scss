@@ -1,0 +1,24 @@
+.form-component-container {
+  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.form {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.button-container {
+  text-align: right;
+}
+
+.keyword-container {
+  position: relative;
+  top: -106px;
+  background: $snow;
+  padding: 15px;
+}

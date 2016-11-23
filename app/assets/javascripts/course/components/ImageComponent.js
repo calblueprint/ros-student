@@ -3,6 +3,7 @@ import AudioComponent from './AudioComponent'
 
 class ImageComponent extends React.Component {
   render() {
+    console.log(this.props.imgUrl);
     return (
       <div>
         <p>This is a image component</p>

@@ -31,7 +31,6 @@ class CoursePage extends React.Component {
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
     this.getComponentIndex = this.getComponentIndex.bind(this)
     this.enableNextButton = this.enableNextButton.bind(this)
-
     this.requestSidebar()
   }
 
@@ -229,6 +228,12 @@ class CoursePage extends React.Component {
     }, (error) => {
       console.log(error)
     })
+    var subsection = this.state.displayedSubsection
+    var component = this.state.displayedComponent
+
+    if (this.isLastComponent(subsection, component)) {
+      this.setSubsectionAsComplete(subsection)
+    }
   }
 
   requestSidebar() {
@@ -242,6 +247,7 @@ class CoursePage extends React.Component {
   }
 
   render() {
+    console.log(this.state.nextDisabled);
     return (
       <div className='flex'>
         <div className='course-sidebar-container'>
