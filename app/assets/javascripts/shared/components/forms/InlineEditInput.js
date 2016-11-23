@@ -35,7 +35,7 @@ class InlineEditInput extends React.Component {
 
   renderValue() {
     return (
-      <div>
+      <div className='flex center'>
         <div className='inline-block'>{this.props.value}</div>
         <button className='button' onClick={this.enableEdit}>Edit</button>
       </div>
