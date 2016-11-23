@@ -20,7 +20,7 @@ class VideoComponent extends React.Component {
   }
 
   onEnd() {
-    this.props.callback()
+    this.props.onEnd()
   }
 
   render() {

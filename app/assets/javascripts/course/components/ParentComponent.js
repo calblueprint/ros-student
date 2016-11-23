@@ -7,10 +7,6 @@ import FormComponent from './FormComponent'
 
 class ParentComponent extends React.Component {
 
-  onEnd() {
-    console.log("finished component")
-  }
-
   renderComponent() {
     if (this.props.component == null) {
       return
@@ -23,7 +19,7 @@ class ParentComponent extends React.Component {
             <ImageComponent
               audioUrl={this.props.component.audio_url}
               imgUrl={this.props.component.content_url}
-              callback={this.onEnd}
+              onEnd={this.props.onEnd}
             />
           </div>
         )
@@ -33,7 +29,7 @@ class ParentComponent extends React.Component {
             <FormComponent
               audioUrl={this.props.component.audio_url}
               formUrl={this.props.component.content_url}
-              callback={this.onEnd}
+              onEnd={this.props.onEnd}
             />
           </div>
         )
@@ -42,7 +38,7 @@ class ParentComponent extends React.Component {
           <div>
             <VideoComponent
               videoUrl={this.props.component.content_url}
-              callback={this.onEnd}
+              onEnd={this.props.onEnd}
             />
           </div>
         )
@@ -50,6 +46,7 @@ class ParentComponent extends React.Component {
   }
 
   render() {
+    console.log(this.props.component)
     return (
       <div>
         {this.renderComponent()}

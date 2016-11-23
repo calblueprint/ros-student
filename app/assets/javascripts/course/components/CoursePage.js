@@ -18,7 +18,8 @@ class CoursePage extends React.Component {
       courseSidebar: {},
       displayedSection: {},
       displayedSubsection: {},
-      displayedComponent: {}
+      displayedComponent: {},
+      nextDisabled: true
     }
 
     this.displaySubsection = this.displaySubsection.bind(this)
@@ -28,8 +29,13 @@ class CoursePage extends React.Component {
     this.displayPrevComponent = this.displayPrevComponent.bind(this)
     this.displayPrevSubsection = this.displayPrevSubsection.bind(this)
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
+<<<<<<< HEAD
 
     this.requestSidebar()
+=======
+    this.getComponentIndex = this.getComponentIndex.bind()
+    this.enableNextButton = this.enableNextButton.bind(this)
+>>>>>>> resolved merge conflicts
   }
 
   displaySubsection(id, componentIndex) {
@@ -60,13 +66,25 @@ class CoursePage extends React.Component {
   }
 
   displayNextComponent() {
-    var components = this.state.displayedSubsection.components;
-
-    var index = components.indexOf(this.state.displayedComponent)
-    if (index + 1 < components.length) {
-      this.displayComponent(components[index + 1].id)
+    this.setState({ nextDisabled: true })
+    var subsection = this.state.displayedSubsection
+    var component = this.state.displayedComponent
+    if (!this.isLastComponent(subsection, component)) {
+      var index = this.getComponentIndex(subsection, component)
+      this.displayComponent(subsection.components[index + 1].id)
     } else {
       this.displayNextSubsection()
+    }
+  }
+
+  displayPrevComponent() {
+    var subsection = this.state.displayedSubsection
+    var component = this.state.displayedComponent
+    if (!this.isFirstComponent(subsection, component)) {
+      var index = this.getComponentIndex(subsection, component)
+      this.displayComponent(subsection.components[index - 1].id)
+    } else {
+      this.displayPrevSubsection()
     }
   }
 
@@ -82,17 +100,6 @@ class CoursePage extends React.Component {
     var nextSubsection = subsections.find(next)
     if (nextSubsection != null) {
       this.displaySubsection(nextSubsection.id, 0)
-    }
-  }
-
-  displayPrevComponent() {
-    var components = this.state.displayedSubsection.components;
-
-    var index = components.indexOf(this.state.displayedComponent)
-    if (index - 1 >= 0) {
-      this.displayComponent(components[index - 1].id)
-    } else {
-      this.displayPrevSubsection()
     }
   }
 
@@ -120,6 +127,42 @@ class CoursePage extends React.Component {
     return this.state.courseSidebar.sections.find(byId)
   }
 
+  getComponentIndex(subsection, component) {
+    return subsection.components.indexOf(component)
+  }
+
+  isLastComponent(subsection, component) {
+    var components = subsection.components
+    return component == components[components.length - 1]
+  }
+
+  isFirstComponent(subsection, component) {
+    return component == subsection.components[0]
+  }
+
+  nextDisabled() {
+    if (this.state.displayedComponent.component_type == 0) {
+      return false
+    } else {
+      return this.state.nextDisabled
+    }
+  }
+
+  enableNextButton() {
+    this.setState({ nextDisabled: false })
+
+    var subsection = this.state.displayedSubsection
+    var component = this.state.displayedComponent
+
+    if (this.isLastComponent(subsection, component)) {
+      this.setSubsectionAsComplete(subsection)
+    }
+  }
+
+  setSubsectionAsComplete(subsection) {
+
+  }
+
   requestSidebar() {
     const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
 
@@ -131,6 +174,7 @@ class CoursePage extends React.Component {
   }
 
   render() {
+    console.log(this.state.nextDisabled);
     return (
       <div className='flex'>
         <div className='course-sidebar-container'>
@@ -152,12 +196,13 @@ class CoursePage extends React.Component {
 
             <div className='flex flex-vertical flex-grow center'>
               <div>
-                <ParentComponent component={this.state.displayedComponent}/>
+                <ParentComponent component={this.state.displayedComponent} onEnd={this.enableNextButton}/>
               </div>
             </div>
 
             <div className='flex component-next-container'>
               <button
+                disabled={this.nextDisabled()}
                 className='button'
                 onClick={this.displayNextComponent}>
                 Next
