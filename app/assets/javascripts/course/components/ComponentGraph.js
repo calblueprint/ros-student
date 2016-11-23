@@ -13,21 +13,34 @@ class ComponentGraph extends React.Component {
     } else if (_.isEmpty(this.props.subsection.components)) {
       return 'Loading'
     } else {
-      return this.props.subsection.components.map((value) => {
+      return this.injectGraphLines(this.props.subsection.components.map((value) => {
         return (
-          <span
+          <div
             key={value.id}
             onClick={_.partial(this.props.callback, value.id)}
+            className='component-icon-container'
           >
             <img
               src={this.getComponentSvg(value.component_type)}
               alt='component vector image'
               className='component-icon'
             />
-          </span>
+          </div>
         )
-      })
+      }))
     }
+  }
+
+  injectGraphLines(components) {
+    var finalGraph = []
+    components.forEach((component) => {
+      finalGraph.push(component)
+      finalGraph.push(
+        <div className='component-graph-line'></div>
+      )
+    })
+    finalGraph.pop()
+    return finalGraph
   }
 
   getComponentSvg(componentType) {
@@ -45,9 +58,7 @@ class ComponentGraph extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>{this.renderComponents()}</div>
-      </div>
+      <div className='component-graph-container'>{this.renderComponents()}</div>
     )
   }
 }
