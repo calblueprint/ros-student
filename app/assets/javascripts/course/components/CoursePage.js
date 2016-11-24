@@ -29,7 +29,6 @@ class CoursePage extends React.Component {
     this.displayPrevComponent = this.displayPrevComponent.bind(this)
     this.displayPrevSubsection = this.displayPrevSubsection.bind(this)
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
-    this.getComponentIndex = this.getComponentIndex.bind(this)
     this.enableNextButton = this.enableNextButton.bind(this)
     this.requestSidebar()
   }
@@ -159,22 +158,6 @@ class CoursePage extends React.Component {
     }
   }
 
-  markSubsectionAsComplete(subsection) {
-    const path = APIRoutes.createSubsectionProgressPath(subsection.id)
-
-    const componentParams = {
-      subsection_progress: {
-        subsection_id: subsection.id,
-        student_id: getUser().id
-      }
-    }
-
-    request.post(path, componentParams, (response) => {
-    }, (error) => {
-      console.log(error)
-    })
-  }
-
   getCurrentSubsection() {
     /* Returns the subsection that the user has progressed to in the course. */
     return this.state.courseSidebar.current_subsection
@@ -216,6 +199,7 @@ class CoursePage extends React.Component {
 
   markSubsectionAsComplete(subsection) {
     const path = APIRoutes.createSubsectionProgressPath(subsection.id)
+
     const componentParams = {
       subsection_progress: {
         subsection_id: subsection.id,
@@ -224,22 +208,20 @@ class CoursePage extends React.Component {
     }
 
     request.post(path, componentParams, (response) => {
-      // this.displayNextSubsection()
     }, (error) => {
       console.log(error)
     })
-    var subsection = this.state.displayedSubsection
-    var component = this.state.displayedComponent
 
-    if (this.isLastComponent(subsection, component)) {
-      this.setSubsectionAsComplete(subsection)
-    }
+    // if (this.isLastComponent(subsection, component)) {
+    //   this.setSubsectionAsComplete(subsection)
+    // }
   }
 
   requestSidebar() {
     const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
 
     request.get(path, (response) => {
+      console.log(response);
       this.setState({ courseSidebar: response.course_sidebar })
     }, (error) => {
       console.log(error)
@@ -247,7 +229,6 @@ class CoursePage extends React.Component {
   }
 
   render() {
-    console.log(this.state.nextDisabled);
     return (
       <div className='flex'>
         <div className='course-sidebar-container'>
