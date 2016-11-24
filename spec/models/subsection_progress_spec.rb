@@ -27,11 +27,5 @@ RSpec.describe SubsectionProgress, type: :model do
       subsection_progress.subsection_id = nil
       expect(subsection_progress.valid?).to be false
     end
-
-    it 'is a duplicate subsection progress from the same student' do
-      other_subsection_progress.student_id = valid_subsection_progress.student_id
-      other_subsection_progress.subsection_id = valid_subsection_progress.subsection_id
-      expect(other_subsection_progress.valid?).to be false
-    end
   end
 end
