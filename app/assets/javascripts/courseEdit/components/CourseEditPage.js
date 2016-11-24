@@ -23,6 +23,9 @@ class CourseEditPage extends React.Component {
     this.getCourse()
     this.createSection = this.createSection.bind(this)
     this.deleteSection = this.deleteSection.bind(this)
+    this.onBlurName = this.onBlurName.bind(this)
+    this.onImage = this.onImage.bind(this)
+    this.onBlurDescription = this.onBlurDescription.bind(this)
   }
 
   getCourse() {
@@ -113,6 +116,16 @@ class CourseEditPage extends React.Component {
     })
   }
 
+  getImageStyle() {
+    const image_url = this.state.course.imageUrl ? this.state.courseOutline.image_url : Images.default_course
+
+    return ({
+      backgroundImage: `url(${image_url})`,
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+    })
+  }
+
   renderSections() {
     return this.state.course.sections.map((value) => {
       return (
@@ -125,15 +138,48 @@ class CourseEditPage extends React.Component {
 
   render() {
     return (
-      <div className='flex center'>
-        <div className='container'>
-          <div className='heading edit-module-text'>Edit Module</div>
-          <div className='h1 edit-course'><InlineEditInput value={this.state.course.name} onBlur={this.onBlurName.bind(this)} /></div>
-          <div className='h2 edit-course'><InlineEditInput value={this.state.course.description} onBlur={this.onBlurDescription.bind(this)} /></div>
-          <div className='cover-container'><img className='cover-image' src={this.state.course.imageUrl} /></div>
-          <div className='white-box'>
-            <ImageUploadInput onChange={this.onImage.bind(this)} />
+      <div className='flex center flex-vertical'>
+        <div
+          className='course-edit-header'
+          style={this.getImageStyle()}
+        >
+          <div className='container course-edit-header-container'>
+            <div className='course-edit-header-text'>
+              <div className='course-edit-header-title'>
+                <InlineEditInput
+                  value={this.state.course.name}
+                  onBlur={this.onBlurName}
+                />
+              </div>
+
+              <div>
+                <InlineEditInput
+                  value={this.state.course.description}
+                  onBlur={this.onBlurDescription}
+                />
+              </div>
+            </div>
+
+            <div className='course-edit-image-container'>
+              <label
+                htmlFor='course-edit-image-upload'
+                className='button course-edit-image-upload'
+                onChange={this.handleImage}>
+                Change Cover
+              </label>
+              <input
+                id='course-edit-image-upload'
+                className='hidden-input'
+                type='file'
+                onChange={this.onImage}
+                accept='image/jpg, image/jpeg, image/png'
+              />
+            </div>
           </div>
+        </div>
+
+        <div className='container'>
+          <div className='heading edit-module-text'>Edit Content</div>
           <div>{this.renderSections()}</div>
           <div className='white-box'>
             <button className='button button--white' onClick={this.createSection}>

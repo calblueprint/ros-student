@@ -42,7 +42,7 @@ class AddComponentForm extends React.Component {
     if (componentParams.component.image_data != null) {
       componentParams.component.photo_attributes = { image_data: componentParams.component.image_data }
     }
-    
+
     request.post(path, componentParams, (response) => {
       this.props.callback(response)
     }, (error) => {
@@ -80,7 +80,10 @@ class AddComponentForm extends React.Component {
         >
           <Modal.Header>
             <Modal.Title className='update-user-header'>New Component</Modal.Title>
-            <div onClick={this.props.closeModal}><img className='list-image' src={Images.close_modal} /></div>
+            <img
+              onClick={this.props.closeModal}
+              className='modal-close'
+              src={Images.close_modal} />
           </Modal.Header>
           <Modal.Body className='white'>
             <div className='flex flex-vertical'>

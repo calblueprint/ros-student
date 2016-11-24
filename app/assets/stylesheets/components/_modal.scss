@@ -91,3 +91,7 @@
   opacity: 1;
   @include transform(scale(1));
 }
+
+.modal-close {
+  width: 20px;
+}
