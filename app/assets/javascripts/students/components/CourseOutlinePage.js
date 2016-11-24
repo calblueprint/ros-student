@@ -12,7 +12,7 @@ import SectionOutline from './SectionOutline'
 
 import { Images } from '../../utils/image_helpers'
 
-import ProgressBar from '../../shared/components/widgets/ProgressBar'
+import TopProgressBar from '../../shared/components/widgets/TopProgressBar'
 
 class CourseOutlinePage extends React.Component {
 
@@ -73,7 +73,7 @@ class CourseOutlinePage extends React.Component {
                 <a className="button" href={RailsRoutes.coursePath(this.state.courseOutline.id)}>Continue course</a>
               </div>
               <div className="course-outline-header-bar">
-                <ProgressBar progress={this.state.courseOutline.progress}/>
+                <TopProgressBar progress={this.state.courseOutline.progress}/>
               </div>
             </div>
           </div>

@@ -13,18 +13,12 @@ class SubsectionOutline extends React.Component {
     super(props)
   }
 
-  complete() {
-    if (this.props.subsection.is_complete == true) {
-      return ' √'
-    } else {
-      return ' ø'
-    }
-  }
-
   render() {
     return (
       <div>
-        <li>{this.props.subsection.title} {this.complete()}</li>
+        <li>
+          <p className="subsection-outline-title">{this.props.subsection.title}</p>
+        </li>
       </div>
     )
   }
