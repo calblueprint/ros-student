@@ -27,6 +27,7 @@ class InlineEditInput extends React.Component {
     return (
       <input
         autoFocus
+        className='flex inline-edit-input inline-edit-container'
         defaultValue={this.props.value}
         onBlur={this.onBlur}
       />
@@ -35,8 +36,8 @@ class InlineEditInput extends React.Component {
 
   renderValue() {
     return (
-      <div className='flex center'>
-        <div className='inline-block'>{this.props.value}</div>
+      <div className='flex vertical inline-edit-container'>
+        <span className='inline-edit-value marginRight-sm'>{this.props.value}</span>
         <button className='button' onClick={this.enableEdit}>Edit</button>
       </div>
     )
@@ -44,7 +45,7 @@ class InlineEditInput extends React.Component {
 
   render() {
     return (
-      <div className='inline-block'>
+      <div className='flex vertical flex-grow inline-edit inline-edit-container'>
         {this.state.editable ?
           this.renderInput() :
           this.renderValue()}

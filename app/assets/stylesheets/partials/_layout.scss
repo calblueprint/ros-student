@@ -65,6 +65,10 @@ $space-list: $xxs, $xs, $sm, $md, $lg, $xl, $xxl;
     justify-content: center;
   }
 
+  &.vertical {
+    align-items: center;
+  }
+
   &-vertical {
     flex-direction: column;
   }
@@ -76,11 +80,20 @@ $space-list: $xxs, $xs, $sm, $md, $lg, $xl, $xxl;
   &-grow {
     flex: 1;
   }
+
+
 }
 
 .container {
   margin-right: auto;
   margin-left: auto;
+  padding: 0px 15px;
+}
+
+@media (min-width: 650px) {
+  .container {
+    width: 640px;
+  }
 }
 
 @media (min-width: 768px) {

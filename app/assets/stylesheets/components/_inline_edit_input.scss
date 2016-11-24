@@ -1,0 +1,22 @@
+.inline-edit {
+  display: inline-block;
+}
+
+.inline-edit-container {
+  max-width: 100%;
+}
+
+.inline-edit-value {
+  float: left;
+  max-width: 80%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.inline-edit-input {
+  height: 100%;
+  width: 100%;
+  word-wrap: inherit;
+  font-size: 2.5vh;
+  text-overflow: ellipsis;
+}
