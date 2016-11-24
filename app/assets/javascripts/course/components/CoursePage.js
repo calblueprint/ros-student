@@ -194,7 +194,10 @@ class CoursePage extends React.Component {
   }
 
   nextDisabled() {
-    if (this.state.displayedComponent.component_type == 0) {
+    var component = this.state.displayedComponent
+    var subsection_complete = this.state.displayedSubsection.is_complete
+    if (subsection_complete || (component.component_type == 0 && component.audio_url == null)) {
+      console.log("overriding disabled");
       return false
     } else {
       return this.state.nextDisabled
@@ -208,13 +211,12 @@ class CoursePage extends React.Component {
     var component = this.state.displayedComponent
 
     if (this.isLastComponent(subsection, component)) {
-      this.setSubsectionAsComplete(subsection)
+      this.markSubsectionAsComplete(subsection)
     }
   }
 
   markSubsectionAsComplete(subsection) {
     const path = APIRoutes.createSubsectionProgressPath(subsection.id)
-
     const componentParams = {
       subsection_progress: {
         subsection_id: subsection.id,
@@ -223,7 +225,7 @@ class CoursePage extends React.Component {
     }
 
     request.post(path, componentParams, (response) => {
-      this.displayNextSubsection()
+      // this.displayNextSubsection()
     }, (error) => {
       console.log(error)
     })
@@ -233,6 +235,7 @@ class CoursePage extends React.Component {
     const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
 
     request.get(path, (response) => {
+      console.log(response);
       this.setState({ courseSidebar: response.course_sidebar })
     }, (error) => {
       console.log(error)
@@ -240,7 +243,6 @@ class CoursePage extends React.Component {
   }
 
   render() {
-    console.log(this.state.nextDisabled);
     return (
       <div className='flex'>
         <div className='course-sidebar-container'>
