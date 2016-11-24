@@ -50,6 +50,7 @@ Rails.application.routes.draw do
             member do
               post :switch_position
             end
+            resources :subsection_progresses, only: [:create]
             resources :components, only: [:create, :update, :destroy] do
               member do
                 post :switch_position
@@ -87,6 +88,7 @@ Rails.application.routes.draw do
       resources :sections, only: [] do
         resources :subsections, only: [:show] do
           resources :components, only: [:show]
+          resources :subsection_progresses, only: [:show]
         end
       end
     end

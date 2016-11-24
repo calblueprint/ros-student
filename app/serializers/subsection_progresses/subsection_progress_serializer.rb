@@ -1,0 +1,2 @@
+class SubsectionProgressSerializer < BaseSubsectionProgressSerializer
+end

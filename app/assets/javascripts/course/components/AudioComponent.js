@@ -35,7 +35,7 @@ class AudioComponent extends React.Component {
   render() {
     return (
       <div>
-        {!_.isUndefined(this.props.audioUrl) ? this.renderAudio : ''}
+        {!_.isUndefined(this.props.audioUrl) ? this.renderAudio() : ''}
       </div>
     )
   }
