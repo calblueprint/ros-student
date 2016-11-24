@@ -19,17 +19,17 @@ class ComponentEdit extends React.Component {
       case 1:
         // slide
         return (
-          <div className='inline-block'><img className='list-image' src={Images.empty_basic} /></div>
+          <div className='inline-block'><img className='course-image-icon margin' src={Images.empty_basic} /></div>
         )
       case 2:
         // form
         return (
-          <div className='inline-block'><img className='list-image' src={Images.open_quiz} /></div>
+          <div className='inline-block'><img className='course-image-icon margin' src={Images.open_quiz} /></div>
         )
       default:
         // multimedia
         return (
-          <div className='inline-block'><img className='list-image' src={Images.open_play} /></div>
+          <div className='inline-block'><img className='course-image-icon margin' src={Images.open_play} /></div>
         )
     }
   }
