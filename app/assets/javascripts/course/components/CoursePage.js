@@ -30,16 +30,9 @@ class CoursePage extends React.Component {
     this.displayPrevComponent = this.displayPrevComponent.bind(this)
     this.displayPrevSubsection = this.displayPrevSubsection.bind(this)
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-    this.requestSidebar()
-=======
-    this.getComponentIndex = this.getComponentIndex.bind()
-=======
->>>>>>> Added navigation permissions
     this.enableNextButton = this.enableNextButton.bind(this)
->>>>>>> resolved merge conflicts
+    this.getComponentIndex = this.getComponentIndex.bind()
+    this.requestSidebar()
   }
 
   displaySubsection(id, componentIndex) {
