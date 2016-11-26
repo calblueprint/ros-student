@@ -20,6 +20,7 @@ class Component < ActiveRecord::Base
 
   validates :component_type, presence: true
   validates :subsection_id, presence: true
+  validates :title, presence: true
 
   has_one :photo, as: :parent, dependent: :destroy
   accepts_nested_attributes_for :photo
