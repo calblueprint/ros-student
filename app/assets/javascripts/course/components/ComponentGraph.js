@@ -32,13 +32,12 @@ class ComponentGraph extends React.Component {
   }
 
   injectGraphLines(components) {
-    var finalGraph = []
-    components.forEach((component) => {
-      finalGraph.push(component)
-      finalGraph.push(
+    var finalGraph = _.flatten(components.map((component) => {
+      return [
+        component,
         <div className='component-graph-line'></div>
-      )
-    })
+      ]
+    }))
     finalGraph.pop()
     return finalGraph
   }
