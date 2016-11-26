@@ -13,6 +13,7 @@ FactoryGirl.define do
     component_type 0
     audio_url 'audio_url_string'
     content_url 'content_url_string'
+    title 'Title'
     position 1
     subsection
   end
