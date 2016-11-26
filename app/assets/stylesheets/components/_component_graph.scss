@@ -1,0 +1,33 @@
+.component-graph-line {
+  float: left;
+  width: 10px;
+  height: 2px;
+  margin: 11px 0px;
+  background: $component-gray;
+}
+
+.component-clearfix {
+  clear: both;
+}
+
+.component-icon {
+  float: left;
+  width: 24px;
+  height: 24px;
+  margin: 0px;
+}
+
+.component-icon-container {
+  align-self: center;
+  min-height: 24px;
+  line-height: 24px;
+}
+
+.component-graph-container {
+  display: flex;
+  justify-content: center;
+  height: 24px;
+  width: 60%;
+  margin: 30px auto;
+  padding: 0px;
+}
