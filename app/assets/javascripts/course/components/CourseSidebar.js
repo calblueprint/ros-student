@@ -12,10 +12,16 @@ import SectionSidebar from './SectionSidebar'
 import Dropdown from '../../shared/components/widgets/Dropdown'
 
 class CourseSidebar extends React.Component {
-
   renderSections() {
     return this.props.courseSidebar.sections.map((value) => {
-      return <SectionSidebar key={value.id} section={value} current_subsection={this.props.courseSidebar.current_subsection} callback={this.props.callback}/>
+      return (
+        <SectionSidebar
+          key={value.id}
+          section={value}
+          displayedSubsection={this.props.displayedSubsection}
+          callback={this.props.callback}
+        />
+      )
     })
   }
 

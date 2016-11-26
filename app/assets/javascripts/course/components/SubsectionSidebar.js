@@ -13,16 +13,16 @@ class SubsectionSidebar extends React.Component {
     super(props)
   }
 
-  current() {
-      if (this.props.current_subsection.id == this.props.subsection.id) {
-        return ' <---'
-      }
+  getActive() {
+    return this.props.displayedSubsection.id == this.props.subsection.id ? 'active' : ''
   }
 
   render() {
     return (
-      <div className="sidebar-subsection-card">
-        <li onClick={_.partial(this.props.callback, this.props.subsection.id, 0)}>{this.props.subsection.title} {this.current()}</li>
+      <div className={`sidebar-subsection-card ${this.getActive()}`}>
+        <li onClick={_.partial(this.props.callback, this.props.subsection.id, 0)}>
+          {this.props.subsection.title}
+        </li>
       </div>
     )
   }
