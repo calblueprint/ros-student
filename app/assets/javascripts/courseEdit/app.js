@@ -21,7 +21,7 @@ class App extends React.Component {
     return (
       <div>
         <Navbar>
-          <a to={RailsRoutes.dashboardPath()}>
+          <a href={RailsRoutes.dashboardPath()}>
             <header className='nav-element logo'>Roots of Success</header>
           </a>
           <div className="nav-element right">
@@ -29,7 +29,7 @@ class App extends React.Component {
             <div className="dropdown-container">
               <a
                 className='dropdown-link'
-                to={RailsRoutes.updateAdminPath(getUser().id)}>
+                href={RailsRoutes.updateAdminPath(getUser().id)}>
                 Profile
               </a>
               <a
@@ -41,7 +41,7 @@ class App extends React.Component {
           </div>
 
           <a
-            to={RailsRoutes.codeCsvListPath()}>
+            href={RailsRoutes.codeCsvListPath()}>
             <div className="nav-element marginRight-xl right">Codes</div>
           </a>
         </Navbar>
