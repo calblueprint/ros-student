@@ -24,7 +24,6 @@ class VideoComponent extends React.Component {
   }
 
   render() {
-    console.log(this.props.videoUrl)
     return (
       <div>
         <p>This is a video component</p>

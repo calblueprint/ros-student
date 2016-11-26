@@ -8,7 +8,9 @@ class BaseComponentSerializer < ActiveModel::Serializer
               :position,
               :subsection_id
 
-  has_one :photo, serializer: PhotoSerializer
+  def content_url
+    object.photo ? object.photo.url : object.content_url
+  end
 
   def component_type
     object[:component_type]
