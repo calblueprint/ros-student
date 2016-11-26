@@ -1,0 +1,32 @@
+.section-outline-container {
+  padding: 10px;
+  border-top: thin solid $gray;
+}
+
+.section-outline-header {
+  justify-content: space-between;
+}
+
+.section-outline-header-title {
+  font-weight: bold;
+}
+
+.section-outline-header-right {
+  width: 30%;
+  align-items: center;
+}
+
+.section-outline-header-bar {
+  width: 90%;
+  margin-right: $lg;
+}
+
+.section-outline-dropdown {
+  height: $xs;
+  fill: $gray;
+}
+
+.section-outline-subsections {
+  margin-left: $lg;
+}
+

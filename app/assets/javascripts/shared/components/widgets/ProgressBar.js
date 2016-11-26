@@ -8,13 +8,9 @@ class ProgressBar extends React.Component {
   }
 
   render() {
-
     return(
-      <div className={this.props.className}>
-          <p className="progress-bar-label">{this.props.progress}% Complete</p>
-          <div className="progress-bar-background">
-            <div className="progress-bar" style={this.getProgressBarStyle()}></div>
-          </div>
+      <div className="progress-bar-background">
+        <div className="progress-bar" style={this.getProgressBarStyle()}></div>
       </div>
     )
   }
