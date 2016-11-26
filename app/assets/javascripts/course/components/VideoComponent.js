@@ -2,6 +2,8 @@ import React from 'react'
 import YouTube from 'react-youtube'
 import ReactDOM from 'react-dom'
 
+import { getYoutubeKey } from '../../utils/component_helpers'
+
 class VideoComponent extends React.Component {
 
   constructor(props) {
@@ -22,11 +24,15 @@ class VideoComponent extends React.Component {
   }
 
   render() {
-
+    console.log(this.props.videoUrl)
     return (
       <div>
         <p>This is a video component</p>
-        <YouTube videoId={this.props.videoUrl} onReady={this.onReady} onEnd={this.onEnd.bind(this)} />
+        <YouTube
+          videoId={getYoutubeKey(this.props.videoUrl)}
+          onReady={this.onReady}
+          onEnd={this.onEnd}
+        />
       </div>
     )
   }
