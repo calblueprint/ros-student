@@ -44,10 +44,17 @@ class RailsRoutes {
 
   static adminsSignOutPath() { return '/admins/sign_out' }
   static studentsSignOutPath() { return '/students/sign_out' }
+  // Shared
+  static dashboardPath() { return '/dashboard'}
+
+  // Student
   static coursePath(id)        { return `/courses/${id}` }
 
-  static courseCreatePath() { return '/courses' }
+  // Admin
+  static courseCreatePath()    { return '/courses' }
   static courseEditPath(id) { return `/courses/${id}/edit` }
+  static updateAdminPath(id)   { return `/admins/${ReactRoutes.getId(id, 'id')}/edit`}
+  static codeCsvListPath()     { return `/admins/code_csvs`}
 }
 
 class APIRoutes {
