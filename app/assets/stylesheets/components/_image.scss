@@ -1,0 +1,57 @@
+.image-container {
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+.loader-container {
+  width: 100%;
+  height: 100%;
+  background-color: $black-80;
+}
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 5em;
+  height: 5em;
+}
+
+.loader {
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 0.75em solid $snow-20;
+  border-right: 0.75em solid $snow-20;
+  border-bottom: 0.75em solid $snow-20;
+  border-left: 0.75em solid $white;
+  @include prefixer(animation, load 1.1s infinite linear);
+  @include prefixer(transform, translateZ(0));
+}
+
+@-webkit-keyframes load {
+  0% {
+    @include prefixer(transform, rotate(0deg));
+  }
+  100% {
+    @include prefixer(transform, rotate(360deg));
+  }
+}
+
+@keyframes load {
+  0% {
+    @include prefixer(transform, rotate(0deg));
+  }
+  100% {
+    @include prefixer(transform, rotate(360deg));
+  }
+}
+
