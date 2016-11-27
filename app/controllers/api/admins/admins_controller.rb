@@ -1,6 +1,8 @@
 class Api::Admins::AdminsController < Api::Admins::BaseController
   load_and_authorize_resource
 
+  prepend_before_filter :convert_image, only: :update
+
   def update
     if @admin.update_with_password(update_params)
       render json: @admin, serializer: AdminSerializer
@@ -19,7 +21,20 @@ class Api::Admins::AdminsController < Api::Admins::BaseController
       :last_name,
       :password,
       :current_password,
-      :password_confirmation
+      :password_confirmation,
+      photo_attributes: [:image],
     )
+  end
+
+  def convert_image
+    return if params[:admin][:photo_attributes].blank? ||
+      params[:admin][:photo_attributes][:image_data].blank?
+
+    image_file = FileUploadUtils.convert_base64(
+        params[:admin][:photo_attributes][:image_data])
+    return unless image_file
+
+    params[:admin][:photo_attributes][:image] = image_file
+    params[:admin][:photo_attributes].delete(:image_data)
   end
 end

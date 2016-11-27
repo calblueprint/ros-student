@@ -14,7 +14,7 @@ class ReactRoutes {
   static dashboardPath()              { return '/dashboard' }
 
   // Admin Flow
-  static updateAdminPath(id)          { return `/admins/${ReactRoutes.getId(id, 'id')}/edit`}
+  static adminProfilePath(id)          { return `/admins/${ReactRoutes.getId(id, 'id')}/profile`}
   static codeCsvListPath()            { return `/admins/code_csvs`}
 
   // Student Flow

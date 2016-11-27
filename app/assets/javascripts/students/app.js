@@ -14,7 +14,7 @@ import '../../stylesheets/bundle/students.scss'
 import { RailsRoutes, ReactRoutes } from '../shared/routes'
 import { getUser, observeUser } from '../utils/user_helpers'
 
-import ProfilePage from './components/ProfilePage'
+import StudentProfilePage from './components/StudentProfilePage'
 import StudentDashboard from './components/StudentDashboard'
 import CourseOutlinePage from './components/CourseOutlinePage'
 
@@ -72,7 +72,7 @@ class App extends React.Component {
 render((
   <Router history={browserHistory}>
     <Route path={ReactRoutes.rootPath()} component={App}>
-      <Route path={ReactRoutes.studentProfilePath()} component={ProfilePage} />
+      <Route path={ReactRoutes.studentProfilePath()} component={StudentProfilePage} />
       <Route path={ReactRoutes.dashboardPath()} component={StudentDashboard} />
       <Route path={ReactRoutes.courseOutlinePath()} component={CourseOutlinePage} />
       <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />

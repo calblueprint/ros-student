@@ -17,7 +17,7 @@ import { RailsRoutes, ReactRoutes } from '../shared/routes'
 import { getUser } from '../utils/user_helpers'
 
 import AdminDashboardPage from './components/AdminDashboardPage'
-import UpdateAdminPage from './components/UpdateAdminPage'
+import AdminProfilePage from './components/AdminProfilePage'
 import CodeCsvListPage from './components/CodeCsvListPage'
 
 import Navbar from '../shared/components/widgets/Navbar'
@@ -35,7 +35,7 @@ class App extends React.Component {
             <div className="dropdown-container">
               <Link
                 className='dropdown-link'
-                to={ReactRoutes.updateAdminPath(getUser().id)}>
+                to={ReactRoutes.adminProfilePath(getUser().id)}>
                 Profile
               </Link>
               <a
@@ -61,7 +61,7 @@ render((
   <Router history={browserHistory}>
     <Route path={ReactRoutes.rootPath()} component={App}  >
       <Route path={ReactRoutes.dashboardPath()} name='AdminDashboardPage' component={AdminDashboardPage} />
-      <Route path={ReactRoutes.updateAdminPath()} name='UpdateAdminPage' component={UpdateAdminPage} />
+      <Route path={ReactRoutes.adminProfilePath()} name='AdminProfilePage' component={AdminProfilePage} />
       <Route path={ReactRoutes.codeCsvListPath()} name='CodeCsvListPage' component={CodeCsvListPage} />
       <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />
     </Route>

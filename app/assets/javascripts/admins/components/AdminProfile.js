@@ -5,9 +5,9 @@ import { request } from '../../shared/requests/request'
 import { getUser, observeUser } from '../../utils/user_helpers'
 import { Images } from '../../utils/image_helpers'
 
-import UpdateStudentModal from './UpdateStudentModal'
+import UpdateAdminModal from './UpdateAdminModal'
 
-class StudentProfile extends React.Component {
+class AdminProfile extends React.Component {
   constructor(props) {
     super(props)
 
@@ -32,7 +32,7 @@ class StudentProfile extends React.Component {
   }
 
   getUserRequest() {
-    const route = APIRoutes.getStudentPath(this.props.id)
+    const route = APIRoutes.getAdminPath(this.props.id)
 
     request.get(route, (response) => {
       this.setState({ user: response.student })
@@ -82,7 +82,7 @@ class StudentProfile extends React.Component {
 
         {this.renderEditButton()}
 
-        <UpdateStudentModal
+        <UpdateAdminModal
           id={this.props.id}
           openEditModal={this.state.openEditModal}
           closeModal={this.closeModal} />
@@ -91,4 +91,4 @@ class StudentProfile extends React.Component {
   }
 }
 
-export default StudentProfile
+export default AdminProfile

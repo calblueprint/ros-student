@@ -1,7 +1,11 @@
 @import 'base';
 
 @import '../pages/code_csv_list_page';
+@import '../pages/profile_page';
 
-@import '../components/_generate_code_csv_modal';
+@import '../components/update_user_modal';
+@import '../components/student_profile';
+
+@import '../components/generate_code_csv_modal';
 @import '../components/course_card';
 @import '../components/course_list';
