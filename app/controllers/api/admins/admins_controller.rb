@@ -3,6 +3,10 @@ class Api::Admins::AdminsController < Api::Admins::BaseController
 
   prepend_before_filter :convert_image, only: :update
 
+  def index
+    render json: @admins, each_serializer: AdminListSerializer, root: false
+  end
+
   def update
     if @admin.update_with_password(update_params)
       render json: @admin, serializer: AdminSerializer

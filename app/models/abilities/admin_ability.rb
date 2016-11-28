@@ -5,12 +5,15 @@ class AdminAbility
     admin ||= Admin.new
 
     can [
-      :index,
       :show,
       :create,
       :update,
       :destroy,
     ], Admin, id: admin.id
+
+    can [
+      :index,
+    ], Admin
 
     can :manage, Course
     can :manage, Section

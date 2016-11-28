@@ -51,19 +51,20 @@ class RailsRoutes {
 }
 
 class APIRoutes {
-  // Students
   static createRoute(route)    { return `/api/${route}` }
 
-  static updateAdminPath(id)   { return APIRoutes.createRoute(`admins/${id}`) }
-  static updateStudentPath(id) { return APIRoutes.createRoute(`students/${id}`) }
-
-  static getAdminPath(id)      { return APIRoutes.createRoute(`admins/${id}`) }
+  // Students
+  static verifyCodePath()      { return APIRoutes.createRoute(`codes/verify`) }
   static getStudentPath(id)    { return APIRoutes.createRoute(`students/${id}`) }
   static getStudentCourseOutlinePath(id) { return APIRoutes.createRoute(`students/courses/${id}/outline`) }
   static getStudentCourseSidebarPath(id) { return APIRoutes.createRoute(`students/courses/${id}/sidebar`) }
 
-  // Codes
-  static verifyCodePath()      { return APIRoutes.createRoute(`codes/verify`) }
+  // Admins
+  static getAdminsPath()       { return APIRoutes.createRoute(`admins`) }
+  static updateAdminPath(id)   { return APIRoutes.createRoute(`admins/${id}`) }
+  static updateStudentPath(id) { return APIRoutes.createRoute(`students/${id}`) }
+  static getAdminPath(id)      { return APIRoutes.createRoute(`admins/${id}`) }
+
 
   // Courses
   static getCourses()                { return APIRoutes.createRoute(`courses`) }
