@@ -25,7 +25,7 @@ class UpdateAdminModal extends UpdateUserModal {
       setUser(response.admin)
       this.user = response.admin
       this.setState(this.getUserFields())
-      this.props.closeModal
+      this.props.closeModal()
     }, (error) => {
       this.setState({
         formFields: mapErrorToFormFields(error, this.state.formFields)

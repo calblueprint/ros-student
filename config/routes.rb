@@ -58,6 +58,7 @@ Rails.application.routes.draw do
           end
         end
       end
+
       resources :code_csvs, only: [:create, :index] do
         member do
           get :download
@@ -79,7 +80,7 @@ Rails.application.routes.draw do
     end
 
     scope module: 'admins' do
-      resources :admins, only: [:update]
+      resources :admins, only: [:create, :delete, :update, :index]
     end
 
     resources :courses, only: [:show, :index, :edit], shallow: true do

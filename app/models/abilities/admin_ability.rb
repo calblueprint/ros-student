@@ -6,13 +6,13 @@ class AdminAbility
 
     can [
       :show,
-      :create,
       :update,
       :destroy,
     ], Admin, id: admin.id
 
     can [
       :index,
+      :create,
     ], Admin
 
     can :manage, Course
