@@ -22,6 +22,7 @@ class SubsectionEdit extends React.Component {
     }
 
     this.deleteSubsection = this.deleteSubsection.bind(this)
+    this.deleteComponent = this.deleteComponent.bind(this)
     this.onFormCompletion = this.onFormCompletion.bind(this)
     this.toggleComponents = this.toggleComponents.bind(this)
     this.onBlurTitle      = this.onBlurTitle.bind(this)
@@ -74,6 +75,20 @@ class SubsectionEdit extends React.Component {
     this.updateTitle(params)
   }
 
+  deleteComponent(id) {
+    const path = APIRoutes.editComponentPath(id)
+
+    request.delete(path, (response) => {
+      const subsection = this.state.subsection
+      subsection.components = response.components
+      this.setState({ subsection: subsection })
+      console.log(subsection)
+      console.log(response.components)``  1 wsxxaZ
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
   deleteSubsection() {
     this.props.deleteSubsection(this.id)
   }
@@ -87,7 +102,7 @@ class SubsectionEdit extends React.Component {
       return this.state.subsection.components.map((value) => {
         return (
           <div className='edit-component' key={value.id}>
-            <ComponentEdit component={value} />
+            <ComponentEdit component={value} deleteComponent={this.deleteComponent}/>
           </div>
         )
       })

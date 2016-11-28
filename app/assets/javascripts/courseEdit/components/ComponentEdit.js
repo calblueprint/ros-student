@@ -8,6 +8,8 @@ class ComponentEdit extends React.Component {
     this.state = {
       component: this.props.component,
     }
+    this.id = this.props.component.id
+    this.deleteComponent = this.deleteComponent.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,12 +36,17 @@ class ComponentEdit extends React.Component {
     }
   }
 
+  deleteComponent() {
+    this.props.deleteComponent(this.id)
+  }
+
   render() {
     return (
       <div>
         <div className='flex'>
           {this.renderComponentImage()}
           <a target='blank' href={this.state.component.content_url}>{this.state.component.title}</a>
+          <button className='button' onClick={this.deleteComponent}>Delete component</button>
         </div>
       </div>
     )
