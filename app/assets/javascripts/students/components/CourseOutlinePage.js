@@ -63,17 +63,19 @@ class CourseOutlinePage extends React.Component {
     return (
       <div>
         <div className="flex center course-outline-header" style={this.getOutlineStyle()}>
-          <div className="course-outline-header-container container">
-            <div className="course-outline-header-text">
-              <h1 className="course-outline-header-title">{this.state.courseOutline.name}</h1>
-              <div>{this.state.courseOutline.description}</div>
-            </div>
-            <div className="course-outline-header-progress">
-              <div className="course-outline-header-button marginBot-sm">
-                <a className="button" href={RailsRoutes.coursePath(this.state.courseOutline.id)}>Continue course</a>
+          <div className='linear-gradient-60-mask flex center course-outline-header'>
+            <div className="course-outline-header-container container">
+              <div className="course-outline-header-text">
+                <h1 className="course-outline-header-title">{this.state.courseOutline.name}</h1>
+                <div>{this.state.courseOutline.description}</div>
               </div>
-              <div className="course-outline-header-bar">
-                <TopProgressBar progress={this.state.courseOutline.progress}/>
+              <div className="course-outline-header-progress">
+                <div className="course-outline-header-button marginBot-sm">
+                  <a className="button" href={RailsRoutes.coursePath(this.state.courseOutline.id)}>Continue course</a>
+                </div>
+                <div className="course-outline-header-bar">
+                  <TopProgressBar progress={this.state.courseOutline.progress}/>
+                </div>
               </div>
             </div>
           </div>
