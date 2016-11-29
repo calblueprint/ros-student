@@ -1,5 +1,6 @@
 import React from 'react'
 import Collapse from 'react-collapse'
+import _ from 'underscore'
 
 import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
@@ -7,6 +8,8 @@ import request from '../../shared/requests/request'
 import SubsectionEdit from './SubsectionEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import { Images } from '../../utils/image_helpers'
+
+import DeleteModal from './DeleteModal'
 
 class SectionEdit extends React.Component {
   constructor(props) {
@@ -16,6 +19,7 @@ class SectionEdit extends React.Component {
       loaded: false,
       section: this.props.section,
       isOpen: true,
+      openDeleteModal: false,
     }
 
     this.createSubsection = this.createSubsection.bind(this)
@@ -23,6 +27,8 @@ class SectionEdit extends React.Component {
     this.deleteSection = this.deleteSection.bind(this)
     this.toggleSubsections = this.toggleSubsections.bind(this)
     this.onBlurTitle = this.onBlurTitle.bind(this)
+    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   // componentWillReceiveProps(nextProps) {
@@ -100,6 +106,19 @@ class SectionEdit extends React.Component {
     }
   }
 
+  openModal(e) {
+    e.preventDefault()
+    this.setState({ openDeleteModal: true })
+  }
+
+  closeModal(e) {
+    if (!_.isUndefined(e)) {
+      e.preventDefault()
+    }
+
+    this.setState({ openDeleteModal: false })
+  }
+
   render() {
     return (
       <div className='white-box'>
@@ -115,11 +134,17 @@ class SectionEdit extends React.Component {
           />
           <button
             className='button button--sm flex course-edit-delete'
-            onClick={this.deleteSection}>
+            onClick={this.openModal}>
             <img
               className='course-image-icon'
               src={Images.delete} />
           </button>
+          <DeleteModal
+            openDeleteModal={this.state.openDeleteModal}
+            closeModal={this.closeModal}
+            deleteFunction={this.deleteSection}
+            objectType="section"
+          />
         </div>
 
         <Collapse isOpened={this.state.isOpen}>

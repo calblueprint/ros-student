@@ -1,0 +1,2 @@
+class ComponentListSerializer < BaseComponentSerializer
+end
