@@ -11,7 +11,7 @@ import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
 
 class UpdateAdminPage extends React.Component {
-    constructor(props) {
+  constructor(props) {
     super(props)
 
     this.id = this.props.routeParams.id

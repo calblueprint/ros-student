@@ -8,22 +8,22 @@ import { APIRoutes } from '../../shared/routes'
 
 import UpdateUserModal from '../../shared/components/users/UpdateUserModal'
 
-class UpdateStudentModal extends UpdateUserModal {
+class UpdateAdminModal extends UpdateUserModal {
   updateUser(e) {
     e.preventDefault()
 
-    const path = APIRoutes.updateStudentPath(this.props.id)
+    const path = APIRoutes.updateAdminPath(this.props.id)
     const params = {
-      student: getInputToParams(this.state.formFields)
+      admin: getInputToParams(this.state.formFields)
     }
 
     if (!_.isEmpty(this.state.imageField.imageData.value)) {
-      params.student.photo_attributes = getInputToParams(this.state.imageField)
+      params.admin.photo_attributes = getInputToParams(this.state.imageField)
     }
 
     request.update(path, params, (response) => {
-      setUser(response.student)
-      this.user = response.student
+      setUser(response.admin)
+      this.user = response.admin
       this.setState(this.getUserFields())
       this.props.closeModal
     }, (error) => {
@@ -34,4 +34,4 @@ class UpdateStudentModal extends UpdateUserModal {
   }
 }
 
-export default UpdateStudentModal
+export default UpdateAdminModal

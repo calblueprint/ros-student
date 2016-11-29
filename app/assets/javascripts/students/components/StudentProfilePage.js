@@ -2,7 +2,7 @@ import React from 'react'
 
 import StudentProfile from '../../students/components/StudentProfile'
 
-class ProfilePage extends React.Component {
+class StudentProfilePage extends React.Component {
   render() {
     return (
       <div className='container'>
@@ -14,4 +14,4 @@ class ProfilePage extends React.Component {
   }
 }
 
-export default ProfilePage
+export default StudentProfilePage

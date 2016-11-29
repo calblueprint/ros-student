@@ -33,4 +33,11 @@ class Admin < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :username, uniqueness: true, presence: true
+
+  has_one :photo, as: :parent, dependent: :destroy
+  accepts_nested_attributes_for :photo
+
+  def image_url
+    photo.url if photo
+  end
 end
