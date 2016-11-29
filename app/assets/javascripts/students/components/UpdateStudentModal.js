@@ -25,7 +25,7 @@ class UpdateStudentModal extends UpdateUserModal {
       setUser(response.student)
       this.user = response.student
       this.setState(this.getUserFields())
-      this.props.closeModal
+      this.props.closeModal()
     }, (error) => {
       this.setState({
         formFields: mapErrorToFormFields(error, this.state.formFields)

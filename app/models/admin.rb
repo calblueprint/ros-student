@@ -26,18 +26,37 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  EMAIL_PATTERN = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  attr_accessor :temp_password
 
-  validates_confirmation_of :password
+  EMAIL_PATTERN = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, format: { with: EMAIL_PATTERN }, uniqueness: true, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :username, uniqueness: true, presence: true
+
+  validates_confirmation_of :password
+  validates :username, presence: true, on: :update
+  validates :username, uniqueness: true
 
   has_one :photo, as: :parent, dependent: :destroy
   accepts_nested_attributes_for :photo
 
+  before_validation :generate_password, on: :create
+  after_create :send_email
+
   def image_url
     photo.url if photo
+  end
+
+  private
+
+  def generate_password
+    @temp_password = Devise.friendly_token(8)
+    self.password = @temp_password
+    self.password_confirmation = @temp_password
+  end
+
+  # Actually do something here
+  def send_email
+    # puts @temp_password
   end
 end

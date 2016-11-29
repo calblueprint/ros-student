@@ -26,6 +26,7 @@ describe Admin do
   describe 'is not valid' do
     let!(:valid_admin) { create :admin }
     let!(:admin) { build :admin }
+
     it 'if there is no first_name' do
       admin.first_name = nil
       expect(admin.valid?).to be false
@@ -36,10 +37,10 @@ describe Admin do
       expect(admin.valid?).to be false
     end
 
-    it 'if there is no username' do
-      admin.username = nil
-      expect(admin.valid?).to be false
-    end
+    # it 'if there is no username' do
+    #   admin.username = nil
+    #   expect(admin.valid?).to be false
+    # end
 
     it 'if there is no email' do
       admin.email = nil
@@ -68,11 +69,6 @@ describe Admin do
       admin.email = '@cool.com'
       expect(admin.valid?).to be false
       admin.email = 'email@'
-      expect(admin.valid?).to be false
-    end
-
-    it 'if there is an invalid password' do
-      admin.password = ''
       expect(admin.valid?).to be false
     end
   end
