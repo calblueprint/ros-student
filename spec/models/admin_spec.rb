@@ -71,10 +71,5 @@ describe Admin do
       admin.email = 'email@'
       expect(admin.valid?).to be false
     end
-
-    it 'if there is an invalid password' do
-      admin.password = ''
-      expect(admin.valid?).to be false
-    end
   end
 end

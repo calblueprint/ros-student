@@ -33,8 +33,9 @@ class Admin < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  validates_confirmation_of :password, on: :update
-  validates :username, uniqueness: true, presence: true, on: :update
+  validates_confirmation_of :password
+  validates :username, presence: true, on: :update
+  validates :username, uniqueness: true
 
   has_one :photo, as: :parent, dependent: :destroy
   accepts_nested_attributes_for :photo
@@ -49,7 +50,6 @@ class Admin < ActiveRecord::Base
   private
 
   def generate_password
-    puts 'helasdfafsdasdfasdfadfslo'
     @temp_password = Devise.friendly_token(8)
     self.password = @temp_password
     self.password_confirmation = @temp_password
@@ -57,6 +57,6 @@ class Admin < ActiveRecord::Base
 
   # Actually do something here
   def send_email
-    puts @temp_password
+    # puts @temp_password
   end
 end
