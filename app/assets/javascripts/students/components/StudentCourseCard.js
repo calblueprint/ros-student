@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import { ReactRoutes } from '../../shared/routes'
 import { Images } from '../../utils/image_helpers'
 
+import Image from '../../shared/components/widgets/Image'
 import TopProgressBar from '../../shared/components/widgets/TopProgressBar'
 
 class StudentCourseCard extends React.Component {
@@ -36,7 +37,9 @@ class StudentCourseCard extends React.Component {
         onClick={this.disableLink.bind(this)}
         to={this.props.route}>
         <div className="card" style={this.getCourseCardStyle()}>
-          <img className="card-img-container" src={this.getImgStyle()}/>
+          <div className="card-img-container">
+            <Image src={this.getImgStyle()}/>
+          </div>
           <h2 className="card-title">{this.props.course.name}</h2>
           <TopProgressBar className="card-progress-bar" progress={this.props.course.progress} />
         </div>
