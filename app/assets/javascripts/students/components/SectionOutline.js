@@ -16,8 +16,8 @@ class SectionOutline extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isOpen: false,
-      dropdownImgState: 0,
+      isOpen: true,
+      dropdownImgState: 180,
     }
 
     this.toggleSubsections = this.toggleSubsections.bind(this)
