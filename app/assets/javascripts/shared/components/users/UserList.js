@@ -12,13 +12,14 @@ class UserList extends React.Component {
     this.state = {
       users: []
     }
+  }
 
+  componentDidMount() {
     this.getUsers()
   }
 
   getUsers() {
     request.get(this.props.route, (response) => {
-      console.log(response)
       this.setState({ users: response })
     }, (error) => {
       console.log(error)
