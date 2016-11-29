@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 
+import { Images } from '../../../utils/image_helpers'
+
 import Input from './Input'
 
 class InlineEditInput extends React.Component {
@@ -27,6 +29,7 @@ class InlineEditInput extends React.Component {
     return (
       <input
         autoFocus
+        className='flex inline-edit-input inline-edit-container'
         defaultValue={this.props.value}
         onBlur={this.onBlur}
       />
@@ -35,16 +38,18 @@ class InlineEditInput extends React.Component {
 
   renderValue() {
     return (
-      <div className='flex center'>
-        <div className='inline-block'>{this.props.value}</div>
-        <button className='button' onClick={this.enableEdit}>Edit</button>
+      <div className='flex vertical inline-edit-container'>
+        <span className='inline-edit-value marginRight-sm'>{this.props.value}</span>
+        <button className='button button--sm' onClick={this.enableEdit}>
+          <img className='inline-edit-icon' src={Images.edit} />
+        </button>
       </div>
     )
   }
 
   render() {
     return (
-      <div className='inline-block'>
+      <div className='flex vertical inline-edit inline-edit-container'>
         {this.state.editable ?
           this.renderInput() :
           this.renderValue()}

@@ -21,17 +21,17 @@ class App extends React.Component {
     return (
       <div>
         <Navbar>
-          <Link to={ReactRoutes.dashboardPath()}>
+          <a href={RailsRoutes.dashboardPath()}>
             <header className='nav-element logo'>Roots of Success</header>
-          </Link>
+          </a>
           <div className="nav-element right">
             <p>{`${getUser().first_name} ${getUser().last_name}`}</p>
             <div className="dropdown-container">
-              <Link
+              <a
                 className='dropdown-link'
-                to={ReactRoutes.updateAdminPath(getUser().id)}>
+                href={RailsRoutes.updateAdminPath(getUser().id)}>
                 Profile
-              </Link>
+              </a>
               <a
                 href={RailsRoutes.adminsSignOutPath()}
                 data-method="delete"
@@ -40,10 +40,10 @@ class App extends React.Component {
             </div>
           </div>
 
-          <Link
-            to={ReactRoutes.codeCsvListPath()}>
+          <a
+            href={RailsRoutes.codeCsvListPath()}>
             <div className="nav-element marginRight-xl right">Codes</div>
-          </Link>
+          </a>
         </Navbar>
         {this.props.children}
       </div>

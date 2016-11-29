@@ -116,15 +116,27 @@ class SubsectionEdit extends React.Component {
   render() {
     return (
       <div>
-        <div className='h3'>
+        <div className='flex vertical course-edit-container h3'>
           <img
-            className='list-image'
+            className='course-image-icon margin'
             src={Images.dropdown_arrow}
             onClick={this.toggleComponents}
           />
-          <InlineEditInput value={this.state.subsection.title} onBlur={this.onBlurTitle} />
-          <button className='button' onClick={this.deleteSubsection}>Delete subsection</button>
+          <div className='course-edit-inline-edit'>
+            <InlineEditInput
+              value={this.state.subsection.title}
+              onBlur={this.onBlurTitle}
+            />
+          </div>
+          <button
+            className='button button--sm flex course-edit-delete'
+            onClick={this.deleteSubsection}>
+            <img
+              className='course-image-icon'
+              src={Images.delete} />
+          </button>
         </div>
+
         <Collapse isOpened={this.state.isOpen}>
           <div>{this.renderComponents()}</div>
           <AddComponentForm
@@ -134,7 +146,7 @@ class SubsectionEdit extends React.Component {
             callback={this.onFormCompletion} />
           <button className='button button--white edit-component' onClick={this.showNewComponentForm}>
             <div className='flex'>
-              <div className='inline-block'><img className='list-image' src={Images.empty_plus} /></div>
+              <div className='inline-block'><img className='course-image-icon margin' src={Images.empty_plus} /></div>
               <div className='inline-block'>Add new component</div>
             </div>
           </button>

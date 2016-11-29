@@ -92,7 +92,7 @@ class SectionEdit extends React.Component {
     } else {
       return this.state.section.subsections.map((value) => {
         return (
-          <div className='edit-subsection' key={value.id}>
+          <div className='course-edit-subsection' key={value.id}>
             <SubsectionEdit subsection={value} deleteSubsection={this.deleteSubsection} />
           </div>
         )
@@ -103,20 +103,30 @@ class SectionEdit extends React.Component {
   render() {
     return (
       <div className='white-box'>
-        <div className='h2'>
+        <div className='flex vertical h2 course-edit-container'>
           <img
-            className='list-image'
+            className='course-image-icon margin'
             src={Images.dropdown_arrow}
             onClick={this.toggleSubsections}
           />
-          <InlineEditInput className='inline-block' value={this.state.section.title} onBlur={this.onBlurTitle} />
-          <button className='button' onClick={this.deleteSection}>Delete section</button>
+          <InlineEditInput
+            value={this.state.section.title}
+            onBlur={this.onBlurTitle}
+          />
+          <button
+            className='button button--sm flex course-edit-delete'
+            onClick={this.deleteSection}>
+            <img
+              className='course-image-icon'
+              src={Images.delete} />
+          </button>
         </div>
+
         <Collapse isOpened={this.state.isOpen}>
           <div>{this.renderSubsections()}</div>
           <button className='button button--white edit-subsection' onClick={this.createSubsection}>
             <div className='flex center'>
-              <div className='inline-block'><img className='list-image' src={Images.empty_plus} /></div>
+              <div className='inline-block'><img className='course-image-icon margin' src={Images.empty_plus} /></div>
               <div className='inline-block'>Add new subsection</div>
             </div>
           </button>

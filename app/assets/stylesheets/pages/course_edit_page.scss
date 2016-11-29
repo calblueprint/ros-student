@@ -14,8 +14,8 @@
   margin-top: 10px;
 }
 
-.edit-subsection {
-  margin-left: 20px;
+.course-edit-subsection {
+  padding: 20px;
   margin-top: 10px;
 }
 
@@ -35,9 +35,17 @@
   margin-bottom: 20px;
 }
 
-.list-image {
+.course-image-icon {
   width: 20px;
-  margin-right: 15px;
+
+  &.margin {
+    margin-right: 15px;
+  }
+}
+
+.course-edit-delete {
+  position: absolute;
+  right: 0;
 }
 
 .big-blue-plus {
@@ -73,8 +81,17 @@
   position: absolute;
   bottom: 10%;
   right:0;
+  padding-right: inherit;
 }
 
 .course-edit-image-upload {
   cursor: pointer;
+}
+
+.course-edit-inline-edit {
+  width: 80%;
+}
+
+.course-edit-container {
+  position: relative;
 }
