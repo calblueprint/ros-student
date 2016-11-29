@@ -8,3 +8,8 @@
   width: 70%;
   height: 100vh;
 }
+
+.component-next-container {
+  padding: $lg;
+  flex-direction: row-reverse;
+}

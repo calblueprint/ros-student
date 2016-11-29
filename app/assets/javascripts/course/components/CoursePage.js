@@ -15,7 +15,7 @@ class CoursePage extends React.Component {
     super(props)
 
     this.state = {
-      courseSidebar: this.requestSidebar(),
+      courseSidebar: {},
       displayedSection: {},
       displayedSubsection: {},
       displayedComponent: {}
@@ -28,19 +28,23 @@ class CoursePage extends React.Component {
     this.displayPrevComponent = this.displayPrevComponent.bind(this)
     this.displayPrevSubsection = this.displayPrevSubsection.bind(this)
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
+
+    this.requestSidebar()
   }
 
   displaySubsection(id, componentIndex) {
     const path = APIRoutes.getSubsectionPath(id)
 
     request.get(path, (response) => {
-      var length = response.subsection.components.length
-      if (componentIndex == -1) {
-        this.setState({ displayedComponent: response.subsection.components[length - 1]})
-      } else {
-        this.setState({ displayedComponent: response.subsection.components[componentIndex]})
-      }
-      this.setState({ displayedSubsection: response.subsection })
+      const length = response.subsection.components.length
+      const displayedComponent = componentIndex == -1 ?
+        response.subsection.components[length - 1] :
+        response.subsection.components[componentIndex]
+
+      this.setState({
+        displayedSubsection: response.subsection,
+        displayedComponent: displayedComponent,
+      })
     }, (error) => {
       console.log(error)
     })
@@ -50,7 +54,9 @@ class CoursePage extends React.Component {
     function byId(element) {
       return element.id === id
     }
-    this.setState({ displayedComponent: this.state.displayedSubsection.components.find(byId)})
+    this.setState({
+      displayedComponent: this.state.displayedSubsection.components.find(byId)
+    })
   }
 
   displayNextComponent() {
@@ -130,6 +136,7 @@ class CoursePage extends React.Component {
         <div className='course-sidebar-container'>
           <CourseSidebar
             courseSidebar={this.state.courseSidebar}
+            displayedSubsection={this.state.displayedSubsection}
             callback={this.displaySubsection}
           />
         </div>
@@ -148,9 +155,9 @@ class CoursePage extends React.Component {
               </div>
             </div>
 
-            <div>
+            <div className='flex component-next-container'>
               <button
-                className='button'
+                className='marginLeft-lg button'
                 onClick={this.displayPrevComponent}>
                 Previous
               </button>

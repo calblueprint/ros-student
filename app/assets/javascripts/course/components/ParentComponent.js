@@ -20,7 +20,6 @@ class ParentComponent extends React.Component {
       case 0:
         return (
           <div>
-            <p>id: {this.props.component.id}</p>
             <ImageComponent
               audioUrl={this.props.component.audio_url}
               imgUrl={this.props.component.content_url}
@@ -31,7 +30,6 @@ class ParentComponent extends React.Component {
       case 1:
         return (
           <div>
-            <p>id: {this.props.component.id}</p>
             <FormComponent
               audioUrl={this.props.component.audio_url}
               formUrl={this.props.component.content_url}
@@ -42,7 +40,6 @@ class ParentComponent extends React.Component {
       case 2:
         return (
           <div>
-            <p>id: {this.props.component.id}</p>
             <VideoComponent
               videoUrl={this.props.component.content_url}
               callback={this.onEnd}

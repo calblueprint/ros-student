@@ -28,8 +28,13 @@
   padding: 0px 15px 0px 30px;
   margin: 0px;
   background: $white;
+  cursor: pointer;
 
   &:hover {
+    background-color: $gray-40;
+  }
+
+  &.active {
     background-color: $gray-40;
   }
 }

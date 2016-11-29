@@ -16,7 +16,14 @@ class SectionSidebar extends React.Component {
 
   renderSubsections() {
     return this.props.section.subsections.map((value) => {
-      return <SubsectionSidebar key={value.id} subsection={value} current_subsection={this.props.current_subsection} callback={this.props.callback}/>
+      return (
+        <SubsectionSidebar
+          key={value.id}
+          subsection={value}
+          displayedSubsection={this.props.displayedSubsection}
+          callback={this.props.callback}
+        />
+      )
     })
   }
 
