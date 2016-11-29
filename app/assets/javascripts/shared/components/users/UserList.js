@@ -50,7 +50,7 @@ class UserList extends React.Component {
 
 UserList.propTypes = {
   route: PropTypes.string.isRequired,
-  onRowClick: PropTypes.func.isRequired,
+  onRowClick: PropTypes.func,
 }
 
 export default UserList
