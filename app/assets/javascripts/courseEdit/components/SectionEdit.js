@@ -152,7 +152,7 @@ class SectionEdit extends React.Component {
           <button className='button button--white edit-subsection' onClick={this.createSubsection}>
             <div className='flex vertical'>
               <img className='course-image-icon margin' src={Images.empty_plus} />
-              <div className='inline-block'>Add new subsection</div>
+              <div>Add new subsection</div>
             </div>
           </button>
         </Collapse>

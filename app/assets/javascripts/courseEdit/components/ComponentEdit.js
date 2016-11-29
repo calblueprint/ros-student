@@ -24,17 +24,17 @@ class ComponentEdit extends React.Component {
 
   renderComponentImage() {
     switch(this.state.component.component_type) {
-      case 1:
+      case 0:
         // slide
         return (
           <img className='course-image-icon margin' src={Images.empty_basic} />
         )
-      case 2:
+      case 1:
         // form
         return (
           <img className='course-image-icon margin' src={Images.open_quiz} />
         )
-      default:
+      case 2:
         // multimedia
         return (
           <img className='course-image-icon margin' src={Images.open_play} />
