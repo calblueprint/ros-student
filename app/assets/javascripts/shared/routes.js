@@ -68,6 +68,7 @@ class APIRoutes {
 
   // Admins
   static createAdminPath()     { return APIRoutes.createRoute(`admins`) }
+  static getStudentsPath()     { return APIRoutes.createRoute(`students`) }
   static getAdminsPath()       { return APIRoutes.createRoute(`admins`) }
   static updateAdminPath(id)   { return APIRoutes.createRoute(`admins/${id}`) }
   static updateStudentPath(id) { return APIRoutes.createRoute(`students/${id}`) }
