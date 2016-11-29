@@ -27,17 +27,17 @@ class ComponentEdit extends React.Component {
       case 1:
         // slide
         return (
-          <div className='inline-block'><img className='course-image-icon margin' src={Images.empty_basic} /></div>
+          <img className='course-image-icon margin' src={Images.empty_basic} />
         )
       case 2:
         // form
         return (
-          <div className='inline-block'><img className='course-image-icon margin' src={Images.open_quiz} /></div>
+          <img className='course-image-icon margin' src={Images.open_quiz} />
         )
       default:
         // multimedia
         return (
-          <div className='inline-block'><img className='course-image-icon margin' src={Images.open_play} /></div>
+          <img className='course-image-icon margin' src={Images.open_play} />
         )
     }
   }
@@ -62,7 +62,7 @@ class ComponentEdit extends React.Component {
   render() {
     return (
       <div>
-        <div className='flex course-edit-container'>
+        <div className='flex vertical course-edit-container'>
           {this.renderComponentImage()}
           <a target='blank' href={this.state.component.content_url}>{this.state.component.title}</a>
           <button

@@ -183,9 +183,9 @@ class SubsectionEdit extends React.Component {
             subsectionId={this.id}
             callback={this.onFormCompletion} />
           <button className='button button--white edit-component' onClick={this.showNewComponentForm}>
-            <div className='flex'>
-              <div className='inline-block'><img className='course-image-icon margin' src={Images.empty_plus} /></div>
-              <div className='inline-block'>Add new component</div>
+            <div className='flex vertical'>
+              <img className='course-image-icon margin' src={Images.empty_plus} />
+              <p>Add new component</p>
             </div>
           </button>
         </Collapse>
@@ -193,12 +193,5 @@ class SubsectionEdit extends React.Component {
     )
   }
 }
-
-// SubsectionEdit.defaultProps = {
-//   subsection: {
-//     title: '',
-//     components: [],
-//   }
-// }
 
 export default SubsectionEdit
