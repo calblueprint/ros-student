@@ -12,13 +12,15 @@
   font-family: $font-stack;
   font-size: 14px;
   font-weight: $bold;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   outline: none;
   padding: 8px 18px;
   transition: 100ms;
   cursor: pointer;
 
   &:hover {
+    background: $dark-blue;
+    border: 1px solid $dark-blue;
     box-shadow: 0 2px 8px $black-40;
     text-decoration: none;
   }
