@@ -12,7 +12,7 @@
 
 class Section < ActiveRecord::Base
   validates :title, presence: true
-  validates :course_id, presence: true
+  # validates :course_id, presence: true
 
   has_many :subsections, -> { order(position: :asc) }
   belongs_to :course

@@ -8,6 +8,16 @@ class Request {
     return request;
   }
 
+  download(response, encoding, fileName) {
+    const a = document.createElement('a')
+    a.href = `${encoding}, ${encodeURIComponent(response)}`
+    a.target = '_blank'
+    a.download = fileName
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+  }
+
   delete(route, resolve, reject) {
     const request = this.initialize('DELETE', route);
     request.onreadystatechange = () => {
@@ -63,24 +73,32 @@ class Request {
   }
 
   csv(route, resolve, reject) {
-    var request = this.initialize('GET', route, 'text/csv')
+    const request = this.initialize('GET', route, 'text/csv')
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
-          var a = document.createElement('a')
-          var encoding = 'data:attachment/csv'
-          a.href = `${encoding}, ${encodeURIComponent(request.response)}`
-          a.target = '_blank'
-          a.download = `download.csv`
-          document.body.appendChild(a)
-          a.click()
-          document.body.removeChild(a)
+          this.download(request.response, 'data:attachment/csv', 'download.csv')
         }
       }
     }
     request.send()
   }
 
+  json(route, resolve, reject) {
+    const request = this.initialize('GET', route)
+    request.onreadystatechange = () => {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        if (request.status === 200) {
+          this.download(
+            JSON.stringify(JSON.parse(request.response), null, 2),
+            'data:attachment/json',
+            'download.json'
+          )
+        }
+      }
+    }
+    request.send()
+  }
 }
 
 export default new Request()

@@ -19,6 +19,7 @@ import { getUser } from '../utils/user_helpers'
 import AdminDashboardPage from './components/AdminDashboardPage'
 import AdminProfilePage from './components/AdminProfilePage'
 import CodeCsvListPage from './components/CodeCsvListPage'
+import ExportImportPage from './components/ExportImportPage'
 
 import Navbar from '../shared/components/widgets/Navbar'
 
@@ -50,6 +51,11 @@ class App extends React.Component {
             to={ReactRoutes.codeCsvListPath()}>
             <div className="nav-element marginRight-xl right">Codes</div>
           </Link>
+
+          <Link
+            to={ReactRoutes.courseToolsPath()}>
+            <div className="nav-element marginRight-xl right">Tools</div>
+          </Link>
         </Navbar>
         {this.props.children}
       </div>
@@ -63,6 +69,7 @@ render((
       <Route path={ReactRoutes.dashboardPath()} name='AdminDashboardPage' component={AdminDashboardPage} />
       <Route path={ReactRoutes.adminProfilePath()} name='AdminProfilePage' component={AdminProfilePage} />
       <Route path={ReactRoutes.codeCsvListPath()} name='CodeCsvListPage' component={CodeCsvListPage} />
+      <Route path={ReactRoutes.courseToolsPath()} name='ExportImportPage' component={ExportImportPage} />
       <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />
     </Route>
   </Router>
