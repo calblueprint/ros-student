@@ -128,36 +128,6 @@ class CoursePage extends React.Component {
     return subsection.components.indexOf(component)
   }
 
-  isLastComponent(subsection, component) {
-    const components = subsection.components
-    return component == components[components.length - 1]
-  }
-
-  isFirstComponent(subsection, component) {
-    return component == subsection.components[0]
-  }
-
-  nextDisabled() {
-    const component = this.state.displayedComponent
-    const subsection_complete = this.state.displayedSubsection.is_complete
-    if (subsection_complete || (component.component_type == 0 && component.audio_url == null)) {
-      return false
-    } else {
-      return this.state.nextDisabled
-    }
-  }
-
-  enableNextButton() {
-    this.setState({ nextDisabled: false })
-
-    const subsection = this.state.displayedSubsection
-    const component = this.state.displayedComponent
-
-    if (this.isLastComponent(subsection, component)) {
-      this.markSubsectionAsComplete(subsection)
-    }
-  }
-
   getCurrentSubsection() {
     /* Returns the subsection that the user has progressed to in the course. */
     return this.state.courseSidebar.current_subsection
@@ -173,7 +143,7 @@ class CoursePage extends React.Component {
   }
 
   isFirstComponent(subsection, component) {
-    return component == subsection.components[0]
+    return component.id == subsection.components[0].id
   }
 
   nextDisabled() {
@@ -221,7 +191,6 @@ class CoursePage extends React.Component {
     const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
 
     request.get(path, (response) => {
-      console.log(response);
       this.setState({ courseSidebar: response.course_sidebar })
     }, (error) => {
       console.log(error)
