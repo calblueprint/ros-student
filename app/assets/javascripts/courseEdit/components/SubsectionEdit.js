@@ -1,5 +1,6 @@
 import React from 'react'
 import Collapse from 'react-collapse'
+import _ from 'underscore'
 
 import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
@@ -8,6 +9,8 @@ import ComponentEdit from './ComponentEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import AddComponentForm from './AddComponentForm'
 import { Images } from '../../utils/image_helpers'
+
+import DeleteModal from './DeleteModal'
 
 class SubsectionEdit extends React.Component {
   constructor(props) {
@@ -19,14 +22,18 @@ class SubsectionEdit extends React.Component {
       components: this.props.subsection.components,
       openEditModal: false,
       isOpen: true,
+      openDeleteModal: false,
     }
 
     this.deleteSubsection = this.deleteSubsection.bind(this)
+    this.deleteComponent = this.deleteComponent.bind(this)
     this.onFormCompletion = this.onFormCompletion.bind(this)
     this.toggleComponents = this.toggleComponents.bind(this)
     this.onBlurTitle      = this.onBlurTitle.bind(this)
     this.closeNewComponentForm = this.closeNewComponentForm.bind(this)
     this.showNewComponentForm = this.showNewComponentForm.bind(this)
+    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   // componentWillReceiveProps(nextProps) {
@@ -74,6 +81,18 @@ class SubsectionEdit extends React.Component {
     this.updateTitle(params)
   }
 
+  deleteComponent(id) {
+    const path = APIRoutes.editComponentPath(id)
+
+    request.delete(path, (response) => {
+      const subsection = this.state.subsection
+      subsection.components = response.components
+      this.setState({ subsection: subsection })
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
   deleteSubsection() {
     this.props.deleteSubsection(this.id)
   }
@@ -87,7 +106,7 @@ class SubsectionEdit extends React.Component {
       return this.state.subsection.components.map((value) => {
         return (
           <div className='edit-component' key={value.id}>
-            <ComponentEdit component={value} />
+            <ComponentEdit component={value} deleteComponent={this.deleteComponent}/>
           </div>
         )
       })
@@ -113,6 +132,19 @@ class SubsectionEdit extends React.Component {
     this.setState({ isOpen: !isOpen })
   }
 
+  openModal(e) {
+    e.preventDefault()
+    this.setState({ openDeleteModal: true })
+  }
+
+  closeModal(e) {
+    if (!_.isUndefined(e)) {
+      e.preventDefault()
+    }
+
+    this.setState({ openDeleteModal: false })
+  }
+
   render() {
     return (
       <div>
@@ -130,11 +162,17 @@ class SubsectionEdit extends React.Component {
           </div>
           <button
             className='button button--sm flex course-edit-delete'
-            onClick={this.deleteSubsection}>
+            onClick={this.openModal}>
             <img
               className='course-image-icon'
               src={Images.delete} />
           </button>
+          <DeleteModal
+            openDeleteModal={this.state.openDeleteModal}
+            closeModal={this.closeModal}
+            deleteFunction={this.deleteSubsection}
+            objectType="subsection"
+          />
         </div>
 
         <Collapse isOpened={this.state.isOpen}>
