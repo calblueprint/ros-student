@@ -18,7 +18,7 @@ class ComponentGraph extends React.Component {
           <div
             key={value.id}
             onClick={_.partial(this.props.callback, value.id)}
-            className='component-icon-container tooltip'
+            className={`component-icon-container ${this.getDisplayedComponentStyle(value.id)} tooltip`}
           >
             <img
               src={this.getComponentSvg(value.component_type)}
@@ -74,6 +74,10 @@ class ComponentGraph extends React.Component {
       default:
         return Images.empty_basic
     }
+  }
+
+  getDisplayedComponentStyle(id) {
+    return this.props.displayedComponentId === id ? 'active' : ''
   }
 
   render() {

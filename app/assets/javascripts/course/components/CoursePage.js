@@ -145,6 +145,7 @@ class CoursePage extends React.Component {
             <div>
               <ComponentGraph
                 subsection={this.state.displayedSubsection}
+                displayedComponentId={this.state.displayedComponent.id}
                 callback={this.displayComponent}
               />
             </div>
