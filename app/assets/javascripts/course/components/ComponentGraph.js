@@ -18,13 +18,14 @@ class ComponentGraph extends React.Component {
           <div
             key={value.id}
             onClick={_.partial(this.props.callback, value.id)}
-            className='component-icon-container'
+            className='component-icon-container tooltip'
           >
             <img
               src={this.getComponentSvg(value.component_type)}
               alt='component vector image'
               className='component-icon'
             />
+            <span className='tooltip tooltiptext bottom'>hello</span>
           </div>
         )
       }))
