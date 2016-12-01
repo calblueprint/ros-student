@@ -36,6 +36,8 @@
 
   &.active {
     background-color: $gray-40;
+    font-weight: $bold;
+    border-left: 5px solid $blue;
   }
 }
 

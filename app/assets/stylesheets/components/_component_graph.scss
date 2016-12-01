@@ -15,6 +15,15 @@
   width: 24px;
   height: 24px;
   margin: 0px;
+  cursor: pointer;
+  &:hover {
+    width: 28px;
+    height: 28px;
+  }
+  &.active {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .component-icon-container {
