@@ -8,14 +8,13 @@ class SlideForm extends React.Component {
 
   constructor(props) {
     super(props)
-
     this.state = {
       componentType: 0,
-      title: '',
-      audioUrl: null,
-      contentUrl: null,
-      audioData: null,
-      imageData: null
+      title: this.props.component.title,
+      audioUrl: this.props.component.audioUrl,
+      contentUrl: this.props.component.contentUrl,
+      audioData: this.props.component.audioData,
+      imageData: this.props.component.imageData
     }
 
     this.updateImageData = this.updateImageData.bind(this)
@@ -48,11 +47,22 @@ class SlideForm extends React.Component {
           <div className='add-component-form-item'><Input className='text-input' type='text' label='Title' value={this.state.title} onChange={this.updateTitle}/></div>
           <div className='add-component-form-item'><ImageUploadInput label="Image" onChange={this.updateImageData}/></div>
           <div className='add-component-form-item'><AudioUploadInput label="Audio" onChange={this.updateAudioData}/></div>
-          <div className='add-component-form-item'><button className='button button--blue create-component-button' onClick={this.submit.bind(this)}>Create</button></div>
+          <div className='add-component-form-item'><button className='button button--blue create-component-button' onClick={this.submit.bind(this)}>Save</button></div>
         </form>
       </div>
     )
   }
+}
+
+SlideForm.defaultProps = {
+  component: {
+    componentType: 0,
+    title: '',
+    audioUrl: null,
+    contentUrl: null,
+    audioData: null,
+    imageData: null,
+  },
 }
 
 export default SlideForm

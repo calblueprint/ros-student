@@ -20,7 +20,7 @@ class SubsectionEdit extends React.Component {
       loaded: false,
       subsection: this.props.subsection,
       components: this.props.subsection.components,
-      openEditModal: false,
+      openAddModal: false,
       isOpen: true,
       openDeleteModal: false,
     }
@@ -114,17 +114,18 @@ class SubsectionEdit extends React.Component {
   }
 
   showNewComponentForm() {
-    this.setState({ openEditModal: true })
+    this.setState({ openAddModal: true })
   }
 
   closeNewComponentForm() {
-    this.setState({ openEditModal: false })
+    this.setState({ openAddModal: false })
   }
 
   onFormCompletion(newComponent) {
     const components = this.state.components
     components.push(newComponent.component)
     this.setState({ components: components })
+    this.closeNewComponentForm()
   }
 
   toggleComponents() {
@@ -178,7 +179,7 @@ class SubsectionEdit extends React.Component {
         <Collapse isOpened={this.state.isOpen}>
           <div>{this.renderComponents()}</div>
           <AddComponentForm
-            openEditModal={this.state.openEditModal}
+            openComponentForm={this.state.openAddModal}
             closeModal={this.closeNewComponentForm}
             subsectionId={this.id}
             callback={this.onFormCompletion} />
