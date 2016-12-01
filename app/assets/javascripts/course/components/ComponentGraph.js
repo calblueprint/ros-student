@@ -25,7 +25,7 @@ class ComponentGraph extends React.Component {
               alt='component vector image'
               className='component-icon'
             />
-            <span className='tooltip tooltiptext bottom'>hello</span>
+            <span className='tooltip tooltiptext bottom'>{this.processTitle(value.title)}</span>
           </div>
         )
       }))
@@ -41,6 +41,26 @@ class ComponentGraph extends React.Component {
     }))
     finalGraph.pop()
     return finalGraph
+  }
+
+  processTitle(title, componentType) {
+    if (title === undefined || title === null) {
+      switch (componentType) {
+        case 0:
+          return 'slide'
+        case 1:
+          return 'form'
+        case 2:
+          return 'multimedia'
+        default:
+          return 'component'
+      }
+    }
+    const maxLength = 50
+    if (title.length <= maxLength) {
+      return title
+    }
+    return title.slice(0, maxLength) + '...'
   }
 
   getComponentSvg(componentType) {

@@ -157,14 +157,14 @@ class CoursePage extends React.Component {
 
             <div className='flex component-next-container'>
               <button
-                className='marginLeft-lg button'
-                onClick={this.displayPrevComponent}>
-                Previous
-              </button>
-              <button
                 className='button'
                 onClick={this.displayNextComponent}>
                 Next
+              </button>
+              <button
+                className='marginRight-lg button'
+                onClick={this.displayPrevComponent}>
+                Previous
               </button>
             </div>
           </div>

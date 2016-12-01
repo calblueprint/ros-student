@@ -1,23 +1,25 @@
 .tooltip {
   position: relative;
-  display: inline-block;
+  // display: inline-block;
 
   .tooltiptext {
     visibility: hidden;
-    width: 120px;
+    min-width: 100px;
+    opacity: 0;
     left: 50%;
-    margin-left: -60px;
     background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
     text-align: center;
-    padding: 5px 0px;
-    border-radius: 6px;
+    padding: 3px 10px;
+    border-radius: 5px;
 
     position: absolute;
     z-index: 1;
+    transform: translateX(-50%); // Centering
+    transition: opacity 0.3s;
 
     &.top {
-      bottom: 100%;
+      bottom: 120%;
       &::after {
         top: 100%;
         border-color: rgba(0, 0, 0, 0.6) transparent transparent transparent;
@@ -25,7 +27,7 @@
     }
 
     &.bottom {
-      top: 100%;
+      top: 120%;
       &::after {
         bottom: 100%;
         border-color: transparent transparent rgba(0, 0, 0, 0.6) transparent;
@@ -35,24 +37,15 @@
     &::after {
       content: " ";
       position: absolute;
-        // &.top {
-        //   bottom: 100%;
-        //   border-color: rgba(0, 0, 0, 0.6) transparent transparent transparent;
-        // }
-        // &.bottom {
-        //   top: 100%;
-        //   border-color: transparent transparent rgba(0, 0, 0, 0.6) transparent;
-        // }
-      // top: 100%;
       left: 50%;
       margin-left: -5px;
       border-width: 5px;
       border-style: solid;
-      // border-color: rgba(0, 0, 0, 0.6) transparent transparent transparent;
     }
   }
 
   &:hover .tooltiptext {
     visibility: visible;
+    opacity: 1;
   }
 }
