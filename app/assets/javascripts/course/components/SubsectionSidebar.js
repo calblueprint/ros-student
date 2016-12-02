@@ -18,6 +18,7 @@ class SubsectionSidebar extends React.Component {
       case 'all-inactive':
         return 'inactive'
       case 'both':
+        /* Add case for this.props.currentSubsection check*/
         return ''
       case 'all-active':
         return ''
@@ -32,7 +33,7 @@ class SubsectionSidebar extends React.Component {
 
   render() {
     return (
-      <div className={`sidebar-subsection-card ${this.getActive()} ${this.getSectionDisplayStyle()}`}>
+      <div className={`sidebar-subsection-card ${this.getActive()} ${this.props.subsectionDisplayType}`}>
         <li onClick={_.partial(this.props.callback, this.props.subsection.id, 0)}>
           {this.props.subsection.title}
         </li>

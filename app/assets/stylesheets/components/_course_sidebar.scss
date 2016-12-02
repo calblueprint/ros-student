@@ -35,14 +35,16 @@
   }
 
   &.active {
-    background-color: $gray-40;
+    // background-color: $dark-gray-10;
+    background: $gray-80;
+    // background: linear-gradient(to right, $gray-40, $gray-80);
     font-weight: $bold;
     border-left: 5px solid $blue;
   }
 
   &.inactive {
     opacity: 0.3;
-    border-right: 3px solid $red;
+    pointer-events: none;
   }
 }
 
