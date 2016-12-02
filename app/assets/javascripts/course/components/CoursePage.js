@@ -11,7 +11,6 @@ import { APIRoutes } from '../../shared/routes'
 
 
 class CoursePage extends React.Component {
-
   constructor(props) {
     super(props)
 
@@ -64,10 +63,10 @@ class CoursePage extends React.Component {
 
   displayNextComponent() {
     this.setState({ nextDisabled: true })
-    var subsection = this.state.displayedSubsection
-    var component = this.state.displayedComponent
+    const subsection = this.state.displayedSubsection
+    const component = this.state.displayedComponent
     if (!this.isLastComponent(subsection, component)) {
-      var index = this.getComponentIndex(subsection, component)
+      const index = this.getComponentIndex(subsection, component)
       this.displayComponent(subsection.components[index + 1].id)
     } else {
       this.displayNextSubsection()
@@ -75,10 +74,10 @@ class CoursePage extends React.Component {
   }
 
   displayPrevComponent() {
-    var subsection = this.state.displayedSubsection
-    var component = this.state.displayedComponent
+    const subsection = this.state.displayedSubsection
+    const component = this.state.displayedComponent
     if (!this.isFirstComponent(subsection, component)) {
-      var index = this.getComponentIndex(subsection, component)
+      const index = this.getComponentIndex(subsection, component)
       this.displayComponent(subsection.components[index - 1].id)
     } else {
       this.displayPrevSubsection()
@@ -86,37 +85,37 @@ class CoursePage extends React.Component {
   }
 
   displayNextSubsection() {
-    var displayedSubsection = this.state.displayedSubsection
-    var subsections = this.getDisplayedSection(displayedSubsection).subsections
+    const displayedSubsection = this.state.displayedSubsection
+    const subsections = this.getDisplayedSection(displayedSubsection).subsections
     function next(element, index) {
       if (index > 0 && displayedSubsection.id == subsections[index - 1].id) {
         return element
       }
     }
 
-    var nextSubsection = subsections.find(next)
+    const nextSubsection = subsections.find(next)
     if (nextSubsection != null) {
       this.displaySubsection(nextSubsection.id, 0)
     }
   }
 
   displayPrevSubsection() {
-    var displayedSubsection = this.state.displayedSubsection
-    var subsections = this.getDisplayedSection(displayedSubsection).subsections
+    const displayedSubsection = this.state.displayedSubsection
+    const subsections = this.getDisplayedSection(displayedSubsection).subsections
     function prev(element, index, array) {
       if (index + 1 < array.length && displayedSubsection.id == subsections[index + 1].id) {
         return element
       }
     }
 
-    var prevSubsection = subsections.find(prev)
+    const prevSubsection = subsections.find(prev)
     if (prevSubsection != null) {
       this.displaySubsection(prevSubsection.id, -1)
     }
   }
 
   getDisplayedSection(displayedSubsection) {
-    var sectionId = displayedSubsection.section_id
+    const sectionId = displayedSubsection.section_id
     function byId(element) {
       return element.id === sectionId
     }
@@ -129,7 +128,7 @@ class CoursePage extends React.Component {
   }
 
   isLastComponent(subsection, component) {
-    var components = subsection.components
+    const components = subsection.components
     return component == components[components.length - 1]
   }
 
@@ -138,10 +137,9 @@ class CoursePage extends React.Component {
   }
 
   nextDisabled() {
-    var component = this.state.displayedComponent
-    var subsection_complete = this.state.displayedSubsection.is_complete
+    const component = this.state.displayedComponent
+    const subsection_complete = this.state.displayedSubsection.is_complete
     if (subsection_complete || (component.component_type == 0 && component.audio_url == null)) {
-      console.log("overriding disabled");
       return false
     } else {
       return this.state.nextDisabled
@@ -151,8 +149,8 @@ class CoursePage extends React.Component {
   enableNextButton() {
     this.setState({ nextDisabled: false })
 
-    var subsection = this.state.displayedSubsection
-    var component = this.state.displayedComponent
+    const subsection = this.state.displayedSubsection
+    const component = this.state.displayedComponent
 
     if (this.isLastComponent(subsection, component)) {
       this.markSubsectionAsComplete(subsection)
@@ -179,7 +177,6 @@ class CoursePage extends React.Component {
     const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
 
     request.get(path, (response) => {
-      console.log(response);
       this.setState({ courseSidebar: response.course_sidebar })
     }, (error) => {
       console.log(error)
