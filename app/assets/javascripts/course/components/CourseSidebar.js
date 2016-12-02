@@ -25,7 +25,6 @@ class CourseSidebar extends React.Component {
 
   renderSections() {
     const currentSectionIndex = this.getCurrentSectionIndex()
-    console.log(currentSectionIndex)
     return _.map(this.props.courseSidebar.sections, (value, index) => {
       return (
         <SectionSidebar

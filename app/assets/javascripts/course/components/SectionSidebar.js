@@ -19,7 +19,6 @@ class SectionSidebar extends React.Component {
   }
 
   getSubsectionDisplayType(index) {
-    console.log(this.getCurrentSubsectionIndex())
     switch (this.props.sectionDisplayType) {
       case 'all-inactive':
         return 'inactive'

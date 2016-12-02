@@ -13,20 +13,6 @@ class SubsectionSidebar extends React.Component {
     super(props)
   }
 
-  getSectionDisplayStyle() {
-    switch (this.props.sectionDisplayType) {
-      case 'all-inactive':
-        return 'inactive'
-      case 'both':
-        /* Add case for this.props.currentSubsection check*/
-        return ''
-      case 'all-active':
-        return ''
-      default:
-        return ''
-    }
-  }
-
   getActive() {
     return this.props.displayedSubsection.id == this.props.subsection.id ? 'active' : ''
   }

@@ -35,9 +35,7 @@
   }
 
   &.active {
-    // background-color: $dark-gray-10;
     background: $gray-80;
-    // background: linear-gradient(to right, $gray-40, $gray-80);
     font-weight: $bold;
     border-left: 5px solid $blue;
   }
