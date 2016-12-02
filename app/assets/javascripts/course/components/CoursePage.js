@@ -174,6 +174,7 @@ class CoursePage extends React.Component {
     }, (error) => {
       console.log(error)
     })
+  }
 
   getCurrentSubsection() {
     /* Returns the subsection that the user has progressed to in the course. */
