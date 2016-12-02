@@ -80,7 +80,7 @@ def create_form_subsection(subsection)
   subsection.components.create component_type: 1,
                                content_url: 'https://docs.google.com/forms/d/e/1FAIpQLSdRvdxwyWVVcYwd1Ga6u7nnuBNi3BP6yOSTwGsYlZBsZ5iYag/viewform',
                                title: FFaker::Education.degree,
-                               form_key: 'water '
+                               form_key: 'water'
 end
 
 def create_video_subsection(subsection)

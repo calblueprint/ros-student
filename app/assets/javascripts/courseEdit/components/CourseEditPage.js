@@ -195,9 +195,9 @@ class CourseEditPage extends React.Component {
           <div>{this.renderSections()}</div>
           <div className='white-box'>
             <button className='button button--white' onClick={this.createSection}>
-              <div className='flex center'>
-                <div className='inline-block'><img className='big-blue-plus' src={Images.big_blue_plus} /></div>
-                <div className='inline-block'>Add new section</div>
+              <div className='flex vertical'>
+                <img className='big-blue-plus' src={Images.big_blue_plus} />
+                <div>Add new section</div>
               </div>
             </button>
           </div>

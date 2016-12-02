@@ -52,8 +52,8 @@ class RailsRoutes {
 
   // Admin
   static courseCreatePath()    { return '/courses' }
-  static courseEditPath(id) { return `/courses/${id}/edit` }
-  static updateAdminPath(id)   { return `/admins/${ReactRoutes.getId(id, 'id')}/edit`}
+  static courseEditPath(id)    { return `/courses/${id}/edit` }
+  static adminProfilePath(id)  { return `/admins/${ReactRoutes.getId(id, 'id')}/profile`}
   static codeCsvListPath()     { return `/admins/code_csvs`}
 }
 

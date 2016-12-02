@@ -29,7 +29,7 @@ class App extends React.Component {
             <div className="dropdown-container">
               <a
                 className='dropdown-link'
-                href={RailsRoutes.updateAdminPath(getUser().id)}>
+                href={RailsRoutes.adminProfilePath(getUser().id)}>
                 Profile
               </a>
               <a

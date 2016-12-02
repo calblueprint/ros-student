@@ -150,9 +150,9 @@ class SectionEdit extends React.Component {
         <Collapse isOpened={this.state.isOpen}>
           <div>{this.renderSubsections()}</div>
           <button className='button button--white edit-subsection' onClick={this.createSubsection}>
-            <div className='flex center'>
-              <div className='inline-block'><img className='course-image-icon margin' src={Images.empty_plus} /></div>
-              <div className='inline-block'>Add new subsection</div>
+            <div className='flex vertical'>
+              <img className='course-image-icon margin' src={Images.empty_plus} />
+              <div>Add new subsection</div>
             </div>
           </button>
         </Collapse>
@@ -160,12 +160,5 @@ class SectionEdit extends React.Component {
     )
   }
 }
-
-// SectionEdit.defaultProps = {
-//   section: {
-//     title: '',
-//     subsections: [],
-//   }
-// }
 
 export default SectionEdit

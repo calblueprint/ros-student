@@ -100,12 +100,12 @@ class SubsectionEdit extends React.Component {
   renderComponents() {
     if (!this.state.subsection.components) {
       return (
-        <div className='edit-component'>No components to show!</div>
+        <div className='course-edit-component'>No components to show!</div>
       )
     } else {
       return this.state.subsection.components.map((value) => {
         return (
-          <div className='edit-component' key={value.id}>
+          <div className='course-edit-component' key={value.id}>
             <ComponentEdit component={value} deleteComponent={this.deleteComponent}/>
           </div>
         )
@@ -182,10 +182,10 @@ class SubsectionEdit extends React.Component {
             closeModal={this.closeNewComponentForm}
             subsectionId={this.id}
             callback={this.onFormCompletion} />
-          <button className='button button--white edit-component' onClick={this.showNewComponentForm}>
-            <div className='flex'>
-              <div className='inline-block'><img className='course-image-icon margin' src={Images.empty_plus} /></div>
-              <div className='inline-block'>Add new component</div>
+          <button className='button button--white' onClick={this.showNewComponentForm}>
+            <div className='flex vertical'>
+              <img className='course-image-icon margin' src={Images.empty_plus} />
+              <p>Add new component</p>
             </div>
           </button>
         </Collapse>
@@ -193,12 +193,5 @@ class SubsectionEdit extends React.Component {
     )
   }
 }
-
-// SubsectionEdit.defaultProps = {
-//   subsection: {
-//     title: '',
-//     components: [],
-//   }
-// }
 
 export default SubsectionEdit

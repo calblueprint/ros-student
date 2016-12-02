@@ -24,20 +24,20 @@ class ComponentEdit extends React.Component {
 
   renderComponentImage() {
     switch(this.state.component.component_type) {
-      case 1:
+      case 0:
         // slide
         return (
-          <div className='inline-block'><img className='course-image-icon margin' src={Images.empty_basic} /></div>
+          <img className='course-image-icon margin' src={Images.empty_basic} />
         )
-      case 2:
+      case 1:
         // form
         return (
-          <div className='inline-block'><img className='course-image-icon margin' src={Images.open_quiz} /></div>
+          <img className='course-image-icon margin' src={Images.open_quiz} />
         )
-      default:
+      case 2:
         // multimedia
         return (
-          <div className='inline-block'><img className='course-image-icon margin' src={Images.open_play} /></div>
+          <img className='course-image-icon margin' src={Images.open_play} />
         )
     }
   }
@@ -62,7 +62,7 @@ class ComponentEdit extends React.Component {
   render() {
     return (
       <div>
-        <div className='flex course-edit-container'>
+        <div className='flex vertical course-edit-container'>
           {this.renderComponentImage()}
           <a target='blank' href={this.state.component.content_url}>{this.state.component.title}</a>
           <button
