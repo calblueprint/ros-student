@@ -2,11 +2,11 @@ import React from 'react'
 
 import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
+import { Images, convertImage } from '../../utils/image_helpers'
 
 import SectionEdit from './SectionEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
-import { Images } from '../../utils/image_helpers'
 
 class CourseEditPage extends React.Component {
   constructor(props) {
@@ -24,8 +24,9 @@ class CourseEditPage extends React.Component {
     this.createSection = this.createSection.bind(this)
     this.deleteSection = this.deleteSection.bind(this)
     this.onBlurName = this.onBlurName.bind(this)
-    this.onImage = this.onImage.bind(this)
     this.onBlurDescription = this.onBlurDescription.bind(this)
+    this.onBlurImage = this.onBlurImage.bind(this)
+    this.setImage = this.setImage.bind(this)
   }
 
   getCourse() {
@@ -61,6 +62,12 @@ class CourseEditPage extends React.Component {
     })
   }
 
+  setCourseValue(field, value) {
+    const course = this.state.course
+    course[field] = value
+    this.setState({ course: course })
+  }
+
   onBlurName(value) {
     const params = {
       course: {
@@ -68,6 +75,7 @@ class CourseEditPage extends React.Component {
       }
     }
     this.updateCourse(params)
+    this.setCourseValue('name', value)
   }
 
   onBlurDescription(value) {
@@ -77,9 +85,10 @@ class CourseEditPage extends React.Component {
       }
     }
     this.updateCourse(params)
+    this.setCourseValue('description', value)
   }
 
-  onImage(value) {
+  onBlurImage(value) {
     const params = {
       course: {
         photo_attributes: {
@@ -88,6 +97,11 @@ class CourseEditPage extends React.Component {
       },
     }
     this.updateCourse(params)
+    this.setCourseValue('imageUrl', value)
+  }
+
+  setImage(e) {
+    convertImage(e, this.onBlurImage)
   }
 
   createSection() {
@@ -115,10 +129,10 @@ class CourseEditPage extends React.Component {
   }
 
   getImageStyle() {
-    const image_url = this.state.course.imageUrl ? this.state.courseOutline.image_url : Images.default_course
+    const imageUrl = this.state.course.imageUrl || Images.default_course
 
     return ({
-      backgroundImage: `url(${image_url})`,
+      backgroundImage: `url(${imageUrl})`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
     })
@@ -169,7 +183,7 @@ class CourseEditPage extends React.Component {
                 id='course-edit-image-upload'
                 className='hidden-input'
                 type='file'
-                onChange={this.onImage}
+                onChange={this.setImage}
                 accept='image/jpg, image/jpeg, image/png'
               />
             </div>
