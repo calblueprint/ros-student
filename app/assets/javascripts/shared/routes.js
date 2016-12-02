@@ -78,6 +78,7 @@ class APIRoutes {
   static getCourses()                { return APIRoutes.createRoute(`courses`) }
   static getSubsectionPath(id)       { return APIRoutes.createRoute(`subsections/${id}`) }
   static getCoursePath(id)           { return APIRoutes.createRoute(`courses/${id}`) }
+  static getSubsectionProgressPath(id) { return APIRoutes.createRoute(`subsections/${id}/subsection_progresses`) }
 
   // Course Edit
   static getEditCoursePath(id)   { return APIRoutes.createRoute(`courses/${id}/edit`) }
@@ -88,6 +89,7 @@ class APIRoutes {
   static createSectionPath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/sections`) }
   static createSubsectionPath(id) { return APIRoutes.createRoute(`admins/sections/${id}/subsections`) }
   static createComponentPath(id) { return APIRoutes.createRoute(`admins/subsections/${id}/components`) }
+  static createSubsectionProgressPath(id) { return APIRoutes.createRoute(`admins/subsections/${id}/subsection_progresses`)}
 
   // Codes
   static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`) }

@@ -14,8 +14,6 @@ class SubsectionProgress < ActiveRecord::Base
   validates :student_id, presence: true
   validates :subsection_id, presence: true
 
-  validates :subsection_id, uniqueness: { scope: :student_id }
-
   belongs_to :student
   belongs_to :subsection
 end

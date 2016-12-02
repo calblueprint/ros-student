@@ -1,9 +1,7 @@
 import React from 'react'
 import AudioComponent from './AudioComponent'
 
-
 class ImageComponent extends React.Component {
-
   render() {
     return (
       <div>
@@ -11,7 +9,7 @@ class ImageComponent extends React.Component {
         <img src={this.props.imgUrl} alt="image not found"/>
         <AudioComponent
           audioUrl={this.props.audioUrl}
-          callback={this.props.callback}
+          callback={this.props.onEnd}
         />
       </div>
     )

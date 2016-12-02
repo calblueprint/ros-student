@@ -1,6 +1,7 @@
 import React from 'react'
-
+import _ from 'underscore'
 import request from '../../shared/requests/request'
+import { getUser } from '../../utils/user_helpers'
 
 import CourseSidebar from './CourseSidebar'
 import ParentComponent from './ParentComponent'
@@ -10,7 +11,6 @@ import { APIRoutes } from '../../shared/routes'
 
 
 class CoursePage extends React.Component {
-
   constructor(props) {
     super(props)
 
@@ -18,7 +18,8 @@ class CoursePage extends React.Component {
       courseSidebar: {},
       displayedSection: {},
       displayedSubsection: {},
-      displayedComponent: {}
+      displayedComponent: {},
+      nextDisabled: true
     }
 
     this.displaySubsection = this.displaySubsection.bind(this)
@@ -28,7 +29,8 @@ class CoursePage extends React.Component {
     this.displayPrevComponent = this.displayPrevComponent.bind(this)
     this.displayPrevSubsection = this.displayPrevSubsection.bind(this)
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
-
+    this.enableNextButton = this.enableNextButton.bind(this)
+    this.getComponentIndex = this.getComponentIndex.bind()
     this.requestSidebar()
   }
 
@@ -60,64 +62,115 @@ class CoursePage extends React.Component {
   }
 
   displayNextComponent() {
-    var components = this.state.displayedSubsection.components;
-
-    var index = components.indexOf(this.state.displayedComponent)
-    if (index + 1 < components.length) {
-      this.displayComponent(components[index + 1].id)
+    this.setState({ nextDisabled: true })
+    const subsection = this.state.displayedSubsection
+    const component = this.state.displayedComponent
+    if (!this.isLastComponent(subsection, component)) {
+      const index = this.getComponentIndex(subsection, component)
+      this.displayComponent(subsection.components[index + 1].id)
     } else {
       this.displayNextSubsection()
     }
   }
 
+  displayPrevComponent() {
+    const subsection = this.state.displayedSubsection
+    const component = this.state.displayedComponent
+    if (!this.isFirstComponent(subsection, component)) {
+      const index = this.getComponentIndex(subsection, component)
+      this.displayComponent(subsection.components[index - 1].id)
+    } else {
+      this.displayPrevSubsection()
+    }
+  }
+
   displayNextSubsection() {
-    var displayedSubsection = this.state.displayedSubsection
-    var subsections = this.getDisplayedSection(displayedSubsection).subsections
+    const displayedSubsection = this.state.displayedSubsection
+    const subsections = this.getDisplayedSection(displayedSubsection).subsections
     function next(element, index) {
       if (index > 0 && displayedSubsection.id == subsections[index - 1].id) {
         return element
       }
     }
 
-    var nextSubsection = subsections.find(next)
+    const nextSubsection = subsections.find(next)
     if (nextSubsection != null) {
       this.displaySubsection(nextSubsection.id, 0)
     }
   }
 
-  displayPrevComponent() {
-    var components = this.state.displayedSubsection.components;
-
-    var index = components.indexOf(this.state.displayedComponent)
-    if (index - 1 >= 0) {
-      this.displayComponent(components[index - 1].id)
-    } else {
-      this.displayPrevSubsection()
-    }
-  }
-
   displayPrevSubsection() {
-    var displayedSubsection = this.state.displayedSubsection
-    var subsections = this.getDisplayedSection(displayedSubsection).subsections
+    const displayedSubsection = this.state.displayedSubsection
+    const subsections = this.getDisplayedSection(displayedSubsection).subsections
     function prev(element, index, array) {
       if (index + 1 < array.length && displayedSubsection.id == subsections[index + 1].id) {
         return element
       }
     }
 
-    var prevSubsection = subsections.find(prev)
+    const prevSubsection = subsections.find(prev)
     if (prevSubsection != null) {
       this.displaySubsection(prevSubsection.id, -1)
     }
   }
 
   getDisplayedSection(displayedSubsection) {
-    var sectionId = displayedSubsection.section_id
+    const sectionId = displayedSubsection.section_id
     function byId(element) {
       return element.id === sectionId
     }
 
     return this.state.courseSidebar.sections.find(byId)
+  }
+
+  getComponentIndex(subsection, component) {
+    return subsection.components.indexOf(component)
+  }
+
+  isLastComponent(subsection, component) {
+    const components = subsection.components
+    return component == components[components.length - 1]
+  }
+
+  isFirstComponent(subsection, component) {
+    return component == subsection.components[0]
+  }
+
+  nextDisabled() {
+    const component = this.state.displayedComponent
+    const subsection_complete = this.state.displayedSubsection.is_complete
+    if (subsection_complete || (component.component_type == 0 && component.audio_url == null)) {
+      return false
+    } else {
+      return this.state.nextDisabled
+    }
+  }
+
+  enableNextButton() {
+    this.setState({ nextDisabled: false })
+
+    const subsection = this.state.displayedSubsection
+    const component = this.state.displayedComponent
+
+    if (this.isLastComponent(subsection, component)) {
+      this.markSubsectionAsComplete(subsection)
+    }
+  }
+
+  markSubsectionAsComplete(subsection) {
+    const path = APIRoutes.createSubsectionProgressPath(subsection.id)
+
+    const componentParams = {
+      subsection_progress: {
+        subsection_id: subsection.id,
+        student_id: getUser().id
+      }
+    }
+
+    request.post(path, componentParams, (response) => {
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   requestSidebar() {
@@ -152,12 +205,13 @@ class CoursePage extends React.Component {
 
             <div className='flex flex-vertical flex-grow center'>
               <div>
-                <ParentComponent component={this.state.displayedComponent}/>
+                <ParentComponent component={this.state.displayedComponent} onEnd={this.enableNextButton}/>
               </div>
             </div>
 
             <div className='flex component-next-container'>
               <button
+                disabled={this.nextDisabled()}
                 className='button'
                 onClick={this.displayNextComponent}>
                 Next
