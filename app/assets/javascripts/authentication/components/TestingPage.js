@@ -7,7 +7,6 @@ import request from '../../shared/requests/request'
 import { Images } from '../../utils/image_helpers'
 
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
-import Dropdown from '../../shared/components/widgets/Dropdown'
 import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
 import AudioUploadInput from '../../shared/components/forms/AudioUploadInput'
 

@@ -39,6 +39,11 @@
     font-weight: $bold;
     border-left: 5px solid $blue;
   }
+
+  &.inactive {
+    opacity: 0.3;
+    border-right: 3px solid $red;
+  }
 }
 
 .sidebar-section-title-container {

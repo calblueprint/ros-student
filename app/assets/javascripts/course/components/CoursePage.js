@@ -15,7 +15,7 @@ class CoursePage extends React.Component {
     super(props)
 
     this.state = {
-      courseSidebar: {},
+      courseSidebar: {}, // Use courseSidebar.current_subsection
       displayedSection: {},
       displayedSubsection: {},
       displayedComponent: {},
@@ -115,7 +115,9 @@ class CoursePage extends React.Component {
   }
 
   getDisplayedSection(displayedSubsection) {
+    /* Returns the section that the user is currently viewing. */
     const sectionId = displayedSubsection.section_id
+
     function byId(element) {
       return element.id === sectionId
     }
@@ -171,6 +173,10 @@ class CoursePage extends React.Component {
     }, (error) => {
       console.log(error)
     })
+
+  getCurrentSubsection() {
+    /* Returns the subsection that the user has progressed to in the course. */
+    return this.state.courseSidebar.current_subsection
   }
 
   requestSidebar() {
@@ -190,6 +196,7 @@ class CoursePage extends React.Component {
           <CourseSidebar
             courseSidebar={this.state.courseSidebar}
             displayedSubsection={this.state.displayedSubsection}
+            currentSubsection={this.getCurrentSubsection()}
             callback={this.displaySubsection}
           />
         </div>

@@ -21,6 +21,8 @@ class SectionSidebar extends React.Component {
           key={value.id}
           subsection={value}
           displayedSubsection={this.props.displayedSubsection}
+          currentSubsection={this.props.currentSubsection}
+          sectionDisplayType={this.props.sectionDisplayType}
           callback={this.props.callback}
         />
       )
