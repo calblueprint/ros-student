@@ -69,7 +69,7 @@ class ComponentGraph extends React.Component {
         return Images.empty_basic
       case 1: // Form
         return Images.open_quiz
-      case 2: // multimedia
+      case 2: // Multimedia
         return Images.open_play
       default:
         return Images.empty_basic

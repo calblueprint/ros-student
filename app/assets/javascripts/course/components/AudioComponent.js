@@ -19,8 +19,6 @@ class AudioComponent extends React.Component {
   renderAudio() {
     return (
       <div>
-        <p>This is an audio component</p>
-        <a href={this.props.audioUrl}>audio link</a>
         <ReactPlayer
           url={this.props.audioUrl}
           playing={this.state.playing}

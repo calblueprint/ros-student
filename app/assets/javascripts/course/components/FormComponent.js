@@ -4,12 +4,12 @@ import Input from '../../shared/components/forms/Input'
 class FormComponent extends React.Component {
   render() {
     return (
-      <div>
-        <p>This is an form component</p>
-        <a href={this.props.formUrl}>form url</a>
-        <iframe src={this.props.formUrl} width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
-        <Input name='keyword'/>
-        <button onClick={this.props.onEnd}>Enable Next Button</button>
+      <div className='form-component-container'>
+        <div className='form'><iframe src={this.props.formUrl} width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe></div>
+        <div className='keyword-container'>
+          <Input name='keyword'/>
+          <div className='button-container'><button className='button' onClick={this.props.onEnd}>Submit Keyword</button></div>
+        </div>
       </div>
     )
   }

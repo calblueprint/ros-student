@@ -1,6 +1,10 @@
 @import 'base';
 
-@import '../components/_course_sidebar.scss';
-@import '../components/_component_graph';
+@import '../components/course_sidebar';
+@import '../components/component_graph';
+@import '../components/form_component';
+@import '../components/image_component';
+@import '../components/parent_component';
+@import '../components/video_component';
 
 @import '../pages/course_page';

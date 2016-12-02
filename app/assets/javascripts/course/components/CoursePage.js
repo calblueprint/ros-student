@@ -219,9 +219,7 @@ class CoursePage extends React.Component {
             </div>
 
             <div className='flex flex-vertical flex-grow center'>
-              <div>
-                <ParentComponent component={this.state.displayedComponent} onEnd={this.enableNextButton}/>
-              </div>
+              <ParentComponent component={this.state.displayedComponent} subsection={this.state.displayedSubsection} onEnd={this.enableNextButton}/>
             </div>
 
             <div className='flex component-next-container'>

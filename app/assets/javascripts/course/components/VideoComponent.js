@@ -25,8 +25,7 @@ class VideoComponent extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>This is a video component</p>
+      <div className='video-component-container'>
         <YouTube
           videoId={getYoutubeKey(this.props.videoUrl)}
           onReady={this.onReady}
