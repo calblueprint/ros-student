@@ -7,6 +7,10 @@
 .card-column {
   width: 100%;
   padding: 0px 40px 40px 0px;
+
+  &.disabled {
+    cursor: default;
+  }
 }
 
 .card-img-container {

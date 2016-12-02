@@ -29,11 +29,10 @@ class StudentCourseCard extends React.Component {
   }
 
   render() {
-    console.log(this.props.course)
-
+    const disabled = this.props.course.is_enrolled ? '' : 'disabled'
     return (
       <Link
-        className='card-column'
+        className={`card-column ${disabled}`}
         onClick={this.disableLink.bind(this)}
         to={this.props.route}>
         <div className="card" style={this.getCourseCardStyle()}>
