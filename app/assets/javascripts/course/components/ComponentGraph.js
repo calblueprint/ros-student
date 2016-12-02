@@ -18,13 +18,14 @@ class ComponentGraph extends React.Component {
           <div
             key={value.id}
             onClick={_.partial(this.props.callback, value.id)}
-            className='component-icon-container'
+            className={`component-icon-container ${this.getDisplayedComponentStyle(value.id)} tooltip`}
           >
             <img
               src={this.getComponentSvg(value.component_type)}
               alt='component vector image'
               className='component-icon'
             />
+            <span className='tooltip tooltiptext bottom'>{this.processTitle(value.title)}</span>
           </div>
         )
       }))
@@ -42,6 +43,26 @@ class ComponentGraph extends React.Component {
     return finalGraph
   }
 
+  processTitle(title, componentType) {
+    if (title === undefined || title === null) {
+      switch (componentType) {
+        case 0:
+          return 'slide'
+        case 1:
+          return 'form'
+        case 2:
+          return 'multimedia'
+        default:
+          return 'component'
+      }
+    }
+    const maxLength = 50
+    if (title.length <= maxLength) {
+      return title
+    }
+    return title.slice(0, maxLength) + '...'
+  }
+
   getComponentSvg(componentType) {
     switch (componentType) {
       case 0: // Slide
@@ -53,6 +74,10 @@ class ComponentGraph extends React.Component {
       default:
         return Images.empty_basic
     }
+  }
+
+  getDisplayedComponentStyle(id) {
+    return this.props.displayedComponentId === id ? 'active' : ''
   }
 
   render() {
