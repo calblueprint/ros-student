@@ -7,7 +7,6 @@ function readJSONFile(e, callback) {
 
   const reader = new FileReader()
   reader.onload = function(event) {
-    console.log(event.target.result)
     callback(event.target.result)
   }
   reader.readAsText(files[0])
