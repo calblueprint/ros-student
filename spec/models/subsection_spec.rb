@@ -23,9 +23,9 @@ RSpec.describe Subsection, type: :model do
       expect(subsection.valid?).to be false
     end
 
-    it 'has no course id' do
-      subsection.section_id = nil
-      expect(subsection.valid?).to be false
-    end
+    # it 'has no section id' do
+    #   subsection.section_id = nil
+    #   expect(subsection.valid?).to be false
+    # end
   end
 end

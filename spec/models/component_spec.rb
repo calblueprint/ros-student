@@ -17,7 +17,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Component, type: :model do
+describe Component, type: :model do
   describe 'should not be valid' do
     describe 'if it has' do
       let!(:component) { build :component }
@@ -28,10 +28,10 @@ RSpec.describe Component, type: :model do
         expect(component.valid?).to be false
       end
 
-      it 'no subsection_id' do
-        component.subsection_id = nil
-        expect(component.valid?).to be false
-      end
+      # it 'no subsection_id' do
+      #   component.subsection_id = nil
+      #   expect(component.valid?).to be false
+      # end
     end
   end
 
