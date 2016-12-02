@@ -9,13 +9,13 @@ class QuizForm extends React.Component {
     super(props)
 
     this.state = {
-      componentType: 2,
-      title: '',
-      formKey: '',
-      audioUrl: null,
-      contentUrl: '',
-      audioData: null,
-      imageData: null
+      componentType: 1,
+      title: this.props.component.title,
+      audioUrl: this.props.component.audioUrl,
+      contentUrl: this.props.component.contentUrl,
+      audioData: this.props.component.audioData,
+      imageData: this.props.component.imageData,
+      formKey: this.props.component.formKey
     }
 
     this.updateContentURL = this.updateContentURL.bind(this)
@@ -54,11 +54,23 @@ class QuizForm extends React.Component {
           <div className='add-component-form-item'><Input type='text' label='Google Forms URL' value={this.state.contentUrl} onChange={this.updateContentURL} /></div>
           <div className='add-component-form-item'><AudioUploadInput label="Audio" onChange={this.updateAudioData} /></div>
           <div className='add-component-form-item'><Input type='text' label='Quiz Key' value={this.state.formKey} onChange={this.updateQuizKey}/></div>
-          <div className='add-component-form-item'><button className='button button--blue create-component-button' onClick={this.submit.bind(this)}>Create</button></div>
+          <div className='add-component-form-item'><button className='button button--blue create-component-button' onClick={this.submit.bind(this)}>Save</button></div>
         </form>
       </div>
     )
   }
+}
+
+QuizForm.defaultProps = {
+  component: {
+    componentType: 0,
+    title: '',
+    audioUrl: null,
+    contentUrl: null,
+    audioData: null,
+    imageData: null,
+    formKey: '',
+  },
 }
 
 export default QuizForm

@@ -12,21 +12,23 @@ import { getInputToParams } from '../../utils/form_helpers'
 import { Images } from '../../utils/image_helpers'
 import ComponentForm from './ComponentForm'
 
-class AddComponentForm extends ComponentForm {
+class EditComponentForm extends ComponentForm {
   constructor(props) {
     super(props)
+    this.state = {
+      component: this.props.component,
+    }
   }
 
   handleComponent(componentJson) {
-    const path = APIRoutes.createComponentPath(this.props.subsectionId)
+    const path = APIRoutes.editComponentPath(this.props.component.id)
 
     const componentParams = super.getComponentParams(componentJson)
-
+    
     if (componentParams.component.image_data != null) {
       componentParams.component.photo_attributes = { image_data: componentParams.component.image_data }
     }
-
-    request.post(path, componentParams, (response) => {
+    request.update(path, componentParams, (response) => {
       this.props.callback(response)
     }, (error) => {
       console.log(error)
@@ -38,4 +40,4 @@ class AddComponentForm extends ComponentForm {
   }
 }
 
-export default AddComponentForm
+export default EditComponentForm

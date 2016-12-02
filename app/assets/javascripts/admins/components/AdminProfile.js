@@ -84,7 +84,7 @@ class AdminProfile extends React.Component {
 
         <UpdateAdminModal
           id={this.props.id}
-          openEditModal={this.state.openEditModal}
+          openComponentForm={this.state.openEditModal}
           closeModal={this.closeModal} />
       </div>
     )
