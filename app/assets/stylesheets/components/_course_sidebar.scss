@@ -35,9 +35,14 @@
   }
 
   &.active {
-    background-color: $gray-40;
+    background: $gray-80;
     font-weight: $bold;
     border-left: 5px solid $blue;
+  }
+
+  &.inactive {
+    opacity: 0.3;
+    pointer-events: none;
   }
 }
 

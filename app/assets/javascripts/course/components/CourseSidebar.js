@@ -9,20 +9,44 @@ import { getUser } from '../../utils/user_helpers'
 import { RailsRoutes, ReactRoutes } from '../../shared/routes'
 import { APIRoutes } from '../../shared/routes'
 import SectionSidebar from './SectionSidebar'
-import Dropdown from '../../shared/components/widgets/Dropdown'
 
 class CourseSidebar extends React.Component {
+
+  getCurrentSectionIndex() {
+    var sectionIndex = -1
+    this.props.courseSidebar.sections.forEach((section, index) => {
+      var subsectionIds = section.subsections.map((subsection) => subsection.id)
+      if (_.contains(subsectionIds, this.props.currentSubsection.id)) {
+        sectionIndex = index
+      }
+    })
+    return sectionIndex
+  }
+
   renderSections() {
-    return this.props.courseSidebar.sections.map((value) => {
+    const currentSectionIndex = this.getCurrentSectionIndex()
+    return _.map(this.props.courseSidebar.sections, (value, index) => {
       return (
         <SectionSidebar
           key={value.id}
           section={value}
           displayedSubsection={this.props.displayedSubsection}
+          currentSubsection={this.props.currentSubsection}
+          sectionDisplayType={this.getSectionDisplayType(currentSectionIndex, index)}
           callback={this.props.callback}
         />
       )
     })
+  }
+
+  getSectionDisplayType(currentSectionIndex, sectionIndex) {
+    if (sectionIndex > currentSectionIndex) {
+      return 'all-inactive'
+    } else if (sectionIndex === currentSectionIndex) {
+      return 'both'
+    } else {
+      return 'all-active'
+    }
   }
 
   renderInfo() {

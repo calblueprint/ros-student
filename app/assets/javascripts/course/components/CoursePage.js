@@ -15,7 +15,7 @@ class CoursePage extends React.Component {
     super(props)
 
     this.state = {
-      courseSidebar: {},
+      courseSidebar: {}, // Use courseSidebar.current_subsection
       displayedSection: {},
       displayedSubsection: {},
       displayedComponent: {},
@@ -29,8 +29,9 @@ class CoursePage extends React.Component {
     this.displayPrevComponent = this.displayPrevComponent.bind(this)
     this.displayPrevSubsection = this.displayPrevSubsection.bind(this)
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
+    this.getComponentIndex = this.getComponentIndex.bind(this)
     this.enableNextButton = this.enableNextButton.bind(this)
-    this.getComponentIndex = this.getComponentIndex.bind()
+
     this.requestSidebar()
   }
 
@@ -115,7 +116,9 @@ class CoursePage extends React.Component {
   }
 
   getDisplayedSection(displayedSubsection) {
+    /* Returns the section that the user is currently viewing. */
     const sectionId = displayedSubsection.section_id
+
     function byId(element) {
       return element.id === sectionId
     }
@@ -171,6 +174,60 @@ class CoursePage extends React.Component {
     }, (error) => {
       console.log(error)
     })
+
+  getCurrentSubsection() {
+    /* Returns the subsection that the user has progressed to in the course. */
+    return this.state.courseSidebar.current_subsection
+  }
+
+  getComponentIndex(subsection, component) {
+    return subsection.components.indexOf(component)
+  }
+
+  isLastComponent(subsection, component) {
+    const components = subsection.components
+    return component == components[components.length - 1]
+  }
+
+  isFirstComponent(subsection, component) {
+    return component == subsection.components[0]
+  }
+
+  nextDisabled() {
+    const component = this.state.displayedComponent
+    const subsection_complete = this.state.displayedSubsection.is_complete
+    if (subsection_complete || (component.component_type == 0 && component.audio_url == null)) {
+      return false
+    } else {
+      return this.state.nextDisabled
+    }
+  }
+
+  enableNextButton() {
+    this.setState({ nextDisabled: false })
+
+    const subsection = this.state.displayedSubsection
+    const component = this.state.displayedComponent
+
+    if (this.isLastComponent(subsection, component)) {
+      this.markSubsectionAsComplete(subsection)
+    }
+  }
+
+  markSubsectionAsComplete(subsection) {
+    const path = APIRoutes.createSubsectionProgressPath(subsection.id)
+    const componentParams = {
+      subsection_progress: {
+        subsection_id: subsection.id,
+        student_id: getUser().id
+      }
+    }
+
+    request.post(path, componentParams, (response) => {
+      // this.displayNextSubsection()
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   requestSidebar() {
@@ -190,6 +247,7 @@ class CoursePage extends React.Component {
           <CourseSidebar
             courseSidebar={this.state.courseSidebar}
             displayedSubsection={this.state.displayedSubsection}
+            currentSubsection={this.getCurrentSubsection()}
             callback={this.displaySubsection}
           />
         </div>

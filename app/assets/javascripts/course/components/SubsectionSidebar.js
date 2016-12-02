@@ -19,7 +19,7 @@ class SubsectionSidebar extends React.Component {
 
   render() {
     return (
-      <div className={`sidebar-subsection-card ${this.getActive()}`}>
+      <div className={`sidebar-subsection-card ${this.getActive()} ${this.props.subsectionDisplayType}`}>
         <li onClick={_.partial(this.props.callback, this.props.subsection.id, 0)}>
           {this.props.subsection.title}
         </li>
