@@ -10,6 +10,7 @@ class Input extends React.Component {
         value={this.props.value}
         name={this.props.name}
         onChange={this.props.onChange}
+        placeholder={this.props.placeholder}
       />
     )
   }
@@ -26,13 +27,14 @@ class Input extends React.Component {
 }
 
 Input.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   autoComplete: PropTypes.bool,
   error: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.string,
+  placeholder: PropTypes.string
 }
 
 Input.defaultProps = {

@@ -27,8 +27,7 @@ class ParentComponent extends React.Component {
         return (
           <div className='outer-component-container'>
             <FormComponent
-              audioUrl={this.props.component.audio_url}
-              formUrl={this.props.component.content_url}
+              component={this.props.component}
               onEnd={this.props.onEnd}
             />
           </div>

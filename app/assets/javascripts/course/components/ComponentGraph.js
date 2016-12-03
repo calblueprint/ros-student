@@ -33,10 +33,10 @@ class ComponentGraph extends React.Component {
   }
 
   injectGraphLines(components) {
-    var finalGraph = _.flatten(components.map((component) => {
+    var finalGraph = _.flatten(components.map((component, index) => {
       return [
         component,
-        <div className='component-graph-line'></div>
+        <div key={`${index}-line`} className='component-graph-line'></div>
       ]
     }))
     finalGraph.pop()
