@@ -59,7 +59,6 @@ Rails.application.routes.draw do
           end
         end
       end
-
       resources :code_csvs, only: [:create, :index] do
         member do
           get :download

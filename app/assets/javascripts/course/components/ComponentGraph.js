@@ -33,10 +33,10 @@ class ComponentGraph extends React.Component {
   }
 
   injectGraphLines(components) {
-    var finalGraph = _.flatten(components.map((component) => {
+    var finalGraph = _.flatten(components.map((component, index) => {
       return [
         component,
-        <div className='component-graph-line'></div>
+        <div key={`${index}-line`} className='component-graph-line'></div>
       ]
     }))
     finalGraph.pop()
@@ -69,7 +69,7 @@ class ComponentGraph extends React.Component {
         return Images.empty_basic
       case 1: // Form
         return Images.open_quiz
-      case 2: // multimedia
+      case 2: // Multimedia
         return Images.open_play
       default:
         return Images.empty_basic

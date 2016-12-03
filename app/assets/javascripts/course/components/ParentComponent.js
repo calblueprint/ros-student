@@ -15,7 +15,7 @@ class ParentComponent extends React.Component {
     switch(this.props.component.component_type) {
       case 0:
         return (
-          <div>
+          <div className='outer-component-container'>
             <ImageComponent
               audioUrl={this.props.component.audio_url}
               imgUrl={this.props.component.content_url}
@@ -25,17 +25,16 @@ class ParentComponent extends React.Component {
         )
       case 1:
         return (
-          <div>
+          <div className='outer-component-container'>
             <FormComponent
-              audioUrl={this.props.component.audio_url}
-              formUrl={this.props.component.content_url}
+              component={this.props.component}
               onEnd={this.props.onEnd}
             />
           </div>
         )
       case 2:
         return (
-          <div>
+          <div className='outer-component-container'>
             <VideoComponent
               videoUrl={this.props.component.content_url}
               onEnd={this.props.onEnd}
@@ -47,7 +46,8 @@ class ParentComponent extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='parent-component-container flex flex-vertical flex-grow'>
+        <h1 className='subsection-title-container'>{this.props.component.title}</h1>
         {this.renderComponent()}
       </div>
     )

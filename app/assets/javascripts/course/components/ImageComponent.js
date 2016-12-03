@@ -4,8 +4,7 @@ import AudioComponent from './AudioComponent'
 class ImageComponent extends React.Component {
   render() {
     return (
-      <div>
-        <p>This is a image component</p>
+      <div className='image-component-container'>
         <img src={this.props.imgUrl} alt="image not found"/>
         <AudioComponent
           audioUrl={this.props.audioUrl}
