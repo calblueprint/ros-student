@@ -15,9 +15,6 @@ import ComponentForm from './ComponentForm'
 class EditComponentForm extends ComponentForm {
   constructor(props) {
     super(props)
-    this.state = {
-      component: this.props.component,
-    }
   }
 
   handleComponent(componentJson) {
@@ -25,9 +22,6 @@ class EditComponentForm extends ComponentForm {
 
     const componentParams = super.getComponentParams(componentJson)
     
-    if (componentParams.component.image_data != null) {
-      componentParams.component.photo_attributes = { image_data: componentParams.component.image_data }
-    }
     request.update(path, componentParams, (response) => {
       this.props.callback(response)
     }, (error) => {
