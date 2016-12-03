@@ -17,26 +17,14 @@ class SectionOutline extends React.Component {
     super(props)
     this.state = {
       isOpen: true,
-      dropdownImgState: 180,
     }
 
     this.toggleSubsections = this.toggleSubsections.bind(this)
   }
 
-  getDropdownStyle() {
-    return ({
-      transform: `rotate(${this.state.dropdownImgState}deg)`
-    })
-  }
-
   toggleSubsections() {
     const isOpen = this.state.isOpen
-    const dropdownImgState = (this.state.dropdownImgState + 180) % 360
-
-    this.setState({
-      isOpen: !isOpen,
-      dropdownImgState: dropdownImgState,
-    })
+    this.setState({ isOpen: !isOpen })
   }
 
   renderSubsections() {
@@ -46,8 +34,9 @@ class SectionOutline extends React.Component {
   }
 
   render() {
+    const arrow = this.state.isOpen ? '' : 'rotate'
     return (
-      <div className="section-outline-container" onClick={this.toggleSubsections}>
+      <div className="section-outline-container">
         <div className="section-outline-header flex">
           <h2 className="section-outline-header-title">{this.props.section.title}</h2>
           <div className="section-outline-header-right flex">
@@ -56,9 +45,9 @@ class SectionOutline extends React.Component {
               progress={this.props.section.progress}
             />
             <img
-              className="section-outline-dropdown"
+              className={`section-outline-dropdown collapse ${arrow}`}
               src={Images.dropdown_arrow}
-              style={this.getDropdownStyle()}
+              onClick={this.toggleSubsections}
             />
           </div>
         </div>

@@ -135,6 +135,7 @@ class CourseEditPage extends React.Component {
       backgroundImage: `url(${imageUrl})`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
+      backgroundSize: 'cover',
     })
   }
 
