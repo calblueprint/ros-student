@@ -10,10 +10,10 @@ class MultimediaForm extends React.Component {
     this.state = {
       componentType: 2,
       title: this.props.component.title,
-      audioUrl: this.props.component.audioUrl,
-      contentUrl: this.props.component.contentUrl,
-      audioData: this.props.component.audioData,
-      imageData: this.props.component.imageData
+      audioUrl: this.props.component.audio_url,
+      contentUrl: this.props.component.content_url,
+      audioData: this.props.component.audio_data,
+      imageData: this.props.component.image_data
     }
 
     this.updateContentURL = this.updateContentURL.bind(this)

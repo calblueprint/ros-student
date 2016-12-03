@@ -21,10 +21,6 @@ class AddComponentForm extends ComponentForm {
     const path = APIRoutes.createComponentPath(this.props.subsectionId)
     const componentParams = super.getComponentParams(componentJson)
 
-    if (componentParams.component.image_data != null) {
-      componentParams.component.photo_attributes = { image_data: componentParams.component.image_data }
-    }
-
     request.post(path, componentParams, (response) => {
       this.props.callback(response)
     }, (error) => {

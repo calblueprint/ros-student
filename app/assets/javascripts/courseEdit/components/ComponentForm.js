@@ -15,17 +15,10 @@ class ComponentForm extends React.Component {
 
   constructor(props) {
     super(props)
-
     this.state = {
-      formType: 0,
       isModalOpen: false,
-      activeForm: 0,
-      componentType: this.props.component.componentType,
-      title: this.props.component.title,
-      audioUrl: this.props.component.audioUrl,
-      contentUrl: this.props.component.contentUrl,
-      audioData: this.props.component.audioData,
-      imageData: this.props.component.imageData,
+      activeForm: this.props.component.component_type,
+      formType: this.props.component.component_type,
     }
   }
 
@@ -38,10 +31,13 @@ class ComponentForm extends React.Component {
       contentUrl: { value: componentJson.contentUrl },
       subsectionId: { value: this.props.subsectionId },
       audioData: { value: componentJson.audioData },
-      imageData: { value: componentJson.imageData }
     }
     const componentParams = { component: getInputToParams(form) }
 
+    if (componentJson.imageData != null) {
+      componentParams.component.photo_attributes = { image_data: componentJson.imageData }
+    }
+    
     return componentParams
   }
 
@@ -53,15 +49,15 @@ class ComponentForm extends React.Component {
     switch(this.state.formType) {
       case 0:
         return (
-          <SlideForm callback={this.handleComponent.bind(this)} />
+          <SlideForm callback={this.handleComponent.bind(this)} component={this.props.component} />
         )
       case 1:
         return (
-          <QuizForm callback={this.handleComponent.bind(this)} />
+          <QuizForm callback={this.handleComponent.bind(this)} component={this.props.component} />
         )
       case 2:
         return (
-          <MultimediaForm callback={this.handleComponent.bind(this)} />
+          <MultimediaForm callback={this.handleComponent.bind(this)} component={this.props.component} />
         )
     }
   }
@@ -100,14 +96,15 @@ class ComponentForm extends React.Component {
 }
 
 ComponentForm.defaultProps = {
+  activeForm: 0,
+  formType: 0,
   component: {
-    componentType: 0,
+    component_type: 0,
     title: '',
-    audioUrl: null,
-    contentUrl: null,
-    audioData: null,
-    imageData: null,
-  },
+    audio_url: null,
+    content_url: null,
+    form_key: '',
+  }
 }
 
 export default ComponentForm

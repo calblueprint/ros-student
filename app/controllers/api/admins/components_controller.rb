@@ -46,7 +46,6 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
       :title,
       :form_key,
       :audio,
-      :audio_url,
       :content_url,
       :position,
       :subsection_id,

@@ -11,10 +11,10 @@ class SlideForm extends React.Component {
     this.state = {
       componentType: 0,
       title: this.props.component.title,
-      audioUrl: this.props.component.audioUrl,
-      contentUrl: this.props.component.contentUrl,
-      audioData: this.props.component.audioData,
-      imageData: this.props.component.imageData
+      audioUrl: this.props.component.audio_url,
+      contentUrl: this.props.component.content_url,
+      audioData: this.props.component.audio_url,
+      imageData: this.props.component.image_data
     }
 
     this.updateImageData = this.updateImageData.bind(this)
@@ -23,7 +23,7 @@ class SlideForm extends React.Component {
   }
 
   updateImageData(image) {
-    this.setState({ imageData: image })
+    this.setState({ imageData: image, contentUrl: image })
   }
 
   updateAudioData(audio) {
@@ -40,12 +40,14 @@ class SlideForm extends React.Component {
   }
 
   render() {
+    console.log(this.props.component)
     return (
       <div className='add-component-body-text'>
         <div>Slide Component</div>
         <form>
           <div className='add-component-form-item'><Input className='text-input' type='text' label='Title' value={this.state.title} onChange={this.updateTitle}/></div>
           <div className='add-component-form-item'><ImageUploadInput label="Image" onChange={this.updateImageData}/></div>
+          <div className='component-image-container'><img className='component-image' src={this.state.contentUrl} /></div>
           <div className='add-component-form-item'><AudioUploadInput label="Audio" onChange={this.updateAudioData}/></div>
           <div className='add-component-form-item'><button className='button button--blue create-component-button' onClick={this.submit.bind(this)}>Save</button></div>
         </form>

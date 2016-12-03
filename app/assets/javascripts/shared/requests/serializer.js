@@ -19,8 +19,9 @@ const SERIALIZER = {
   audioUrl: 'audio_url',
   contentUrl: 'content_url',
   subsectionId: 'subsection_id',
+
+  // Audio
   audioData: 'audio_data',
-  imageData: 'image_data',
 
   // Photo
   imageData: 'image_data',
