@@ -36,13 +36,6 @@ class SubsectionEdit extends React.Component {
     this.closeModal = this.closeModal.bind(this)
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   console.log(this.state.loaded)
-  //   if (!this.state.loaded) {
-  //     this.setState({ subsection: nextProps.subsection, loaded: true })
-  //   }
-  // }
-
   updateTitle(params) {
     const path = APIRoutes.editSubsectionPath(this.state.subsection.id)
     request.update(path, params, (response) => {
@@ -53,13 +46,6 @@ class SubsectionEdit extends React.Component {
       console.log(error)
     })
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   console.log(this.state.loaded)
-  //   if (!this.state.loaded) {
-  //     this.setState({ subsection: nextProps.subsection, loaded: true })
-  //   }
-  // }
 
   updateTitle(params) {
     const path = APIRoutes.editSubsectionPath(this.state.subsection.id)
@@ -149,7 +135,7 @@ class SubsectionEdit extends React.Component {
   render() {
     return (
       <div>
-        <div className='flex vertical course-edit-container h3'>
+        <div className='flex vertical h3'>
           <img
             className='course-image-icon margin'
             src={Images.dropdown_arrow}
@@ -159,10 +145,11 @@ class SubsectionEdit extends React.Component {
             <InlineEditInput
               value={this.state.subsection.title}
               onBlur={this.onBlurTitle}
+              buttonStyle='button button--sm button--white'
             />
           </div>
           <button
-            className='button button--sm flex course-edit-delete'
+            className='button button--sm button--white course-edit-delete'
             onClick={this.openModal}>
             <img
               className='course-image-icon'

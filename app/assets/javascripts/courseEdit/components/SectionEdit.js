@@ -122,7 +122,7 @@ class SectionEdit extends React.Component {
   render() {
     return (
       <div className='white-box'>
-        <div className='flex vertical h2 course-edit-container'>
+        <div className='flex vertical h2'>
           <img
             className='course-image-icon margin'
             src={Images.dropdown_arrow}
@@ -131,20 +131,15 @@ class SectionEdit extends React.Component {
           <InlineEditInput
             value={this.state.section.title}
             onBlur={this.onBlurTitle}
+            buttonStyle='button button--sm button--white'
           />
           <button
-            className='button button--sm flex course-edit-delete'
+            className='button button--sm button--white course-edit-delete'
             onClick={this.openModal}>
             <img
               className='course-image-icon'
               src={Images.delete} />
           </button>
-          <DeleteModal
-            openDeleteModal={this.state.openDeleteModal}
-            closeModal={this.closeModal}
-            deleteFunction={this.deleteSection}
-            objectType="section"
-          />
         </div>
 
         <Collapse isOpened={this.state.isOpen}>
@@ -156,6 +151,13 @@ class SectionEdit extends React.Component {
             </div>
           </button>
         </Collapse>
+
+        <DeleteModal
+          openDeleteModal={this.state.openDeleteModal}
+          closeModal={this.closeModal}
+          deleteFunction={this.deleteSection}
+          objectType="section"
+        />
       </div>
     )
   }
