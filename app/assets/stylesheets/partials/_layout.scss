@@ -11,6 +11,7 @@ img {
   object-fit: cover;
 }
 
+$xxxs: 3px;
 $xxs: 6px;
 $xs: 12px;
 $sm: 16px;
@@ -81,7 +82,13 @@ $space-list: $xxs, $xs, $sm, $md, $lg, $xl, $xxl;
     flex: 1;
   }
 
+  &-child-end {
+    align-self: flex-end;
+  }
 
+  &-parent-start {
+    align-items: flex-start;
+  }
 }
 
 .container {

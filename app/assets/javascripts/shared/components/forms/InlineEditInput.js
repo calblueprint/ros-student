@@ -40,7 +40,7 @@ class InlineEditInput extends React.Component {
     return (
       <div className='flex vertical inline-edit-container'>
         <span className='inline-edit-value marginRight-sm'>{this.props.value}</span>
-        <button className='button button--sm' onClick={this.enableEdit}>
+        <button className={this.props.buttonStyle} onClick={this.enableEdit}>
           <img className='inline-edit-icon' src={Images.edit} />
         </button>
       </div>
@@ -65,6 +65,7 @@ InlineEditInput.propTypes = {
 
 InlineEditInput.defaultProps = {
   value: '',
+  buttonStyle: 'button button--sm'
 }
 
 export default InlineEditInput

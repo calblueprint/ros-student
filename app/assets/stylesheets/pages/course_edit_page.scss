@@ -19,11 +19,6 @@
   margin: 10px 0px;
 }
 
-.course-edit-component {
-  padding: 10px;
-  margin: 10px 0px;
-}
-
 .white-box {
   background-color: $white;
   padding: 20px;
@@ -32,18 +27,12 @@
 }
 
 .course-image-icon {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
 
   &.margin {
     margin-right: 15px;
   }
-}
-
-.component-edit-buttons {
-  text-align: right;
-  position: absolute;
-  right: 0;
 }
 
 .big-blue-plus {
@@ -90,6 +79,17 @@
   width: 80%;
 }
 
-.course-edit-container {
-  position: relative;
+.course-edit-component-container {
+  padding: $xs;
+  margin: 10px 0px;
+}
+
+.course-edit-component:hover {
+  background-color: $snow;
+  cursor: pointer;
+}
+
+.course-edit-delete {
+  align-self: flex-end;
+  margin-left: auto;
 }

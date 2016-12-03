@@ -9,13 +9,16 @@ import DeleteModal from './DeleteModal'
 class ComponentEdit extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       component: this.props.component,
       openDeleteModal: false,
       openEditModal: false,
     }
+
     this.id = this.props.component.id
     this.subsectionId = this.props.component.subsectionId
+
     this.deleteComponent = this.deleteComponent.bind(this)
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
@@ -81,41 +84,36 @@ class ComponentEdit extends React.Component {
   render() {
     return (
       <div>
-        <div className='flex vertical course-edit-container'>
-          {this.renderComponentImage()}
-          <a target='blank' href={this.state.component.content_url}>{this.state.component.title}</a>
-
-          <div className='component-edit-buttons'>
-            <button
-              className='button button--sm flex'
-              onClick={this.showEditComponentForm}>
-              <img
-                className='course-image-icon'
-                src={Images.edit} />
-            </button>
+        <div className='course-edit-component-container'>
+          <div
+            className='flex vertical course-edit-component'
+            onClick={this.showEditComponentForm}
+          >
+            {this.renderComponentImage()}
+            <p>{this.state.component.title}</p>
 
             <button
-              className='button button--sm flex'
+              className='button button--sm button--white course-edit-delete'
               onClick={this.openModal}>
               <img
                 className='course-image-icon'
                 src={Images.delete} />
             </button>
           </div>
-
-          <EditComponentForm
-            openComponentForm={this.state.openEditModal}
-            closeModal={this.closeEditComponentForm}
-            subsectionId={this.subsectionId}
-            component={this.state.component}
-            callback={this.onFormCompletion} />
-          <DeleteModal
-            openDeleteModal={this.state.openDeleteModal}
-            closeModal={this.closeModal}
-            deleteFunction={this.deleteComponent}
-            objectType="component"
-          />
         </div>
+
+        <EditComponentForm
+          openComponentForm={this.state.openEditModal}
+          closeModal={this.closeEditComponentForm}
+          subsectionId={this.subsectionId}
+          component={this.state.component}
+          callback={this.onFormCompletion} />
+        <DeleteModal
+          openDeleteModal={this.state.openDeleteModal}
+          closeModal={this.closeModal}
+          deleteFunction={this.deleteComponent}
+          objectType="component"
+        />
       </div>
     )
   }

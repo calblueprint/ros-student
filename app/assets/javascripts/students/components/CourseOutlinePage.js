@@ -46,6 +46,7 @@ class CourseOutlinePage extends React.Component {
       backgroundImage: `url(${image_url})`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
+      backgroundSize: 'cover',
     })
   }
 
