@@ -87,6 +87,7 @@ Rails.application.routes.draw do
       resources :sections, only: [] do
         resources :subsections, only: [:show] do
           resources :components, only: [:show]
+          resources :subsection_progresses, only: [:show]
         end
       end
     end
