@@ -133,11 +133,13 @@ class SubsectionEdit extends React.Component {
   }
 
   render() {
+    const arrow = this.state.isOpen ? '' : 'rotate'
+
     return (
       <div>
         <div className='flex vertical h3'>
           <img
-            className='course-image-icon margin'
+            className={`course-image-icon margin collapse ${arrow}`}
             src={Images.dropdown_arrow}
             onClick={this.toggleComponents}
           />

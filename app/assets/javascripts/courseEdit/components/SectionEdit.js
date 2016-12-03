@@ -31,12 +31,6 @@ class SectionEdit extends React.Component {
     this.closeModal = this.closeModal.bind(this)
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (!this.state.loaded) {
-  //     this.setState({ section: nextProps.section, loaded: true })
-  //   }
-  // }
-
   createSubsection() {
     const path = APIRoutes.createSubsectionPath(this.id)
 
@@ -120,11 +114,13 @@ class SectionEdit extends React.Component {
   }
 
   render() {
+    const arrow = this.state.isOpen ? '' : 'rotate'
+
     return (
       <div className='white-box'>
         <div className='flex vertical h2'>
           <img
-            className='course-image-icon margin'
+            className={`course-image-icon margin collapse ${arrow}`}
             src={Images.dropdown_arrow}
             onClick={this.toggleSubsections}
           />

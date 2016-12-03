@@ -1,0 +1,8 @@
+.collapse {
+  transition: 100ms;
+  cursor: pointer;
+
+  &.rotate {
+    transform: rotate(180deg);
+  }
+}
