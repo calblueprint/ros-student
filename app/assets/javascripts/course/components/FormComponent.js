@@ -22,7 +22,6 @@ class FormComponent extends React.Component {
   }
 
   formSubmit() {
-    console.log(this.props.component.form_key);
     if (this.state.formCode == this.props.component.form_key) {
       this.props.onEnd()
       this.setState({
@@ -36,7 +35,6 @@ class FormComponent extends React.Component {
   }
 
   render() {
-    console.log(this.props.component);
     return (
       <div className='form-component-container'>
         <div className='form'><iframe src={this.props.component.content_url} width="100%" height="100%" frameBorder="0" marginHeight="0" marginWidth="0">Loading...</iframe></div>

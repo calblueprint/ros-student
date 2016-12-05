@@ -20,15 +20,50 @@ class ComponentEdit extends React.Component {
     this.subsectionId = this.props.component.subsectionId
 
     this.deleteComponent = this.deleteComponent.bind(this)
-    this.openModal = this.openModal.bind(this)
-    this.closeModal = this.closeModal.bind(this)
-    this.showEditComponentForm = this.showEditComponentForm.bind(this)
-    this.closeEditComponentForm = this.closeEditComponentForm.bind(this)
+    this.openDeleteModal = this.openDeleteModal.bind(this)
+    this.closeDeleteModal = this.closeDeleteModal.bind(this)
+    this.openEditModal = this.openEditModal.bind(this)
+    this.closeEditModal = this.closeEditModal.bind(this)
     this.onFormCompletion = this.onFormCompletion.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ component: nextProps.component })
+  }
+
+  deleteComponent() {
+    this.props.deleteComponent(this.id)
+  }
+
+  openDeleteModal() {
+    this.setState({ openDeleteModal: true })
+  }
+
+  closeDeleteModal(e) {
+    if (!_.isUndefined(e)) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
+    this.setState({ openDeleteModal: false })
+  }
+
+  openEditModal() {
+    this.setState({ openEditModal: true })
+  }
+
+  closeEditModal(e) {
+    if (!_.isUndefined(e)) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
+    this.setState({ openEditModal: false })
+  }
+
+  onFormCompletion(editedComponent) {
+    this.setState({ component: editedComponent.component })
+    this.closeEditModal()
   }
 
   renderComponentImage() {
@@ -51,68 +86,41 @@ class ComponentEdit extends React.Component {
     }
   }
 
-  deleteComponent() {
-    this.props.deleteComponent(this.id)
-  }
-
-  openModal(e) {
-    e.preventDefault()
-    this.setState({ openDeleteModal: true })
-  }
-
-  closeModal(e) {
-    if (!_.isUndefined(e)) {
-      e.preventDefault()
-    }
-
-    this.setState({ openDeleteModal: false })
-  }
-
-  showEditComponentForm() {
-    this.setState({ openEditModal: true })
-  }
-
-  closeEditComponentForm() {
-    this.setState({ openEditModal: false })
-  }
-
-  onFormCompletion(editedComponent) {
-    this.setState({ component: editedComponent.component })
-    this.closeEditComponentForm()
-  }
-
   render() {
     return (
       <div>
         <div className='course-edit-component-container'>
           <div
             className='flex vertical course-edit-component'
-            onClick={this.showEditComponentForm}
+            onClick={this.openEditModal}
           >
             {this.renderComponentImage()}
             <p>{this.state.component.title}</p>
 
             <button
               className='button button--sm button--white course-edit-delete'
-              onClick={this.openModal}>
+              onClick={this.openDeleteModal}>
               <img
                 className='course-image-icon'
-                src={Images.delete} />
+                src={Images.delete}
+              />
             </button>
           </div>
         </div>
 
         <EditComponentForm
           openComponentForm={this.state.openEditModal}
-          closeModal={this.closeEditComponentForm}
+          closeModal={this.closeEditModal}
           subsectionId={this.subsectionId}
           component={this.state.component}
-          callback={this.onFormCompletion} />
+          callback={this.onFormCompletion}
+        />
+
         <DeleteModal
           openDeleteModal={this.state.openDeleteModal}
-          closeModal={this.closeModal}
+          closeModal={this.closeDeleteModal}
           deleteFunction={this.deleteComponent}
-          objectType="component"
+          objectType='component'
         />
       </div>
     )

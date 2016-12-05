@@ -17,7 +17,6 @@ class ComponentForm extends React.Component {
     super(props)
     this.state = {
       isModalOpen: false,
-      activeForm: this.props.component.component_type,
       formType: this.props.component.component_type,
     }
   }
@@ -35,14 +34,20 @@ class ComponentForm extends React.Component {
     const componentParams = { component: getInputToParams(form) }
 
     if (componentJson.imageData != null) {
-      componentParams.component.photo_attributes = { image_data: componentJson.imageData }
+      componentParams.component.photo_attributes = {
+        image_data: componentJson.imageData
+      }
     }
-    
+
     return componentParams
   }
 
   handleClick(index) {
-    this.setState({ activeForm: index, formType: index })
+    this.setState({ formType: index })
+  }
+
+  isActiveStyle(index) {
+    return this.state.formType == index ? ' active' : ''
   }
 
   renderForm() {
@@ -70,7 +75,9 @@ class ComponentForm extends React.Component {
           onHide={this.props.closeModal}
         >
           <Modal.Header>
-            <Modal.Title className='update-user-header'>Component Form</Modal.Title>
+            <Modal.Title className='update-user-header'>
+              Component Form
+            </Modal.Title>
             <img
               onClick={this.props.closeModal}
               className='modal-close'
@@ -80,9 +87,21 @@ class ComponentForm extends React.Component {
             <div className='flex flex-vertical'>
               <div className='add-component-body-text'>Type</div>
               <div className='flex flex-horizontal button-container'>
-                <button className={`component-button ${this.state.activeForm == 0 ? ' active' : ''}`} onClick={this.handleClick.bind(this, 0)}>Slide</button>
-                <button className={`component-button ${this.state.activeForm == 1 ? ' active' : ''}`} onClick={this.handleClick.bind(this, 1)}>Quiz</button>
-                <button className={`component-button ${this.state.activeForm == 2 ? ' active' : ''}`} onClick={this.handleClick.bind(this, 2)}>Multimedia</button>
+                <button
+                  className={`component-button ${this.isActiveStyle(0)}`}
+                  onClick={this.handleClick.bind(this, 0)}>
+                  Slide
+                </button>
+                <button
+                  className={`component-button ${this.isActiveStyle(1)}`}
+                  onClick={this.handleClick.bind(this, 1)}>
+                  Quiz
+                </button>
+                <button
+                  className={`component-button ${this.isActiveStyle(2)}`}
+                  onClick={this.handleClick.bind(this, 2)}>
+                  Multimedia
+                </button>
               </div>
               <div className='component-form'>{this.renderForm()}</div>
             </div>
@@ -96,7 +115,6 @@ class ComponentForm extends React.Component {
 }
 
 ComponentForm.defaultProps = {
-  activeForm: 0,
   formType: 0,
   component: {
     component_type: 0,

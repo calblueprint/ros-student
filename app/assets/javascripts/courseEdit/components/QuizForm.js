@@ -24,10 +24,6 @@ class QuizForm extends React.Component {
     this.updateQuizKey = this.updateQuizKey.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-  }
-
   updateContentURL(e) {
     this.setState({contentUrl: e.target.value})
   }
@@ -54,11 +50,37 @@ class QuizForm extends React.Component {
       <div className='add-component-body-text'>
         <div>Quiz Component</div>
         <form>
-          <div className='add-component-form-item'><Input className='text-input' type='text' label='Title' value={this.state.title} onChange={this.updateTitle}/></div>
-          <div className='add-component-form-item'><Input type='text' label='Google Forms URL' value={this.state.contentUrl} onChange={this.updateContentURL} /></div>
-          <div className='add-component-form-item'><Input type='text' label='Quiz Key' value={this.state.formKey} onChange={this.updateQuizKey}/></div>
-          <div className='add-component-form-item'><AudioUploadInput label="Audio" onChange={this.updateAudioData} /></div>
-          <div className='add-component-form-item'><button className='button button--blue create-component-button' onClick={this.submit.bind(this)}>Save</button></div>
+          <div className='add-component-form-item'>
+            <Input
+              className='text-input'
+              label='Title'
+              value={this.state.title}
+              onChange={this.updateTitle}/>
+          </div>
+          <div className='add-component-form-item'>
+            <Input
+              label='Google Forms URL'
+              value={this.state.contentUrl}
+              onChange={this.updateContentURL} />
+          </div>
+          <div className='add-component-form-item'>
+            <Input
+              label='Quiz Key'
+              value={this.state.formKey}
+              onChange={this.updateQuizKey}/>
+          </div>
+          <div className='add-component-form-item'>
+            <AudioUploadInput
+              label="Audio"
+              onChange={this.updateAudioData} />
+          </div>
+          <div className='add-component-form-item'>
+            <button
+              className='button button--blue create-component-button'
+              onClick={this.submit.bind(this)}>
+              Save
+            </button>
+          </div>
         </form>
       </div>
     )
