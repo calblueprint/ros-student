@@ -1,3 +1,5 @@
+import _ from 'underscore'
+
 /*
   Grabs the key from youtube url.
   Input: https://youtu.be/z0newb4cJ6A
@@ -11,11 +13,12 @@ function getYoutubeKey(videoUrl) {
 }
 
 function formatComponent(component) {
-  const formattedComponent = component
-  switch(formatComponent.component_type) {
+  const formattedComponent = _.extend({}, component)
+
+  switch(formattedComponent.component_type) {
     case 0:
-      formattedComponent['image_data'] = formattedComponent['content_url']
-      delete formattedComponent['content_url']
+      formattedComponent['image_data'] = component['content_url']
+      formattedComponent['content_url'] = ''
   }
 
   return formattedComponent

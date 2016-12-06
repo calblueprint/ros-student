@@ -10,10 +10,9 @@ class MultimediaForm extends React.Component {
     this.state = {
       componentType: 2,
       title: this.props.component.title,
-      audioUrl: this.props.component.audio_url,
       contentUrl: this.props.component.content_url,
-      audioData: this.props.component.audio_data,
-      imageData: this.props.component.image_data
+      audioUrl: this.props.component.audio_url,
+      audioData: '',
     }
 
     this.updateContentURL = this.updateContentURL.bind(this)
@@ -34,6 +33,8 @@ class MultimediaForm extends React.Component {
   }
 
   render() {
+    const audio = this.state.audioData || this.state.audioUrl
+
     return (
       <div className='add-component-body-text'>
         <div>Multimedia Component</div>
@@ -44,12 +45,24 @@ class MultimediaForm extends React.Component {
               value={this.state.title}
               onChange={this.updateTitle}/>
           </div>
+
           <div className='add-component-form-item'>
             <Input
               label='Youtube Url'
               value={this.state.contentUrl}
               onChange={this.updateContentURL} />
           </div>
+
+          <div className='add-component-form-item'  >
+            <audio src={audio} controls preload />
+          </div>
+
+          <div className='add-component-form-item'>
+            <AudioUploadInput
+              label="Audio"
+              onChange={this.updateAudioData}/>
+          </div>
+
           <div className='add-component-form-item'>
             <button
               className='button button--blue create-component-button'

@@ -137,21 +137,25 @@ function getFormFields(error) {
 }
 
 function getInputToParams(formFields) {
+  return camelToSnake(_.mapObject(formFields, (val, key) => val.value))
+}
+
+function camelToSnake(object) {
   return _.reduce(formFields, (result, val, key) => {
-    key = SERIALIZER[key] || key;
-    result[key] = val.value;
+    result[SERIALIZER[key] || key] = val;
     return result;
   }, {})
 }
 
 export {
+  camelToSnake,
   getCSRFFieldName,
   getCSRFToken,
-  getInputToParams,
   getErrors,
   getFlashes,
-  resetFlash,
   getFormErrors,
   getFormFields,
+  getInputToParams,
   mapErrorToFormFields,
+  resetFlash,
 }

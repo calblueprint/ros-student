@@ -8,7 +8,7 @@ import Form from '../../shared/components/forms/Form'
 import SlideForm from './SlideForm'
 import QuizForm from './QuizForm'
 import MultimediaForm from './MultimediaForm'
-import { getInputToParams } from '../../utils/form_helpers'
+import { camelToSnake } from '../../utils/form_helpers'
 import { Images } from '../../utils/image_helpers'
 import { formatComponent } from '../../utils/component_helpers'
 
@@ -23,16 +23,7 @@ class ComponentForm extends React.Component {
   }
 
   getComponentParams(componentJson) {
-    const form = {
-      componentType: { value: componentJson.componentType },
-      title: { value: componentJson.title },
-      formKey: { value: componentJson.formKey },
-      audioUrl: { value: componentJson.audioUrl },
-      contentUrl: { value: componentJson.contentUrl },
-      subsectionId: { value: this.props.subsectionId },
-      audioData: { value: componentJson.audioData },
-    }
-    const componentParams = { component: getInputToParams(form) }
+    const componentParams = { component: camelToSnake(componentJson) }
 
     if (componentJson.imageData != null) {
       componentParams.component.photo_attributes = {
@@ -48,7 +39,7 @@ class ComponentForm extends React.Component {
   }
 
   isActiveStyle(index) {
-    return this.state.formType == index ? ' active' : ''
+    return this.state.formType == index ? 'active' : ''
   }
 
   renderForm() {
@@ -57,15 +48,22 @@ class ComponentForm extends React.Component {
         return (
           <SlideForm
             callback={this.handleComponent.bind(this)}
-            component={this.props.component} />
+            component={formatComponent(this.props.component)}
+          />
         )
       case 1:
         return (
-          <QuizForm callback={this.handleComponent.bind(this)} component={this.props.component} />
+          <QuizForm
+            callback={this.handleComponent.bind(this)}
+            component={formatComponent(this.props.component)}
+          />
         )
       case 2:
         return (
-          <MultimediaForm callback={this.handleComponent.bind(this)} component={this.props.component} />
+          <MultimediaForm
+            callback={this.handleComponent.bind(this)}
+            component={formatComponent(this.props.component)}
+          />
         )
     }
   }
