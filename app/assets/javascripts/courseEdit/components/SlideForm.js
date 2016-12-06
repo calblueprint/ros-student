@@ -23,7 +23,7 @@ class SlideForm extends React.Component {
   }
 
   updateImageData(image) {
-    this.setState({ imageData: image, contentUrl: image })
+    this.setState({ imageData: image })
   }
 
   updateAudioData(audio) {
@@ -56,7 +56,7 @@ class SlideForm extends React.Component {
               onChange={this.updateImageData}/>
           </div>
           <div className='component-image-container'>
-            <img className='component-image' src={this.state.contentUrl} />
+            <img className='component-image' src={this.state.imageData} />
           </div>
           <div className='add-component-form-item'>
             <AudioUploadInput

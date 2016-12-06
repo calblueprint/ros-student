@@ -11,7 +11,14 @@ function getYoutubeKey(videoUrl) {
 }
 
 function formatComponent(component) {
+  const formattedComponent = component
+  switch(formatComponent.component_type) {
+    case 0:
+      formattedComponent['image_data'] = formattedComponent['content_url']
+      delete formattedComponent['content_url']
+  }
 
+  return formattedComponent
 }
 
 export {

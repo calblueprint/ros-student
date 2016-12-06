@@ -10,6 +10,7 @@ import QuizForm from './QuizForm'
 import MultimediaForm from './MultimediaForm'
 import { getInputToParams } from '../../utils/form_helpers'
 import { Images } from '../../utils/image_helpers'
+import { formatComponent } from '../../utils/component_helpers'
 
 class ComponentForm extends React.Component {
 
@@ -54,7 +55,9 @@ class ComponentForm extends React.Component {
     switch(this.state.formType) {
       case 0:
         return (
-          <SlideForm callback={this.handleComponent.bind(this)} component={this.props.component} />
+          <SlideForm
+            callback={this.handleComponent.bind(this)}
+            component={this.props.component} />
         )
       case 1:
         return (
