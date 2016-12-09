@@ -39,7 +39,8 @@ class SectionSidebar extends React.Component {
           subsection={value}
           displayedSubsection={this.props.displayedSubsection}
           currentSubsection={this.props.currentSubsection}
-          subsectionDisplayType={this.getSubsectionDisplayType(index)}
+          completedSubsectionIds={this.props.completedSubsectionIds}
+          subsectionDisplayType={_.bind(this.getSubsectionDisplayType, this, index)}
           callback={this.props.callback}
         />
       )

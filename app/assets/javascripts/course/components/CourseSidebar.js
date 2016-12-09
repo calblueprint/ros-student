@@ -32,6 +32,7 @@ class CourseSidebar extends React.Component {
           section={value}
           displayedSubsection={this.props.displayedSubsection}
           currentSubsection={this.props.currentSubsection}
+          completedSubsectionIds={this.props.completedSubsectionIds}
           sectionDisplayType={this.getSectionDisplayType(currentSectionIndex, index)}
           callback={this.props.callback}
         />
