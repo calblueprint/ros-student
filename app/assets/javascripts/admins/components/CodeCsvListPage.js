@@ -71,7 +71,7 @@ class CodeCsvListPage extends React.Component {
   render() {
     return (
       <div className='flex center'>
-        <div className='container code-csv-container'>
+        <div className='container marginTop-xxl '>
 
           <Modal
             show={this.state.isModalOpen}
