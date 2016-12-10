@@ -8,7 +8,10 @@ class StudentListTab extends React.Component {
   render() {
     return (
       <div>
-        <UserList route={APIRoutes.getStudentsPath()} />
+        <UserList
+          editRoute={APIRoutes.getStudentsPath}
+          deleteRoute={APIRoutes.deleteStudentPath}
+        />
       </div>
     )
   }

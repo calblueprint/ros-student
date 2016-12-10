@@ -3,13 +3,12 @@ import Collapse from 'react-collapse'
 import _ from 'underscore'
 
 import { APIRoutes } from '../../shared/routes'
+import { Images } from '../../utils/image_helpers'
 import request from '../../shared/requests/request'
 
 import SubsectionEdit from './SubsectionEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
-import { Images } from '../../utils/image_helpers'
-
-import DeleteModal from './DeleteModal'
+import DeleteModal from '../../shared/components/widgets/DeleteModal'
 
 class SectionEdit extends React.Component {
   constructor(props) {

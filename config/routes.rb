@@ -15,13 +15,12 @@ Rails.application.routes.draw do
   # Admin Flow
   get '/admins/:id/profile', to: 'pages#dashboard'
   get '/admins/courses/tools', to: 'pages#dashboard'
+  get '/admins/code_csvs', to: 'pages#dashboard'
+  get '/admins/users', to: 'pages#dashboard'
 
   # Student Flow
   get '/students/:id/profile', to: 'pages#dashboard'
   get '/courses/:id/outline', to: 'pages#dashboard'
-
-  # Admin Flow
-  get '/admins/code_csvs', to: 'pages#dashboard'
 
   # Course flow
   resources :courses, only: [:show]
@@ -88,8 +87,8 @@ Rails.application.routes.draw do
     end
 
     scope module: 'admins' do
-      resources :admins, only: [:create, :delete, :update, :index]
-      resources :students, only: [:index]
+      resources :admins, only: [:create, :destroy, :update, :index]
+      resources :students, only: [:index, :destroy]
     end
 
     resources :courses, only: [:show, :index, :edit], shallow: true do

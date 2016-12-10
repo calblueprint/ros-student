@@ -4,4 +4,12 @@ class Api::Admins::StudentsController < Api::Admins::BaseController
   def index
     render json: @students, each_serializer: StudentListSerializer, root: false
   end
+
+  def destroy
+    if @student.destroy
+      render json: @student, serializer: StudentSerializer, root: false
+    else
+      error_response(@student)
+    end
+  end
 end

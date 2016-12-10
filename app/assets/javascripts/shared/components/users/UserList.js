@@ -10,8 +10,11 @@ class UserList extends React.Component {
     super(props)
 
     this.state = {
-      users: []
+      users: [],
+
     }
+
+    this.onDeleteUser = this.onDeleteUser.bind(this)
   }
 
   componentDidMount() {
@@ -19,16 +22,15 @@ class UserList extends React.Component {
   }
 
   getUsers() {
-    request.get(this.props.route, (response) => {
+    request.get(this.props.editRoute(), (response) => {
       this.setState({ users: response })
     }, (error) => {
       console.log(error)
     })
   }
 
-  deleteUser(id, e) {
-    e.preventDefault()
-    console.log('tried to delete')
+  onDeleteUser(user) {
+    console.log('deleted')
   }
 
   render() {
@@ -39,7 +41,8 @@ class UserList extends React.Component {
             <UserRow
               key={user.id}
               user={user}
-              onDelete={_.partial(this.deleteUser, user.id)}
+              deleteRoute={this.props.deleteRoute}
+              onDeleteUser={this.onDeleteUser}
               onRowClick={this.props.onRowClick}
             />
           )
@@ -50,7 +53,8 @@ class UserList extends React.Component {
 }
 
 UserList.propTypes = {
-  route: PropTypes.string.isRequired,
+  editRoute: PropTypes.func.isRequired,
+  deleteRoute: PropTypes.func.isRequired,
   onRowClick: PropTypes.func,
 }
 

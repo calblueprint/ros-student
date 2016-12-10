@@ -20,6 +20,7 @@ import AdminDashboardPage from './components/AdminDashboardPage'
 import AdminProfilePage from './components/AdminProfilePage'
 import CodeCsvListPage from './components/CodeCsvListPage'
 import ExportImportPage from './components/ExportImportPage'
+import UsersListPage from './components/UsersListPage'
 
 import Navbar from '../shared/components/widgets/Navbar'
 
@@ -56,6 +57,11 @@ class App extends React.Component {
             to={ReactRoutes.courseToolsPath()}>
             <div className="nav-element marginRight-xl right">Tools</div>
           </Link>
+
+          <Link
+            to={ReactRoutes.usersListPath()}>
+            <div className="nav-element marginRight-xl right">Users</div>
+          </Link>
         </Navbar>
         {this.props.children}
       </div>
@@ -65,11 +71,15 @@ class App extends React.Component {
 
 render((
   <Router history={browserHistory}>
-    <Route path={ReactRoutes.rootPath()} component={App}  >
+    <Route path={ReactRoutes.rootPath()} component={App}>
       <Route path={ReactRoutes.dashboardPath()} name='AdminDashboardPage' component={AdminDashboardPage} />
       <Route path={ReactRoutes.adminProfilePath()} name='AdminProfilePage' component={AdminProfilePage} />
       <Route path={ReactRoutes.codeCsvListPath()} name='CodeCsvListPage' component={CodeCsvListPage} />
+<<<<<<< HEAD
       <Route path={ReactRoutes.courseToolsPath()} name='ExportImportPage' component={ExportImportPage} />
+=======
+      <Route path={ReactRoutes.usersListPath()} name=  'UsersListPath' component={UsersListPage} />
+>>>>>>> Adding new user tab, allow admins to delete admin and students
       <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />
     </Route>
   </Router>

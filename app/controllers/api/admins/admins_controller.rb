@@ -23,6 +23,14 @@ class Api::Admins::AdminsController < Api::Admins::BaseController
     end
   end
 
+  def destroy
+    if @admin.destroy
+      render json: @admin, serializer: AdminSerializer, root: false
+    else
+      error_response(@admin)
+    end
+  end
+
   private
 
   def admin_params

@@ -2,8 +2,6 @@ import _ from 'underscore'
 import React, { PropTypes } from 'react'
 import Modal from 'react-bootstrap-modal'
 
-import Input from '../../shared/components/forms/Input'
-
 class DeleteModal extends React.Component {
   constructor(props) {
     super(props)

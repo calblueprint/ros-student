@@ -29,7 +29,9 @@ class AdminListTab extends React.Component {
     return (
       <div>
         <button onClick={this.openModal}>Create Admin</button>
-        <UserList route={APIRoutes.getAdminsPath()} />
+        <UserList
+          editRoute={APIRoutes.getAdminsPath}
+          deleteRoute={APIRoutes.deleteAdminPath}/>
 
         <AddAdminModal
           isModalOpen={this.state.isModalOpen}

@@ -10,7 +10,7 @@ import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import AddComponentForm from './AddComponentForm'
 import { Images } from '../../utils/image_helpers'
 
-import DeleteModal from './DeleteModal'
+import DeleteModal from '../../shared/components/widgets/DeleteModal'
 
 class SubsectionEdit extends React.Component {
   constructor(props) {
