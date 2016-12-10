@@ -141,7 +141,7 @@ function getInputToParams(formFields) {
 }
 
 function camelToSnake(object) {
-  return _.reduce(formFields, (result, val, key) => {
+  return _.reduce(object, (result, val, key) => {
     result[SERIALIZER[key] || key] = val;
     return result;
   }, {})
