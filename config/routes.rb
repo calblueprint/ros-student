@@ -81,6 +81,7 @@ Rails.application.routes.draw do
 
     scope module: 'admins' do
       resources :admins, only: [:create, :delete, :update, :index]
+      resources :students, only: [:index]
     end
 
     resources :courses, only: [:show, :index, :edit], shallow: true do

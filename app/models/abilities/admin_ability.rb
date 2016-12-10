@@ -15,6 +15,10 @@ class AdminAbility
       :create,
     ], Admin
 
+    can [
+      :index,
+    ], Student
+
     can :manage, Course
     can :manage, Section
     can :manage, Subsection

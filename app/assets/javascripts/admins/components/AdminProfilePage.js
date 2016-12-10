@@ -2,6 +2,7 @@ import React from 'react'
 
 import AdminProfile from './AdminProfile'
 import AdminListTab from './AdminListTab'
+import StudentListTab from './StudentListTab'
 
 class AdminProfilePage extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class AdminProfilePage extends React.Component {
           <div className='marginTop-sm admin-list-container'>
             <AdminListTab />
           </div>
+          <StudentListTab />
         </div>
       </div>
     )

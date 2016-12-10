@@ -12,7 +12,9 @@ class UserList extends React.Component {
     this.state = {
       users: []
     }
+  }
 
+  componentDidMount() {
     this.getUsers()
   }
 
@@ -38,6 +40,7 @@ class UserList extends React.Component {
               key={user.id}
               user={user}
               onDelete={_.partial(this.deleteUser, user.id)}
+              onRowClick={this.props.onRowClick}
             />
           )
         })}
@@ -48,6 +51,7 @@ class UserList extends React.Component {
 
 UserList.propTypes = {
   route: PropTypes.string.isRequired,
+  onRowClick: PropTypes.func,
 }
 
 export default UserList
