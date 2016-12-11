@@ -18,8 +18,7 @@ class CoursePage extends React.Component {
       courseSidebar: {}, // Use courseSidebar.current_subsection
       displayedSection: {},
       displayedSubsection: {},
-      currentSubsection: {},
-      completedSubsectionIds: new Set(),
+      activeSubsectionIds: new Set(),
       displayedComponent: {},
       nextDisabled: true
     }
@@ -105,7 +104,7 @@ class CoursePage extends React.Component {
     if (nextSubsection != null) {
       this.displaySubsection(nextSubsection.id, 0)
       if (!this.isSubsectionCompleted(nextSubsection)) {
-        this.state.completedSubsectionIds.add(nextSubsection.id)
+        this.state.activeSubsectionIds.add(nextSubsection.id)
       }
     } else {
       this.displayNextSection()
@@ -168,11 +167,7 @@ class CoursePage extends React.Component {
       section.subsections[subsectionIndex]
 
     if (!this.isSubsectionCompleted(subsection)) {
-<<<<<<< aa46b0cd38a497a2a3d88d25f68814e022c7787c
-=======
-      // this.setState({ currentSubsection: subsection })
->>>>>>> Refactors active checks to completedSubsectionIds set.
-      this.state.completedSubsectionIds.add(nextSubsection.id)
+      this.state.activeSubsectionIds.add(nextSubsection.id)
     }
     this.displaySubsection(subsection.id, componentIndex)
   }
@@ -234,30 +229,34 @@ class CoursePage extends React.Component {
     }
 
     request.post(path, componentParams, (response) => {
-      this.state.completedSubsectionIds.add(subsection.id)
+      this.state.activeSubsectionIds.add(subsection.id)
     }, (error) => {
       console.log(error)
     })
   }
 
   isSubsectionCompleted(subsection) {
-    return this.state.completedSubsectionIds.has(subsection.id)
+    return this.state.activeSubsectionIds.has(subsection.id)
   }
 
   requestSidebar() {
     const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
+    var add = true
 
     request.get(path, (response) => {
       this.setState({ courseSidebar: response.course_sidebar })
-      this.setState({ currentSubsection: response.course_sidebar.current_subsection })
+      /* Adds all active subsections to set */
       response.course_sidebar.sections.forEach((section) => {
         section.subsections.forEach((subsection) => {
-          if (subsection.is_complete) {
-            this.state.completedSubsectionIds.add(subsection.id)
+          if (add) {
+            this.state.activeSubsectionIds.add(subsection.id)
+          }
+          if (!subsection.is_complete) {
+            add = false
           }
         })
       })
-      this.setState({ completedSubsectionIds: this.state.completedSubsectionIds })
+      this.setState({ activeSubsectionIds: this.state.activeSubsectionIds })
     }, (error) => {
       console.log(error)
     })
@@ -270,8 +269,7 @@ class CoursePage extends React.Component {
           <CourseSidebar
             courseSidebar={this.state.courseSidebar}
             displayedSubsection={this.state.displayedSubsection}
-            currentSubsection={this.state.currentSubsection}
-            completedSubsectionIds={this.state.completedSubsectionIds}
+            activeSubsectionIds={this.state.activeSubsectionIds}
             callback={this.displaySubsection}
           />
         </div>

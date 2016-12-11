@@ -14,23 +14,6 @@ class SectionSidebar extends React.Component {
     super(props)
   }
 
-  getCurrentSubsectionIndex() {
-    return this.props.section.subsections.map((subsection) => subsection.id).indexOf(this.props.currentSubsection.id)
-  }
-
-  getSubsectionDisplayType(index) {
-    switch (this.props.sectionDisplayType) {
-      case 'all-inactive':
-        return 'inactive'
-      case 'both':
-        return index > this.getCurrentSubsectionIndex() ? 'inactive' : ''
-      case 'all-active':
-        return ''
-      default:
-        return ''
-    }
-  }
-
   renderSubsections() {
     return this.props.section.subsections.map((value, index) => {
       return (
@@ -38,9 +21,7 @@ class SectionSidebar extends React.Component {
           key={value.id}
           subsection={value}
           displayedSubsection={this.props.displayedSubsection}
-          currentSubsection={this.props.currentSubsection}
-          completedSubsectionIds={this.props.completedSubsectionIds}
-          subsectionDisplayType={_.bind(this.getSubsectionDisplayType, this, index)}
+          activeSubsectionIds={this.props.activeSubsectionIds}
           callback={this.props.callback}
         />
       )

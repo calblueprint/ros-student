@@ -18,9 +18,7 @@ class SubsectionSidebar extends React.Component {
   }
 
   getInactive() {
-    console.log(this.props.completedSubsectionIds)
-    return this.props.completedSubsectionIds.has(this.props.subsection.id) ? '' : 'inactive'
-    // return this.props.completedSubsectionIds.is_complete ? '' : 'inactive'
+    return this.props.activeSubsectionIds.has(this.props.subsection.id) ? '' : 'inactive'
   }
 
   render() {

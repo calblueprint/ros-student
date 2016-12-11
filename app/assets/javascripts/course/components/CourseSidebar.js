@@ -12,42 +12,18 @@ import SectionSidebar from './SectionSidebar'
 
 class CourseSidebar extends React.Component {
 
-  getCurrentSectionIndex() {
-    var sectionIndex = -1
-    this.props.courseSidebar.sections.forEach((section, index) => {
-      var subsectionIds = section.subsections.map((subsection) => subsection.id)
-      if (_.contains(subsectionIds, this.props.currentSubsection.id)) {
-        sectionIndex = index
-      }
-    })
-    return sectionIndex
-  }
-
   renderSections() {
-    const currentSectionIndex = this.getCurrentSectionIndex()
-    return _.map(this.props.courseSidebar.sections, (value, index) => {
+    return _.map(this.props.courseSidebar.sections, (value) => {
       return (
         <SectionSidebar
           key={value.id}
           section={value}
           displayedSubsection={this.props.displayedSubsection}
-          currentSubsection={this.props.currentSubsection}
-          completedSubsectionIds={this.props.completedSubsectionIds}
-          sectionDisplayType={this.getSectionDisplayType(currentSectionIndex, index)}
+          activeSubsectionIds={this.props.activeSubsectionIds}
           callback={this.props.callback}
         />
       )
     })
-  }
-
-  getSectionDisplayType(currentSectionIndex, sectionIndex) {
-    if (sectionIndex > currentSectionIndex) {
-      return 'all-inactive'
-    } else if (sectionIndex === currentSectionIndex) {
-      return 'both'
-    } else {
-      return 'all-active'
-    }
   }
 
   renderInfo() {
