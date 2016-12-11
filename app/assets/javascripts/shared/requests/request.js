@@ -84,7 +84,7 @@ class Request {
     request.send()
   }
 
-  json(route, resolve, reject) {
+  json(route, resolve, reject, fileName='download.json') {
     const request = this.initialize('GET', route)
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
@@ -92,7 +92,7 @@ class Request {
           this.download(
             JSON.stringify(JSON.parse(request.response), null, 2),
             'data:attachment/json',
-            'download.json'
+            fileName,
           )
         }
       }

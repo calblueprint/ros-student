@@ -24,7 +24,7 @@ class ReactRoutes {
   static courseOutlinePath(id)        { return `/courses/${ReactRoutes.getId(id, 'id')}/outline`}
 
   // Course Flow
-  static coursePath(id)               { return `/courses/${ReactRoutes.getId(id, 'id')}` }
+  static coursePath(id)               { return `/students/courses/${ReactRoutes.getId(id, 'id')}` }
 
 
   // Course Edit Flow
@@ -50,7 +50,7 @@ class RailsRoutes {
   static dashboardPath() { return '/dashboard'}
 
   // Student
-  static coursePath(id)        { return `/courses/${id}` }
+  static coursePath(id)        { return `/students/courses/${id}` }
 
   // Admin
   static courseCreatePath()    { return '/courses' }
@@ -67,6 +67,7 @@ class APIRoutes {
   static getStudentPath(id)    { return APIRoutes.createRoute(`students/${id}`) }
   static getStudentCourseOutlinePath(id) { return APIRoutes.createRoute(`students/courses/${id}/outline`) }
   static getStudentCourseSidebarPath(id) { return APIRoutes.createRoute(`students/courses/${id}/sidebar`) }
+  static getStudentCoursesPath() { return APIRoutes.createRoute(`students/courses`) }
 
   // Admins
   static importCoursePath()    { return APIRoutes.createRoute(`admins/courses/import`)}
@@ -79,19 +80,20 @@ class APIRoutes {
   static getAdminPath(id)      { return APIRoutes.createRoute(`admins/${id}`) }
 
   static deleteAdminPath(id)   { return APIRoutes.createRoute(`admins/${id}`) }
-  static deleteStudentPath(id)   { return APIRoutes.createRoute(`students/${id}`) }
+  static deleteStudentPath(id) { return APIRoutes.createRoute(`students/${id}`) }
+  static getAdminCoursesPath() { return APIRoutes.createRoute(`admins/courses`) }
+
   // Codes
   static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`) }
   static codeCsvDownloadPath(id) { return APIRoutes.createRoute(`admins/code_csvs/${id}/download.csv`) }
 
   // Courses
-  static getCourses()                { return APIRoutes.createRoute(`courses`) }
-  static getSubsectionPath(id)       { return APIRoutes.createRoute(`subsections/${id}`) }
-  static getCoursePath(id)           { return APIRoutes.createRoute(`courses/${id}`) }
-  static getSubsectionProgressPath(id) { return APIRoutes.createRoute(`subsections/${id}/subsection_progresses`) }
+  static getSubsectionPath(id)       { return APIRoutes.createRoute(`students/subsections/${id}`) }
+  static getSubsectionProgressPath(id) { return APIRoutes.createRoute(`students/subsections/${id}/subsection_progresses`) }
+  static createSubsectionProgressPath(id) { return APIRoutes.createRoute(`students/subsections/${id}/subsection_progresses`)}
 
   // Course Edit
-  static getEditCoursePath(id)   { return APIRoutes.createRoute(`courses/${id}/edit`) }
+  static getEditCoursePath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/edit`) }
   static editComponentPath(id)   { return APIRoutes.createRoute(`admins/components/${id}`) }
   static editSubsectionPath(id)  { return APIRoutes.createRoute(`admins/subsections/${id}`) }
   static editSectionPath(id)     { return APIRoutes.createRoute(`admins/sections/${id}`) }
@@ -99,7 +101,6 @@ class APIRoutes {
   static createSectionPath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/sections`) }
   static createSubsectionPath(id) { return APIRoutes.createRoute(`admins/sections/${id}/subsections`) }
   static createComponentPath(id) { return APIRoutes.createRoute(`admins/subsections/${id}/components`) }
-  static createSubsectionProgressPath(id) { return APIRoutes.createRoute(`admins/subsections/${id}/subsection_progresses`)}
 }
 
 export {

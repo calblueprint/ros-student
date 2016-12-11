@@ -32,6 +32,10 @@ Rails.application.routes.draw do
     resources :students, only: [:create]
   end
 
+  namespace :students do
+    resources :courses, only: [:show]
+  end
+
   scope module: 'admins' do
     resources :courses, only: [:create, :edit]
   end
@@ -40,16 +44,16 @@ Rails.application.routes.draw do
     get '/ping', to: 'pages#ping'
 
     namespace :admins do
-      resources :courses, only: [:create, :update, :destroy], shallow: true do
+      resources :courses, only: [:index, :create, :edit, :update, :destroy], shallow: true do
         resources :sections, only: [:create, :update, :destroy] do
           member do
             post :switch_position
           end
+
           resources :subsections, only: [:create, :update, :destroy] do
             member do
               post :switch_position
             end
-            resources :subsection_progresses, only: [:create]
             resources :components, only: [:create, :update, :destroy] do
               member do
                 post :switch_position
@@ -66,6 +70,7 @@ Rails.application.routes.draw do
           post :import
         end
       end
+
       resources :code_csvs, only: [:create, :index] do
         member do
           get :download
@@ -73,8 +78,18 @@ Rails.application.routes.draw do
       end
     end
 
+    scope module: 'admins' do
+      resources :admins, only: [:create, :destroy, :update, :index]
+      resources :students, only: [:index, :destroy]
+    end
+
     namespace :students do
-      resources :courses, only: [:show] do
+      resources :courses, only: [:index], shallow: true do
+        resources :sections, only: [] do
+          resources :subsections, only: [:show] do
+            resources :subsection_progresses, only: [:show, :create]
+          end
+        end
         member do
           get :outline
           get :sidebar
@@ -84,20 +99,6 @@ Rails.application.routes.draw do
 
     scope module: 'students' do
       resources :students, only: [:update]
-    end
-
-    scope module: 'admins' do
-      resources :admins, only: [:create, :destroy, :update, :index]
-      resources :students, only: [:index, :destroy]
-    end
-
-    resources :courses, only: [:show, :index, :edit], shallow: true do
-      resources :sections, only: [] do
-        resources :subsections, only: [:show] do
-          resources :components, only: [:show]
-          resources :subsection_progresses, only: [:show]
-        end
-      end
     end
 
     resources :codes, only: [] do

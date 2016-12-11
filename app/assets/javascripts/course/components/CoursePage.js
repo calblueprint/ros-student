@@ -37,14 +37,15 @@ class CoursePage extends React.Component {
     const path = APIRoutes.getSubsectionPath(id)
 
     request.get(path, (response) => {
-      const length = response.subsection.components.length
-      const displayedSection = this.getDisplayedSection(response.subsection)
+      console.log(response)
+      const length = response.components.length
+      const displayedSection = this.getDisplayedSection(response)
       const displayedComponent = componentIndex == -1 ?
-        response.subsection.components[length - 1] :
-        response.subsection.components[componentIndex]
+        response.components[length - 1] :
+        response.components[componentIndex]
 
       this.setState({
-        displayedSubsection: response.subsection,
+        displayedSubsection: response,
         displayedComponent: displayedComponent,
         displayedSection: displayedSection
       })

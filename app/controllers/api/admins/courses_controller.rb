@@ -3,17 +3,25 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
 
   prepend_before_filter :convert_image, only: [:create, :update]
 
+  def index
+    render json: @courses, each_serializer: CourseAdminListSerializer
+  end
+
   def create
     if @course.save
-      render json: @course, serializer: CourseSerializer
+      render json: @course, serializer: CourseAdminSerializer
     else
       error_response(@course)
     end
   end
 
+  def edit
+    render json: @course, user: current_user, serializer: CourseEditSerializer
+  end
+
   def update
     if @course.update(course_params)
-      render json: @course, user: current_user, serializer: CourseSerializer
+      render json: @course, user: current_user, serializer: CourseAdminSerializer
     else
       error_response(@course)
     end
@@ -21,7 +29,7 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
 
   def destroy
     if @course.destroy
-      render json: @course, serializer: CourseSerializer
+      render json: @course, serializer: CourseAdminSerializer
     else
       error_response(@course)
     end
@@ -36,7 +44,7 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
   end
 
   def export
-    send_data CourseSerializer.new(@course).to_json
+    send_data CourseAdminSerializer.new(@course).to_json
   end
 
   private
