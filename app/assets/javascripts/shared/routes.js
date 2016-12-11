@@ -14,9 +14,10 @@ class ReactRoutes {
   static dashboardPath()              { return '/dashboard' }
 
   // Admin Flow
-  static adminProfilePath(id)          { return `/admins/${ReactRoutes.getId(id, 'id')}/profile`}
+  static adminProfilePath(id)         { return `/admins/${ReactRoutes.getId(id, 'id')}/profile`}
   static codeCsvListPath()            { return `/admins/code_csvs`}
-  static courseToolsPath()           { return `/admins/courses/tools`}
+  static courseToolsPath()            { return `/admins/courses/tools`}
+  static usersListPath()              { return `/admins/users`}
 
   // Student Flow
   static studentProfilePath(id)       { return `/students/${ReactRoutes.getId(id, 'id')}/profile`}
@@ -77,6 +78,12 @@ class APIRoutes {
   static updateStudentPath(id) { return APIRoutes.createRoute(`students/${id}`) }
   static getAdminPath(id)      { return APIRoutes.createRoute(`admins/${id}`) }
 
+  static deleteAdminPath(id)   { return APIRoutes.createRoute(`admins/${id}`) }
+  static deleteStudentPath(id)   { return APIRoutes.createRoute(`students/${id}`) }
+  // Codes
+  static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`) }
+  static codeCsvDownloadPath(id) { return APIRoutes.createRoute(`admins/code_csvs/${id}/download.csv`) }
+
   // Courses
   static getCourses()                { return APIRoutes.createRoute(`courses`) }
   static getSubsectionPath(id)       { return APIRoutes.createRoute(`subsections/${id}`) }
@@ -93,10 +100,6 @@ class APIRoutes {
   static createSubsectionPath(id) { return APIRoutes.createRoute(`admins/sections/${id}/subsections`) }
   static createComponentPath(id) { return APIRoutes.createRoute(`admins/subsections/${id}/components`) }
   static createSubsectionProgressPath(id) { return APIRoutes.createRoute(`admins/subsections/${id}/subsection_progresses`)}
-
-  // Codes
-  static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`) }
-  static codeCsvDownloadPath(id) { return APIRoutes.createRoute(`admins/code_csvs/${id}/download.csv`) }
 }
 
 export {

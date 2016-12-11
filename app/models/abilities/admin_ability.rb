@@ -13,10 +13,12 @@ class AdminAbility
     can [
       :index,
       :create,
+      :destroy,
     ], Admin
 
     can [
       :index,
+      :destroy,
     ], Student
 
     can :manage, Course

@@ -4,7 +4,7 @@ import _ from 'underscore'
 import { Images } from '../../utils/image_helpers'
 import EditComponentForm from './EditComponentForm'
 
-import DeleteModal from './DeleteModal'
+import DeleteModal from '../../shared/components/widgets/DeleteModal'
 
 class ComponentEdit extends React.Component {
   constructor(props) {

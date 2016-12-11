@@ -10,38 +10,45 @@ class UserList extends React.Component {
     super(props)
 
     this.state = {
-      users: []
+      users: [],
+
     }
+
+    this.onDeleteUser = this.onDeleteUser.bind(this)
   }
 
   componentDidMount() {
-    this.getUsers()
-  }
-
-  getUsers() {
-    request.get(this.props.route, (response) => {
+    request.get(this.props.editRoute(), (response) => {
       this.setState({ users: response })
     }, (error) => {
       console.log(error)
     })
   }
 
-  deleteUser(id, e) {
-    e.preventDefault()
-    console.log('tried to delete')
+  onDeleteUser(user) {
+    this.setState(
+      {
+        users: this.state.users.filter((otherUser) => {
+          return otherUser.id != user.id
+        })
+      }
+    )
   }
 
   render() {
     return (
-      <div>
+      <div className='user-list-container'>
         {this.state.users.map((user) => {
           return (
-            <UserRow
-              key={user.id}
-              user={user}
-              onDelete={_.partial(this.deleteUser, user.id)}
-              onRowClick={this.props.onRowClick}
-            />
+            <div key={user.id}>
+              <div className='user-row-divider'/>
+              <UserRow
+                user={user}
+                deleteRoute={this.props.deleteRoute}
+                onDeleteUser={this.onDeleteUser}
+                onRowClick={this.props.onRowClick}
+              />
+            </div>
           )
         })}
       </div>
@@ -50,7 +57,8 @@ class UserList extends React.Component {
 }
 
 UserList.propTypes = {
-  route: PropTypes.string.isRequired,
+  editRoute: PropTypes.func.isRequired,
+  deleteRoute: PropTypes.func.isRequired,
   onRowClick: PropTypes.func,
 }
 
