@@ -5,4 +5,5 @@ Rails.application.config.filter_parameters += [:password,
                                                :image,
                                                :image_data,
                                                :audio,
-                                               :audio_data]
+                                               :audio_data,
+                                               :file]

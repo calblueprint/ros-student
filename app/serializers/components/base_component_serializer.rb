@@ -12,6 +12,10 @@ class BaseComponentSerializer < ActiveModel::Serializer
     object.photo ? object.photo.url : object.content_url
   end
 
+  def audio_url
+    object.audio ? object.audio.url : nil
+  end
+
   def component_type
     object[:component_type]
   end

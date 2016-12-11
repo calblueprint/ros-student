@@ -14,11 +14,11 @@ Rails.application.routes.draw do
 
   # Admin Flow
   get '/admins/:id/profile', to: 'pages#dashboard'
+  get '/admins/courses/tools', to: 'pages#dashboard'
 
   # Student Flow
   get '/students/:id/profile', to: 'pages#dashboard'
   get '/courses/:id/outline', to: 'pages#dashboard'
-  get '/courses/:id/sidebar', to: 'pages#dashboard'
 
   # Admin Flow
   get '/admins/code_csvs', to: 'pages#dashboard'
@@ -57,6 +57,14 @@ Rails.application.routes.draw do
               end
             end
           end
+        end
+
+        member do
+          get :export
+        end
+
+        collection do
+          post :import
         end
       end
       resources :code_csvs, only: [:create, :index] do

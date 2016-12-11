@@ -16,6 +16,7 @@ class ReactRoutes {
   // Admin Flow
   static adminProfilePath(id)          { return `/admins/${ReactRoutes.getId(id, 'id')}/profile`}
   static codeCsvListPath()            { return `/admins/code_csvs`}
+  static courseToolsPath()           { return `/admins/courses/tools`}
 
   // Student Flow
   static studentProfilePath(id)       { return `/students/${ReactRoutes.getId(id, 'id')}/profile`}
@@ -29,7 +30,7 @@ class ReactRoutes {
   static courseEditPath(id)           { return `/courses/${ReactRoutes.getId(id, 'id')}/edit` }
 
   // Codes
-  static codeCsvListPath() { return `/admins/code_csvs` }
+  static codeCsvListPath()            { return `/admins/code_csvs` }
 }
 
 
@@ -67,13 +68,14 @@ class APIRoutes {
   static getStudentCourseSidebarPath(id) { return APIRoutes.createRoute(`students/courses/${id}/sidebar`) }
 
   // Admins
+  static importCoursePath()    { return APIRoutes.createRoute(`admins/courses/import`)}
+  static exportCoursePath(id)  { return APIRoutes.createRoute(`admins/courses/${id}/export`)}
   static createAdminPath()     { return APIRoutes.createRoute(`admins`) }
   static getStudentsPath()     { return APIRoutes.createRoute(`students`) }
   static getAdminsPath()       { return APIRoutes.createRoute(`admins`) }
   static updateAdminPath(id)   { return APIRoutes.createRoute(`admins/${id}`) }
   static updateStudentPath(id) { return APIRoutes.createRoute(`students/${id}`) }
   static getAdminPath(id)      { return APIRoutes.createRoute(`admins/${id}`) }
-
 
   // Courses
   static getCourses()                { return APIRoutes.createRoute(`courses`) }

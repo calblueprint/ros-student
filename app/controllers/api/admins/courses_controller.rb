@@ -27,6 +27,18 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
     end
   end
 
+  def import
+    if ImportCourse.new(import_params).import_course
+      success_response('Successfully imported course.')
+    else
+      error_response(nil, 'Invalid course information. Error:')
+    end
+  end
+
+  def export
+    send_data CourseSerializer.new(@course).to_json
+  end
+
   private
 
   def course_params
@@ -34,6 +46,12 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
       :name,
       :description,
       photo_attributes: [:image],
+    )
+  end
+
+  def import_params
+    params.require(:course).permit(
+      :file,
     )
   end
 

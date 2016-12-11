@@ -26,8 +26,6 @@ class Course < ActiveRecord::Base
     StudentCourse.find_by({ course_id: id, student_id: user.id})
   end
 
-
-
   def current_subsection(user)
     sections.each do |section|
       section.subsections.each do |subsection|
@@ -37,7 +35,6 @@ class Course < ActiveRecord::Base
       end
     end
   end
-
 
   def progress(user)
     completed = 0.0
