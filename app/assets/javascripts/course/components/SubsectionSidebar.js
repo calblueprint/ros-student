@@ -18,12 +18,14 @@ class SubsectionSidebar extends React.Component {
   }
 
   getInactive() {
-    return this.props.completedSubsectionIds.is_complete ? '' : 'inactive'
+    console.log(this.props.completedSubsectionIds)
+    return this.props.completedSubsectionIds.has(this.props.subsection.id) ? '' : 'inactive'
+    // return this.props.completedSubsectionIds.is_complete ? '' : 'inactive'
   }
 
   render() {
     return (
-      <div className={`sidebar-subsection-card ${this.getActive()} ${this.props.subsectionDisplayType()}`}>
+      <div className={`sidebar-subsection-card ${this.getActive()} ${this.getInactive()}`}>
         <li onClick={_.partial(this.props.callback, this.props.subsection.id, 0)}>
           {this.props.subsection.title}
         </li>

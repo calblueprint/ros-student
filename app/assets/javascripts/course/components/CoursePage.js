@@ -168,6 +168,10 @@ class CoursePage extends React.Component {
       section.subsections[subsectionIndex]
 
     if (!this.isSubsectionCompleted(subsection)) {
+<<<<<<< aa46b0cd38a497a2a3d88d25f68814e022c7787c
+=======
+      // this.setState({ currentSubsection: subsection })
+>>>>>>> Refactors active checks to completedSubsectionIds set.
       this.state.completedSubsectionIds.add(nextSubsection.id)
     }
     this.displaySubsection(subsection.id, componentIndex)
