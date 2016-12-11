@@ -109,7 +109,7 @@ class CourseEditPage extends React.Component {
 
     request.post(path, {}, (response) => {
       const course = this.state.course
-      course.sections.push(response.section)
+      course.sections.push(response)
       this.setState({ course: course })
     }, (error) => {
       console.log(error)

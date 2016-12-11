@@ -4,7 +4,7 @@ class Api::Admins::SubsectionsController < Api::Admins::BaseController
 
   def create
     if @subsection.save
-      render json: @subsection, serializer: SubsectionSerializer
+      render json: @subsection, serializer: SubsectionAdminSerializer, root: false
     else
       error_response(@subsection)
     end
@@ -12,7 +12,7 @@ class Api::Admins::SubsectionsController < Api::Admins::BaseController
 
   def update
     if @subsection.update(subsection_params)
-      render json: @subsection, user: current_user, serializer: SubsectionSerializer
+      render json: @subsection, user: current_user, serializer: SubsectionAdminSerializer, root: false
     else
       error_response(@subsection)
     end
@@ -28,7 +28,7 @@ class Api::Admins::SubsectionsController < Api::Admins::BaseController
 
   def switch_position
     if @subsection.switch(switch_position_params)
-      render json: @subsection, serializer: SubsectionSerializer
+      render json: @subsection, serializer: SubsectionAdminSerializer, root: false
     else
       error_response(nil, 'Invalid position given')
     end

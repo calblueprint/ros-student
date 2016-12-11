@@ -7,7 +7,7 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
 
   def create
     if @component.save
-      render json: @component, serializer: ComponentSerializer
+      render json: @component, serializer: ComponentAdminSerializer, root: false
     else
       error_response(@component)
     end
@@ -15,7 +15,7 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
 
   def update
     if @component.update(component_params)
-      render json: @component, user: current_user, serializer: ComponentSerializer
+      render json: @component, user: current_user, serializer: ComponentAdminSerializer, root: false
     else
       error_response(@component)
     end
@@ -31,7 +31,7 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
 
   def switch_position
     if @component.switch(switch_position_params)
-      render json: @component, serializer: ComponentSerializer
+      render json: @component, serializer: ComponentAdminSerializer, root: false
     else
       error_response(nil, 'Invalid position given')
     end

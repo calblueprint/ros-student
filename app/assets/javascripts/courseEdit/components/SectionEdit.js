@@ -35,7 +35,7 @@ class SectionEdit extends React.Component {
 
     request.post(path, {}, (response) => {
       const section = this.state.section
-      section.subsections.push(response.subsection)
+      section.subsections.push(response)
       this.setState({ section: section })
     }, (error) => {
       console.log(error)
@@ -46,7 +46,7 @@ class SectionEdit extends React.Component {
     const path = APIRoutes.editSectionPath(this.state.section.id)
     request.update(path, params, (response) => {
       const section = this.state.section
-      section.title = response.section.title
+      section.title = response.title
       this.setState({ section: section })
     }, (error) => {
       console.log(error)
