@@ -1,5 +1,5 @@
 .white {
-  background-color: $white;
+  background-color: $snow;
 }
 
 .component-form {
@@ -19,6 +19,7 @@
   &:hover {
     background-color: $gray;
   };
+
   &.active {
     border-bottom: 4px $blue-80 solid;
     font-weight: $bold;
@@ -42,7 +43,7 @@
 }
 
 .add-component-form-item {
-  margin: 20px;
+  margin: 20px 0px;
 }
 
 .component-image {

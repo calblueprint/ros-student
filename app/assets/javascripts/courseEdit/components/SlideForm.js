@@ -1,3 +1,4 @@
+import _ from 'underscore'
 import React from 'react'
 
 import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
@@ -5,16 +6,16 @@ import AudioUploadInput from '../../shared/components/forms/AudioUploadInput'
 import Input from '../../shared/components/forms/Input'
 
 class SlideForm extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
-      componentType: 0,
-      title: this.props.component.title,
+      component: {
+        componentType: 0,
+        title: this.props.component.title,
+      },
+
+      imageUrl: this.props.component.image_data,
       audioUrl: this.props.component.audio_url,
-      contentUrl: this.props.component.content_url,
-      audioData: this.props.component.audio_url,
-      imageData: this.props.component.image_data
     }
 
     this.updateImageData = this.updateImageData.bind(this)
@@ -22,34 +23,90 @@ class SlideForm extends React.Component {
     this.updateTitle = this.updateTitle.bind(this)
   }
 
+  setComponent(field, data) {
+    const component = this.state.component
+    component[field] = data
+    this.setState({ component: component})
+  }
+
   updateImageData(image) {
-    this.setState({ imageData: image, contentUrl: image })
+    this.setComponent('imageData', image)
   }
 
   updateAudioData(audio) {
-    this.setState({ audioData: audio })
+    this.setComponent('audioData', audio)
   }
 
   updateTitle(e) {
-    this.setState({ title: e.target.value })
+    this.setComponent('title', e.target.value)
   }
 
   submit(e) {
     e.preventDefault()
-    this.props.callback(this.state)
+    this.props.callback(this.state.component)
+  }
+
+  renderImage() {
+    const image = this.state.component.imageData || this.state.imageUrl
+    if (_.isNull(image)) {
+      return
+    }
+
+    return (
+      <div className='add-component-form-item'>
+        <img className='component-image' src={image} />
+      </div>
+    )
+  }
+
+  renderAudio() {
+    const audio = this.state.component.audioData || this.state.audioUrl
+    if (_.isNull(audio)) {
+      return
+    }
+
+    return (
+      <div className='add-component-form-item'>
+        <audio src={audio} controls preload />
+      </div>
+    )
   }
 
   render() {
-    console.log(this.props.component)
     return (
       <div className='add-component-body-text'>
         <div>Slide Component</div>
         <form>
-          <div className='add-component-form-item'><Input className='text-input' type='text' label='Title' value={this.state.title} onChange={this.updateTitle}/></div>
-          <div className='add-component-form-item'><ImageUploadInput label="Image" onChange={this.updateImageData}/></div>
-          <div className='component-image-container'><img className='component-image' src={this.state.contentUrl} /></div>
-          <div className='add-component-form-item'><AudioUploadInput label="Audio" onChange={this.updateAudioData}/></div>
-          <div className='add-component-form-item'><button className='button button--blue create-component-button' onClick={this.submit.bind(this)}>Save</button></div>
+          <div className='add-component-form-item'>
+            <Input
+              className='text-input'
+              label='Title' value={this.state.component.title}
+              onChange={this.updateTitle}/>
+          </div>
+
+          {this.renderImage()}
+
+          <div className='add-component-form-item'>
+            <ImageUploadInput
+              label="Image"
+              onChange={this.updateImageData}/>
+          </div>
+
+          {this.renderAudio()}
+
+          <div className='add-component-form-item'>
+            <AudioUploadInput
+              label="Audio"
+              onChange={this.updateAudioData}/>
+          </div>
+
+          <div className='add-component-form-item'>
+            <button
+              className='button button--blue create-component-button'
+              onClick={this.submit.bind(this)}>
+              Save
+            </button>
+          </div>
         </form>
       </div>
     )

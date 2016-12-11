@@ -156,7 +156,7 @@ class CoursePage extends React.Component {
     const subsection = subsectionIndex == -1 ?
       section.subsections[length - 1] :
       section.subsections[subsectionIndex]
-      
+
     this.displaySubsection(subsection.id, componentIndex)
   }
 
@@ -196,14 +196,12 @@ class CoursePage extends React.Component {
   nextDisabled() {
     const component = this.state.displayedComponent
     const subsection_complete = this.state.displayedSubsection.is_complete
-    console.log(subsection_complete);
     if (subsection_complete) {
       return false
     } else if (component.component_type == 0 && component.audio_url == null) {
       this.markSubsectionAsComplete(this.state.displayedSubsection)
       return false
     } else {
-      console.log(this.state.nextDisabled);
       return this.state.nextDisabled
     }
   }

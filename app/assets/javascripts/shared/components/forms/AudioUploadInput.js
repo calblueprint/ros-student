@@ -18,20 +18,9 @@ class AudioUploadInput extends React.Component {
     this.props.onChange(audio)
   }
 
-  renderAudio() {
-    if (!_.isEmpty(this.state.audio)) {
-      return (
-        <audio controls>
-          <source src={this.state.audio} />
-        </audio>
-      )
-    }
-  }
-
   render() {
     return (
       <div>
-        {this.renderAudio()}
         <div>{this.props.label}</div>
         <UploadInput
           accept='audio/mp3'
