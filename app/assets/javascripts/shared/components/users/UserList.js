@@ -40,10 +40,9 @@ class UserList extends React.Component {
       <div className='user-list-container'>
         {this.state.users.map((user) => {
           return (
-            <div>
+            <div key={user.id}>
               <div className='user-row-divider'/>
               <UserRow
-                key={user.id}
                 user={user}
                 deleteRoute={this.props.deleteRoute}
                 onDeleteUser={this.onDeleteUser}

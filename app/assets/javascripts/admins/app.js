@@ -75,11 +75,8 @@ render((
       <Route path={ReactRoutes.dashboardPath()} name='AdminDashboardPage' component={AdminDashboardPage} />
       <Route path={ReactRoutes.adminProfilePath()} name='AdminProfilePage' component={AdminProfilePage} />
       <Route path={ReactRoutes.codeCsvListPath()} name='CodeCsvListPage' component={CodeCsvListPage} />
-<<<<<<< HEAD
       <Route path={ReactRoutes.courseToolsPath()} name='ExportImportPage' component={ExportImportPage} />
-=======
-      <Route path={ReactRoutes.usersListPath()} name=  'UsersListPath' component={UsersListPage} />
->>>>>>> Adding new user tab, allow admins to delete admin and students
+      <Route path={ReactRoutes.usersListPath()} name='UsersListPath' component={UsersListPage} />
       <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />
     </Route>
   </Router>

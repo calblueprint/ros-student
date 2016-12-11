@@ -79,7 +79,7 @@ class APIRoutes {
   static getAdminPath(id)      { return APIRoutes.createRoute(`admins/${id}`) }
 
   static deleteAdminPath(id)   { return APIRoutes.createRoute(`admins/${id}`) }
-  static deleteStudentPath(id)   { return APIRoutes.createRoute(`admins/students/${id}`) }
+  static deleteStudentPath(id)   { return APIRoutes.createRoute(`students/${id}`) }
   // Codes
   static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`) }
   static codeCsvDownloadPath(id) { return APIRoutes.createRoute(`admins/code_csvs/${id}/download.csv`) }

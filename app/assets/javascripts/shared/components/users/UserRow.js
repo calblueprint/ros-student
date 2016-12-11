@@ -2,6 +2,7 @@ import _ from 'underscore'
 import React, { PropTypes } from 'react'
 
 import { Images } from '../../../utils/image_helpers'
+import request from '../../requests/request'
 
 import DeleteModal from '../widgets/DeleteModal'
 
@@ -28,12 +29,11 @@ class UserRow extends React.Component {
 
   deleteUser(id, e) {
     e.preventDefault()
-    this.props.onDeleteUser(this.props.user)
-    // request.get(this.props.deleteRoute(id), (response) => {
-    //   this.props.onDeleteUser(response)
-    // }, (error) => {
-    //   console.log(error)
-    // })
+    request.delete(this.props.deleteRoute(id), (response) => {
+      this.props.onDeleteUser(response)
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   onRowClick() {
