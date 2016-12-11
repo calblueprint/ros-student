@@ -37,9 +37,11 @@ class SectionOutline extends React.Component {
     const arrow = this.state.isOpen ? '' : 'rotate'
     return (
       <div className="section-outline-container">
-        <div className="section-outline-header flex">
-          <h2 className="section-outline-header-title">{this.props.section.title}</h2>
-          <div className="section-outline-header-right flex">
+        <div className="flex section-outline-header">
+          <h2 className="section-outline-header-title">
+            {this.props.section.title}
+          </h2>
+          <div className="flex section-outline-header-right">
             <RightProgressBar
               className="section-outline-header-bar"
               progress={this.props.section.progress}
@@ -52,7 +54,9 @@ class SectionOutline extends React.Component {
           </div>
         </div>
         <Collapse isOpened={this.state.isOpen}>
-          <ul className="section-outline-subsections">{this.renderSubsections()}</ul>
+          <ul className="section-outline-subsections">
+            {this.renderSubsections()}
+          </ul>
         </Collapse>
       </div>
     )

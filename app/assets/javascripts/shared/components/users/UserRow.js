@@ -1,6 +1,8 @@
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 
+import { Images } from '../../../utils/image_helpers'
+
 import DeleteModal from '../widgets/DeleteModal'
 
 class UserRow extends React.Component {
@@ -26,11 +28,12 @@ class UserRow extends React.Component {
 
   deleteUser(id, e) {
     e.preventDefault()
-    request.get(this.props.deleteRoute(id), (response) => {
-      this.props.onDeleteUser(response)
-    }, (error) => {
-      console.log(error)
-    })
+    this.props.onDeleteUser(this.props.user)
+    // request.get(this.props.deleteRoute(id), (response) => {
+    //   this.props.onDeleteUser(response)
+    // }, (error) => {
+    //   console.log(error)
+    // })
   }
 
   onRowClick() {
@@ -41,10 +44,17 @@ class UserRow extends React.Component {
 
   render() {
     return (
-      <div onClick={this.onRowClick()}>
-        {`${this.props.user.first_name} ${this.props.user.last_name}`}
+      <div
+        className='flex user-row-container'
+        onClick={this.onRowClick()}
+      >
+        <p>{`${this.props.user.first_name} ${this.props.user.last_name}`}</p>
 
-        <button onClick={this.openDeleteModal} className='button'>Delete</button>
+        <button
+          onClick={this.openDeleteModal}
+          className='user-list-delete'>
+          <img src={Images.delete} className='user-list-delete-image' />
+        </button>
 
         <DeleteModal
           openDeleteModal={this.state.openDeleteModal}

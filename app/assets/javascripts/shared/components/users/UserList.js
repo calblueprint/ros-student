@@ -18,10 +18,6 @@ class UserList extends React.Component {
   }
 
   componentDidMount() {
-    this.getUsers()
-  }
-
-  getUsers() {
     request.get(this.props.editRoute(), (response) => {
       this.setState({ users: response })
     }, (error) => {
@@ -30,21 +26,30 @@ class UserList extends React.Component {
   }
 
   onDeleteUser(user) {
-    console.log('deleted')
+    this.setState(
+      {
+        users: this.state.users.filter((otherUser) => {
+          return otherUser.id != user.id
+        })
+      }
+    )
   }
 
   render() {
     return (
-      <div>
+      <div className='user-list-container'>
         {this.state.users.map((user) => {
           return (
-            <UserRow
-              key={user.id}
-              user={user}
-              deleteRoute={this.props.deleteRoute}
-              onDeleteUser={this.onDeleteUser}
-              onRowClick={this.props.onRowClick}
-            />
+            <div>
+              <div className='user-row-divider'/>
+              <UserRow
+                key={user.id}
+                user={user}
+                deleteRoute={this.props.deleteRoute}
+                onDeleteUser={this.onDeleteUser}
+                onRowClick={this.props.onRowClick}
+              />
+            </div>
           )
         })}
       </div>

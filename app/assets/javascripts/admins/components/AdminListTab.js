@@ -27,8 +27,13 @@ class AdminListTab extends React.Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.openModal}>Create Admin</button>
+      <div className='user-tab-container'>
+        <button
+          onClick={this.openModal}
+          className='button user-list-add-button marginTopBot-sm'>
+          Create Admin
+        </button>
+
         <UserList
           editRoute={APIRoutes.getAdminsPath}
           deleteRoute={APIRoutes.deleteAdminPath}/>

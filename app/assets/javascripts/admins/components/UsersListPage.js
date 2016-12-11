@@ -23,6 +23,10 @@ class UsersListPage extends React.Component {
     this.setState({ activeTab: index })
   }
 
+  getTabStyle(index) {
+    return this.state.activeTab == index ? 'active' : ''
+  }
+
   renderTab() {
     switch (this.state.activeTab) {
       case this.tabs.STUDENT:
@@ -44,8 +48,16 @@ class UsersListPage extends React.Component {
     return (
       <div className='flex center marginTop-xl'>
         <div className='container'>
-          <button onClick={_.bind(this.setActiveTab, this, 0)}>Students</button>
-          <button onClick={_.bind(this.setActiveTab, this, 1)}>Admins</button>
+          <button
+            onClick={_.bind(this.setActiveTab, this, 0)}
+            className={`tab ${this.getTabStyle(0)}`}>
+            Students
+          </button>
+          <button
+            onClick={_.bind(this.setActiveTab, this, 1)}
+            className={`tab ${this.getTabStyle(1)}`}>
+            Admins
+          </button>
           {this.renderTab()}
         </div>
       </div>
