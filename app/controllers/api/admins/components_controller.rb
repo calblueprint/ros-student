@@ -22,7 +22,7 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
   end
 
   def destroy
-    if @component.destroy
+    if @component.remove_from_list && @component.destroy
       render json: @component.subsection.components, each_serializer: ComponentListSerializer
     else
       error_response(@component)

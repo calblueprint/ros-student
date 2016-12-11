@@ -30,14 +30,17 @@ class CoursePage extends React.Component {
     this.displayPrevSubsection = this.displayPrevSubsection.bind(this)
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
     this.enableNextButton = this.enableNextButton.bind(this)
+
+  }
+
+  componentDidMount() {
     this.requestSidebar()
   }
 
   displaySubsection(id, componentIndex) {
     const path = APIRoutes.getSubsectionPath(id)
 
-    request.get(path, (response) => {
-      console.log(response)
+  request.get(path, (response) => {
       const length = response.components.length
       const displayedSection = this.getDisplayedSection(response)
       const displayedComponent = componentIndex == -1 ?
@@ -71,6 +74,7 @@ class CoursePage extends React.Component {
       const index = this.getComponentIndex(subsection, component)
       this.displayComponent(subsection.components[index + 1].id)
     } else {
+      this.markSubsectionAsComplete(subsection)
       this.displayNextSubsection()
     }
   }
@@ -163,13 +167,9 @@ class CoursePage extends React.Component {
 
   getDisplayedSection(displayedSubsection) {
     /* Returns the section that the user is currently viewing. */
-    const sectionId = displayedSubsection.section_id
-
-    function byId(element) {
-      return element.id === sectionId
-    }
-
-    return this.state.courseSidebar.sections.find(byId)
+    return this.state.courseSidebar.sections.find((element) => {
+      return element.id === displayedSubsection.section_id
+    })
   }
 
   getComponentIndex(subsection, component) {
@@ -181,17 +181,15 @@ class CoursePage extends React.Component {
     return this.state.courseSidebar.current_subsection
   }
 
-  getComponentIndex(subsection, component) {
-    return subsection.components.indexOf(component)
-  }
-
   isLastComponent(subsection, component) {
-    const components = subsection.components
-    return component == components[components.length - 1]
+    console.log('huh')
+    console.log(subsection.components)
+    console.log(component.position)
+    return component.position == subsection.components.length
   }
 
   isFirstComponent(subsection, component) {
-    return component.id == subsection.components[0].id
+    return component.position == 1
   }
 
   nextDisabled() {
@@ -200,7 +198,6 @@ class CoursePage extends React.Component {
     if (subsection_complete) {
       return false
     } else if (component.component_type == 0 && component.audio_url == null) {
-      this.markSubsectionAsComplete(this.state.displayedSubsection)
       return false
     } else {
       return this.state.nextDisabled

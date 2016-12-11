@@ -19,7 +19,7 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
   end
 
   def destroy
-    if @section.remove_from_list and @section.destroy
+    if @section.remove_from_list && @section.destroy
       render json: @section.course.sections, each_serializer: SectionListSerializer
     else
       error_response(@section)
