@@ -1,4 +1,4 @@
-class CoursesController < ApplicationController
+class Students::CoursesController < Students::BaseController
   load_and_authorize_resource
 
   def show

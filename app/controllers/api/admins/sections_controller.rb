@@ -4,7 +4,7 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
 
   def create
     if @section.save
-      render json: @section, serializer: SectionSerializer
+      render json: @section, serializer: SectionAdminSerializer, root: false
     else
       error_response(@section)
     end
@@ -12,14 +12,14 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
 
   def update
     if @section.update(section_params)
-      render json: @section, user: current_user, serializer: SectionSerializer
+      render json: @section, user: current_user, serializer: SectionAdminSerializer, root: false
     else
       error_response(@section)
     end
   end
 
   def destroy
-    if @section.remove_from_list and @section.destroy
+    if @section.remove_from_list && @section.destroy
       render json: @section.course.sections, each_serializer: SectionListSerializer
     else
       error_response(@section)
@@ -28,7 +28,7 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
 
   def switch_position
     if @section.switch(switch_position_params)
-      render json: @section, serializer: SectionSerializer
+      render json: @section, serializer: SectionAdminSerializer
     else
       error_response(nil, 'Invalid position given')
     end

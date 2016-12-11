@@ -27,7 +27,7 @@ class QuizForm extends React.Component {
   }
 
   setComponent(field, data) {
-    const component = this.state.component.component
+    const component = this.state.component
     component[field] = data
     this.setState({ component: component})
   }

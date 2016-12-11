@@ -1,2 +1,0 @@
-class CourseListSerializer < BaseCourseSerializer
-end

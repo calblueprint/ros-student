@@ -1,0 +1,2 @@
+class ComponentAdminSerializer < BaseComponentSerializer
+end

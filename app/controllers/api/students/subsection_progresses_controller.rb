@@ -1,4 +1,4 @@
-class Api::Admins::SubsectionProgressesController < Api::BaseController
+class Api::Students::SubsectionProgressesController < Api::Students::BaseController
   load_and_authorize_resource
 
   def create
@@ -7,6 +7,10 @@ class Api::Admins::SubsectionProgressesController < Api::BaseController
     else
       error_response(@subsection_progress)
     end
+  end
+
+  def show
+    render json: @subsection_progress, user: current_user, serializer: SubsectionProgressSerializer
   end
 
   private

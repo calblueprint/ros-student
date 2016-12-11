@@ -35,16 +35,16 @@ class ComponentEdit extends React.Component {
     this.props.deleteComponent(this.id)
   }
 
-  openDeleteModal() {
+  openDeleteModal(e) {
+    if (!_.isUndefined(e)) {
+      e.stopPropagation()
+      e.preventDefault()
+    }
+
     this.setState({ openDeleteModal: true })
   }
 
-  closeDeleteModal(e) {
-    if (!_.isUndefined(e)) {
-      e.preventDefault()
-      e.stopPropagation()
-    }
-
+  closeDeleteModal() {
     this.setState({ openDeleteModal: false })
   }
 
@@ -52,17 +52,12 @@ class ComponentEdit extends React.Component {
     this.setState({ openEditModal: true })
   }
 
-  closeEditModal(e) {
-    if (!_.isUndefined(e)) {
-      e.preventDefault()
-      e.stopPropagation()
-    }
-
+  closeEditModal() {
     this.setState({ openEditModal: false })
   }
 
   onFormCompletion(editedComponent) {
-    this.setState({ component: editedComponent.component })
+    this.setState({ component: editedComponent })
     this.closeEditModal()
   }
 

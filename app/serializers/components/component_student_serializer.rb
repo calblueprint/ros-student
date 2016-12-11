@@ -1,0 +1,2 @@
+class ComponentStudentSerializer < BaseComponentSerializer
+end

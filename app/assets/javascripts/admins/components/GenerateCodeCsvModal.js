@@ -54,7 +54,7 @@ class GenerateCodeCsvModal extends React.Component {
   }
 
   getCourses() {
-    const path = APIRoutes.getCourses()
+    const path = APIRoutes.getAdminCoursesPath()
 
     request.get(path, (response) => {
       this.setState({ courses: response.courses })
@@ -116,7 +116,7 @@ class GenerateCodeCsvModal extends React.Component {
           action={this.props.action}>
 
           {this.renderFields()}
-          
+
           <h3>Select courses</h3>
           <div className='generate-code-csv-course-list'>
             <ul>{this.renderCourses()}</ul>

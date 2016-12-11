@@ -40,18 +40,7 @@ class SubsectionEdit extends React.Component {
     const path = APIRoutes.editSubsectionPath(this.state.subsection.id)
     request.update(path, params, (response) => {
       const subsection = this.state.subsection
-      subsection.title = response.subsection.title
-      this.setState({ subsection: subsection })
-    }, (error) => {
-      console.log(error)
-    })
-  }
-
-  updateTitle(params) {
-    const path = APIRoutes.editSubsectionPath(this.state.subsection.id)
-    request.update(path, params, (response) => {
-      const subsection = this.state.subsection
-      subsection.title = response.subsection.title
+      subsection.title = response.title
       this.setState({ subsection: subsection })
     }, (error) => {
       console.log(error)
@@ -109,7 +98,7 @@ class SubsectionEdit extends React.Component {
 
   onFormCompletion(newComponent) {
     const components = this.state.components
-    components.push(newComponent.component)
+    components.push(newComponent)
     this.setState({ components: components })
     this.closeNewComponentForm()
   }

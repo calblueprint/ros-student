@@ -14,10 +14,8 @@ class CourseList extends React.Component {
   }
 
   getCourses() {
-    const path = APIRoutes.getCourses()
-
-    request.get(path, (response) => {
-      this.setState( { courses: response.courses })
+    request.get(this.props.coursePath, (response) => {
+      this.setState({ courses: response.courses })
     }, (error) => {
       console.log('error')
     })
@@ -26,6 +24,7 @@ class CourseList extends React.Component {
 
 CourseList.propTypes = {
   routeFunction: PropTypes.func.isRequired,
+  coursePath: PropTypes.string.isRequired,
 }
 
 export default CourseList

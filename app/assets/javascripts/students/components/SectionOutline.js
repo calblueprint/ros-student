@@ -12,7 +12,6 @@ import RightProgressBar from '../../shared/components/widgets/RightProgressBar'
 import { Images } from '../../utils/image_helpers'
 
 class SectionOutline extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {

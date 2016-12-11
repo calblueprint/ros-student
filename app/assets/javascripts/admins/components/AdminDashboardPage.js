@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 import { getUser } from '../../utils/user_helpers'
-import { ReactRoutes, RailsRoutes } from '../../shared/routes'
+import { ReactRoutes, RailsRoutes, APIRoutes } from '../../shared/routes'
 
 import AdminCourseList from './AdminCourseList'
 
@@ -14,7 +14,9 @@ class AdminDashboardPage extends React.Component {
     return (
       <div className="flex center">
         <div className="container">
-          <AdminCourseList routeFunction={routeFunction}/>
+          <AdminCourseList
+            routeFunction={routeFunction}
+            coursePath={APIRoutes.getAdminCoursesPath()}/>
         </div>
       </div>
     )
