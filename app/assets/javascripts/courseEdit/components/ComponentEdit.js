@@ -36,7 +36,6 @@ class ComponentEdit extends React.Component {
   }
 
   openDeleteModal(e) {
-    console.log('clikced')
     if (!_.isUndefined(e)) {
       e.stopPropagation()
       e.preventDefault()
