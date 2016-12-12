@@ -2,6 +2,7 @@ import _ from 'underscore'
 
 import React from 'react'
 import { Link } from 'react-router'
+import Collapse from 'react-collapse'
 
 import { getUser } from '../../utils/user_helpers'
 import { RailsRoutes, ReactRoutes } from '../../shared/routes'
@@ -12,23 +13,16 @@ class SectionSidebar extends React.Component {
 
   constructor(props) {
     super(props)
-  }
-
-  getCurrentSubsectionIndex() {
-    return this.props.section.subsections.map((subsection) => subsection.id).indexOf(this.props.currentSubsection.id)
-  }
-
-  getSubsectionDisplayType(index) {
-    switch (this.props.sectionDisplayType) {
-      case 'all-inactive':
-        return 'inactive'
-      case 'both':
-        return index > this.getCurrentSubsectionIndex() ? 'inactive' : ''
-      case 'all-active':
-        return ''
-      default:
-        return ''
+    this.state = {
+      // isOpen: this.props.section.id == this.props.activeSectionId ? true : false
+      isOpen: true
     }
+    this.toggleCollapse = this.toggleCollapse.bind(this)
+  }
+
+  toggleCollapse() {
+    const isOpen = this.state.isOpen
+    this.setState({ isOpen: !isOpen })
   }
 
   renderSubsections() {
@@ -38,8 +32,7 @@ class SectionSidebar extends React.Component {
           key={value.id}
           subsection={value}
           displayedSubsection={this.props.displayedSubsection}
-          currentSubsection={this.props.currentSubsection}
-          subsectionDisplayType={this.getSubsectionDisplayType(index)}
+          activeSubsectionIds={this.props.activeSubsectionIds}
           callback={this.props.callback}
         />
       )
@@ -49,10 +42,12 @@ class SectionSidebar extends React.Component {
   render() {
     return (
       <div className='sidebar-section-card'>
-        <div className='sidebar-section-title-container'>
+        <div className='sidebar-section-title-container' onClick={this.toggleCollapse}>
           <h2>{this.props.section.title}</h2>
         </div>
-        <ul>{this.renderSubsections()}</ul>
+        <Collapse isOpened={this.state.isOpen}>
+          <ul>{this.renderSubsections()}</ul>
+        </Collapse>
       </div>
     )
   }
