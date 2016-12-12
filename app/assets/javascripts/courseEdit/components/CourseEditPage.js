@@ -33,11 +33,11 @@ class CourseEditPage extends React.Component {
     const path = APIRoutes.getEditCoursePath(this.id)
     request.get(path, (response) => {
       const course = this.state.course
-      course.name = response.course_edit.name
-      course.description = response.course_edit.description
-      course.sections = response.course_edit.sections
-      if (response.course_edit.photo) {
-        course.imageUrl = response.course_edit.photo.image_url
+      course.name = response.name
+      course.description = response.description
+      course.sections = response.sections
+      if (response.photo) {
+        course.imageUrl = response.photo.image_url
       }
       this.setState({ course: course })
     }, (error) => {
@@ -53,9 +53,9 @@ class CourseEditPage extends React.Component {
     const path = APIRoutes.editCoursePath(this.id)
     request.update(path, params, (response) => {
       const course = this.state.course
-      course.name = response.course.name
-      course.description = response.course.description
-      course.imageUrl = response.course.image_url
+      course.name = response.name
+      course.description = response.description
+      course.imageUrl = response.image_url
       this.setState({ course: course })
     }, (error) => {
       console.log(error)
