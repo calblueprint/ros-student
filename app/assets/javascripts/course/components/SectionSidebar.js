@@ -2,6 +2,7 @@ import _ from 'underscore'
 
 import React from 'react'
 import { Link } from 'react-router'
+import Collapse from 'react-collapse'
 
 import { getUser } from '../../utils/user_helpers'
 import { RailsRoutes, ReactRoutes } from '../../shared/routes'
@@ -12,6 +13,19 @@ class SectionSidebar extends React.Component {
 
   constructor(props) {
     super(props)
+    console.log(props.activeSectionId)
+    console.log(this.props.section.id)
+    this.state = {
+      // isOpen: this.props.section.id == this.props.activeSectionId ? true : false
+      isOpen: true
+    }
+    this.toggleCollapse = this.toggleCollapse.bind(this)
+  }
+
+  toggleCollapse() {
+    const isOpen = this.state.isOpen
+    this.setState({ isOpen: !isOpen })
+    console.log(this.props.activeSectionId)
   }
 
   renderSubsections() {
@@ -31,10 +45,12 @@ class SectionSidebar extends React.Component {
   render() {
     return (
       <div className='sidebar-section-card'>
-        <div className='sidebar-section-title-container'>
+        <div className='sidebar-section-title-container' onClick={this.toggleCollapse}>
           <h2>{this.props.section.title}</h2>
         </div>
-        <ul>{this.renderSubsections()}</ul>
+        <Collapse isOpened={this.state.isOpen}>
+          <ul>{this.renderSubsections()}</ul>
+        </Collapse>
       </div>
     )
   }

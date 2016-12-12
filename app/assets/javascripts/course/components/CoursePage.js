@@ -19,6 +19,7 @@ class CoursePage extends React.Component {
       displayedSection: {},
       displayedSubsection: {},
       activeSubsectionIds: new Set(),
+      activeSectionId: {},
       displayedComponent: {},
       nextDisabled: true
     }
@@ -41,7 +42,7 @@ class CoursePage extends React.Component {
   displaySubsection(id, componentIndex) {
     const path = APIRoutes.getSubsectionPath(id)
 
-  request.get(path, (response) => {
+    request.get(path, (response) => {
       const length = response.components.length
       const displayedSection = this.getDisplayedSection(response)
       const displayedComponent = componentIndex == -1 ?
@@ -184,9 +185,6 @@ class CoursePage extends React.Component {
   }
 
   isLastComponent(subsection, component) {
-    console.log('huh')
-    console.log(subsection.components)
-    console.log(component.position)
     return component.position == subsection.components.length
   }
 
@@ -242,6 +240,7 @@ class CoursePage extends React.Component {
   requestSidebar() {
     const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
     var add = true
+    var lastSectionId = undefined
 
     request.get(path, (response) => {
       this.setState({ courseSidebar: response.course_sidebar })
@@ -250,13 +249,17 @@ class CoursePage extends React.Component {
         section.subsections.forEach((subsection) => {
           if (add) {
             this.state.activeSubsectionIds.add(subsection.id)
+            lastSectionId = section.id
           }
           if (!subsection.is_complete) {
             add = false
           }
         })
       })
-      this.setState({ activeSubsectionIds: this.state.activeSubsectionIds })
+      this.setState({
+        activeSectionId: lastSectionId,
+        activeSubsectionIds: this.state.activeSubsectionIds
+      })
     }, (error) => {
       console.log(error)
     })
@@ -270,6 +273,7 @@ class CoursePage extends React.Component {
             courseSidebar={this.state.courseSidebar}
             displayedSubsection={this.state.displayedSubsection}
             activeSubsectionIds={this.state.activeSubsectionIds}
+            activeSectionId={this.state.activeSectionId}
             callback={this.displaySubsection}
           />
         </div>
