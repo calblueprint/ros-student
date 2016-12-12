@@ -13,8 +13,6 @@ class SectionSidebar extends React.Component {
 
   constructor(props) {
     super(props)
-    console.log(props.activeSectionId)
-    console.log(this.props.section.id)
     this.state = {
       // isOpen: this.props.section.id == this.props.activeSectionId ? true : false
       isOpen: true
@@ -25,7 +23,6 @@ class SectionSidebar extends React.Component {
   toggleCollapse() {
     const isOpen = this.state.isOpen
     this.setState({ isOpen: !isOpen })
-    console.log(this.props.activeSectionId)
   }
 
   renderSubsections() {

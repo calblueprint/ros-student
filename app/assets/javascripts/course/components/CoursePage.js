@@ -195,7 +195,6 @@ class CoursePage extends React.Component {
   nextDisabled() {
     const component = this.state.displayedComponent
     const subsection_complete = this.state.displayedSubsection.is_complete
-    console.log(subsection_complete);
     if (subsection_complete) {
       return false
     } else if (component.component_type == 0 && component.audio_url == null) {
