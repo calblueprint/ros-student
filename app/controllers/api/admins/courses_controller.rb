@@ -9,19 +9,19 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
 
   def create
     if @course.save
-      render json: @course, serializer: CourseAdminSerializer
+      render json: @course, serializer: CourseAdminSerializer, root: false
     else
       error_response(@course)
     end
   end
 
   def edit
-    render json: @course, user: current_user, serializer: CourseEditSerializer
+    render json: @course, user: current_user, serializer: CourseAdminSerializer, root: false
   end
 
   def update
     if @course.update(course_params)
-      render json: @course, user: current_user, serializer: CourseAdminSerializer
+      render json: @course, user: current_user, serializer: CourseAdminSerializer, root: false
     else
       error_response(@course)
     end
@@ -29,7 +29,7 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
 
   def destroy
     if @course.destroy
-      render json: @course, serializer: CourseAdminSerializer
+      render json: @course, serializer: CourseAdminSerializer, root: false
     else
       error_response(@course)
     end
