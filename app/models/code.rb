@@ -11,8 +11,7 @@
 #
 
 class Code < ActiveRecord::Base
-  validates :key, presence: true
-  validates :key, uniqueness: true
+  validates :key, presence: true, uniqueness: true
 
   belongs_to :student
   belongs_to :code_csv

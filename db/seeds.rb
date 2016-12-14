@@ -5,6 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+def create_codes
+  10.times do |n|
+    code = Code.create key: "code#{n}"
+    CodeCourse.create code_id: code.id, course_id: Course.first.id
+  end
+end
+
 def create_student_and_codes
   puts 'creating students'
   5.times do |n|
@@ -104,5 +111,6 @@ def get_audio_url
 end
 
 create_courses
+create_codes
 create_student_and_codes
 create_admin
