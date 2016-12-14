@@ -33,9 +33,7 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave-aws', '1.0.2'
 gem 'carrierwave-audio', '~> 1.0', '>= 1.0.1'
 
-group :development, :staging, :test do
-  gem 'ffaker'
-end
+gem 'ffaker'
 
 group :development, :test do
   gem 'awesome_print'
