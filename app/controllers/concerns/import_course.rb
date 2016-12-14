@@ -2,7 +2,7 @@ class ImportCourse
   attr_accessor :course
 
   def initialize(course)
-    @course = JSON.parse(course.fetch(:file, '')).fetch('course', '')
+    @course = JSON.parse(course.fetch(:file, ''))
   end
 
   def import_course
@@ -66,15 +66,15 @@ class ImportCourse
     return params unless image_url
 
     params['photo_attributes'] = {}
-    params['photo_attributes']['image'] = open(image_url)
+    params['photo_attributes']['remote_image_url'] = image_url
     params
   end
 
   def add_audio(params, audio_url_field)
-    audio_url = params.fetch(audio_url, nil)
+    audio_url = params.fetch(audio_url_field, nil)
     params.delete(audio_url_field)
     return params unless audio_url
-    params['audio'] = open(audio_url)
+    params['remote_audio_url'] = audio_url
     params
   end
 end

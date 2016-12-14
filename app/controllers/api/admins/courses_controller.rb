@@ -44,7 +44,7 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
   end
 
   def export
-    send_data CourseAdminSerializer.new(@course).to_json
+  send_data CourseAdminSerializer.new(@course, root: false).to_json
   end
 
   private
