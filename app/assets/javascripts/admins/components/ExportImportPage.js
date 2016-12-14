@@ -36,7 +36,6 @@ class ExportImportPage extends React.Component {
 
   exportCourse(e) {
     e.preventDefault()
-    console.log('hello')
     const id = this.state.selectedCourse
     if (id == -1) {
       return
@@ -48,7 +47,7 @@ class ExportImportPage extends React.Component {
       console.log(response)
     }, (error) => {
       console.log(error)
-    }, course.name)
+    }, `${course.name}.json`)
   }
 
   importCourse(e) {
