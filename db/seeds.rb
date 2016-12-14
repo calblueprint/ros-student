@@ -69,7 +69,8 @@ def create_slide_subsection(subsection)
   10.times do |n|
     component = subsection.components.create component_type: 0,
                                              audio: 'http://www.noiseaddicts.com/samples_1w72b820/272.mp3',
-                                             title: FFaker::Education.degree
+                                             title: FFaker::Education.degree,
+                                             remote_audio_url: get_audio_url
     photo = get_photo(component, 'http://image.slidesharecdn.com/slidepresentationguidelines-090612035201-phpapp01/95/slide-presentation-guidelines-1-728.jpg')
     component.photo = photo
     component.save
@@ -80,20 +81,26 @@ def create_form_subsection(subsection)
   subsection.components.create component_type: 1,
                                content_url: 'https://docs.google.com/forms/d/e/1FAIpQLSdRvdxwyWVVcYwd1Ga6u7nnuBNi3BP6yOSTwGsYlZBsZ5iYag/viewform',
                                title: FFaker::Education.degree,
-                               form_key: 'water'
+                               form_key: 'water',
+                               remote_audio_url: get_audio_url
 end
 
 def create_video_subsection(subsection)
   subsection.components.create component_type: 2,
                                content_url: 'https://www.youtube.com/watch?v=5MgBikgcWnY',
-                               title: FFaker::Education.degree
+                               title: FFaker::Education.degree,
+                               remote_audio_url: get_audio_url
 end
 
 def get_photo(object, image_url)
   Photo.create!(
     parent: object,
-    image: open(image_url),
+    remote_image_url: image_url,
   )
+end
+
+def get_audio_url
+  'https://ros-staging.s3.amazonaws.com/uploads/component/audio/152/tA74TtoPrkEQ-F8diXHD.mp3'
 end
 
 create_courses
