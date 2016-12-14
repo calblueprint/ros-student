@@ -166,9 +166,8 @@ class CoursePage extends React.Component {
     const subsection = subsectionIndex == -1 ?
       section.subsections[length - 1] :
       section.subsections[subsectionIndex]
-
     if (!this.isSubsectionCompleted(subsection)) {
-      this.state.activeSubsectionIds.add(nextSubsection.id)
+      this.state.activeSubsectionIds.add(subsection.id)
     }
     this.displaySubsection(subsection.id, componentIndex)
   }
