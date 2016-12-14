@@ -40,12 +40,14 @@ class Course < ActiveRecord::Base
     completed = 0.0
 
     sections.each do |section|
-      completed += section.progress(user)
+      section_progress = section.progress(user)
+      completed += 1 if section_progress >= 100
     end
+
     if sections.size == 0
       return 0
     end
-    # TODO: Change back to return completed / sections.size * 100
-    return rand(100)
+
+    return completed / sections.size * 100
   end
 end
