@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap-modal'
 import request from '../../shared/requests/request'
 import { APIRoutes } from '../../shared/routes'
 import { getInputToParams, mapErrorToFormFields } from '../../utils/form_helpers'
+import { Images } from '../../utils/image_helpers'
 
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
@@ -62,6 +63,12 @@ class AddAdminModal extends React.Component {
     this.setState({ formFields: formFields })
   }
 
+  getDismissStyle() {
+    return {
+      backgroundImage: `url(${Images.close_modal})`,
+    }
+  }
+
   render() {
     return (
       <Modal
@@ -70,7 +77,11 @@ class AddAdminModal extends React.Component {
       >
         <Modal.Header>
           <Modal.Title>Create Admin</Modal.Title>
-          <Modal.Dismiss className='modal-dismiss' onClick={this.props.closeModal}/>
+          <Modal.Dismiss
+            className='flex center modal-dismiss-container'
+            onClick={this.props.closeModal}>
+            <div style={this.getDismissStyle()} className='modal-dismiss'/>
+          </Modal.Dismiss>
         </Modal.Header>
         <Modal.Body>
           <Form>
