@@ -18,6 +18,19 @@
   transition: 100ms;
   cursor: pointer;
 
+  &:disabled {
+    background: $dark-blue-20;
+    border: 1px solid transparent;
+    text-decoration: none;
+
+    &:hover {
+      background: $dark-blue-20;
+      border: 1px solid transparent;
+      text-decoration: none;
+      box-shadow: none;
+    }
+  }
+
   &:hover {
     background: $dark-blue;
     border: 1px solid $dark-blue;

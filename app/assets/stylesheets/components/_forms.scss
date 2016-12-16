@@ -60,3 +60,30 @@
 .hidden-input {
   display: none;
 }
+
+.select {
+  @include appearance(none);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 10px;
+  background-color: $white;
+  background-origin: content-box;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  color: $black;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: $font-stack;
+  outline: none;
+  padding: 8px 15px;
+  transition: 50ms;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $dark-blue;
+  }
+}
+
+.option {
+
+}
