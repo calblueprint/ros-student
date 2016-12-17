@@ -215,7 +215,7 @@ class CoursePage extends React.Component {
   }
 
   markSubsectionAsComplete(subsection) {
-    const path = APIRoutes.createSubsectionProgressPath(subsection.id)
+    const path = APIRoutes.createComponentProgressPath(subsection.id)
 
     const componentParams = {
       subsection_progress: {

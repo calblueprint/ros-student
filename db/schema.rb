@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122204204) do
+ActiveRecord::Schema.define(version: 20161217093936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(version: 20161122204204) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "code_csv_id"
+  end
+
+  create_table "component_progresses", force: :cascade do |t|
+    t.integer  "student_id"
+    t.boolean  "completed",    default: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "component_id"
   end
 
   create_table "components", force: :cascade do |t|
@@ -123,14 +131,6 @@ ActiveRecord::Schema.define(version: 20161122204204) do
 
   add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
-
-  create_table "subsection_progresses", force: :cascade do |t|
-    t.integer  "student_id"
-    t.integer  "subsection_id"
-    t.boolean  "completed",     default: true
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-  end
 
   create_table "subsections", force: :cascade do |t|
     t.string   "title",      default: "Subsection"

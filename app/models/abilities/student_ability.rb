@@ -15,7 +15,7 @@ class StudentAbility
     can [:index], Course
     can [:show], Subsection
     can [:show], Component
-    can [:show, :create], SubsectionProgress
+    can [:show, :create], ComponentProgress
     can [:show, :outline, :sidebar], Course do |course|
       course.is_enrolled?(student)
     end
