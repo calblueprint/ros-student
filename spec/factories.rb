@@ -18,9 +18,9 @@ FactoryGirl.define do
     subsection
   end
 
-  factory :subsection_progress do
+  factory :component_progress do
     student
-    subsection
+    component
     completed true
   end
 

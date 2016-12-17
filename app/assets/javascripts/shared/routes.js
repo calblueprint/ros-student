@@ -89,8 +89,8 @@ class APIRoutes {
 
   // Courses
   static getSubsectionPath(id)       { return APIRoutes.createRoute(`students/subsections/${id}`) }
-  static getSubsectionProgressPath(id) { return APIRoutes.createRoute(`students/subsections/${id}/subsection_progresses`) }
-  static createSubsectionProgressPath(id) { return APIRoutes.createRoute(`students/subsections/${id}/subsection_progresses`)}
+  static getComponentProgressPath(id) { return APIRoutes.createRoute(`students/components/${id}/component_progresses`) }
+  static createComponentProgressPath(id) { return APIRoutes.createRoute(`students/components/${id}/component_progresses`)}
 
   // Course Edit
   static getEditCoursePath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/edit`) }

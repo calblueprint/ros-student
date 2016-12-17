@@ -1,4 +1,4 @@
-class BaseSubsectionProgressSerializer < ActiveModel::Serializer
+class BaseComponentProgressSerializer < ActiveModel::Serializer
   attributes :id,
              :student_id,
              :subsection_id,
