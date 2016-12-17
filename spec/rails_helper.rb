@@ -33,4 +33,5 @@ RSpec.configure do |config|
   config.include ActiveSupport::Testing::TimeHelpers
 
   config.include Devise::TestHelpers, type: :controller
+  config.include Requests::JsonHelpers, type: :request
 end

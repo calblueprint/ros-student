@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     get '/ping', to: 'pages#ping'
 
     namespace :admins do
-      resources :courses, only: [:index, :create, :edit, :update, :destroy], shallow: true do
+      resources :courses, only: [:index, :edit, :update, :destroy], shallow: true do
         resources :sections, only: [:create, :update, :destroy] do
           member do
             post :switch_position
