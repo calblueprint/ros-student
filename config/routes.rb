@@ -86,7 +86,7 @@ Rails.application.routes.draw do
     namespace :students do
       resources :courses, only: [:index], shallow: true do
         resources :sections, only: [] do
-          resources :subsections, only: [] do
+          resources :subsections, only: [:show] do
             resources :components, only: [] do
               resources :component_progresses, only: [:show, :create]
             end

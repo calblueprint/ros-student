@@ -20,9 +20,7 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :photo
 
   def is_enrolled?(user)
-    if user.instance_of? Admin
-      return true
-    end
+    user.instance_of?(Admin) ||
     StudentCourse.find_by({ course_id: id, student_id: user.id})
   end
 
