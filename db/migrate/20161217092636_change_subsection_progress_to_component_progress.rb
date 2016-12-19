@@ -1,5 +1,5 @@
 class ChangeSubsectionProgressToComponentProgress < ActiveRecord::Migration
   def change
-    rename_table :subsection_progresses, :component_progresses
+    rename_table :subsection_progresses, :component_progressess
   end
 end

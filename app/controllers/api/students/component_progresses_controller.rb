@@ -3,14 +3,14 @@ class Api::Students::ComponentProgressesController < Api::Students::BaseControll
 
   def create
     if @component_progress.save
-      render json: @component_progress, user: current_user, serializer: ComponentProgressesSerializer
+      render json: @component_progress, user: current_user, serializer: ComponentProgressSerializer
     else
       error_response(@component_progress)
     end
   end
 
   def show
-    render json: @component_progress, user: current_user, serializer: ComponentProgressesSerializer
+    render json: @component_progress, user: current_user, serializer: ComponentProgressSerializer
   end
 
   private

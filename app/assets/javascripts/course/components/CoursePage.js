@@ -72,11 +72,12 @@ class CoursePage extends React.Component {
     this.setState({ nextDisabled: true })
     const subsection = this.state.displayedSubsection
     const component = this.state.displayedComponent
+    this.markComponentAsComplete(component)
+
     if (!this.isLastComponent(subsection, component)) {
       const index = this.getComponentIndex(subsection, component)
       this.displayComponent(subsection.components[index + 1].id)
     } else {
-      this.markSubsectionAsComplete(subsection)
       this.displayNextSubsection()
     }
   }
@@ -205,21 +206,14 @@ class CoursePage extends React.Component {
 
   enableNextButton() {
     this.setState({ nextDisabled: false })
-
-    const subsection = this.state.displayedSubsection
-    const component = this.state.displayedComponent
-
-    if (this.isLastComponent(subsection, component)) {
-      this.markSubsectionAsComplete(subsection)
-    }
   }
 
-  markSubsectionAsComplete(subsection) {
-    const path = APIRoutes.createComponentProgressPath(subsection.id)
+  markComponentAsComplete(component) {
+    const path = APIRoutes.createComponentProgressPath(component.id)
 
     const componentParams = {
-      subsection_progress: {
-        subsection_id: subsection.id,
+      component_progress: {
+        component_id: component.id,
         student_id: getUser().id
       }
     }
