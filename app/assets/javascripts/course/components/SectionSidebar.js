@@ -14,8 +14,7 @@ class SectionSidebar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // isOpen: this.props.section.id == this.props.activeSectionId ? true : false
-      isOpen: true
+      isOpen: this.props.section.id == this.props.displayedSubsection.section_id ? true : false
     }
     this.toggleCollapse = this.toggleCollapse.bind(this)
   }
@@ -32,7 +31,6 @@ class SectionSidebar extends React.Component {
           key={value.id}
           subsection={value}
           displayedSubsection={this.props.displayedSubsection}
-          activeSubsectionIds={this.props.activeSubsectionIds}
           callback={this.props.callback}
         />
       )
