@@ -251,9 +251,14 @@ class CoursePage extends React.Component {
   requestSidebar() {
     const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
     request.get(path, (response) => {
+      const currentSubsection = response.course_sidebar.current_subsection
+      if (currentSubsection) {
+        this.displaySubsection(currentSubsection.id, 0)
+      }
+
       this.setState({
         courseSidebar: response.course_sidebar,
-        displayedSubsection: response.course_sidebar.current_subsection,
+        displayedSubsection: currentSubsection,
       })
     }, (error) => {
       console.log(error)
