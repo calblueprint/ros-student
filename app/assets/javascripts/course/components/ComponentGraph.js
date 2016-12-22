@@ -70,7 +70,7 @@ class ComponentGraph extends React.Component {
       return
     }
 
-    this.props.callback(component)
+    this.props.callback(component.position)
   }
 
   renderComponentIcon(component) {

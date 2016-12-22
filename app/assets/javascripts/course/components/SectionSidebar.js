@@ -10,12 +10,12 @@ import { APIRoutes } from '../../shared/routes'
 import SubsectionSidebar from './SubsectionSidebar'
 
 class SectionSidebar extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
       isOpen: this.props.section.id == this.props.displayedSubsection.section_id ? true : false
     }
+
     this.toggleCollapse = this.toggleCollapse.bind(this)
   }
 
@@ -30,6 +30,7 @@ class SectionSidebar extends React.Component {
         <SubsectionSidebar
           key={value.id}
           subsection={value}
+          currentSubsection={this.props.currentSubsection}
           displayedSubsection={this.props.displayedSubsection}
           callback={this.props.callback}
         />
