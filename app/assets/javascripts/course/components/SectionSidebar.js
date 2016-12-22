@@ -13,10 +13,14 @@ class SectionSidebar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isOpen: this.props.section.id == this.props.displayedSubsection.section_id ? true : false
+      isOpen: false,
     }
 
     this.toggleCollapse = this.toggleCollapse.bind(this)
+  }
+
+  shouldBeOpen() {
+    return this.props.section.id == this.props.displayedSubsection.section_id || this.state.isOpen
   }
 
   toggleCollapse() {
@@ -41,10 +45,13 @@ class SectionSidebar extends React.Component {
   render() {
     return (
       <div className='sidebar-section-card'>
-        <div className='sidebar-section-title-container' onClick={this.toggleCollapse}>
+        <div
+          className='sidebar-section-title-container'
+          onClick={this.toggleCollapse}
+        >
           <h2>{this.props.section.title}</h2>
         </div>
-        <Collapse isOpened={this.state.isOpen}>
+        <Collapse isOpened={this.shouldBeOpen()}>
           <ul>{this.renderSubsections()}</ul>
         </Collapse>
       </div>
