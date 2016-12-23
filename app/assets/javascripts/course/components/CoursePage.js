@@ -48,7 +48,6 @@ class CoursePage extends React.Component {
     const path = APIRoutes.getSubsectionPath(id)
 
     request.get(path, (response) => {
-      console.log(response)
       const length = response.components.length
       const displayedSection = this.getDisplayedSection(response)
 
@@ -73,7 +72,6 @@ class CoursePage extends React.Component {
 
   displaySection(index, subsectionIndex, componentIndex) {
     const section = this.state.courseSidebar.sections[index - 1]
-    console.log(section)
     const length = section.subsections.length
     subsectionIndex = subsectionIndex == -1 ? length : subsectionIndex
     const subsection = section.subsections[subsectionIndex - 1]
@@ -93,8 +91,7 @@ class CoursePage extends React.Component {
     } else if (!isLast(subsection.components, component)) {
       this.displayComponent(component.position + 1)
     } else if (!isLast(section.subsections, subsection)) {
-      const displayedSubsection =
-        this.state.displayedSection.subsections[subsection.position]
+      const displayedSubsection = section.subsections[subsection.position]
       this.displaySubsection(displayedSubsection.id, 1)
     } else if (!isLast(sections, section)) {
       this.displaySection(section.position + 1, 1, 1)
@@ -110,8 +107,7 @@ class CoursePage extends React.Component {
     if (!isFirst(component)) {
       this.displayComponent(component.position - 1)
     } else if (!isFirst(subsection)) {
-      const displayedSubsection =
-        this.state.displayedSection.subsections[subsection.position - 2]
+      const displayedSubsection = section.subsections[subsection.position - 2]
       this.displaySubsection(displayedSubsection.id, -1)
     } else if (!isFirst(section)) {
       this.displaySection(section.position - 1, -1, -1)
@@ -175,9 +171,8 @@ class CoursePage extends React.Component {
     }
 
     const section = sections.find((section) => {
-      section.id == subsection.section_id
+      return section.id == subsection.section_id
     })
-
     if (!section) {
       return
     }
@@ -185,15 +180,16 @@ class CoursePage extends React.Component {
     section.subsections[subsection.position - 1] = subsection
     courseSidebar.sections[section.position - 1] = section
 
-    this.setState({ courseSidebar: courseSidebar })
-
     if (!isLast(section.subsections, subsection)) {
-      const displayedSubsection =
-        this.state.displayedSection.subsections[subsection.position]
+      const displayedSubsection = section.subsections[subsection.position]
+      courseSidebar.current_subsection = displayedSubsection
+
       this.displaySubsection(displayedSubsection.id, 1)
     } else if (!isLast(sections, section)) {
       this.displaySection(section.position + 1, 1, 1)
     }
+
+    this.setState({ courseSidebar: courseSidebar })
   }
 
   requestSidebar() {
