@@ -7,9 +7,11 @@
 .component-display-container {
   width: 70%;
   height: 100vh;
+  overflow-y: scroll;
+  padding: $xl 0px;
 }
 
 .component-next-container {
-  padding: $lg;
+  padding: $sm 0px;
   flex-direction: row-reverse;
 }

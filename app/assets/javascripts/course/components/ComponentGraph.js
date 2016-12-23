@@ -75,7 +75,7 @@ class ComponentGraph extends React.Component {
 
   renderComponentIcon(component) {
     return (
-      <div key={component.id} className='flex'>
+      <div key={component.id} className='flex center'>
         {component.position == 1 ? '' :
           <div
             style={this.getDisabledComponentStyle(component)}
@@ -116,7 +116,7 @@ class ComponentGraph extends React.Component {
 
   render() {
     return (
-      <div className='component-graph-container'>
+      <div className='flex center component-graph-container'>
         {this.renderComponents()}
       </div>
     )
