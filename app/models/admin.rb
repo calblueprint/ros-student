@@ -55,8 +55,8 @@ class Admin < ActiveRecord::Base
     self.password_confirmation = @temp_password
   end
 
-  # Actually do something here
   def send_email
-    # puts @temp_password
+    puts @temp_password
+    AdminMailer.create_admin(self, @temp_password)
   end
 end
