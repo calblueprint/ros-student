@@ -18,9 +18,8 @@ class CourseSidebar extends React.Component {
         <SectionSidebar
           key={value.id}
           section={value}
+          currentSubsection={this.props.courseSidebar.current_subsection}
           displayedSubsection={this.props.displayedSubsection}
-          activeSubsectionIds={this.props.activeSubsectionIds}
-          activeSectionId={this.props.activeSectionId}
           callback={this.props.callback}
         />
       )

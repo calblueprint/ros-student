@@ -24,7 +24,14 @@ function formatComponent(component) {
   return formattedComponent
 }
 
+function isComponentSelfStudy(component) {
+  return component &&
+    component.component_type == 0 &&
+    component.audio_url == null
+}
+
 export {
   getYoutubeKey,
   formatComponent,
+  isComponentSelfStudy,
 }

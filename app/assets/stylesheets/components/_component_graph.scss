@@ -17,6 +17,10 @@
   margin: 0px;
   cursor: pointer;
 
+  @include appearance(none);
+  border: none;
+  outline: none;
+  background: transparent;
 }
 
 .component-icon-container {
@@ -47,10 +51,8 @@
 }
 
 .component-graph-container {
-  display: flex;
-  justify-content: center;
   height: 24px;
   width: 60%;
-  margin: 30px auto;
-  padding: 0px;
+  padding: $sm 0px;
+  margin: 0px auto;
 }

@@ -3,11 +3,12 @@ import React from 'react'
 import ReactPlayer from 'react-player'
 
 class AudioComponent extends React.Component {
-
   constructor(props) {
     super(props)
 
-    this.state = { playing: true }
+    this.state = {
+      playing: false
+    }
     this.onEnd = this.onEnd.bind(this)
   }
 
@@ -18,21 +19,21 @@ class AudioComponent extends React.Component {
 
   renderAudio() {
     return (
-      <div>
-        <ReactPlayer
-          url={this.props.audioUrl}
-          playing={this.state.playing}
-          controls={true}
-          height={0}
-          onEnded={this.onEnd}
-        />
-      </div>
+      <ReactPlayer
+        className='flex center audio-component'
+        url={this.props.audioUrl}
+        playing={this.state.playing}
+        controls={true}
+        onEnded={this.onEnd}
+        height='30'
+        width='100%'
+      />
     )
   }
 
   render() {
     return (
-      <div>
+      <div className='flex center audio-component-container'>
         {!_.isUndefined(this.props.audioUrl) ? this.renderAudio() : ''}
       </div>
     )

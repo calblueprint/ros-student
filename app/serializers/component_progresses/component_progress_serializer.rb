@@ -1,0 +1,2 @@
+class ComponentProgressSerializer < BaseComponentProgressSerializer
+end

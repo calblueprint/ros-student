@@ -30,6 +30,10 @@ class Component < ActiveRecord::Base
 
   mount_uploader :audio, AudioUploader
 
+  def is_complete?(user)
+    ComponentProgress.find_by(student_id: user.id, component_id: id)
+  end
+
   def audio_url
     audio.url
   end
