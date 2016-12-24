@@ -11,10 +11,12 @@ class AdminListTab extends React.Component {
 
     this.state = {
       isModalOpen: false,
+      newUser: undefined,
     }
 
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.setNewUser = this.setNewUser.bind(this)
   }
 
   openModal() {
@@ -23,6 +25,10 @@ class AdminListTab extends React.Component {
 
   closeModal() {
     this.setState({ isModalOpen: false })
+  }
+
+  setNewUser(user) {
+    this.setState({ newUser: user })
   }
 
   render() {
@@ -37,11 +43,14 @@ class AdminListTab extends React.Component {
         <UserList
           editRoute={APIRoutes.getAdminsPath}
           deleteRoute={APIRoutes.deleteAdminPath}
+          newUser={this.state.newUser}
+          setNewUser={this.setNewUser}
         />
 
         <AddAdminModal
           isModalOpen={this.state.isModalOpen}
           closeModal={this.closeModal}
+          setNewUser={this.setNewUser}
         />
       </div>
     )

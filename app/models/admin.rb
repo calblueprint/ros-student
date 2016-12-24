@@ -17,7 +17,7 @@
 #  updated_at             :datetime         not null
 #  first_name             :string           default("")
 #  last_name              :string           default("")
-#  username               :string
+#  username               :string           default("")
 #
 
 class Admin < ActiveRecord::Base
@@ -35,7 +35,7 @@ class Admin < ActiveRecord::Base
 
   validates_confirmation_of :password
   validates :username, presence: true, on: :update
-  validates :username, uniqueness: true
+  validates :username, uniqueness: true, allow_blank: true
 
   has_one :photo, as: :parent, dependent: :destroy
   accepts_nested_attributes_for :photo

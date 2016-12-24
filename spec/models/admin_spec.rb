@@ -17,7 +17,7 @@
 #  updated_at             :datetime         not null
 #  first_name             :string           default("")
 #  last_name              :string           default("")
-#  username               :string
+#  username               :string           default("")
 #
 
 require 'rails_helper'
