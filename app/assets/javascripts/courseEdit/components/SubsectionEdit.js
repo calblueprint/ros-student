@@ -161,7 +161,10 @@ class SubsectionEdit extends React.Component {
             closeModal={this.closeNewComponentForm}
             subsectionId={this.id}
             callback={this.onFormCompletion} />
-          <button className='button button--white' onClick={this.showNewComponentForm}>
+          <button
+            className='button button--white add-component-button'
+            onClick={this.showNewComponentForm}
+          >
             <div className='flex vertical'>
               <img className='course-image-icon margin' src={Images.empty_plus} />
               <p>Add new component</p>

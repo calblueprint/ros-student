@@ -139,7 +139,10 @@ class SectionEdit extends React.Component {
 
         <Collapse isOpened={this.state.isOpen}>
           <div>{this.renderSubsections()}</div>
-          <button className='button button--white edit-subsection' onClick={this.createSubsection}>
+          <button
+            className='button button--white add-subsection-button'
+            onClick={this.createSubsection}
+          >
             <div className='flex vertical'>
               <img className='course-image-icon margin' src={Images.empty_plus} />
               <div>Add new subsection</div>
