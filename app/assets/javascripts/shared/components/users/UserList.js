@@ -25,6 +25,7 @@ class UserList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    /* We check whether or not we've created a new user */
     if (nextProps.newUser) {
       const users = this.state.users
       users.push(nextProps.newUser)
