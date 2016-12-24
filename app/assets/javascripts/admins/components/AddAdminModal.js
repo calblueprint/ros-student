@@ -14,28 +14,32 @@ class AddAdminModal extends React.Component {
     super(props)
 
     this.state = {
-      formFields: {
-        email: {
-          label: 'Email',
-          value: '',
-          onChange: _.bind(this.handleChange, this, 'email'),
-          error: '',
-        },
-        firstName: {
-          label: 'First Name',
-          value: '',
-          onChange: _.bind(this.handleChange, this, 'firstName'),
-          error: '',
-        },
-        lastName: {
-          label: 'Last Name',
-          value: '',
-          onChange: _.bind(this.handleChange, this, 'lastName')
-        }
-      }
+      formFields: this.getInitialForm()
     }
 
     this.createAdmin = this.createAdmin.bind(this)
+  }
+
+  getInitialForm() {
+    return {
+      email: {
+        label: 'Email',
+        value: '',
+        onChange: _.bind(this.handleChange, this, 'email'),
+        error: '',
+      },
+      firstName: {
+        label: 'First Name',
+        value: '',
+        onChange: _.bind(this.handleChange, this, 'firstName'),
+        error: '',
+      },
+      lastName: {
+        label: 'Last Name',
+        value: '',
+        onChange: _.bind(this.handleChange, this, 'lastName')
+      }
+    }
   }
 
   createAdmin(e) {
@@ -46,8 +50,8 @@ class AddAdminModal extends React.Component {
     const path = APIRoutes.createAdminPath()
 
     request.post(path, params, (response) => {
+      this.setState({ formFields: this.getInitialForm })
       this.props.closeModal()
-      console.log(response.admin)
     }, (error) => {
       console.log(error)
       this.setState({

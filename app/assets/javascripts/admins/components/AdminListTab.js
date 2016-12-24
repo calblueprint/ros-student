@@ -36,7 +36,8 @@ class AdminListTab extends React.Component {
 
         <UserList
           editRoute={APIRoutes.getAdminsPath}
-          deleteRoute={APIRoutes.deleteAdminPath}/>
+          deleteRoute={APIRoutes.deleteAdminPath}
+        />
 
         <AddAdminModal
           isModalOpen={this.state.isModalOpen}

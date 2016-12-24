@@ -11,7 +11,6 @@ class UserList extends React.Component {
 
     this.state = {
       users: [],
-
     }
 
     this.onDeleteUser = this.onDeleteUser.bind(this)
