@@ -56,7 +56,6 @@ class Admin < ActiveRecord::Base
   end
 
   def send_email
-    puts @temp_password
-    AdminMailer.create_admin(self, @temp_password)
+    AdminMailer.create_admin(self, @temp_password).deliver_now
   end
 end
