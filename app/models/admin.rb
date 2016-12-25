@@ -35,7 +35,7 @@ class Admin < ActiveRecord::Base
 
   validates_confirmation_of :password
   validates :username, presence: true, on: :update
-  validates :username, uniqueness: true
+  validates :username, uniqueness: true, allow_blank: true
 
   has_one :photo, as: :parent, dependent: :destroy
   accepts_nested_attributes_for :photo
@@ -55,8 +55,7 @@ class Admin < ActiveRecord::Base
     self.password_confirmation = @temp_password
   end
 
-  # Actually do something here
   def send_email
-    # puts @temp_password
+    AdminMailer.create_admin(self, @temp_password).deliver_now
   end
 end

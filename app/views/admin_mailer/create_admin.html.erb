@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.first_name %>!</h1>
+    <p>
+      You've been added as admin of <a target='_blank' href='https://ros-student-production.herokuapp.com/'>Roots of Success</a>
+    </p>
+    <p>
+      Here is your login information - feel free to change it after signing in.
+    </p>
+    <p>
+      Email: <%= @user.email %>
+    </p>
+    <p>
+      Password: <%= @password %>
+    </p>
+    <p>- Roots of Success</p>
+  </body>
+</html>

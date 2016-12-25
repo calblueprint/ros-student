@@ -11,7 +11,6 @@ class UserList extends React.Component {
 
     this.state = {
       users: [],
-
     }
 
     this.onDeleteUser = this.onDeleteUser.bind(this)
@@ -23,6 +22,16 @@ class UserList extends React.Component {
     }, (error) => {
       console.log(error)
     })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    /* We check whether or not we've created a new user */
+    if (nextProps.newUser) {
+      const users = this.state.users
+      users.push(nextProps.newUser)
+      this.setState({ users: users })
+      this.props.setNewUser(undefined)
+    }
   }
 
   onDeleteUser(user) {
@@ -60,6 +69,8 @@ UserList.propTypes = {
   editRoute: PropTypes.func.isRequired,
   deleteRoute: PropTypes.func.isRequired,
   onRowClick: PropTypes.func,
+  newUser: PropTypes.object,
+  setNewUser: PropTypes.func,
 }
 
 export default UserList
