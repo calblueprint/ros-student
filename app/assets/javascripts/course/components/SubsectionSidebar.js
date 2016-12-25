@@ -8,23 +8,21 @@ import { RailsRoutes, ReactRoutes } from '../../shared/routes'
 import { APIRoutes } from '../../shared/routes'
 
 class SubsectionSidebar extends React.Component {
-
-  constructor(props) {
-    super(props)
-  }
-
   getActive() {
     return this.props.displayedSubsection.id == this.props.subsection.id ? 'active' : ''
   }
 
   getInactive() {
-    return this.props.activeSubsectionIds.has(this.props.subsection.id) ? '' : 'inactive'
+    const subsection = this.props.subsection
+    return subsection.id == this.props.currentSubsection.id || subsection.is_complete ? '' : 'inactive'
   }
 
   render() {
     return (
       <div className={`sidebar-subsection-card ${this.getActive()} ${this.getInactive()}`}>
-        <li onClick={_.partial(this.props.callback, this.props.subsection.id, 0)}>
+        <li
+          onClick={_.partial(this.props.callback, this.props.subsection.id, undefined)}
+        >
           {this.props.subsection.title}
         </li>
       </div>

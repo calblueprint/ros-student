@@ -17,6 +17,10 @@
   margin: 0px;
   cursor: pointer;
 
+  @include appearance(none);
+  border: none;
+  outline: none;
+  background: transparent;
 }
 
 .component-icon-container {

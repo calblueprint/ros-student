@@ -3,11 +3,13 @@ import React from 'react'
 import ReactPlayer from 'react-player'
 
 class AudioComponent extends React.Component {
-
   constructor(props) {
     super(props)
 
-    this.state = { playing: false }
+    this.state = {
+      playing: false
+    }
+
     this.onEnd = this.onEnd.bind(this)
   }
 

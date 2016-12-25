@@ -20,8 +20,11 @@ class Subsection < ActiveRecord::Base
   has_many :components, -> { order(position: :asc) }
 
   def is_complete?(user)
-    subsection_progress = SubsectionProgress.find_by({ student_id: user.id, subsection_id: id })
-    subsection_progress.blank? ? false : subsection_progress.completed
+    components.all? { |component| component.is_complete?(user) }
+  end
+
+  def current_component(user)
+    components.find { |component| !component.is_complete?(user) }
   end
 
   def switch(params)

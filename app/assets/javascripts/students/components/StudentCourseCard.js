@@ -9,7 +9,9 @@ import TopProgressBar from '../../shared/components/widgets/TopProgressBar'
 
 class StudentCourseCard extends React.Component {
   getImgStyle() {
-    const image_url = this.props.course.image_url ? this.props.course.image_url : Images.doge
+    const image_url = this.props.course.image_url ?
+      this.props.course.image_url :
+      Images.doge
 
     return image_url
   }

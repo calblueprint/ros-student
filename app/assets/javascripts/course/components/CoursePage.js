@@ -1,14 +1,15 @@
 import React from 'react'
 import _ from 'underscore'
+
 import request from '../../shared/requests/request'
 import { getUser } from '../../utils/user_helpers'
+import { APIRoutes } from '../../shared/routes'
+import { findById, isFirst, isLast } from '../../utils/course_helpers'
+import { isComponentSelfStudy } from '../../utils/component_helpers'
 
 import CourseSidebar from './CourseSidebar'
 import ParentComponent from './ParentComponent'
 import ComponentGraph from './ComponentGraph'
-
-import { APIRoutes } from '../../shared/routes'
-
 
 class CoursePage extends React.Component {
   constructor(props) {
@@ -18,8 +19,6 @@ class CoursePage extends React.Component {
       courseSidebar: {}, // Use courseSidebar.current_subsection
       displayedSection: {},
       displayedSubsection: {},
-      activeSubsectionIds: new Set(),
-      activeSectionId: {},
       displayedComponent: {},
       nextDisabled: true
     }
@@ -27,16 +26,22 @@ class CoursePage extends React.Component {
     this.displaySubsection = this.displaySubsection.bind(this)
     this.displayComponent = this.displayComponent.bind(this)
     this.displayNextComponent = this.displayNextComponent.bind(this)
-    this.displayNextSubsection = this.displayNextSubsection.bind(this)
     this.displayPrevComponent = this.displayPrevComponent.bind(this)
-    this.displayPrevSubsection = this.displayPrevSubsection.bind(this)
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
     this.enableNextButton = this.enableNextButton.bind(this)
-
   }
 
   componentDidMount() {
     this.requestSidebar()
+  }
+
+  displayComponent(index) {
+    const components = this.state.displayedSubsection.components
+    if (!components) {
+      return
+    }
+
+    this.setState({ displayedComponent: components[index - 1] })
   }
 
   displaySubsection(id, componentIndex) {
@@ -45,131 +50,73 @@ class CoursePage extends React.Component {
     request.get(path, (response) => {
       const length = response.components.length
       const displayedSection = this.getDisplayedSection(response)
-      const displayedComponent = componentIndex == -1 ?
-        response.components[length - 1] :
-        response.components[componentIndex]
+
+      let displayedComponent
+      if (!componentIndex && !response.is_complete) {
+        displayedComponent = response.current_component
+      } else if (response.is_complete || componentIndex == -1) {
+        displayedComponent = response.components[length - 1]
+      } else {
+        displayedComponent = response.components[componentIndex - 1]
+      }
 
       this.setState({
         displayedSubsection: response,
         displayedComponent: displayedComponent,
-        displayedSection: displayedSection
+        displayedSection: displayedSection,
       })
     }, (error) => {
       console.log(error)
     })
   }
 
-  displayComponent(id) {
-    function byId(element) {
-      return element.id === id
-    }
-    this.setState({
-      displayedComponent: this.state.displayedSubsection.components.find(byId)
-    })
+  displaySection(index, subsectionIndex, componentIndex) {
+    const section = this.state.courseSidebar.sections[index - 1]
+    const length = section.subsections.length
+    subsectionIndex = subsectionIndex == -1 ? length : subsectionIndex
+    const subsection = section.subsections[subsectionIndex - 1]
+
+    const courseSidebar = this.state.courseSidebar
+    courseSidebar.current_subsection = subsection
+    this.setState({ courseSidebar: courseSidebar })
+
+    this.displaySubsection(subsection.id, componentIndex)
   }
 
   displayNextComponent() {
     this.setState({ nextDisabled: true })
+
+    const sections = this.state.courseSidebar.sections
+    const section = this.state.displayedSection
     const subsection = this.state.displayedSubsection
     const component = this.state.displayedComponent
-    if (!this.isLastComponent(subsection, component)) {
-      const index = this.getComponentIndex(subsection, component)
-      this.displayComponent(subsection.components[index + 1].id)
-    } else {
-      this.markSubsectionAsComplete(subsection)
-      this.displayNextSubsection()
+
+    if (!component.is_complete) {
+      this.markComponentAsComplete(component)
+    } else if (!isLast(subsection.components, component)) {
+      this.displayComponent(component.position + 1)
+    } else if (!isLast(section.subsections, subsection)) {
+      const displayedSubsection = section.subsections[subsection.position]
+      this.displaySubsection(displayedSubsection.id, 1)
+    } else if (!isLast(sections, section)) {
+      this.displaySection(section.position + 1, 1, 1)
     }
   }
 
   displayPrevComponent() {
+    const sections = this.state.courseSidebar.sections
+    const section = this.state.displayedSection
     const subsection = this.state.displayedSubsection
     const component = this.state.displayedComponent
-    if (!this.isFirstComponent(subsection, component)) {
-      const index = this.getComponentIndex(subsection, component)
-      this.displayComponent(subsection.components[index - 1].id)
-    } else {
-      this.displayPrevSubsection()
+
+    if (!isFirst(component)) {
+      this.displayComponent(component.position - 1)
+    } else if (!isFirst(subsection)) {
+      const displayedSubsection = section.subsections[subsection.position - 2]
+      this.displaySubsection(displayedSubsection.id, -1)
+    } else if (!isFirst(section)) {
+      this.displaySection(section.position - 1, -1, -1)
     }
-  }
-
-  displayNextSubsection() {
-    const displayedSubsection = this.state.displayedSubsection
-    const subsections = this.getDisplayedSection(displayedSubsection).subsections
-    function next(element, index) {
-      if (index > 0 && displayedSubsection.id == subsections[index - 1].id) {
-        return element
-      }
-    }
-
-    const nextSubsection = subsections.find(next)
-    if (nextSubsection != null) {
-      this.displaySubsection(nextSubsection.id, 0)
-      if (!this.isSubsectionCompleted(nextSubsection)) {
-        this.state.activeSubsectionIds.add(nextSubsection.id)
-      }
-    } else {
-      this.displayNextSection()
-    }
-  }
-
-  displayPrevSubsection() {
-    const displayedSubsection = this.state.displayedSubsection
-    const subsections = this.getDisplayedSection(displayedSubsection).subsections
-    function prev(element, index, array) {
-      if (index + 1 < array.length && displayedSubsection.id == subsections[index + 1].id) {
-        return element
-      }
-    }
-
-    const prevSubsection = subsections.find(prev)
-    if (prevSubsection != null) {
-      this.displaySubsection(prevSubsection.id, -1)
-    } else {
-      this.displayPrevSection()
-    }
-  }
-
-  displayNextSection() {
-    const displayedSection = this.state.displayedSection
-    const sections = this.state.courseSidebar.sections
-
-    function next(element, index) {
-      if (index > 0 && displayedSection.id == sections[index - 1].id) {
-        return element
-      }
-    }
-
-    const nextSection = sections.find(next)
-    if (nextSection != null) {
-      this.displaySection(nextSection, 0, 0)
-    }
-  }
-
-  displayPrevSection() {
-    const displayedSection = this.state.displayedSection
-    const sections = this.state.courseSidebar.sections
-
-    function prev(element, index, array) {
-      if (index + 1 < array.length && displayedSection.id == sections[index + 1].id) {
-        return element
-      }
-    }
-
-    const prevSection = sections.find(prev)
-    if (prevSection != null) {
-      this.displaySection(prevSection, -1, -1)
-    }
-  }
-
-  displaySection(section, subsectionIndex, componentIndex) {
-    const length = section.subsections.length
-    const subsection = subsectionIndex == -1 ?
-      section.subsections[length - 1] :
-      section.subsections[subsectionIndex]
-    if (!this.isSubsectionCompleted(subsection)) {
-      this.state.activeSubsectionIds.add(subsection.id)
-    }
-    this.displaySubsection(subsection.id, componentIndex)
   }
 
   getDisplayedSection(displayedSubsection) {
@@ -179,24 +126,13 @@ class CoursePage extends React.Component {
     })
   }
 
-  getComponentIndex(subsection, component) {
-    return subsection.components.indexOf(component)
-  }
-
-  isLastComponent(subsection, component) {
-    return component.position == subsection.components.length
-  }
-
-  isFirstComponent(subsection, component) {
-    return component.position == 1
-  }
-
   nextDisabled() {
     const component = this.state.displayedComponent
-    const subsection_complete = this.state.displayedSubsection.is_complete
-    if (subsection_complete) {
+    if (!component) {
+      return true
+    } else if (component.is_complete) {
       return false
-    } else if (component.component_type == 0 && component.audio_url == null) {
+    } else if (isComponentSelfStudy(component)) {
       return false
     } else {
       return this.state.nextDisabled
@@ -205,58 +141,75 @@ class CoursePage extends React.Component {
 
   enableNextButton() {
     this.setState({ nextDisabled: false })
-
-    const subsection = this.state.displayedSubsection
-    const component = this.state.displayedComponent
-
-    if (this.isLastComponent(subsection, component)) {
-      this.markSubsectionAsComplete(subsection)
-    }
   }
 
-  markSubsectionAsComplete(subsection) {
-    const path = APIRoutes.createSubsectionProgressPath(subsection.id)
+  markComponentAsComplete(component) {
+    const path = APIRoutes.createComponentProgressPath(component.id)
 
     const componentParams = {
-      subsection_progress: {
-        subsection_id: subsection.id,
+      component_progress: {
+        component_id: component.id,
         student_id: getUser().id
       }
     }
 
     request.post(path, componentParams, (response) => {
-      this.state.activeSubsectionIds.add(subsection.id)
+      if (response.is_complete) {
+        this.markSubsectionComplete(response)
+      } else {
+        this.setState({
+          displayedSubsection: response,
+          displayedComponent: response.current_component,
+        })
+      }
     }, (error) => {
       console.log(error)
     })
   }
 
-  isSubsectionCompleted(subsection) {
-    return this.state.activeSubsectionIds.has(subsection.id)
+  markSubsectionComplete(subsection) {
+    const courseSidebar = this.state.courseSidebar
+    const sections = courseSidebar.sections
+
+    if (!sections) {
+      return
+    }
+
+    const section = sections.find((section) => {
+      return section.id == subsection.section_id
+    })
+    if (!section) {
+      return
+    }
+
+    section.subsections[subsection.position - 1] = subsection
+    courseSidebar.sections[section.position - 1] = section
+
+    if (!isLast(section.subsections, subsection)) {
+      const displayedSubsection = section.subsections[subsection.position]
+
+      courseSidebar.current_subsection = displayedSubsection
+      this.setState({ courseSidebar: courseSidebar })
+
+      this.displaySubsection(displayedSubsection.id, 1)
+    } else if (!isLast(sections, section)) {
+      this.displaySection(section.position + 1, 1, 1)
+    }
+
+
   }
 
   requestSidebar() {
     const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
-    var add = true
-    var lastSectionId = undefined
-
     request.get(path, (response) => {
-      this.setState({ courseSidebar: response.course_sidebar })
-      /* Adds all active subsections to set */
-      response.course_sidebar.sections.forEach((section) => {
-        section.subsections.forEach((subsection) => {
-          if (add) {
-            this.state.activeSubsectionIds.add(subsection.id)
-            lastSectionId = section.id
-          }
-          if (!subsection.is_complete) {
-            add = false
-          }
-        })
-      })
+      const currentSubsection = response.course_sidebar.current_subsection
+      if (currentSubsection) {
+        this.displaySubsection(currentSubsection.id)
+      }
+
       this.setState({
-        activeSectionId: lastSectionId,
-        activeSubsectionIds: this.state.activeSubsectionIds
+        courseSidebar: response.course_sidebar,
+        displayedSubsection: currentSubsection,
       })
     }, (error) => {
       console.log(error)
@@ -270,8 +223,6 @@ class CoursePage extends React.Component {
           <CourseSidebar
             courseSidebar={this.state.courseSidebar}
             displayedSubsection={this.state.displayedSubsection}
-            activeSubsectionIds={this.state.activeSubsectionIds}
-            activeSectionId={this.state.activeSectionId}
             callback={this.displaySubsection}
           />
         </div>
@@ -280,7 +231,7 @@ class CoursePage extends React.Component {
             <div>
               <ComponentGraph
                 subsection={this.state.displayedSubsection}
-                displayedComponentId={this.state.displayedComponent.id}
+                displayedComponent={this.state.displayedComponent}
                 callback={this.displayComponent}
               />
             </div>
