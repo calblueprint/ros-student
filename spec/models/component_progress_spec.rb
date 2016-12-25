@@ -24,7 +24,7 @@ describe ComponentProgress, type: :model do
     end
 
     it 'has no subsection id' do
-      component_progress.subsection_id = nil
+      component_progress.component_id = nil
       expect(component_progress.valid?).to be false
     end
   end
