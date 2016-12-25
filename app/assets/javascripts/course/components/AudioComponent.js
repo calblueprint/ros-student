@@ -7,7 +7,7 @@ class AudioComponent extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { playing: true }
+    this.state = { playing: false }
     this.onEnd = this.onEnd.bind(this)
   }
 

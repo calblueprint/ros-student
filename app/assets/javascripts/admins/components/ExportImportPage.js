@@ -3,6 +3,7 @@ import React from 'react'
 
 import { APIRoutes } from '../../shared/routes'
 import { readJSONFile } from '../../utils/file_helpers'
+import { Images } from '../../utils/image_helpers'
 import request from '../../shared/requests/request'
 
 import Form from '../../shared/components/forms/Form'
@@ -12,7 +13,7 @@ class ExportImportPage extends React.Component {
     super(props)
 
     this.state = {
-      fileName: 'Import Course',
+      fileName: 'None',
       file: '',
       courses: [],
       selectedCourse: -1,
@@ -52,6 +53,9 @@ class ExportImportPage extends React.Component {
 
   importCourse(e) {
     e.preventDefault()
+    if (_.isEmpty(this.state.file)) {
+      return
+    }
 
     const route = APIRoutes.importCoursePath()
     const params = {
@@ -84,6 +88,12 @@ class ExportImportPage extends React.Component {
     }
   }
 
+  getDropdownStyle() {
+    return {
+      backgroundImage: `url(${Images.dropdown_arrow})`,
+    }
+  }
+
   renderSelectOptions() {
     return this.state.courses.map((course) => {
       return (
@@ -96,48 +106,66 @@ class ExportImportPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2 className='h2'>Export Course</h2>
-        <Form>
-          <select
-            defaultValue={this.state.selectedCourse}
-            onChange={this.handleCourseSelect}>
-            <option value={-1}>
-              Select a course
-            </option>
-            {this.renderSelectOptions()}
-          </select>
-          <input
-            type='submit'
-            className='button marginTop-xs'
-            value='Submit'
-            onClick={this.exportCourse}
-          />
-        </Form>
+      <div className='container export-import-container'>
+        <div className='flex'>
+          <div className='export-container'>
+            <div className='flex center flex-vertical'>
+              <h1 className='h1'>Export Course</h1>
+              <p className='marginTopBot-md'>To export a course, select the course that you'd like to export from the dropdown below. This will export all of a course's content in a .json format, which you can edit and re-upload as a new course.</p>
+              <Form>
+                <select
+                  style={this.getDropdownStyle()}
+                  className='select'
+                  defaultValue={this.state.selectedCourse}
+                  onChange={this.handleCourseSelect}>
+                  <option value={-1}>
+                    Select a course
+                  </option>
+                  {this.renderSelectOptions()}
+                </select>
+                <input
+                  type='submit'
+                  className='button marginTop-xs'
+                  value='Submit'
+                  onClick={this.exportCourse}
+                  disabled={this.state.selectedCourse == -1}
+                />
+              </Form>
+            </div>
+          </div>
 
-        <h2 className='h2'>Import Course</h2>
-        <Form>
-          <label
-            htmlFor='course-import'
-            className='button'
-            onChange={this.handleFile}>
-            {this.state.fileName}
-          </label>
-          <input
-            id='course-import'
-            className='hidden-input'
-            type='file'
-            onChange={this.handleFile}
-            accept='.json'
-          />
-          <input
-            type='submit'
-            className='button marginTop-xs'
-            value='Submit'
-            onClick={this.importCourse}
-          />
-
-        </Form>
+          <div className='import-container'>
+            <div className='flex center flex-vertical'>
+              <h1 className='h1'>Import Course</h1>
+              <p className='marginTopBot-md'>Be sure you want to import a course before continuing. By using this feature, you will create a new course. We will only accept properly formatted .json files. Click <span>here</span> for an example of what a formatted course looks like.</p>
+              <Form>
+                <label
+                  htmlFor='course-import'
+                  className='course-import-button'
+                  onChange={this.handleFile}>
+                  Import Course
+                </label>
+                <p className='marginTop-xs'>
+                  {`Selected File: ${this.state.fileName}`}
+                  </p>
+                <input
+                  id='course-import'
+                  className='hidden-input'
+                  type='file'
+                  onChange={this.handleFile}
+                  accept='.json'
+                />
+                <input
+                  disabled={_.isEmpty(this.state.file)}
+                  type='submit'
+                  className='button marginTop-xs'
+                  value='Submit'
+                  onClick={this.importCourse}
+                />
+              </Form>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
