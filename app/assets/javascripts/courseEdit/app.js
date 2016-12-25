@@ -44,6 +44,22 @@ class App extends React.Component {
             href={RailsRoutes.codeCsvListPath()}>
             <div className="nav-element marginRight-xl right">Codes</div>
           </a>
+
+
+          <a
+            href={ReactRoutes.codeCsvListPath()}>
+            <div className="nav-element marginRight-xl right">Codes</div>
+          </a>
+
+          <a
+            href={ReactRoutes.courseToolsPath()}>
+            <div className="nav-element marginRight-xl right">Tools</div>
+          </a>
+
+          <a
+            href={ReactRoutes.usersListPath()}>
+            <div className="nav-element marginRight-xl right">Users</div>
+          </a>
         </Navbar>
         {this.props.children}
       </div>
