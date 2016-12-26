@@ -15,40 +15,38 @@ class DeleteModal extends React.Component {
     const confirmDeleteMessage = `Are you sure you want to delete this ${this.props.objectType}? This action cannot be undone.`
 
     return (
-      <div>
-        <Modal
-          show={this.props.openDeleteModal}
-          onHide={this.props.closeModal}
-        >
-          <Modal.Header>
-            <Modal.Title>Confirm Delete</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {confirmDeleteMessage}
-          </Modal.Body>
-          <Modal.Footer>
-            <div className='flex flex-horizontal delete-modal-container'>
-              <div className='delete-modal-column delete-modal-input'>
-                <input
-                  type='submit'
-                  className='button button--red marginTop-xs delete-modal-button'
-                  value='Cancel'
-                  onClick={this.props.closeModal}
-                />
-              </div>
-
-              <div className='delete-modal-column delete-modal-input'>
-                <input
-                  type='submit'
-                  className='button marginTop-xs delete-modal-button'
-                  value='Delete'
-                  onClick={this.props.deleteFunction}
-                />
-              </div>
+      <Modal
+        show={this.props.openDeleteModal}
+        onHide={this.props.closeModal}
+      >
+        <Modal.Header>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {confirmDeleteMessage}
+        </Modal.Body>
+        <Modal.Footer>
+          <div className='flex flex-horizontal delete-modal-container'>
+            <div className='delete-modal-column delete-modal-input'>
+              <input
+                type='submit'
+                className='button button--red marginTop-xs delete-modal-button'
+                value='Cancel'
+                onClick={this.props.closeModal}
+              />
             </div>
-          </Modal.Footer>
-        </Modal>
-      </div>
+
+            <div className='delete-modal-column delete-modal-input'>
+              <input
+                type='submit'
+                className='button marginTop-xs delete-modal-button'
+                value='Delete'
+                onClick={this.props.deleteFunction}
+              />
+            </div>
+          </div>
+        </Modal.Footer>
+      </Modal>
     )
   }
 }

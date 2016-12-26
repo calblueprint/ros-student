@@ -94,6 +94,7 @@ class APIRoutes {
 
   // Course Edit
   static getEditCoursePath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/edit`) }
+  static deleteCoursePath(id)    { return APIRoutes.createRoute(`admins/courses/${id}`) }
   static editComponentPath(id)   { return APIRoutes.createRoute(`admins/components/${id}`) }
   static editSubsectionPath(id)  { return APIRoutes.createRoute(`admins/subsections/${id}`) }
   static editSectionPath(id)     { return APIRoutes.createRoute(`admins/sections/${id}`) }

@@ -25,6 +25,7 @@ const SERIALIZER = {
 
   // Photo
   imageData: 'image_data',
+  imageUrl: 'image_url',
 }
 
 export { SERIALIZER }

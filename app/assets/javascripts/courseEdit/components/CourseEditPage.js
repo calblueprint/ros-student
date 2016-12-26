@@ -1,12 +1,15 @@
 import React from 'react'
 
-import { APIRoutes } from '../../shared/routes'
+import { APIRoutes, RailsRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
 import { Images, convertImage } from '../../utils/image_helpers'
+import { snakeToCamel } from '../../utils/form_helpers'
 
-import SectionEdit from './SectionEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
+
+import SectionEdit from './SectionEdit'
+import DeleteCourseModal from './DeleteCourseModal'
 
 class CourseEditPage extends React.Component {
   constructor(props) {
@@ -18,26 +21,37 @@ class CourseEditPage extends React.Component {
         description: '',
         sections: [],
         imageUrl: '',
-      }
+      },
+      isDeleteModalOpen: false,
     }
-    this.getCourse()
+
     this.createSection = this.createSection.bind(this)
     this.deleteSection = this.deleteSection.bind(this)
     this.onBlurName = this.onBlurName.bind(this)
     this.onBlurDescription = this.onBlurDescription.bind(this)
     this.onBlurImage = this.onBlurImage.bind(this)
     this.setImage = this.setImage.bind(this)
+    this.openDeleteModal = this.openDeleteModal.bind(this)
+    this.closeDeleteModal = this.closeDeleteModal.bind(this)
+    this.onConfirmDelete = this.onConfirmDelete.bind(this)
+  }
+
+  componentDidMount() {
+    this.getCourse()
+  }
+
+  openDeleteModal() {
+    this.setState({ isDeleteModalOpen: true })
+  }
+
+  closeDeleteModal() {
+    this.setState({ isDeleteModalOpen: false })
   }
 
   getCourse() {
     const path = APIRoutes.getEditCoursePath(this.id)
     request.get(path, (response) => {
-      const course = this.state.course
-      course.name = response.name
-      course.description = response.description
-      course.sections = response.sections
-      course.imageUrl = response.image_url
-      this.setState({ course: course })
+      this.setState({ course: snakeToCamel(response) })
     }, (error) => {
       console.log('error')
     })
@@ -96,6 +110,15 @@ class CourseEditPage extends React.Component {
     }
     this.updateCourse(params)
     this.setCourseValue('imageUrl', value)
+  }
+
+  onConfirmDelete() {
+    const path = APIRoutes.deleteCoursePath(this.state.course.id)
+    request.delete(path, (response) => {
+      window.location = RailsRoutes.dashboardPath()
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   setImage(e) {
@@ -192,7 +215,18 @@ class CourseEditPage extends React.Component {
         </div>
 
         <div className='container'>
-          <div className='heading edit-module-text'>Edit Content</div>
+          <div className='flex vertical'>
+            <h1 className='h1 edit-module-text'>
+              Edit Content
+            </h1>
+
+            <button
+              onClick={this.openDeleteModal}
+              className='button course-edit-delete'>
+              <img className='course-image-icon' src={Images.delete} />
+            </button>
+          </div>
+
           <div>{this.renderSections()}</div>
           <div className='white-box'>
             <button className='button button--white' onClick={this.createSection}>
@@ -203,6 +237,13 @@ class CourseEditPage extends React.Component {
             </button>
           </div>
         </div>
+
+        <DeleteCourseModal
+          closeModal={this.closeDeleteModal}
+          openDeleteModal={this.state.isDeleteModalOpen}
+          onDelete={this.onConfirmDelete}
+          name={this.state.course.name}
+        />
       </div>
     )
   }
