@@ -215,8 +215,8 @@ class CourseEditPage extends React.Component {
         </div>
 
         <div className='container'>
-          <div className='flex vertical'>
-            <h1 className='h1 edit-module-text'>
+          <div className='flex vertical edit-module-container'>
+            <h1 className='h1'>
               Edit Content
             </h1>
 
