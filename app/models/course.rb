@@ -46,6 +46,6 @@ class Course < ActiveRecord::Base
       return 0
     end
 
-    return completed / sections.size * 100
+    return (completed / sections.size * 100).round
   end
 end
