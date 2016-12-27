@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap-modal'
 import request from '../../shared/requests/request'
 
 import { getUser, setUser } from '../../utils/user_helpers'
+import { Images } from '../../utils/image_helpers'
 import { getInputToParams } from '../../utils/form_helpers'
 import { APIRoutes } from '../../shared/routes'
 
@@ -71,18 +72,26 @@ class CodeCsvListPage extends React.Component {
   render() {
     return (
       <div className='flex center'>
-        <div className='container marginTop-xxl '>
-
+        <div className='container marginTop-xxl'>
           <Modal
             show={this.state.isModalOpen}
             onHide={this.closeModal}
           >
             <Modal.Header>
               <Modal.Title>Generate New Codes</Modal.Title>
-              <Modal.Dismiss className='modal-dismiss' onClick={this.closeModal}/>
+              <Modal.Dismiss
+                className='flex center modal-dismiss-container'
+                onClick={this.closeModal}>
+                <img
+                  src={Images.close_modal}
+                  className='modal-dismiss'/>
+              </Modal.Dismiss>
             </Modal.Header>
             <Modal.Body>
-              <GenerateCodeCsvModal update={this.updateCodeCsvs} closeModal={this.closeModal}/>
+              <GenerateCodeCsvModal
+                update={this.updateCodeCsvs}
+                closeModal={this.closeModal}
+              />
             </Modal.Body>
             <Modal.Footer>
             </Modal.Footer>

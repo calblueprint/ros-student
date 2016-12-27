@@ -123,7 +123,17 @@ class UpdateUserModal extends React.Component {
           onHide={this.props.closeModal}
         >
           <Modal.Header>
-            <Modal.Title className='update-user-header'>Edit Profile</Modal.Title>
+            <Modal.Title
+              className='update-user-header'>
+              Edit Profile
+            </Modal.Title>
+            <Modal.Dismiss
+              className='flex center modal-dismiss-container'
+              onClick={this.closeModal}>
+              <img
+                src={Images.close_modal}
+                className='modal-dismiss'/>
+            </Modal.Dismiss>
           </Modal.Header>
           <Modal.Body>
             <Form>

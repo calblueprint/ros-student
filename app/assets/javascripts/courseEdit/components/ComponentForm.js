@@ -2,18 +2,17 @@ import React from 'react'
 import Modal from 'react-bootstrap-modal'
 
 import { APIRoutes } from '../../shared/routes'
+import { camelToSnake } from '../../utils/form_helpers'
+import { Images } from '../../utils/image_helpers'
+import { formatComponent } from '../../utils/component_helpers'
 import request from '../../shared/requests/request'
 
 import Form from '../../shared/components/forms/Form'
 import SlideForm from './SlideForm'
 import QuizForm from './QuizForm'
 import MultimediaForm from './MultimediaForm'
-import { camelToSnake } from '../../utils/form_helpers'
-import { Images } from '../../utils/image_helpers'
-import { formatComponent } from '../../utils/component_helpers'
 
 class ComponentForm extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -79,10 +78,13 @@ class ComponentForm extends React.Component {
             <Modal.Title className='update-user-header'>
               Component Form
             </Modal.Title>
-            <img
-              onClick={this.props.closeModal}
-              className='modal-close'
-              src={Images.close_modal} />
+            <Modal.Dismiss
+              className='flex center modal-dismiss-container'
+              onClick={this.closeModal}>
+              <img
+                src={Images.close_modal}
+                className='modal-dismiss'/>
+            </Modal.Dismiss>
           </Modal.Header>
           <Modal.Body className='white'>
             <div className='flex flex-vertical'>
