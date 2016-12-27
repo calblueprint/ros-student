@@ -55,21 +55,24 @@
 }
 
 /* LOOKS HORRIBLE RIGHT NOW */
-.modal-dismiss {
+.modal-dismiss-container {
+  @include appearance(none);
   background: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   outline: none;
   border: none;
-  border-radius: 50%;
   padding: auto 0px;
-  font-size: 36px;
-  font-weight: 200;
-  color: $white;
-  &:after {
-    content: '×';
-  }
+
   &:hover {
     background: $snow-20;
   }
+}
+
+.modal-dismiss {
+  width: 12px;
+  height: 12px;
 }
 
 .modal-body {
