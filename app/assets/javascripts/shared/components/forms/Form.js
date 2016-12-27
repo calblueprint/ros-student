@@ -23,7 +23,7 @@ class Form extends React.Component {
     return _.keys(this.state.flash).map((key) => {
       return (
         <div key={key} className={`marginTopBot-xxs flash ${key}`}>
-          <h3 className={`${key}-text`}>{this.state.flash[key]}</h3>
+          <h3 className={`flash ${key}-text`}>{this.state.flash[key]}</h3>
         </div>
       )
     })

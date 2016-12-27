@@ -13,7 +13,11 @@
   transition: 50ms;
 
   &:focus {
-    border-color: $blue-40;
+    border: 1px solid $blue-40;
+  }
+
+  &.error {
+    border: 1px solid $red;
   }
 }
 
@@ -27,33 +31,39 @@
   padding: 5px 10px;
 }
 
+.input-text {
+  &--error {
+    color: $red;
+  }
+}
+
 .flash {
   padding: $xxs $sm;
   width: 100%;
   text-align: center;
-}
 
-.alert {
-  background: $yellow-60;
+  &.alert {
+    background: $yellow-60;
 
-  &-text {
-    color: $white;
+    &-text {
+      color: $white;
+    }
   }
-}
 
-.error {
-  background: $red-60;
+  &.error {
+    background: $red-60;
 
-  &-text {
-    color: $white;
+    &-text {
+      color: $white;
+    }
   }
-}
 
-.notice {
-  background: $green-60;
+  &.notice {
+    background: $green-60;
 
-  &-text {
-    color: $white;
+    &-text {
+      color: $white;
+    }
   }
 }
 
@@ -82,8 +92,4 @@
   &:hover {
     border-color: $dark-blue;
   }
-}
-
-.option {
-
 }

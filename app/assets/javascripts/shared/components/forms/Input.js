@@ -1,10 +1,15 @@
 import React, { PropTypes } from 'react'
+import _ from 'underscore'
 
 class Input extends React.Component {
+  getErrorStyling(style) {
+    return _.isEmpty(this.props.error) ? '' : style
+  }
+
   renderInput() {
     return (
       <input
-        className='input'
+        className={`input ${this.getErrorStyling('error')}`}
         autoComplete={this.props.autoComplete}
         type={this.props.type}
         value={this.props.value}
@@ -18,9 +23,23 @@ class Input extends React.Component {
   render() {
     return (
       <div className='marginTopBot-xxs'>
-        <div>{this.props.label}</div>
-        <div>{this.renderInput()}</div>
-        <div>{this.props.error}</div>
+        <div
+          className={`
+            marginTopBot-xxs ${this.getErrorStyling('input-text--error')}`
+          }
+        >
+          {this.props.label}
+        </div>
+        <div className='marginTopBot-xxs'>
+          {this.renderInput()}
+        </div>
+        <div
+          className={
+              `marginTopBot-xxs ${this.getErrorStyling('input-text--error')}`
+          }
+          >
+          {this.props.error}
+        </div>
       </div>
     )
   }
