@@ -147,6 +147,14 @@ function camelToSnake(object) {
   }, {})
 }
 
+function snakeToCamel(object) {
+  return _.reduce(object, (result, val, key) => {
+    key = _.invert(SERIALIZER)[key] || key
+    result[key] = val
+    return result
+  }, {})
+}
+
 export {
   camelToSnake,
   getCSRFFieldName,
@@ -158,4 +166,5 @@ export {
   getInputToParams,
   mapErrorToFormFields,
   resetFlash,
+  snakeToCamel,
 }
