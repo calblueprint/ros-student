@@ -12,13 +12,16 @@ const SERIALIZER = {
   code: 'code',
   numberOfCodes: 'amount',
 
-  // AddComponentForm
+  // Component
   componentType: 'component_type',
   title: 'title',
   formKey: 'form_key',
   audioUrl: 'audio_url',
   contentUrl: 'content_url',
   subsectionId: 'subsection_id',
+
+  // Course
+  isPublished: 'is_published',
 
   // Audio
   audioData: 'audio_data',

@@ -53,6 +53,7 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
     params.require(:course).permit(
       :name,
       :description,
+      :is_published,
       photo_attributes: [:image],
     )
   end
