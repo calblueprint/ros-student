@@ -8,6 +8,17 @@ import StudentCourseCard from './StudentCourseCard'
 import CourseList from '../../shared/components/courses/CourseList'
 
 class StudentCourseList extends CourseList {
+
+  getCourses() {
+    const path = APIRoutes.getPublishedCourses()
+
+    request.get(path, (response) => {
+      this.setState( { courses: response.courses })
+    }, (error) => {
+      console.log('error')
+    })
+  }
+
   renderCards(list) {
     return list.map((value) => {
       return (
@@ -23,7 +34,7 @@ class StudentCourseList extends CourseList {
 
   render() {
     var lists = this.sortCards()
-    var enrolledList = lists[0]
+    let enrolledList = lists[0]
     var allList = lists[1]
     return (
       <div>

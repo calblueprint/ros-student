@@ -21,6 +21,7 @@ class CourseEditPage extends React.Component {
         description: '',
         sections: [],
         imageUrl: '',
+        isPublished: false,
       },
       isDeleteModalOpen: false,
     }
@@ -34,6 +35,7 @@ class CourseEditPage extends React.Component {
     this.openDeleteModal = this.openDeleteModal.bind(this)
     this.closeDeleteModal = this.closeDeleteModal.bind(this)
     this.onConfirmDelete = this.onConfirmDelete.bind(this)
+    this.toggleIsPublished = this.toggleIsPublished.bind(this)
   }
 
   componentDidMount() {
@@ -68,6 +70,7 @@ class CourseEditPage extends React.Component {
       course.name = response.name
       course.description = response.description
       course.imageUrl = response.image_url
+      course.isPublished = response.is_published
       this.setState({ course: course })
     }, (error) => {
       console.log(error)
@@ -121,6 +124,16 @@ class CourseEditPage extends React.Component {
     })
   }
 
+  toggleIsPublished() {
+    const params = {
+      course: {
+        is_published: !this.state.course.isPublished
+      },
+    }
+    this.updateCourse(params)
+    this.setCourseValue('isPublished', !this.state.course.isPublished)
+  }
+
   setImage(e) {
     convertImage(e, this.onBlurImage)
   }
@@ -158,6 +171,10 @@ class CourseEditPage extends React.Component {
       backgroundPosition: "center",
       backgroundSize: 'cover',
     })
+  }
+
+  renderPublishLabel() {
+    return this.state.course.isPublished ? 'Unpublish course' : 'Publish course'
   }
 
   renderSections() {
@@ -219,6 +236,13 @@ class CourseEditPage extends React.Component {
             <h1 className='h1'>
               Edit Content
             </h1>
+
+            <button
+            className='button marginLeft-sm'
+              onClick={this.toggleIsPublished}
+            >
+              {this.renderPublishLabel()}
+            </button>
 
             <button
               onClick={this.openDeleteModal}

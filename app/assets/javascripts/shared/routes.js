@@ -68,6 +68,7 @@ class APIRoutes {
   static getStudentCourseOutlinePath(id) { return APIRoutes.createRoute(`students/courses/${id}/outline`) }
   static getStudentCourseSidebarPath(id) { return APIRoutes.createRoute(`students/courses/${id}/sidebar`) }
   static getStudentCoursesPath() { return APIRoutes.createRoute(`students/courses`) }
+  static getPublishedCourses()       { return APIRoutes.createRoute(`students/courses?is_published=true`) }
 
   // Admins
   static importCoursePath()    { return APIRoutes.createRoute(`admins/courses/import`)}

@@ -2,11 +2,12 @@
 #
 # Table name: courses
 #
-#  id          :integer          not null, primary key
-#  name        :string           default("Course Name")
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  description :string           default("This is a course description.")
+#  id           :integer          not null, primary key
+#  name         :string           default("Course Name")
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  description  :string           default("This is a course description.")
+#  is_published :boolean          default(FALSE)
 #
 
 class Course < ActiveRecord::Base
@@ -18,6 +19,8 @@ class Course < ActiveRecord::Base
 
   has_one :photo, as: :parent, dependent: :destroy
   accepts_nested_attributes_for :photo
+
+  scope :is_published, -> { where(:is_published => true) }
 
   def is_enrolled?(user)
     user.instance_of?(Admin) ||

@@ -2,11 +2,12 @@
 #
 # Table name: courses
 #
-#  id          :integer          not null, primary key
-#  name        :string           default("Course Name")
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  description :string           default("This is a course description.")
+#  id           :integer          not null, primary key
+#  name         :string           default("Course Name")
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  description  :string           default("This is a course description.")
+#  is_published :boolean          default(FALSE)
 #
 
 require 'rails_helper'
