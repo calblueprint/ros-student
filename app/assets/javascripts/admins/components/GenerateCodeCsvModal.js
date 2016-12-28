@@ -121,7 +121,11 @@ class GenerateCodeCsvModal extends React.Component {
           <div className='generate-code-csv-course-list'>
             <ul>{this.renderCourses()}</ul>
           </div>
-          <button className='button' onClick={this.generateCodes}>Submit</button>
+          <button
+            className='button'
+            onClick={this.generateCodes}>
+            Submit
+          </button>
         </Form>
       </div>
     )
