@@ -7,6 +7,7 @@ SMTP_ADDRESS: <your key here>
 SMTP_DOMAIN: <your key here>
 
 development:
+  HOST_NAME: <your key here>
   SECRET_KEY_BASE: <your key here>
   NODE_ENV: <your key here>
 
@@ -16,6 +17,7 @@ development:
   SENDGRID_PASSWORD: <your key here>
 
 test:
+  HOST_NAME: <your key here>
   SECRET_KEY_BASE: <your key here>
   NODE_ENV: <your key here>
 
@@ -25,6 +27,7 @@ test:
   SENDGRID_PASSWORD: <your key here>
 
 staging:
+  HOST_NAME: <your key here>
   SECRET_KEY_BASE: <your key here>
   NODE_ENV: <your key here>
 
@@ -34,6 +37,7 @@ staging:
   SENDGRID_PASSWORD: <your key here>
 
 production:
+  HOST_NAME: <your key here>
   SECRET_KEY_BASE: <your key here>
   NODE_ENV: <your key here>
 
