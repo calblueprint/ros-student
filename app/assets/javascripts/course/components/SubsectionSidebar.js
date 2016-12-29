@@ -8,6 +8,7 @@ import { RailsRoutes, ReactRoutes } from '../../shared/routes'
 import { APIRoutes } from '../../shared/routes'
 
 class SubsectionSidebar extends React.Component {
+
   getActive() {
     return this.props.displayedSubsection.id == this.props.subsection.id ? 'active' : ''
   }
