@@ -38,33 +38,25 @@
 }
 
 .flash {
-  padding: $xxs $sm;
+  padding: $xxs $md;
   width: 100%;
   text-align: center;
 
   &.alert {
     background: $yellow-60;
-
-    &-text {
-      color: $white;
-    }
   }
 
   &.error {
     background: $red-60;
-
-    &-text {
-      color: $white;
-    }
   }
 
   &.notice {
     background: $green-60;
-
-    &-text {
-      color: $white;
-    }
   }
+}
+
+.flash-text {
+  color: white;
 }
 
 .hidden-input {

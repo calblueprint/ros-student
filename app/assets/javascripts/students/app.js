@@ -42,7 +42,7 @@ class App extends React.Component {
       <div>
         <Navbar>
           <Link to={ReactRoutes.dashboardPath()}>
-            <header className='nav-element logo'>Roots of Success</header>
+            <header className='nav-element'>Roots of Success</header>
           </Link>
 
           <div className="nav-element right">
@@ -61,6 +61,7 @@ class App extends React.Component {
             </div>
           </div>
         </Navbar>
+
         <div className='flex center'>
           {this.props.children}
         </div>
