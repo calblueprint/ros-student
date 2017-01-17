@@ -195,8 +195,6 @@ class CoursePage extends React.Component {
     } else if (!isLast(sections, section)) {
       this.displaySection(section.position + 1, 1, 1)
     }
-
-
   }
 
   requestSidebar() {
