@@ -41,7 +41,7 @@ describe Api::Admins::CodeCsvsController, type: :controller do
     it 'should return a list of code csvs' do
       NUMBER = 5
       CodeCsv.all.each { |c| c.destroy }
-      NUMBER.times { |_| CodeCsv.create(name: 'CodeCsv') }
+      NUMBER.times { |_| create :code_csv }
 
       get :index
 
@@ -50,6 +50,20 @@ describe Api::Admins::CodeCsvsController, type: :controller do
                                  CODE_CSV_LIST_SERIALIZER,
                                  true)).to be true
       expect(parsed_response['code_csvs'].size).to eq NUMBER
+    end
+  end
+
+  describe '.download' do
+    it 'should return a csv of codes' do
+      code_csv = create :code_csv
+      code_csv.generate_codes({ amount: 1, course_ids: '[1]'})
+      get :download, id: code_csv.id, format: :csv
+
+      validate_result
+      csv = CSV.parse(response.body)
+
+      expect(csv.first.first).to eq 'key'
+      expect(csv.second.first).to eq code_csv.codes.first.key
     end
   end
 end
