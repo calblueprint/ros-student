@@ -13,6 +13,7 @@ describe Api::Admins::CoursesController, type: :controller do
       5.times { create :course }
 
       get :index
+
       validate_result
 
       parsed_response = JSON.parse(response.body)
