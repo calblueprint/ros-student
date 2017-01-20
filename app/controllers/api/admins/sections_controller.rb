@@ -39,8 +39,7 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
   def section_params
     params.fetch(:section, {}).permit(
       :title,
-      :course_id,
-      :position
+      :course_id
     )
   end
 
