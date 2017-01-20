@@ -36,5 +36,4 @@ class Code < ActiveRecord::Base
   def assign_to_courses(course_ids)
     course_ids.each { |course_id| code_courses.create(course_id: course_id) }
   end
-
 end

@@ -23,7 +23,7 @@ class CodeCsv < ActiveRecord::Base
     end
 
     amount = params[:amount] || 0
-    generated_codes = amount.times.map { |_| codes.create(key: Code.generate_auth_token) }
+    generated_codes = amount.to_i.times.map { |_| codes.create(key: Code.generate_auth_token) }
     generated_codes.map { |code| code.assign_to_courses(course_ids) }
   end
 

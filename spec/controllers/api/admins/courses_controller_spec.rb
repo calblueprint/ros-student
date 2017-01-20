@@ -18,7 +18,7 @@ describe Api::Admins::CoursesController, type: :controller do
 
       parsed_response = JSON.parse(response.body)
       expect(validate_serializer(parsed_response['courses'],
-                                 BASE_COURSE_SERIALIZER,
+                                 COURSE_ADMIN_LIST_SERIALIZER,
                                  true)).to be true
     end
   end
