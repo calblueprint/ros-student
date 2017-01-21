@@ -5,7 +5,9 @@ before_script:
   - cp config/database.yml.travis config/database.yml
   - cp config/application.yml.travis config/application.yml
   - psql -c 'create database travis_ci_test;' -U postgres
+  # Set up node stuff
+  - nvm install 4.0.0
+  - nvm use 4.0.0
   - npm install
 script:
-  # - bundle exec rake --trace db:reset db:seed && bundle exec rspec spec && npm test
-  - npm test
+  - bundle exec rake --trace db:reset db:seed && bundle exec rspec spec && npm test
