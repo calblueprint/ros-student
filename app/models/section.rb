@@ -34,7 +34,7 @@ class Section < ActiveRecord::Base
 
   def switch(params)
     new_position = params[:position].presence.to_i || -1
-    return false if new_position >= course.sections.size or new_position < 0
+    return false if new_position >= course.sections.size or new_position <= 0
     insert_at(new_position)
     true
   end

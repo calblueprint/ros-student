@@ -47,11 +47,13 @@ describe Api::Admins::SectionsController, type: :controller do
   end
 
   describe 'switch_position' do
-    it 'should switch positions of the sections' do
-      section1 = create :section
-      section2 = create :section, course_id: section1.course_id
+    before(:each) do
+      @section1 = create :section
+      @section2 = create :section, course_id: @section1.course_id
+    end
 
-      post :switch_position, id: section2.id, section: { position: 1 }
+    it 'should switch positions of the sections' do
+      post :switch_position, id: @section2.id, section: { position: 1 }
 
       validate_result
       parsed_response = JSON.parse(response.body)
@@ -59,8 +61,18 @@ describe Api::Admins::SectionsController, type: :controller do
       expect(validate_serializer(parsed_response,
                                  SECTION_ADMIN_SERIALIZER,
                                  false)).to be true
-      expect(Section.find(section1.id).position).to eq 2
-      expect(Section.find(section2.id).position).to eq 1
+      expect(Section.find(@section1.id).position).to eq 2
+      expect(Section.find(@section2.id).position).to eq 1
+    end
+
+    it 'shouldn\'t switch invalid positions' do
+      post :switch_position, id: @section2.id, section: { position: 0 }
+
+      validate_result(400)
+
+      post :switch_position, id: @section2.id, section: { position: 3 }
+
+      validate_result(400)
     end
   end
 end
