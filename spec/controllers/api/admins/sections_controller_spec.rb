@@ -23,7 +23,7 @@ describe Api::Admins::SectionsController, type: :controller do
   end
 
   describe '.update' do
-    it 'should update a new section' do
+    it 'should update a new section if the title updates' do
       UPDATE = 'update'
 
       section = create :section
@@ -36,6 +36,13 @@ describe Api::Admins::SectionsController, type: :controller do
                                  SECTION_ADMIN_SERIALIZER,
                                  false)).to be true
       expect(parsed_response['title']).to eq UPDATE
+    end
+
+    it 'shouldn\'t update the section with empty title' do
+      section = create :section
+      put :update, id: section.id, section: { title: nil }
+
+      validate_result(400)
     end
   end
 
