@@ -35,10 +35,6 @@
     "webpack-dev-server": "^1.9.0",
     "webpack-hot-middleware": "2.13.0"
   },
-  "scripts": {
-    "test": "mocha test/helpers/browser.js test/**/*.spec.js",
-    "heroku-postbuild": "cp config/database.yml.heroku config/database.yml"
-  },
   "devDependencies": {
     "babel-register": "^6.22.0",
     "chai": "^3.5.0",
@@ -46,5 +42,9 @@
     "jsdom": "^9.9.1",
     "mocha": "^3.2.0",
     "react-addons-test-utils": "^15.4.2"
+  },
+  "scripts": {
+    "test": "mocha test/helpers/browser.js test/**/*.spec.js --compilers js:babel-register",
+    "heroku-postbuild": "cp config/database.yml.heroku config/database.yml"
   }
 }
