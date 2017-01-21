@@ -28,8 +28,8 @@ class Subsection < ActiveRecord::Base
   end
 
   def switch(params)
-    new_position = params[:position].presence || position
-    return false if new_position >= section.subsections.size or new_position < 0
+    new_position = params[:position].presence.to_i || -1
+    return false if new_position >= section.subsections.size or new_position <= 0
     insert_at(new_position)
     true
   end
