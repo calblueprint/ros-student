@@ -9,7 +9,6 @@ class VideoComponent extends React.Component {
     super(props)
 
     this.onReady = this.onReady.bind(this);
-    this.onEnd = this.onEnd.bind(this);
   }
 
   getConfigOptions() {

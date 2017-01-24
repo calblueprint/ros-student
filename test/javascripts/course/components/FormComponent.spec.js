@@ -1,21 +1,21 @@
 import React from 'react'
 import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
 import _ from 'underscore'
 
 import { mount, shallow } from 'enzyme'
-import { expect } from 'chai'
+import chai, { expect } from 'chai'
+
+chai.use(sinonChai);
 
 import FormComponent from '../../../../app/assets/javascripts/course/components/FormComponent'
 
 describe('<FormComponent />', () => {
   const KEY = 'thisisakey'
   const component = {
-    component: {
-      key: KEY,
-      content_url: 'www.google.com',
-    }
+    form_key: KEY,
+    content_url: 'www.google.com',
   }
-  const onEnd = sinon.spy()
 
   it('should load the component properly', () => {
     const formComponent = mount(<FormComponent component={component}/>)
@@ -29,7 +29,13 @@ describe('<FormComponent />', () => {
   })
 
   it('should callback if key is entered correctly', () => {
-    const formComponent = mount(<FormComponent component={component}/>)
+    const onEndStub = sinon.spy()
+    const formComponent = mount(
+      <FormComponent
+        component={component}
+        onEnd={onEndStub}
+      />
+    )
 
     const input = formComponent.find('input')
     input.simulate('change', { target: { value: KEY } })
@@ -37,11 +43,17 @@ describe('<FormComponent />', () => {
     const button = formComponent.find('button')
     button.simulate('click')
 
-    expect(onEnd).to.have.been.calledOnce
+    expect(onEndStub).to.have.been.calledOnce
   })
 
-  it('should callback if key is entered correctly', () => {
-    const formComponent = mount(<FormComponent component={component}/>)
+  it('should not callback if key is entered incorrectly', () => {
+    const onEndStub = sinon.spy()
+    const formComponent = mount(
+      <FormComponent
+        component={component}
+        onEnd={onEndStub}
+      />
+    )
 
     const input = formComponent.find('input')
     input.simulate('change', { target: { value: 'KEY' } })
@@ -49,7 +61,7 @@ describe('<FormComponent />', () => {
     const button = formComponent.find('button')
     button.simulate('click')
 
-    expect(onEnd).to.not.have.been.calledOnce
+    expect(onEndStub).to.not.have.been.called
     expect(!_.isEmpty(formComponent.state().error)).to.be.true
   })
 })

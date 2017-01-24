@@ -1,9 +1,12 @@
 import React from 'react'
 import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
 import _ from 'underscore'
 
 import { mount, shallow } from 'enzyme'
-import { expect } from 'chai'
+import chai, { expect } from 'chai'
+
+chai.use(sinonChai);
 
 import SubsectionSidebar from '../../../../app/assets/javascripts/course/components/SubsectionSidebar'
 
@@ -14,6 +17,7 @@ describe('<SubsectionSidebar />', () => {
     title: TITLE,
     is_complete: true,
   }
+
 
   it('should render subsection correctly', () => {
     const currentSubsection = subsection
@@ -42,6 +46,25 @@ describe('<SubsectionSidebar />', () => {
     )
 
     expect(subsectionSidebar.find('div').hasClass('active')).to.be.true
+  })
+
+  it('should trigger a callback on click', () => {
+    const onClickStub = sinon.spy()
+    const currentSubsection = subsection
+    const displayedSubsection = subsection
+    const subsectionSidebar = shallow(
+      <SubsectionSidebar
+        subsection={subsection}
+        currentSubsection={currentSubsection}
+        displayedSubsection={displayedSubsection}
+        callback={onClickStub}
+      />
+    )
+
+    subsectionSidebar.find('li').simulate('click')
+
+    expect(onClickStub).to.have.been.calledOnce
+    expect(onClickStub).to.have.been.calledWith(1, undefined);
   })
 
   it('should not be active if the subsection is currently selected', () => {
