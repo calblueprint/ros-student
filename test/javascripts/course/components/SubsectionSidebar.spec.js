@@ -6,7 +6,7 @@ import _ from 'underscore'
 import { mount, shallow } from 'enzyme'
 import chai, { expect } from 'chai'
 
-chai.use(sinonChai);
+chai.use(sinonChai)
 
 import SubsectionSidebar from '../../../../app/assets/javascripts/course/components/SubsectionSidebar'
 

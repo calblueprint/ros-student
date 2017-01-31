@@ -38,9 +38,12 @@
   "devDependencies": {
     "babel-register": "^6.22.0",
     "chai": "^3.5.0",
+    "chai-enzyme": "^0.6.1",
+    "cheerio": "^0.22.0",
     "enzyme": "^2.7.0",
     "jsdom": "^9.9.1",
     "mocha": "^3.2.0",
+    "mocha-jsdom": "^1.1.0",
     "react-addons-test-utils": "^15.4.2",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0"

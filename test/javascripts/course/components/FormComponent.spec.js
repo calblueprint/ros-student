@@ -6,7 +6,7 @@ import _ from 'underscore'
 import { mount, shallow } from 'enzyme'
 import chai, { expect } from 'chai'
 
-chai.use(sinonChai);
+chai.use(sinonChai)
 
 import FormComponent from '../../../../app/assets/javascripts/course/components/FormComponent'
 
@@ -20,12 +20,12 @@ describe('<FormComponent />', () => {
   it('should load the component properly', () => {
     const formComponent = mount(<FormComponent component={component}/>)
 
-    expect(formComponent.state().formCode).to.equal('');
-    expect(formComponent.state().error).to.equal('');
+    expect(formComponent.state().formCode).to.equal('')
+    expect(formComponent.state().error).to.equal('')
 
-    expect(formComponent.find('iframe')).to.have.length(1);
-    expect(formComponent.find('button')).to.have.length(1);
-    expect(formComponent.find('input')).to.have.length(1);
+    expect(formComponent.find('iframe')).to.have.length(1)
+    expect(formComponent.find('button')).to.have.length(1)
+    expect(formComponent.find('input')).to.have.length(1)
   })
 
   it('should callback if key is entered correctly', () => {

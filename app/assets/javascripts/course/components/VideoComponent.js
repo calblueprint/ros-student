@@ -34,7 +34,7 @@ class VideoComponent extends React.Component {
         <YouTube
           videoId={getYoutubeKey(this.props.videoUrl)}
           onReady={this.onReady}
-          onEnd={this.onEnd}
+          onEnd={this.props.onEnd}
           opts={this.getConfigOptions()}
         />
       </div>
