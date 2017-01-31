@@ -236,6 +236,7 @@ class CoursePage extends React.Component {
             callback={this.displaySubsection}
           />
         </div>
+
         <div className='component-display-container'>
 
           <div className='flex flex-vertical center'>
