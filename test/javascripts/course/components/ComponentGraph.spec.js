@@ -14,15 +14,6 @@ import ComponentGraph from '../../../../app/assets/javascripts/course/components
 import { Images } from '../../../../app/assets/javascripts/utils/image_helpers'
 
 describe('<ComponentGraph />', () => {
-  let sandbox
-  beforeEach(() => {
-    sandbox = sinon.sandbox.create();
-  })
-
-  afterEach(() => {
-    sandbox.restore()
-  })
-
   const subsection = {
     title: 'Some title',
     current_component: {

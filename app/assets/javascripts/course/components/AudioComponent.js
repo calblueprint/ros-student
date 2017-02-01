@@ -1,5 +1,5 @@
 import _ from 'underscore'
-import React from 'react'
+import React, { PropTypes } from 'react'
 import ReactPlayer from 'react-player'
 
 import { audioComponentProgress } from '../../utils/component_helpers'
@@ -116,6 +116,11 @@ class AudioComponent extends React.Component {
       </div>
     )
   }
+}
+
+AudioComponent.propTypes = {
+  callback: PropTypes.func.isRequired,
+  audioUrl: PropTypes.string,
 }
 
 export default AudioComponent
