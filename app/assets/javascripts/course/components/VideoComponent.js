@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import YouTube from 'react-youtube'
 import ReactDOM from 'react-dom'
 
@@ -40,6 +40,11 @@ class VideoComponent extends React.Component {
       </div>
     )
   }
+}
+
+VideoComponent.propTypes = {
+  onEnd: PropTypes.func.isRequired,
+  videoUrl: PropTypes.string.isRequired,
 }
 
 export default VideoComponent
