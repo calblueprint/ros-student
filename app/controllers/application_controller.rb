@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(user)
+    return admins_sign_in_path if user == :admin
     redirect_user
   end
 
