@@ -1,6 +1,8 @@
 class Api::Admins::CoursesController < Api::Admins::BaseController
   load_and_authorize_resource
 
+  has_scope :is_published, type: :boolean
+  
   prepend_before_filter :convert_image, only: [:create, :update]
 
   def index
