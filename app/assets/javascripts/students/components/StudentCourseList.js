@@ -36,6 +36,9 @@ class StudentCourseList extends CourseList {
     var lists = this.sortCards()
     let enrolledList = lists[0]
     var allList = lists[1]
+    console.log(enrolledList)
+    console.log(lists)
+    console.log(this.state.courses)
     return (
       <div>
         <h1 className="courses-title courses-header">Enrolled Courses</h1>

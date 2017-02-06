@@ -54,7 +54,8 @@ class GenerateCodeCsvModal extends React.Component {
   }
 
   getCourses() {
-    const path = APIRoutes.getAdminCoursesPath()
+    // const path = APIRoutes.getAdminCoursesPath()
+    const path = APIRoutes.getPublishedCourses()
 
     request.get(path, (response) => {
       this.setState({ courses: response.courses })
