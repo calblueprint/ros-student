@@ -68,7 +68,8 @@ class APIRoutes {
   static getStudentCourseOutlinePath(id) { return APIRoutes.createRoute(`students/courses/${id}/outline`) }
   static getStudentCourseSidebarPath(id) { return APIRoutes.createRoute(`students/courses/${id}/sidebar`) }
   static getStudentCoursesPath() { return APIRoutes.createRoute(`students/courses`) }
-  static getPublishedCourses()       { return APIRoutes.createRoute(`students/courses?is_published=true`) }
+  static getPublishedCourses()   { return APIRoutes.createRoute(`students/courses?is_published=true`) }
+  // FIXME: Refactor to function taking optional params dictionary and converts it to url endpoint
 
   // Admins
   static importCoursePath()    { return APIRoutes.createRoute(`admins/courses/import`)}
@@ -83,6 +84,7 @@ class APIRoutes {
   static deleteAdminPath(id)   { return APIRoutes.createRoute(`admins/${id}`) }
   static deleteStudentPath(id) { return APIRoutes.createRoute(`students/${id}`) }
   static getAdminCoursesPath() { return APIRoutes.createRoute(`admins/courses`) }
+  static getAdminPublishedCourses()   { return APIRoutes.createRoute(`admins/courses?is_published=true`) }
 
   // Codes
   static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`) }

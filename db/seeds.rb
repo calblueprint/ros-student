@@ -44,7 +44,8 @@ def create_courses
 
   courses = 5.times.map do |n|
     Course.create name: FFaker::Music.album,
-                  description: FFaker::Lorem.sentence
+                  description: FFaker::Lorem.sentence,
+                  is_published: true
   end
 
   sections = courses.map do |course|
