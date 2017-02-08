@@ -62,6 +62,7 @@ group :test do
   gem 'capybara', '~> 2.4.4'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'json-schema'
 
   gem "codeclimate-test-reporter", require: nil
 end
