@@ -2,19 +2,11 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
   load_and_authorize_resource
 
   has_scope :is_published, type: :boolean
-  
-  prepend_before_filter :convert_image, only: [:create, :update]
+
+  prepend_before_filter :convert_image, only: [:update]
 
   def index
     render json: @courses, each_serializer: CourseAdminListSerializer
-  end
-
-  def create
-    if @course.save
-      render json: @course, serializer: CourseAdminSerializer, root: false
-    else
-      error_response(@course)
-    end
   end
 
   def edit
