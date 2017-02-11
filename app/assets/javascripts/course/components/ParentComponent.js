@@ -37,6 +37,7 @@ class ParentComponent extends React.Component {
           <div className='outer-component-container'>
             <VideoComponent
               videoUrl={this.props.component.content_url}
+              isComplete={this.props.component.is_complete}
               onEnd={this.props.onEnd}
             />
           </div>
