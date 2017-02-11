@@ -41,7 +41,7 @@ class Student < ActiveRecord::Base
   has_many :courses, through: :student_courses
 
   has_many :component_progresses
-  has_many :component, through: :component_progresses
+  has_many :components, through: :component_progresses
 
   has_one :photo, as: :parent, dependent: :destroy
   accepts_nested_attributes_for :photo

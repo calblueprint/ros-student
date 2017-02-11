@@ -50,7 +50,6 @@ class UserList extends React.Component {
         {this.state.users.map((user) => {
           return (
             <div key={user.id}>
-              <div className='user-row-divider'/>
               <UserRow
                 user={user}
                 deleteRoute={this.props.deleteRoute}

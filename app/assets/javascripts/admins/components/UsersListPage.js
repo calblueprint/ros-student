@@ -49,12 +49,12 @@ class UsersListPage extends React.Component {
       <div className='flex center marginTop-xl'>
         <div className='container'>
           <button
-            onClick={_.bind(this.setActiveTab, this, 0)}
+            onClick={_.bind(this.setActiveTab, this, this.tabs.STUDENT)}
             className={`tab ${this.getTabStyle(0)}`}>
             Students
           </button>
           <button
-            onClick={_.bind(this.setActiveTab, this, 1)}
+            onClick={_.bind(this.setActiveTab, this, this.tabs.ADMIN)}
             className={`tab ${this.getTabStyle(1)}`}>
             Admins
           </button>
