@@ -34,7 +34,22 @@ class CoursePage extends React.Component {
   }
 
   componentDidMount() {
-    this.requestSidebar()
+    const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
+
+    request.get(path, (response) => {
+      const currentSubsection = response.course_sidebar.current_subsection
+
+      this.setState({
+        courseSidebar: response.course_sidebar,
+        displayedSubsection: currentSubsection,
+      }, () => {
+        if (currentSubsection) {
+          this.displaySubsection(currentSubsection.id)
+        }
+      })
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   displayComponent(index) {
@@ -51,6 +66,7 @@ class CoursePage extends React.Component {
 
     request.get(path, (response) => {
       const length = response.components.length
+
       const displayedSection = this.getDisplayedSection(response)
 
       let displayedComponent
@@ -61,7 +77,6 @@ class CoursePage extends React.Component {
       } else {
         displayedComponent = response.components[componentIndex - 1]
       }
-
       this.setState({
         displayedSubsection: response,
         displayedComponent: displayedComponent,
@@ -207,23 +222,6 @@ class CoursePage extends React.Component {
     } else if (!isLast(sections, section)) {
       this.displaySection(section.position + 1, 1, 1)
     }
-  }
-
-  requestSidebar() {
-    const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
-    request.get(path, (response) => {
-      const currentSubsection = response.course_sidebar.current_subsection
-      if (currentSubsection) {
-        this.displaySubsection(currentSubsection.id)
-      }
-
-      this.setState({
-        courseSidebar: response.course_sidebar,
-        displayedSubsection: currentSubsection,
-      })
-    }, (error) => {
-      console.log(error)
-    })
   }
 
   render() {
