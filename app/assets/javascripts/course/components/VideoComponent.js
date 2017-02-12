@@ -15,7 +15,7 @@ class VideoComponent extends React.Component {
   getConfigOptions() {
     return {
       playerVars: {
-        controls: this.props.isComplete ? 1 : 0,
+        controls: this.props.canSeek ? 1 : 0,
       }
     }
   }
@@ -32,7 +32,7 @@ class VideoComponent extends React.Component {
 
   render() {
     return (
-      <div className='video-component-container'>
+      <div>
         <YouTube
           videoId={getYoutubeKey(this.props.videoUrl)}
           onReady={this.onReady}

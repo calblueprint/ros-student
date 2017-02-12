@@ -15,39 +15,34 @@ class ParentComponent extends React.Component {
     switch(this.props.component.component_type) {
       case 0:
         return (
-          <div className='outer-component-container'>
-            <ImageComponent
-              audioUrl={this.props.component.audio_url}
-              imgUrl={this.props.component.content_url}
-              onEnd={this.props.onEnd}
-            />
-          </div>
+          <ImageComponent
+            canSeek={this.props.component.is_complete}
+            audioUrl={this.props.component.audio_url}
+            imgUrl={this.props.component.content_url}
+            onEnd={this.props.onEnd}
+          />
         )
       case 1:
         return (
-          <div className='outer-component-container'>
-            <FormComponent
-              component={this.props.component}
-              onEnd={this.props.onEnd}
-            />
-          </div>
+          <FormComponent
+            component={this.props.component}
+            onEnd={this.props.onEnd}
+          />
         )
       case 2:
         return (
-          <div className='outer-component-container'>
-            <VideoComponent
-              videoUrl={this.props.component.content_url}
-              isComplete={this.props.component.is_complete}
-              onEnd={this.props.onEnd}
-            />
-          </div>
+          <VideoComponent
+            videoUrl={this.props.component.content_url}
+            canSeek={this.props.component.is_complete}
+            onEnd={this.props.onEnd}
+          />
         )
     }
   }
 
   render() {
     return (
-      <div className='parent-component-container flex flex-vertical flex-grow'>
+      <div className='parent-component-container flex flex-vertical centerdf fd dfg sd fg'>
         <h1 className='subsection-title-container'>{this.props.component.title}</h1>
         {this.renderComponent()}
       </div>
