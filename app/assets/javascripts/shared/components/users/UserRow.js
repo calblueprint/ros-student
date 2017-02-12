@@ -48,7 +48,9 @@ class UserRow extends React.Component {
         className='flex user-row-container'
         onClick={this.onRowClick()}
       >
-        <p>{`${this.props.user.first_name} ${this.props.user.last_name}`}</p>
+        <p className="user-row-name">{`${this.props.user.first_name} ${this.props.user.last_name}`}</p>
+        <p className="user-row-username">{`${this.props.user.username}`}</p>
+        <p className="user-row-email">{`${this.props.user.email}`}</p>
 
         <button
           onClick={this.openDeleteModal}

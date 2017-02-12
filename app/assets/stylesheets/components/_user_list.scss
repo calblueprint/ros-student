@@ -12,7 +12,9 @@
 }
 
 .user-row-container {
-  padding: $xs;
+  position: relative;
+  padding: $xs $sm;
+  // padding: 15px 30px;
   width: 100%;
   margin: 5px auto;
   background: $white;
@@ -41,4 +43,28 @@
 .user-list-delete-image {
   width: 20px;
   height: 20px;
+}
+
+// Text
+
+.user-row-name {
+  margin: auto 0px;
+  font-size: 16px;
+}
+
+.user-row-username {
+  position: relative;
+  margin: auto 0px;
+  left: 20px;
+  font-size: 14px;
+  font-weight: $bold;
+  color: $silver;
+}
+
+.user-row-email {
+  position: absolute;
+  margin: auto 0px;
+  left: 50%;
+  font-size: 16px;
+  color: $blue;
 }
