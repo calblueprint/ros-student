@@ -9,6 +9,7 @@ class ImageComponent extends React.Component {
         <AudioComponent
           audioUrl={this.props.audioUrl}
           callback={this.props.onEnd}
+          canSeek={this.props.canSeek}
         />
       </div>
     )

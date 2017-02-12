@@ -10,7 +10,10 @@ class ProgressBar extends React.Component {
   render() {
     return(
       <div className="progress-bar-background">
-        <div className="progress-bar" style={this.getProgressBarStyle()}></div>
+        <div
+          className="progress-bar"
+          style={this.getProgressBarStyle()}
+        />
       </div>
     )
   }

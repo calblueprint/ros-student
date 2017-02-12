@@ -30,8 +30,18 @@ function isComponentSelfStudy(component) {
     component.audio_url == null
 }
 
+function pad(num) {
+  return ('0' + num).slice(-2);
+}
+
+function audioComponentProgress(fraction, duration) {
+  const currentDuration = fraction / 100 * duration
+  return `${pad(Math.floor(currentDuration / 60))}:${pad(Math.floor(currentDuration % 60))}`
+}
+
 export {
   getYoutubeKey,
   formatComponent,
   isComponentSelfStudy,
+  audioComponentProgress,
 }

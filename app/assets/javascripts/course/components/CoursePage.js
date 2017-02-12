@@ -224,19 +224,19 @@ class CoursePage extends React.Component {
             callback={this.displaySubsection}
           />
         </div>
-        <div className='flex component-display-container'>
-          <div className='flex flex-vertical flex-grow'>
-            <div>
-              <ComponentGraph
-                subsection={this.state.displayedSubsection}
-                displayedComponent={this.state.displayedComponent}
-                callback={this.displayComponent}
-              />
-            </div>
+        <div className='component-display-container'>
+          <div className='flex flex-vertical center'>
+            <ComponentGraph
+              subsection={this.state.displayedSubsection}
+              displayedComponent={this.state.displayedComponent}
+              callback={this.displayComponent}
+            />
 
-            <div className='flex flex-vertical flex-grow center'>
-              <ParentComponent component={this.state.displayedComponent} subsection={this.state.displayedSubsection} onEnd={this.enableNextButton}/>
-            </div>
+            <ParentComponent
+              component={this.state.displayedComponent}
+              subsection={this.state.displayedSubsection}
+              onEnd={this.enableNextButton}
+            />
 
             <div className='flex component-next-container'>
               <button
