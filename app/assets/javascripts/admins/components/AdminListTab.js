@@ -41,6 +41,7 @@ class AdminListTab extends React.Component {
         </button>
 
         <UserList
+          userType="admin"
           editRoute={APIRoutes.getAdminsPath}
           deleteRoute={APIRoutes.deleteAdminPath}
           newUser={this.state.newUser}

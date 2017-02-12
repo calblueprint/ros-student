@@ -17,6 +17,7 @@ class UserRow extends React.Component {
     this.openDeleteModal = this.openDeleteModal.bind(this)
     this.closeDeleteModal = this.closeDeleteModal.bind(this)
     this.deleteUser = this.deleteUser.bind(this)
+    this.onRowClick = this.onRowClick.bind(this)
   }
 
   openDeleteModal() {
@@ -37,6 +38,9 @@ class UserRow extends React.Component {
   }
 
   onRowClick() {
+    if (this.props.userType === "student") {
+      this.props.openModal(this.props.user)
+    }
     return this.props.onRowClick ?
       _.partial(this.props.onRowClick, this.props.user) :
       ''
@@ -46,7 +50,7 @@ class UserRow extends React.Component {
     return (
       <div
         className='flex user-row-container'
-        onClick={this.onRowClick()}
+        onClick={this.onRowClick}
       >
         <p className="user-row-name">{`${this.props.user.first_name} ${this.props.user.last_name}`}</p>
         <p className="user-row-username">{`${this.props.user.username}`}</p>

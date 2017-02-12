@@ -55,7 +55,10 @@ class UserList extends React.Component {
                 deleteRoute={this.props.deleteRoute}
                 onDeleteUser={this.onDeleteUser}
                 onRowClick={this.props.onRowClick}
+                userType={this.props.userType}
+                openModal={this.props.openModal}
               />
+
             </div>
           )
         })}
