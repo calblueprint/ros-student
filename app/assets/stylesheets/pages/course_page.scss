@@ -14,3 +14,44 @@
   padding: $lg;
   flex-direction: row-reverse;
 }
+
+.course-navigation-button {
+  @include appearance(none);
+  width: $xxl;
+  height: $xxl;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid transparent;
+  display: inline-block;
+  transition: 100ms;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: auto;
+
+    &:hover {
+      box-shadow: 0 2px 8px transparent;
+    }
+
+    &:active {
+      box-shadow: none;
+      opacity: 0.6;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 2px 8px $black-40;
+  }
+
+  &:active {
+    box-shadow: none;
+    opacity: 0.8;
+  }
+}
+
+.component-navigation-img {
+  width: $xxl;
+  height: $xxl;
+}
