@@ -36,7 +36,11 @@ class Image extends React.Component {
   renderImage() {
     return (
       <div className='image-container'>
-        <img className='image' src={this.state.src} />
+        <img
+          className='image'
+          src={this.state.src}
+          alt='Image not found.'
+        />
       </div>
     )
   }

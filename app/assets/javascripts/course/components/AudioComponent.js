@@ -74,13 +74,26 @@ class AudioComponent extends React.Component {
 
   renderAudio() {
     return (
-      <div>
-        <button onClick={this.onAudioToggle}>Toggle Me</button>
-        <div ref='audioContainer' onClick={this.onSeek}>
-          <ProgressBar progress={this.state.progress} />
+      <div className='flex center fill'>
+        <button
+          className='button'
+          onClick={this.onAudioToggle}>
+          {this.state.playing ? 'Pause' : 'Play'}
+        </button>
+        <div className='flex flex-vertical fill marginLeft-sm'>
+          <div
+            ref='audioContainer'
+            className='audio-progressbar-container'
+            onClick={this.onSeek}
+          >
+            <ProgressBar progress={this.state.progress} />
+          </div>
+          <div className='fill'>
+            <div className='audio-start-time'>{this.startTime()}</div>
+            <div className='audio-end-time'>{this.endTime()}</div>
+          </div>
         </div>
-        <h1>{this.startTime()}</h1>
-        <h1>{this.endTime()}</h1>
+
         <ReactPlayer
           ref={player => { this.player = player }}
           url={this.props.audioUrl}
@@ -98,7 +111,7 @@ class AudioComponent extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='audio-component-container padding-md'>
         {!_.isUndefined(this.props.audioUrl) ? this.renderAudio() : ''}
       </div>
     )

@@ -6,6 +6,7 @@ import { getUser } from '../../utils/user_helpers'
 import { APIRoutes } from '../../shared/routes'
 import { findById, isFirst, isLast } from '../../utils/course_helpers'
 import { isComponentSelfStudy } from '../../utils/component_helpers'
+import { Images } from '../../utils/image_helpers'
 
 import CourseSidebar from './CourseSidebar'
 import ParentComponent from './ParentComponent'
@@ -238,17 +239,22 @@ class CoursePage extends React.Component {
               onEnd={this.enableNextButton}
             />
 
-            <div className='flex component-next-container'>
+            <div className='flex marginTopBot-md'>
+              <button
+                className='marginRight-lg course-navigation-button'
+                onClick={this.displayPrevComponent}>
+                <img
+                  src={Images.left_arrow}
+                />
+              </button>
+
               <button
                 disabled={this.nextDisabled()}
-                className='button'
+                className='course-navigation-button'
                 onClick={this.displayNextComponent}>
-                Next
-              </button>
-              <button
-                className='marginRight-lg button'
-                onClick={this.displayPrevComponent}>
-                Previous
+                <img
+                  src={Images.right_arrow}
+                />
               </button>
             </div>
           </div>

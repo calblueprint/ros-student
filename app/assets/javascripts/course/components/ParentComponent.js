@@ -42,8 +42,11 @@ class ParentComponent extends React.Component {
 
   render() {
     return (
-      <div className='parent-component-container flex flex-vertical centerdf fd dfg sd fg'>
-        <h1 className='subsection-title-container'>{this.props.component.title}</h1>
+      <div className='parent-component-container flex flex-vertical center'>
+        <h1
+          className='subsection-title-container marginTopBot-sm'>
+          {this.props.component.title}
+        </h1>
         {this.renderComponent()}
       </div>
     )
