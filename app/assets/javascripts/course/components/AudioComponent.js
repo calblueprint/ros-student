@@ -74,7 +74,7 @@ class AudioComponent extends React.Component {
 
   renderAudio() {
     return (
-      <div className='flex center fill'>
+      <div id='audio-component' className='flex center fill'>
         <button
           className='button'
           onClick={this.onAudioToggle}>
@@ -112,7 +112,7 @@ class AudioComponent extends React.Component {
   render() {
     return (
       <div className='audio-component-container padding-md'>
-        {!_.isUndefined(this.props.audioUrl) ? this.renderAudio() : ''}
+        {this.props.audioUrl ? this.renderAudio() : ''}
       </div>
     )
   }

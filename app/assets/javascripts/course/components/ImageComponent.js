@@ -7,7 +7,7 @@ class ImageComponent extends React.Component {
   render() {
     return (
       <div className='flex flex-vertical center image-component-container'>
-        <div className='fill  marginBot-sm'>
+        <div className='fill marginBot-sm'>
           <Image src={this.props.imgUrl} />
         </div>
         <AudioComponent

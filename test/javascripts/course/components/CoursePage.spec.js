@@ -2,6 +2,7 @@ import React from 'react'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 import chaiEnzyme from 'chai-enzyme'
+import _ from 'underscore'
 
 import { mount, shallow } from 'enzyme'
 import chai, { expect } from 'chai'
@@ -89,7 +90,7 @@ describe('<CoursePage />', () => {
   }
 
 
-  const subsection7 = {
+  const subsection = {
     'id': 7,
     'title': 'Grated Goats',
     'section_id': 2,
@@ -146,7 +147,7 @@ describe('<CoursePage />', () => {
 
   let server
 
-  beforeEach(function () {
+  beforeEach(() => {
     server = sinon.fakeServer.create()
 
     server.respondWith(
@@ -158,16 +159,15 @@ describe('<CoursePage />', () => {
     _.times(8, (n) => {
       server.respondWith(
         'GET',
-        APIRoutes.getSubsectionPath(7),
+        APIRoutes.getSubsectionPath(n),
         subsectionResponse
       )
     })
 
-
     server.respondImmediately = true
   })
 
-  afterEach(function () {
+  afterEach(() => {
     server.restore()
   })
 
@@ -188,6 +188,7 @@ describe('<CoursePage />', () => {
     const title = coursePage.find('.subsection-title-container')
     const markComponentAsCompleteSpy = sinon.spy(coursePage.instance(), 'markComponentAsComplete')
     const displayNextComponentSpy = sinon.spy(coursePage.instance(), 'displayNextComponent')
+    const displaySubsectionSpy = sinon.spy(coursePage.instance(), 'displaySubsection')
 
     expect(title.text()).to.equal('Bachelor of Arts in Medical Arts')
 
@@ -203,9 +204,11 @@ describe('<CoursePage />', () => {
     expect(title.text()).to.equal('Bachelor of Arts in Medical Arts')
 
     prevButton.simulate('click')
-    prevButton.simulate('click')
+    expect(title.text()).to.equal('Bachelor of Arts in Medical Science')
 
-    console.log(coursePage.state())
+    prevButton.simulate('click')
+    expect(displaySubsectionSpy).to.be.calledWith(6, -1)
+    expect(title.text()).to.equal('Bachelor of Arts in Medical Arts')
   })
 
   it('should not continue unless you finish the component', () => {
@@ -229,7 +232,21 @@ describe('<CoursePage />', () => {
     expect(displayNextComponentStub).to.be.calledOnce
   })
 
-  it('should mark the component as complete when its finished', () => {
+  it('should mark component as complete after clicking next', () => {
+    const coursePage = mount(<CoursePage routeParams={{id: ID}}/>)
+
+    const nextButton = coursePage.find('#next-button')
+    const markComponentAsCompleteSpy = sinon.spy(coursePage.instance(), 'markComponentAsComplete')
+
+    expect(nextButton).to.have.attr('disabled')
+    expect(coursePage.state().nextDisabled).to.be.true
+
+    coursePage.instance().enableNextButton()
+    expect(nextButton).to.not.have.attr('disabled')
+    expect(coursePage.state().nextDisabled).to.not.be.true
+
+    nextButton.simulate('click')
+
 
   })
 })

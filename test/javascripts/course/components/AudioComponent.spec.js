@@ -23,7 +23,7 @@ describe('<AudioComponent />', () => {
       />
     )
 
-    expect(audioComponent.find('.audio-player')).to.have.length(1)
+    expect(audioComponent.find('#audio-component')).to.have.length(1)
     expect(audioComponent.state().playing).to.be.false
 
     // Shouldn't render unless there is an audioUrl
@@ -34,7 +34,7 @@ describe('<AudioComponent />', () => {
       />
     )
 
-    expect(audioComponent2.find('.audio-player')).to.have.length(0)
+    expect(audioComponent2.find('#audio-component')).to.have.length(0)
   })
 
   it('should invoke callback onEnd', () => {

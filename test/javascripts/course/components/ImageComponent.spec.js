@@ -26,10 +26,10 @@ describe('<ImageComponent />', () => {
       />
     )
 
-    expect(imageComponent.find('.image-component')).to.have.length(1)
-    expect(imageComponent.find('.image-component')).to.have.attr('src', imageUrl)
+    expect(imageComponent.find('.image')).to.have.length(1)
+    expect(imageComponent.find('.image')).to.have.attr('src', imageUrl)
 
-    expect(imageComponent.find('.audio-component')).to.have.length(0)
+    expect(imageComponent.find('#audio-component')).to.have.length(0)
 
     const imageComponent2 = mount(
       <ImageComponent
@@ -39,6 +39,6 @@ describe('<ImageComponent />', () => {
       />
     )
 
-    expect(imageComponent2.find('.audio-component')).to.have.length(1)
+    expect(imageComponent2.find('#audio-component')).to.have.length(1)
   })
 })

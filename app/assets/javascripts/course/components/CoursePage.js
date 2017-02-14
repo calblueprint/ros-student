@@ -252,11 +252,10 @@ class CoursePage extends React.Component {
 
             <div className='flex marginTopBot-md'>
               <button
+                id='previous-button'
                 className='marginRight-lg course-navigation-button'
                 onClick={this.displayPrevComponent}>
-                <img
-                  src={Images.left_arrow}
-                />
+                <img src={Images.left_arrow} />
               </button>
 
               <div className='tooltip'>
