@@ -2,6 +2,13 @@ import React from 'react'
 import Collapse from 'react-collapse'
 import _ from 'underscore'
 
+import {
+  SortableContainer,
+  SortableElement,
+  SortableHandle,
+  arrayMove,
+} from 'react-sortable-hoc'
+
 import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
 
@@ -34,6 +41,9 @@ class SubsectionEdit extends React.Component {
     this.showNewComponentForm = this.showNewComponentForm.bind(this)
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+
+    this.onSortStart = this.onSortStart.bind(this)
+    this.onSortEnd = this.onSortEnd.bind(this)
   }
 
   updateTitle(params) {
@@ -78,13 +88,47 @@ class SubsectionEdit extends React.Component {
         <div className='course-edit-component'>No components to show!</div>
       )
     } else {
-      return this.state.subsection.components.map((value) => {
+      const ComponentHandle = SortableHandle(() => <span>::</span>) // This can be any component you want
+
+      const ComponentItem = SortableElement(({ value, deleteComponent, isSorting }) => {
         return (
-          <div className='course-edit-component' key={value.id}>
-            <ComponentEdit component={value} deleteComponent={this.deleteComponent}/>
+          <div className='edit-section' key={value.id}>
+            <ComponentHandle />
+            <div className='course-edit-component' key={value.id}>
+              <ComponentEdit component={value} deleteComponent={deleteComponent}/>
+            </div>
           </div>
         )
       })
+      const ComponentList = SortableContainer(({ items, deleteComponent, isSorting }) => {
+      return (
+        <ul>
+          {
+            items.map((value, index) => {
+              return <ComponentItem
+                key={`component-${index}`}
+                index={index}
+                value={value}
+                deleteComponent={deleteComponent}
+                isSorting={isSorting}
+              />
+            })
+          }
+        </ul>
+      )
+    })
+      return (
+        <ComponentList
+          items={this.state.subsection.components}
+          useDragHandle
+          useWindowAsScrollContainer
+          lockAxis='y'
+
+          deleteComponent={this.deleteComponent}
+          onSortStart={this.onSortStart}
+          onSortEnd={this.onSortEnd}
+        />
+      )
     }
   }
 
@@ -119,6 +163,14 @@ class SubsectionEdit extends React.Component {
     }
 
     this.setState({ openDeleteModal: false })
+  }
+
+  onSortStart() {
+    console.log('why')
+  }
+
+  onSortEnd() {
+    console.log('done')
   }
 
   render() {

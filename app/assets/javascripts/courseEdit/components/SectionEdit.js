@@ -92,7 +92,10 @@ class SectionEdit extends React.Component {
       return this.state.section.subsections.map((value) => {
         return (
           <div className='course-edit-subsection' key={value.id}>
-            <SubsectionEdit subsection={value} deleteSubsection={this.deleteSubsection} />
+            <SubsectionEdit
+              subsection={value}
+              deleteSubsection={this.deleteSubsection}
+            />
           </div>
         )
       })
@@ -137,7 +140,7 @@ class SectionEdit extends React.Component {
           </button>
         </div>
 
-        <Collapse isOpened={this.state.isOpen}>
+        <Collapse isOpened={this.state.isOpen && !this.props.isSorting}>
           <div>{this.renderSubsections()}</div>
           <button
             className='button button--white add-subsection-button'
