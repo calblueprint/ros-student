@@ -1,24 +1,13 @@
 .form-component-container {
-  height: 100%;
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
 }
 
-.form {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 30px;
-  overflow: hidden;
-  height: 100%;
-}
-
-.button-container {
-  text-align: right;
+iframe {
+  width: 100%;
+  height: 750px;
 }
 
 .keyword-container {
-  position: relative;
-  top: -106px;
-  background: $snow;
-  padding: 15px;
+  width: 100%;
+  margin-right: $md;
 }
