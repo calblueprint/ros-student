@@ -37,10 +37,28 @@ class FormComponent extends React.Component {
   render() {
     return (
       <div className='form-component-container'>
-        <div className='form'><iframe src={this.props.component.content_url} width="100%" height="100%" frameBorder="0" marginHeight="0" marginWidth="0">Loading...</iframe></div>
-        <div className='keyword-container'>
-          <Input value={this.state.formCode} placeholder='enter your form completion code here' name='keyword' error={this.state.error} onChange={this.updateCodeState}/>
-          <div className='button-container'><button className='button' onClick={this.formSubmit}>Submit Keyword</button></div>
+        <iframe
+          className='form-iframe'
+          src={this.props.component.content_url}
+        >
+          Loading...
+        </iframe>
+        <div className='flex vertical marginTopBot-sm'>
+          <div className='keyword-container'>
+            <Input
+              name='keyword'
+              placeholder='Enter your form completion code here.'
+              value={this.state.formCode}
+              error={this.state.error}
+              onChange={this.updateCodeState}
+            />
+          </div>
+          <button
+            className='button'
+            onClick={this.formSubmit}
+          >
+            Submit
+          </button>
         </div>
       </div>
     )
