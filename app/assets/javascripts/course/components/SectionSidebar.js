@@ -5,22 +5,20 @@ import { Link } from 'react-router'
 import Collapse from 'react-collapse'
 
 import { getUser } from '../../utils/user_helpers'
+import { Images } from '../../utils/image_helpers'
 import { RailsRoutes, ReactRoutes } from '../../shared/routes'
 import { APIRoutes } from '../../shared/routes'
+
 import SubsectionSidebar from './SubsectionSidebar'
 
 class SectionSidebar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isOpen: false,
+      isOpen: this.props.section.id == this.props.displayedSubsection.section_id,
     }
 
     this.toggleCollapse = this.toggleCollapse.bind(this)
-  }
-
-  shouldBeOpen() {
-    return this.props.section.id == this.props.displayedSubsection.section_id || this.state.isOpen
   }
 
   toggleCollapse() {
@@ -43,16 +41,22 @@ class SectionSidebar extends React.Component {
   }
 
   render() {
+    const arrow = this.state.isOpen ? '' : 'rotate'
+
     return (
       <div className='sidebar-section-card'>
         <div
-          className='sidebar-section-title-container'
+          className='flex vertical sidebar-section-title-container'
           onClick={this.toggleCollapse}
         >
-          <h2>{this.props.section.title}</h2>
+          <h2 className='sidebar-section-title noselect'>{this.props.section.title}</h2>
+          <img
+            className={`sidebar-section-arrow collapse ${arrow}`}
+            src={Images.white_dropdown_arrow}
+          />
         </div>
-        <Collapse isOpened={this.shouldBeOpen()}>
-          <ul>{this.renderSubsections()}</ul>
+        <Collapse isOpened={this.state.isOpen}>
+          {this.renderSubsections()}
         </Collapse>
       </div>
     )
