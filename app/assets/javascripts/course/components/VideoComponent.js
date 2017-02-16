@@ -21,9 +21,7 @@ class VideoComponent extends React.Component {
   }
 
   onReady(event) {
-    this.setState({
-      player: event.target,
-    });
+    this.setState({ player: event.target })
   }
 
   onEnd() {
@@ -32,7 +30,7 @@ class VideoComponent extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='video-component-container'>
         <YouTube
           videoId={getYoutubeKey(this.props.videoUrl)}
           onReady={this.onReady}
