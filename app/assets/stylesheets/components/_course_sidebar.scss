@@ -44,11 +44,11 @@
   color: $white;
 
   &:hover {
-    background: $light-charcoal;
+    background: $black;
   }
 
   &.active {
-    background: $light-charcoal;
+    background: $black;
     font-weight: $bold;
     border-left: 5px solid $blue;
   }
