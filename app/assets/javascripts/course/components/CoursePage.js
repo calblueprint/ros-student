@@ -215,6 +215,15 @@ class CoursePage extends React.Component {
     })
   }
 
+  renderTitle() {
+    return !this.state.courseSidebar.name ? '' : (
+      <div className="sidebar-course-title-container">
+        <img src={Images.roots_logo} />
+        <h1 className="sidebar-course-title">{this.state.courseSidebar.name}</h1>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className='flex'>
@@ -226,6 +235,7 @@ class CoursePage extends React.Component {
           />
         </div>
         <div className='component-display-container'>
+
           <div className='flex flex-vertical center'>
             <ComponentGraph
               subsection={this.state.displayedSubsection}

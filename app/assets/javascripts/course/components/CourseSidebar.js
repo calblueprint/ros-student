@@ -8,6 +8,8 @@ import request from '../../shared/requests/request'
 import { getUser } from '../../utils/user_helpers'
 import { RailsRoutes, ReactRoutes } from '../../shared/routes'
 import { APIRoutes } from '../../shared/routes'
+import { Images } from '../../utils/image_helpers'
+
 import SectionSidebar from './SectionSidebar'
 
 class CourseSidebar extends React.Component {
@@ -28,8 +30,9 @@ class CourseSidebar extends React.Component {
 
   renderInfo() {
     return (
-      <div className="sidebar-course-title-container">
-        <h1 className="sidebar-course-title">{this.props.courseSidebar.name}</h1>
+      <div className='flex vertical sidebar-course-title-container'>
+        <img className='sidebar-course-logo' src={Images.roots_logo} />
+        <h1 className='sidebar-course-title'>{this.props.courseSidebar.name}</h1>
       </div>
     )
   }
@@ -41,7 +44,9 @@ class CourseSidebar extends React.Component {
       return (
         <div>
           {this.renderInfo()}
-          {this.renderSections()}
+          <div className='sidebar-section-container'>
+            {this.renderSections()}
+          </div>
         </div>
       )
     }
@@ -50,7 +55,7 @@ class CourseSidebar extends React.Component {
   render() {
     return (
       <div>
-        <div>{this.renderSidebar()}</div>
+        {this.renderSidebar()}
       </div>
     )
   }
