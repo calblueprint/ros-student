@@ -76,7 +76,7 @@ class ComponentForm extends React.Component {
         >
           <Modal.Header>
             <Modal.Title className='update-user-header'>
-              Component Form
+              <h1 className='h3 '>Component Form</h1>
             </Modal.Title>
             <Modal.Dismiss
               className='flex center modal-dismiss-container'
@@ -87,9 +87,9 @@ class ComponentForm extends React.Component {
             </Modal.Dismiss>
           </Modal.Header>
           <Modal.Body>
-            <div className='flex flex-vertical add-component-container'>
-              <div className='add-component-body-text marginTopBot-xxs'>Type</div>
-              <div className='flex flex-horizontal'>
+            <div className='flex flex-vertical'>
+              <div className='add-component-body-text'>Type</div>
+              <div className='flex flex-horizontal button-container'>
                 <button
                   className={`tab ${this.isActiveStyle(0)}`}
                   onClick={this.handleClick.bind(this, 0)}>
