@@ -29,7 +29,7 @@ class Flash extends React.Component {
 
   render() {
     return (
-      <div>{this.renderFlashes()}</div>
+      <div className='fill'>{this.renderFlashes()}</div>
     )
   }
 }
