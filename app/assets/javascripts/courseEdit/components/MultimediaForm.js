@@ -66,7 +66,6 @@ class MultimediaForm extends React.Component {
 
     return (
       <div className='add-component-body-text'>
-        <div>Multimedia Component</div>
         <form>
           <div className='add-component-form-item'>
             <Input

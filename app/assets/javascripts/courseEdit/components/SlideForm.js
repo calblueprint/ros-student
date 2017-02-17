@@ -75,7 +75,6 @@ class SlideForm extends React.Component {
   render() {
     return (
       <div className='add-component-body-text'>
-        <div>Slide Component</div>
         <form>
           <div className='add-component-form-item'>
             <Input
