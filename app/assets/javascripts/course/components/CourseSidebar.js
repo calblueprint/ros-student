@@ -30,8 +30,7 @@ class CourseSidebar extends React.Component {
 
   renderInfo() {
     return (
-      <div className='flex vertical sidebar-course-title-container'>
-        <img className='sidebar-course-logo' src={Images.roots_logo} />
+      <div className='flex center vertical sidebar-course-title-container'>
         <h1 className='sidebar-course-title'>{this.props.courseSidebar.name}</h1>
       </div>
     )

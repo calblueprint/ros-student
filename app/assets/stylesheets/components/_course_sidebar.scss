@@ -1,5 +1,5 @@
 .sidebar-course-title-container {
-  background: $dark-blue;
+  background: $charcoal;
   padding: $sm $lg;
 }
 
@@ -9,7 +9,7 @@
 }
 
 .sidebar-course-title {
-  margin-left: $md;
+  display: inline;
   font-size: $md;
   font-weight: 900;
   color: $white;
@@ -51,6 +51,10 @@
     background: $black;
     font-weight: $bold;
     border-left: 5px solid $blue;
+    .sidebar-subsection-title {
+      margin-left: -5px;
+    }
+
   }
 
   &.inactive {
