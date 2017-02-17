@@ -191,7 +191,7 @@ class CourseEditPage extends React.Component {
     return (
       <div className='flex center flex-vertical'>
         <div
-          className='course-edit-header'
+          className='flex center course-edit-header'
           style={this.getImageStyle()}
         >
           <div className='container course-edit-header-container'>
