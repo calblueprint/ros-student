@@ -36,7 +36,11 @@ class FormComponent extends React.Component {
     if (this.state.formCode == this.props.component.form_key) {
       this.props.onEnd()
       this.setState({
+<<<<<<< HEAD
         success: 'Success! Press next to continue.',
+=======
+        success: 'You may now press next to continue',
+>>>>>>> Added success to Input.js when input is correct. Flip dropdown arrows. Change FormComponent so the input field reloads for a new component
       })
     } else {
       this.setState({
