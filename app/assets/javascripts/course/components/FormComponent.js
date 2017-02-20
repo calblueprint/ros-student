@@ -25,11 +25,11 @@ class FormComponent extends React.Component {
     if (this.state.formCode == this.props.component.form_key) {
       this.props.onEnd()
       this.setState({
-        error: 'Next button enabled'
+        error: 'You may now press next to continue'
       })
     } else {
       this.setState({
-        error: 'Code entered is invalid'
+        error: 'The secret key entered is invalid'
       })
     }
   }
@@ -47,7 +47,7 @@ class FormComponent extends React.Component {
           <div className='keyword-container'>
             <Input
               name='keyword'
-              placeholder='Enter your form completion code here.'
+              placeholder='Enter your secret key here.'
               value={this.state.formCode}
               error={this.state.error}
               onChange={this.updateCodeState}
