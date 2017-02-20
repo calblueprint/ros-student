@@ -147,8 +147,8 @@ class CoursePage extends React.Component {
 
   showNextButtonTooltip() {
     const component = this.state.displayedComponent
-    console.log(component)
-    const display = (component && component.component_type == 2 || component.audio_url) ? 'inline' : 'none'
+    const display = (this.nextDisabled() && component &&
+      (component.component_type == 2 || component.audio_url)) ? 'inline' : 'none'
 
     return ({
       display: `${display}`
@@ -260,19 +260,21 @@ class CoursePage extends React.Component {
                 />
               </button>
 
-              <button
-                disabled={this.nextDisabled()}
-                className='course-navigation-button tooltip'
-                onClick={this.displayNextComponent}>
-                <span
-                  className='tooltip tooltiptext top'
-                  style={this.showNextButtonTooltip()}>
-                  Please finish the clip before continuing
-                </span>
-                <img
-                  src={Images.right_arrow}
-                />
-              </button>
+              <div className='tooltip'>
+                <button
+                  disabled={this.nextDisabled()}
+                  className='course-navigation-button'
+                  onClick={this.displayNextComponent}>
+                  <span
+                    className='tooltip tooltiptext right'
+                    style={this.showNextButtonTooltip()}>
+                    Please finish the clip before continuing
+                  </span>
+                  <img
+                    src={Images.right_arrow}
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>

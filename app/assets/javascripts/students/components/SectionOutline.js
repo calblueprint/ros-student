@@ -33,7 +33,7 @@ class SectionOutline extends React.Component {
   }
 
   render() {
-    const arrow = this.state.isOpen ? '' : 'rotate'
+    const arrow = this.state.isOpen ? 'rotate' : ''
     return (
       <div className="section-outline-container">
         <div className="flex section-outline-header">
