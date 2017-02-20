@@ -50,6 +50,7 @@ class StudentProgressModal extends React.Component {
               <p>{this.props.student.first_name} {this.props.student.last_name}</p>
               <p>
                 {this.props.student.email}
+
               </p>
             </Modal.Body>
             <Modal.Footer>

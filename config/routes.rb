@@ -80,7 +80,7 @@ Rails.application.routes.draw do
 
     scope module: 'admins' do
       resources :admins, only: [:create, :destroy, :update, :index]
-      resources :students, only: [:index, :destroy]
+      resources :students, only: [:index, :destroy, :show]
     end
 
     namespace :students do

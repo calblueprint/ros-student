@@ -8,4 +8,5 @@ class CourseStudentListSerializer < BaseCourseSerializer
   def is_enrolled
     object.is_enrolled?(serialization_options[:user]) ? true : false
   end
+  
 end
