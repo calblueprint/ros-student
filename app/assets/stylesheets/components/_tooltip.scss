@@ -34,6 +34,22 @@
       }
     }
 
+    &.left {
+      right: 120%;
+      &::after {
+        left: 100%;
+        border-color: transparent transparent transparent rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    &.right {
+      left: 120%;
+      &::after {
+        right: 100%;
+        border-color: transparent rgba(0, 0, 0, 0.6) transparent transparent;
+      }
+    }
+
     &::after {
       content: " ";
       position: absolute;
