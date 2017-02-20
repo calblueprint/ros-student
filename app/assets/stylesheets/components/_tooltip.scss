@@ -1,12 +1,10 @@
 .tooltip {
   position: relative;
-  // display: inline-block;
 
   .tooltiptext {
     visibility: hidden;
     min-width: 100px;
     opacity: 0;
-    left: 50%;
     background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
     text-align: center;
@@ -15,37 +13,52 @@
 
     position: absolute;
     z-index: 1;
-    transform: translateX(-50%); // Centering
     transition: opacity 0.3s;
 
     &.top {
       bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%); // Horizontal centering
       &::after {
         top: 100%;
+        left: 50%;
+        margin-left: -5px;
         border-color: rgba(0, 0, 0, 0.6) transparent transparent transparent;
       }
     }
 
     &.bottom {
       top: 120%;
+      left: 50%;
+      transform: translateX(-50%); // Horizontal centering
       &::after {
         bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
         border-color: transparent transparent rgba(0, 0, 0, 0.6) transparent;
       }
     }
 
     &.left {
       right: 120%;
+      top: 50%;
+      transform: translateY(-50%); // Vertical entering
       &::after {
         left: 100%;
+        top: 50%;
+        margin-top: -5px;
         border-color: transparent transparent transparent rgba(0, 0, 0, 0.6);
       }
     }
 
     &.right {
       left: 120%;
+      top: 50%;
+      transform: translateY(-50%); // Vertical entering
       &::after {
         right: 100%;
+        top: 50%;
+        margin-top: -5px;
         border-color: transparent rgba(0, 0, 0, 0.6) transparent transparent;
       }
     }
@@ -53,8 +66,6 @@
     &::after {
       content: " ";
       position: absolute;
-      left: 50%;
-      margin-left: -5px;
       border-width: 5px;
       border-style: solid;
     }
