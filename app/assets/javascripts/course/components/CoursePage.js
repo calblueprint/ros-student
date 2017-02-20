@@ -30,6 +30,7 @@ class CoursePage extends React.Component {
     this.displayPrevComponent = this.displayPrevComponent.bind(this)
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
     this.enableNextButton = this.enableNextButton.bind(this)
+    this.showNextButtonTooltip = this.showNextButtonTooltip.bind(this)
   }
 
   componentDidMount() {
@@ -144,6 +145,16 @@ class CoursePage extends React.Component {
     this.setState({ nextDisabled: false })
   }
 
+  showNextButtonTooltip() {
+    const component = this.state.displayedComponent
+    console.log(component)
+    const display = (component && component.component_type == 2 || component.audio_url) ? 'inline' : 'none'
+
+    return ({
+      display: `${display}`
+    })
+  }
+
   markComponentAsComplete(component) {
     const path = APIRoutes.createComponentProgressPath(component.id)
 
@@ -251,8 +262,13 @@ class CoursePage extends React.Component {
 
               <button
                 disabled={this.nextDisabled()}
-                className='course-navigation-button'
+                className='course-navigation-button tooltip'
                 onClick={this.displayNextComponent}>
+                <span
+                  className='tooltip tooltiptext top'
+                  style={this.showNextButtonTooltip()}>
+                  Please finish the clip before continuing
+                </span>
                 <img
                   src={Images.right_arrow}
                 />
