@@ -6,7 +6,6 @@ import { Images, convertImage } from '../../utils/image_helpers'
 import { snakeToCamel } from '../../utils/form_helpers'
 
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
-import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
 
 import SectionEdit from './SectionEdit'
 import DeleteCourseModal from './DeleteCourseModal'

@@ -25,7 +25,7 @@ class Input extends React.Component {
       <div className='marginTopBot-xxs'>
         <div
           className={`
-            marginTopBot-xxs ${this.getErrorStyling('input-text--error')}`
+            marginTopBot-xxs input-text ${this.getErrorStyling('error')}`
           }
         >
           {this.props.label}
@@ -35,7 +35,7 @@ class Input extends React.Component {
         </div>
         <div
           className={
-              `marginTopBot-xxs ${this.getErrorStyling('input-text--error')}`
+              `marginTopBot-xxs input-text ${this.getErrorStyling('error')}`
           }
           >
           {this.props.error}
