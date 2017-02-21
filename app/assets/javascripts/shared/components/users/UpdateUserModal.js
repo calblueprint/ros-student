@@ -9,6 +9,7 @@ import { Images, convertImage } from '../../../utils/image_helpers'
 
 import Form from '../forms/Form'
 import Input from '../forms/Input'
+import ImageUploadInput from '../forms/ImageUploadInput'
 
 class UpdateUserModal extends React.Component {
   constructor(props) {
@@ -22,8 +23,6 @@ class UpdateUserModal extends React.Component {
     })
 
     this.updateUser = this.updateUser.bind(this)
-    this.handleImage = this.handleImage.bind(this)
-    this.removeImage = this.removeImage.bind(this)
     this.setImage = this.setImage.bind(this)
   }
 
@@ -122,8 +121,7 @@ class UpdateUserModal extends React.Component {
           onHide={this.props.closeModal}
         >
           <Modal.Header>
-            <Modal.Title
-              className='update-user-header'>
+            <Modal.Title>
               Edit Profile
             </Modal.Title>
             <Modal.Dismiss
@@ -136,36 +134,13 @@ class UpdateUserModal extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <Form>
-              <div className='flex flex-horizontal update-user-container'>
-                <div className='update-user-column update-user-input'>
-                  <div className='flex center update-user-image-flex'>
-                    <div className='update-user-image-container'>
-                      <img
-                        className='update-user-image'
-                        src={this.renderImage()} />
-                      <div className='update-user-image-upload'>
-                        <button
-                          className='button button--red update-user-image-button margin'
-                          onClick={this.removeImage}>
-                          Remove Image
-                        </button>
-                        <label
-                          htmlFor='update-user-image-upload'
-                          className='button update-user-image-button'
-                          onChange={this.handleImage}>
-                          Upload Image
-                        </label>
-                        <input
-                          id='update-user-image-upload'
-                          className='hidden-input'
-                          type='file'
-                          onChange={this.handleImage}
-                          accept='image/jpg, image/jpeg, image/png'
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className='flex flex-horizontal center update-user-container'>
+                <ImageUploadInput
+                  label='Profile Image'
+                  className='update-user-column'
+                  image={this.renderImage()}
+                  setImage={this.setImage}
+                />
 
                 <div className='update-user-column'>
                   <div className='flex flex-horizontal update-user-container'>
