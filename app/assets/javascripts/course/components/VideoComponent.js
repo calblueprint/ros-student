@@ -15,6 +15,7 @@ class VideoComponent extends React.Component {
   getConfigOptions() {
     return {
       playerVars: {
+        disablekb: this.props.canSeek ? 0 : 1,
         controls: this.props.canSeek ? 1 : 0,
       }
     }
