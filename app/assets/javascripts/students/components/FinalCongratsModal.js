@@ -41,5 +41,5 @@ class FinalCongratsModal extends React.Component {
   }
 }
 
-export default CongratsModal
+export default FinalCongratsModal
 
