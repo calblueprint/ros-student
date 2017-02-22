@@ -17,11 +17,13 @@ class FormComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.props.component != nextProps.component ? this.setState({
-                                                    formCode: '',
-                                                    error: '',
-                                                    success: '',
-                                                  })
+    if (this.props.component != nextProps.component) {
+      this.setState({
+        formCode: '',
+        error: '',
+        success: '',
+      })
+    }
   }
 
   updateCodeState(e) {
@@ -34,7 +36,7 @@ class FormComponent extends React.Component {
     if (this.state.formCode == this.props.component.form_key) {
       this.props.onEnd()
       this.setState({
-        success: 'You may now press next to continue',
+        success: 'Success! Press next to continue.',
       })
     } else {
       this.setState({
