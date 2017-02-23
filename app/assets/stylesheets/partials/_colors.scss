@@ -1,3 +1,5 @@
+/* Main colors */
+
 $black                          : #2C3037;
 $black-80                       : rgba($black, 0.80);
 $black-60                       : rgba($black, 0.60);
@@ -6,6 +8,11 @@ $black-20                       : rgba($black, 0.20);
 $black-10                       : rgba($black, 0.10);
 
 $light-charcoal                 : #5B5B5E;
+$light-charcoal-80              : rgba($light-charcoal, 0.80);
+$light-charcoal-60              : rgba($light-charcoal, 0.60);
+$light-charcoal-40              : rgba($light-charcoal, 0.40);
+$light-charcoal-20              : rgba($light-charcoal, 0.20);
+$light-charcoal-10              : rgba($light-charcoal, 0.10);
 
 $silver                         : #8492A6;
 $silver-80                      : rgba($silver, 0.80);
@@ -74,15 +81,9 @@ $white-40                       : rgba($white, 0.40);
 $white-20                       : rgba($white, 0.20);
 $white-10                       : rgba($white, 0.10);
 
-
-$blue-dark                      : #09556A;
-$component-gray                 : #A2A2A2;
-$font-stack                     : 'Lato', 'Helvetica', sans-serif;
-
 $transparent                    : rgba($white, 0);
 
-/* Font weights */
-$extra-bold                     : 900;
-$bold                           : 700;
-$regular                        : 400;
-$light                          : 300;
+/* Specific-use colors */
+
+$blue-dark                      : #09556A;  // Buttons
+$component-gray                 : #A2A2A2;  // Components
