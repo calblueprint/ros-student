@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,900');
 
+/* Font weights */
+$extra-bold                     : 900;
+$bold                           : 700;
+$regular                        : 400;
+$light                          : 300;
+
+$font-stack                     : 'Lato', 'Helvetica', sans-serif;
+
 body {
   color: $black;
   font-family: $font-stack;
