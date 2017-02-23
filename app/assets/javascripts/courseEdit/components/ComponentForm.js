@@ -86,22 +86,22 @@ class ComponentForm extends React.Component {
                 className='modal-dismiss'/>
             </Modal.Dismiss>
           </Modal.Header>
-          <Modal.Body className='white'>
-            <div className='flex flex-vertical'>
-              <div className='add-component-body-text'>Type</div>
-              <div className='flex flex-horizontal button-container'>
+          <Modal.Body>
+            <div className='flex flex-vertical add-component-container'>
+              <div className='add-component-body-text marginTopBot-xxs'>Type</div>
+              <div className='flex flex-horizontal'>
                 <button
-                  className={`component-button ${this.isActiveStyle(0)}`}
+                  className={`tab ${this.isActiveStyle(0)}`}
                   onClick={this.handleClick.bind(this, 0)}>
                   Slide
                 </button>
                 <button
-                  className={`component-button ${this.isActiveStyle(1)}`}
+                  className={`tab ${this.isActiveStyle(1)}`}
                   onClick={this.handleClick.bind(this, 1)}>
                   Quiz
                 </button>
                 <button
-                  className={`component-button ${this.isActiveStyle(2)}`}
+                  className={`tab ${this.isActiveStyle(2)}`}
                   onClick={this.handleClick.bind(this, 2)}>
                   Multimedia
                 </button>

@@ -36,7 +36,9 @@
 }
 
 .input-text {
-  &--error {
+  color: $silver-60;
+
+  &.error {
     color: $red;
   }
 

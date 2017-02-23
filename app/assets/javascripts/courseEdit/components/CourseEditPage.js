@@ -6,7 +6,6 @@ import { Images, convertImage } from '../../utils/image_helpers'
 import { snakeToCamel } from '../../utils/form_helpers'
 
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
-import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
 
 import SectionEdit from './SectionEdit'
 import DeleteCourseModal from './DeleteCourseModal'
@@ -191,7 +190,7 @@ class CourseEditPage extends React.Component {
     return (
       <div className='flex center flex-vertical'>
         <div
-          className='course-edit-header'
+          className='flex center course-edit-header'
           style={this.getImageStyle()}
         >
           <div className='container course-edit-header-container'>

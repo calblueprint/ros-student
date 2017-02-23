@@ -3,7 +3,8 @@
   height: 100%;
   width: 100%;
 
-  background: $black-60;
+  // background: $black-80;
+  background: $silver-60;
   left: 0;
   top: 0;
   opacity: 0;
@@ -18,7 +19,6 @@
   outline: none;
   overflow-x: hidden;
   overflow-y: auto;
-  border-radius: 3px;
   position: fixed;
   top: 0;
   right: 0;
@@ -33,6 +33,7 @@
   background: $snow;
   max-width: 700px;
   margin: 80px auto;
+  border-radius: 5px;
 }
 
 .modal-sm {
@@ -42,16 +43,20 @@
 .modal-header {
   display: flex;
   height: 60px;
-  padding: 5px 25px;
+  padding: 35px 35px;
   justify-content: space-between;
   align-items: center;
-  background: $dark-gray;
+  // background: $dark-gray;
 }
 
 .modal-title {
   font-size: 20px;
-  font-weight: 360;
-  color: $white;
+  font-weight: 500;
+  color: $black;
+}
+
+.modal-body {
+  padding: 0 35px;
 }
 
 /* LOOKS HORRIBLE RIGHT NOW */
@@ -67,8 +72,12 @@
   cursor: pointer;
 
   &:hover {
-    background: $snow-20;
+    background: $black-20;
   }
+}
+
+.modal-content {
+  box-shadow: 0 0 15px $black-40;
 }
 
 .modal-dismiss {
@@ -76,12 +85,8 @@
   height: 12px;
 }
 
-.modal-body {
-  padding: 10px 25px;
-}
-
 .modal-footer {
-  padding: 10px 25px;
+  padding: 17px 35px;
   text-align: right;
 }
 
