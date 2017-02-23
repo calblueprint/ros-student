@@ -19,6 +19,10 @@
   &.error {
     border: 1px solid $red;
   }
+
+  &.success {
+    border: 1px solid $green;
+  }
 }
 
 .input--lg {
@@ -36,6 +40,10 @@
 
   &.error {
     color: $red;
+  }
+
+  &.success {
+    color: $green;
   }
 }
 

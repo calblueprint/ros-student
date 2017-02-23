@@ -2,14 +2,24 @@ import React, { PropTypes } from 'react'
 import _ from 'underscore'
 
 class Input extends React.Component {
-  getErrorStyling(style) {
-    return _.isEmpty(this.props.error) ? '' : style
+  getStyling(attr, style) {
+    return _.isEmpty(attr) ? '' : style
+  }
+
+  setResponseMessage() {
+    if (!_.isEmpty(this.props.success)) {
+      return this.props.success
+    } else if (!_.isEmpty(this.props.error)) {
+      return this.props.error
+    } else {
+      return null
+    }
   }
 
   renderInput() {
     return (
       <input
-        className={`input ${this.getErrorStyling('error')}`}
+        className={`input ${this.getStyling(this.props.error, 'error')} ${this.getStyling(this.props.success, 'success')}`}
         autoComplete={this.props.autoComplete}
         type={this.props.type}
         value={this.props.value}
@@ -25,7 +35,8 @@ class Input extends React.Component {
       <div className='marginTopBot-xxs'>
         <div
           className={`
-            marginTopBot-xxs input-text ${this.getErrorStyling('error')}`
+            marginTopBot-xxs ${this.getStyling(this.props.error, 'input-text--error')}
+            ${this.getStyling(this.props.success, 'input-text success')}`
           }
         >
           {this.props.label}
@@ -35,10 +46,11 @@ class Input extends React.Component {
         </div>
         <div
           className={
-              `marginTopBot-xxs input-text ${this.getErrorStyling('error')}`
+              `marginTopBot-xxs ${this.getStyling(this.props.error, 'input-text--error')}
+              ${this.getStyling(this.props.success, 'input-text success')}`
           }
           >
-          {this.props.error}
+          {this.setResponseMessage()}
         </div>
       </div>
     )
@@ -52,6 +64,7 @@ Input.propTypes = {
   value: PropTypes.string,
   autoComplete: PropTypes.bool,
   error: PropTypes.string,
+  success: PropTypes.string,
   name: PropTypes.string,
   placeholder: PropTypes.string
 }
@@ -61,6 +74,7 @@ Input.defaultProps = {
   autoComplete: true,
   value: '',
   error: '',
+  success: '',
   name: '',
 }
 

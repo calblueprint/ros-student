@@ -8,11 +8,22 @@ class FormComponent extends React.Component {
 
     this.state = {
       formCode: '',
-      error: ''
+      error: '',
+      success: '',
     }
 
     this.updateCodeState = this.updateCodeState.bind(this)
     this.formSubmit = this.formSubmit.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.component != nextProps.component) {
+      this.setState({
+        formCode: '',
+        error: '',
+        success: '',
+      })
+    }
   }
 
   updateCodeState(e) {
@@ -25,11 +36,11 @@ class FormComponent extends React.Component {
     if (this.state.formCode == this.props.component.form_key) {
       this.props.onEnd()
       this.setState({
-        error: 'Next button enabled'
+        success: 'Success! Press next to continue.',
       })
     } else {
       this.setState({
-        error: 'Code entered is invalid'
+        error: 'The secret key entered is invalid'
       })
     }
   }
@@ -43,22 +54,24 @@ class FormComponent extends React.Component {
         >
           Loading...
         </iframe>
-        <div className='flex vertical marginTopBot-sm'>
+        <div className='flex submit-container marginTopBot-sm'>
           <div className='keyword-container'>
             <Input
               name='keyword'
-              placeholder='Enter your form completion code here.'
+              placeholder='Enter your secret key here.'
               value={this.state.formCode}
               error={this.state.error}
+              success={this.state.success}
               onChange={this.updateCodeState}
             />
           </div>
-          <button
-            className='button'
-            onClick={this.formSubmit}
-          >
-            Submit
-          </button>
+          <div>
+            <button
+              className='button marginTopBot-xxs'
+              onClick={this.formSubmit}>
+              Submit
+            </button>
+          </div>
         </div>
       </div>
     )
