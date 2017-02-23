@@ -122,7 +122,7 @@ class SubsectionEdit extends React.Component {
   }
 
   render() {
-    const arrow = this.state.isOpen ? '' : 'rotate'
+    const arrow = this.state.isOpen ? 'rotate' : ''
 
     return (
       <div>

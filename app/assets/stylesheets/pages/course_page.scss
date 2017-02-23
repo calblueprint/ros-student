@@ -31,7 +31,8 @@
 
   &:disabled {
     opacity: 0.6;
-    cursor: auto;
+    cursor: default;
+    pointer-events: auto;
 
     &:hover {
       box-shadow: 0 2px 8px transparent;
