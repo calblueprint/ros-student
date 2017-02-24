@@ -1,6 +1,7 @@
 import React from 'react'
 import Collapse from 'react-collapse'
 import _ from 'underscore'
+import update from 'immutability-helper'
 
 import {
   SortableContainer,
@@ -61,14 +62,13 @@ const ComponentList = SortableContainer(({ items, deleteComponent, isSorting }) 
 class SubsectionEdit extends React.Component {
   constructor(props) {
     super(props)
-    this.id = this.props.subsection.id
+
     this.state = {
-      loaded: false,
-      subsection: this.props.subsection,
-      components: this.props.subsection.components,
-      openAddModal: false,
       isOpen: true,
+      loaded: false,
+      openAddModal: false,
       openDeleteModal: false,
+      subsection: this.props.subsection,
     }
 
     this.deleteSubsection = this.deleteSubsection.bind(this)
@@ -117,7 +117,7 @@ class SubsectionEdit extends React.Component {
   }
 
   deleteSubsection() {
-    this.props.deleteSubsection(this.id)
+    this.props.deleteSubsection(this.state.subsection.id)
   }
 
   renderComponents() {
@@ -149,9 +149,9 @@ class SubsectionEdit extends React.Component {
   }
 
   onFormCompletion(newComponent) {
-    const components = this.state.components
-    components.push(newComponent)
-    this.setState({ components: components })
+    this.setState({ subsection: update(this.state.subsection, {
+      components: { $push: [newComponent] },
+    })})
     this.closeNewComponentForm()
   }
 
@@ -173,8 +173,35 @@ class SubsectionEdit extends React.Component {
     this.setState({ openDeleteModal: false })
   }
 
-  onSortEnd() {
-    console.log('done')
+  onSortEnd({ oldIndex, newIndex }) {
+    const component = this.state.subsection.components[oldIndex]
+    if (oldIndex == newIndex || !component) {
+      return
+    }
+    console.log('switching')
+    console.log(oldIndex)
+    console.log(newIndex)
+    const path = APIRoutes.switchComponentPath(component.id)
+    const params = {
+      component: {
+        position: newIndex + 1,
+      }
+    }
+
+    const components = this.state.subsection.components
+
+    this.setState({ subsection: update(this.state.subsection, {
+      components: { $set: arrayMove(components, oldIndex, newIndex) },
+    })})
+
+    request.post(path, params, (response) => {
+    }, (error) => {
+      console.log(error)
+
+      this.setState({ subsection: update(this.state.subsection, {
+        components: { $set: arrayMove(components, newIndex, oldIndex) },
+      })})
+    })
   }
 
   render() {
@@ -215,7 +242,7 @@ class SubsectionEdit extends React.Component {
           <AddComponentForm
             openComponentForm={this.state.openAddModal}
             closeModal={this.closeNewComponentForm}
-            subsectionId={this.id}
+            subsectionId={this.state.subsection.id}
             callback={this.onFormCompletion} />
           <button
             className='button button--white add-component-button'
