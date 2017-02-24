@@ -89,9 +89,10 @@
 }
 
 .course-edit-component-handle {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  cursor: move;
+  margin: $xs;
 }
 
 .course-edit-component:hover {
