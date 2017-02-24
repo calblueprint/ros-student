@@ -2,7 +2,7 @@ import _ from 'underscore'
 import React, { PropTypes } from 'react'
 import ReactPlayer from 'react-player'
 
-import { audioComponentProgress } from '../../utils/component_helpers'
+import { audioComponentProgress } from '../../utils/helpers/component_helpers'
 
 import ProgressBar from '../../shared/components/widgets/ProgressBar'
 

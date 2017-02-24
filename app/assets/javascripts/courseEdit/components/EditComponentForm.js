@@ -8,8 +8,8 @@ import Form from '../../shared/components/forms/Form'
 import SlideForm from './SlideForm'
 import QuizForm from './QuizForm'
 import MultimediaForm from './MultimediaForm'
-import { getInputToParams } from '../../utils/form_helpers'
-import { Images } from '../../utils/image_helpers'
+import { getInputToParams } from '../../utils/helpers/form_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 import ComponentForm from './ComponentForm'
 
 class EditComponentForm extends ComponentForm {
@@ -21,7 +21,7 @@ class EditComponentForm extends ComponentForm {
     const path = APIRoutes.editComponentPath(this.props.component.id)
 
     const componentParams = super.getComponentParams(componentJson)
-    
+
     request.update(path, componentParams, (response) => {
       this.props.callback(response)
     }, (error) => {

@@ -12,7 +12,7 @@ import { render } from 'react-dom'
 import '../../stylesheets/bundle/students.scss'
 
 import { RailsRoutes, ReactRoutes } from '../shared/routes'
-import { getUser, observeUser } from '../utils/user_helpers'
+import { getUser, observeUser } from '../utils/helpers/user_helpers'
 
 import StudentProfilePage from './components/StudentProfilePage'
 import StudentDashboardPage from './components/StudentDashboardPage'

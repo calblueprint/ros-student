@@ -4,7 +4,7 @@ import React from 'react'
 import Input from './Input'
 import Flash from './Flash'
 
-import { getCSRFFieldName, getCSRFToken } from '../../../utils/form_helpers'
+import { getCSRFFieldName, getCSRFToken } from '../../../utils/helpers/form_helpers'
 
 const PASSWORD = 'password'
 const TEXT     = 'text'

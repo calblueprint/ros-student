@@ -2,7 +2,7 @@ import _ from 'underscore'
 import React from 'react'
 import { Link } from 'react-router'
 
-import { getUser } from '../../utils/user_helpers'
+import { getUser } from '../../utils/helpers/user_helpers'
 import { ReactRoutes, APIRoutes } from '../../shared/routes'
 
 import Flash from '../../shared/components/forms/Flash'

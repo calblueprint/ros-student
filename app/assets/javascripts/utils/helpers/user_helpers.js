@@ -1,10 +1,7 @@
-const CONFIG = { attributes: true, childList: true, characterData: true }
+import { createObserver } from '../observer'
 
 function observeUser(callback) {
-  const observer = new MutationObserver(callback)
-  const target = document.querySelector('meta[name="user"]')
-  observer.observe(target, CONFIG)
-  return observer
+  return createObserver(callback, 'meta[name="user"]')
 }
 
 function getUser() {

@@ -3,8 +3,8 @@ import React from 'react'
 
 import request from '../../shared/requests/request'
 
-import { getUser, setUser } from '../../utils/user_helpers'
-import { getInputToParams } from '../../utils/form_helpers'
+import { getUser, setUser } from '../../utils/helpers/user_helpers'
+import { getInputToParams } from '../../utils/helpers/form_helpers'
 import { APIRoutes } from '../../shared/routes'
 
 import Form from '../../shared/components/forms/Form'

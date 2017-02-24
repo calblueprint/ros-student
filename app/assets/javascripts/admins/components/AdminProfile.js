@@ -2,8 +2,8 @@ import _ from 'underscore'
 import React from 'react'
 
 import { request } from '../../shared/requests/request'
-import { getUser, observeUser } from '../../utils/user_helpers'
-import { Images } from '../../utils/image_helpers'
+import { getUser, observeUser } from '../../utils/helpers/user_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 
 import UpdateAdminModal from './UpdateAdminModal'
 

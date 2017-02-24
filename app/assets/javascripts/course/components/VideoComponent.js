@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import YouTube from 'react-youtube'
 import ReactDOM from 'react-dom'
 
-import { getYoutubeKey } from '../../utils/component_helpers'
+import { getYoutubeKey } from '../../utils/helpers/component_helpers'
 
 class VideoComponent extends React.Component {
   constructor(props) {

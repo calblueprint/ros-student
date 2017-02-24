@@ -2,8 +2,8 @@ import React from 'react'
 
 import { APIRoutes, RailsRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
-import { Images, convertImage } from '../../utils/image_helpers'
-import { snakeToCamel } from '../../utils/form_helpers'
+import { Images, convertImage } from '../../utils/helpers/image_helpers'
+import { snakeToCamel } from '../../utils/helpers/form_helpers'
 
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 

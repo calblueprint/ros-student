@@ -3,7 +3,7 @@ import Collapse from 'react-collapse'
 import _ from 'underscore'
 
 import { APIRoutes } from '../../shared/routes'
-import { Images } from '../../utils/image_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 import request from '../../shared/requests/request'
 
 import SubsectionEdit from './SubsectionEdit'

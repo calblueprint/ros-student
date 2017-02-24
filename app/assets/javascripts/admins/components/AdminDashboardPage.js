@@ -2,8 +2,8 @@ import _ from 'underscore'
 import React from 'react'
 import { Link } from 'react-router'
 
-import { getFlashes } from '../../utils/form_helpers'
-import { getUser } from '../../utils/user_helpers'
+import { getFlashes } from '../../utils/helpers/form_helpers'
+import { getUser } from '../../utils/helpers/user_helpers'
 import { ReactRoutes, RailsRoutes, APIRoutes } from '../../shared/routes'
 
 import Flash from '../../shared/components/forms/Flash'

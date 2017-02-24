@@ -2,8 +2,8 @@ import _ from 'underscore'
 import React from 'react'
 
 import { RailsRoutes, APIRoutes } from '../../shared/routes'
-import { getInputToParams, getFormErrors, getFormFields, getErrors } from '../../utils/form_helpers'
-import { Images } from '../../utils/image_helpers'
+import { getInputToParams, getFormErrors, getFormFields, getErrors } from '../../utils/helpers/form_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 import request from '../../shared/requests/request'
 
 import Form from '../../shared/components/forms/Form'

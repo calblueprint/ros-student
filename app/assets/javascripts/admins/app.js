@@ -14,7 +14,7 @@ import { render } from 'react-dom'
 import '../../stylesheets/bundle/admins.scss'
 
 import { RailsRoutes, ReactRoutes } from '../shared/routes'
-import { getUser } from '../utils/user_helpers'
+import { getUser } from '../utils/helpers/user_helpers'
 
 import AdminDashboardPage from './components/AdminDashboardPage'
 import AdminProfilePage from './components/AdminProfilePage'

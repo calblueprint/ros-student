@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'underscore'
 
-import { getFlashes } from '../../../utils/form_helpers'
+import { getFlashes } from '../../../utils/helpers/form_helpers'
 
 class Flash extends React.Component {
   constructor(props) {
