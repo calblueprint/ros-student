@@ -19,6 +19,45 @@ import { Images } from '../../utils/image_helpers'
 
 import DeleteModal from '../../shared/components/widgets/DeleteModal'
 
+const ComponentHandle = SortableHandle(() => {
+  return(
+    <img
+      className='course-edit-component-handle'
+      alt='handle'
+      src={Images.drag_handle}
+    />
+  )
+})
+
+const ComponentItem = SortableElement(({ value, deleteComponent, isSorting }) => {
+  return (
+    <div className='edit-section' key={value.id}>
+      <div className='flex vertical course-edit-component' key={value.id}>
+        <ComponentHandle />
+        <ComponentEdit component={value} deleteComponent={deleteComponent}/>
+      </div>
+    </div>
+  )
+})
+
+const ComponentList = SortableContainer(({ items, deleteComponent, isSorting }) => {
+  return (
+    <ul>
+      {
+        items.map((value, index) => {
+          return <ComponentItem
+            key={`component-${index}`}
+            index={index}
+            value={value}
+            deleteComponent={deleteComponent}
+            isSorting={isSorting}
+          />
+        })
+      }
+    </ul>
+  )
+})
+
 class SubsectionEdit extends React.Component {
   constructor(props) {
     super(props)
@@ -42,7 +81,6 @@ class SubsectionEdit extends React.Component {
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
 
-    this.onSortStart = this.onSortStart.bind(this)
     this.onSortEnd = this.onSortEnd.bind(this)
   }
 
@@ -88,35 +126,6 @@ class SubsectionEdit extends React.Component {
         <div className='course-edit-component'>No components to show!</div>
       )
     } else {
-      const ComponentHandle = SortableHandle(() => <span>::</span>) // This can be any component you want
-
-      const ComponentItem = SortableElement(({ value, deleteComponent, isSorting }) => {
-        return (
-          <div className='edit-section' key={value.id}>
-            <ComponentHandle />
-            <div className='course-edit-component' key={value.id}>
-              <ComponentEdit component={value} deleteComponent={deleteComponent}/>
-            </div>
-          </div>
-        )
-      })
-      const ComponentList = SortableContainer(({ items, deleteComponent, isSorting }) => {
-      return (
-        <ul>
-          {
-            items.map((value, index) => {
-              return <ComponentItem
-                key={`component-${index}`}
-                index={index}
-                value={value}
-                deleteComponent={deleteComponent}
-                isSorting={isSorting}
-              />
-            })
-          }
-        </ul>
-      )
-    })
       return (
         <ComponentList
           items={this.state.subsection.components}
@@ -125,7 +134,6 @@ class SubsectionEdit extends React.Component {
           lockAxis='y'
 
           deleteComponent={this.deleteComponent}
-          onSortStart={this.onSortStart}
           onSortEnd={this.onSortEnd}
         />
       )
@@ -163,10 +171,6 @@ class SubsectionEdit extends React.Component {
     }
 
     this.setState({ openDeleteModal: false })
-  }
-
-  onSortStart() {
-    console.log('why')
   }
 
   onSortEnd() {

@@ -88,6 +88,12 @@
   margin: 10px 0px;
 }
 
+.course-edit-component-handle {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
 .course-edit-component:hover {
   background-color: $snow;
   cursor: pointer;

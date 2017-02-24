@@ -83,7 +83,7 @@ class ComponentEdit extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='fill'>
         <div className='course-edit-component-container'>
           <div
             className='flex vertical course-edit-component'
