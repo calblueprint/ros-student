@@ -88,6 +88,13 @@
   margin: 10px 0px;
 }
 
+.course-edit-component-handle {
+  width: 15px;
+  height: 15px;
+  cursor: move;
+  margin: $xs;
+}
+
 .course-edit-component:hover {
   background-color: $snow;
   cursor: pointer;
@@ -104,4 +111,8 @@
 
 .add-component-button {
   margin: $sm 0px;
+}
+
+.sorting {
+  display: none;
 }
