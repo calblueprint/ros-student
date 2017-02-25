@@ -5,9 +5,9 @@ class Api::Admins::StudentsController < Api::Admins::BaseController
     render json: @students, each_serializer: StudentListSerializer, root: false
   end
 
-  def show
-    render json: @student, each_serializer: StudentSerializer
-  end
+  # def show
+  #   render json: @student, each_serializer: StudentSerializer
+  # end
 
   def destroy
     if @student.destroy

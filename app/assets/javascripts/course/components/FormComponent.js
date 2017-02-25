@@ -65,6 +65,9 @@ class FormComponent extends React.Component {
               onChange={this.updateCodeState}
             />
           </div>
+          <Component>
+            <div> YOUR STUFF </div>
+          </Component>
           <div>
             <button
               className='button marginTopBot-xxs'
