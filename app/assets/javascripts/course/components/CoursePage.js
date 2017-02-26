@@ -231,6 +231,7 @@ class CoursePage extends React.Component {
       <div className='flex'>
         <div className='course-sidebar-container'>
           <CourseSidebar
+            courseId={this.props.routeParams.id}
             courseSidebar={this.state.courseSidebar}
             displayedSubsection={this.state.displayedSubsection}
             callback={this.displaySubsection}

@@ -52,6 +52,7 @@ class RailsRoutes {
 
   // Student
   static coursePath(id)        { return `/students/courses/${id}` }
+  static courseOutlinePath(id) { return `/courses/${id}/outline`}
 
   // Admin
   static courseCreatePath()    { return '/courses' }

@@ -30,8 +30,16 @@ class CourseSidebar extends React.Component {
 
   renderInfo() {
     return (
-      <div className='flex center vertical sidebar-course-title-container'>
-        <h1 className='sidebar-course-title'>{this.props.courseSidebar.name}</h1>
+      <div className='sidebar-course-title-container'>
+        <a
+          className='sidebar-back-link'
+          href={RailsRoutes.courseOutlinePath(this.props.courseId)}
+          data-method='get'>
+          Back
+        </a>
+        <div className='flex center vertical'>
+          <h1 className='sidebar-course-title'>{this.props.courseSidebar.name}</h1>
+        </div>
       </div>
     )
   }
