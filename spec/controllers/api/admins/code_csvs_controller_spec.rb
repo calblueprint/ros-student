@@ -7,7 +7,7 @@ describe Api::Admins::CodeCsvsController, type: :controller do
     sign_in_admin(admin)
   end
 
-  describe '.create' do
+  describe '#create' do
     it 'should create a new code_csv' do
       course = Course.create
       expect do
@@ -37,7 +37,7 @@ describe Api::Admins::CodeCsvsController, type: :controller do
     end
   end
 
-  describe '.index' do
+  describe '#index' do
     it 'should return a list of code csvs' do
       NUMBER = 5
       CodeCsv.all.each { |c| c.destroy }
@@ -53,7 +53,7 @@ describe Api::Admins::CodeCsvsController, type: :controller do
     end
   end
 
-  describe '.download' do
+  describe '#download' do
     it 'should return a csv of codes' do
       code_csv = create :code_csv
       code_csv.generate_codes({ amount: 1, course_ids: '[1]'})

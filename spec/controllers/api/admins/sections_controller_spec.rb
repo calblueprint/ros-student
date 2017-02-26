@@ -7,7 +7,7 @@ describe Api::Admins::SectionsController, type: :controller do
     sign_in_admin(admin)
   end
 
-  describe '.create' do
+  describe '#create' do
     it 'should create a new section' do
       course = create :course
       post :create, course_id: course.id, section: {}
@@ -22,7 +22,7 @@ describe Api::Admins::SectionsController, type: :controller do
     end
   end
 
-  describe '.update' do
+  describe '#update' do
     it 'should update a new section if the title updates' do
       UPDATE = 'update'
 
@@ -46,14 +46,14 @@ describe Api::Admins::SectionsController, type: :controller do
     end
   end
 
-  describe 'destroy' do
+  describe '#destroy' do
     it 'should delete the section' do
       section = create :section
       expect{ delete :destroy, id: section.id }.to change(Section, :count).by -1
     end
   end
 
-  describe 'switch_position' do
+  describe '#switch_position' do
     before(:each) do
       @section1 = create :section
       @section2 = create :section, course_id: @section1.course_id

@@ -7,7 +7,7 @@ describe Api::Admins::SubsectionsController, type: :controller do
     sign_in_admin(admin)
   end
 
-  describe '.create' do
+  describe '#create' do
     it 'should create a new subsection' do
       section = create :section
       post :create, section_id: section.id, subsection: {}
@@ -22,7 +22,7 @@ describe Api::Admins::SubsectionsController, type: :controller do
     end
   end
 
-  describe '.update' do
+  describe '#update' do
     it 'should update a new subsection if the title updates' do
       UPDATE = 'update'
 

@@ -7,7 +7,7 @@ describe Api::Admins::CoursesController, type: :controller do
     sign_in_admin(admin)
   end
 
-  describe '.index' do
+  describe '#index' do
     it 'should return a list of courses' do
       Course.all.each { |course| course.destroy }
       5.times { create :course }
@@ -23,7 +23,7 @@ describe Api::Admins::CoursesController, type: :controller do
     end
   end
 
-  describe '.edit' do
+  describe '#edit' do
     it 'should return a list of courses, section, subsections, components' do
 
     end

@@ -5,7 +5,7 @@ describe Students::CoursesController, type: :controller do
   let!(:course) { create :course }
   let!(:student) { create :student }
 
-  describe '.show' do
+  describe '#show' do
     it 'should redirect to root_path if not signed in' do
       get :show, id: course.id
 

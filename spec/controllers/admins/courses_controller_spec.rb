@@ -7,7 +7,7 @@ describe Admins::CoursesController, type: :controller do
     sign_in_admin(admin)
   end
 
-  describe '.create' do
+  describe '#create' do
     it 'should create a course even with no name/description' do
       expect{ post :create }.to change(Course, :count).by 1
       expect(response).to redirect_to edit_course_path(Course.last)
