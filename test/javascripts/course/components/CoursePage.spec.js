@@ -245,8 +245,10 @@ describe('<CoursePage />', () => {
     expect(nextButton).to.not.have.attr('disabled')
     expect(coursePage.state().nextDisabled).to.not.be.true
 
-    nextButton.simulate('click')
+    // nextButton.simulate('click')
 
 
   })
+
+  // TODO: Charles - add alot more tests for this page.
 })

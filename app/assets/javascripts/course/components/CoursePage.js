@@ -260,6 +260,7 @@ class CoursePage extends React.Component {
 
               <div className='tooltip'>
                 <button
+                  id='next-button'
                   disabled={this.nextDisabled()}
                   className='course-navigation-button'
                   onClick={this.displayNextComponent}>

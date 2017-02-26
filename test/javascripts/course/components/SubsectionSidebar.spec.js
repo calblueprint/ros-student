@@ -31,7 +31,7 @@ describe('<SubsectionSidebar />', () => {
       />
     )
 
-    expect(subsectionSidebar.find('li').text()).to.equal(TITLE)
+    expect(subsectionSidebar.find('.sidebar-subsection-title').text()).to.equal(TITLE)
   })
 
   it('should be active if the subsection is currently selected', () => {
@@ -61,7 +61,7 @@ describe('<SubsectionSidebar />', () => {
       />
     )
 
-    subsectionSidebar.find('li').simulate('click')
+    subsectionSidebar.find('.sidebar-subsection-title').simulate('click')
 
     expect(onClickStub).to.have.been.calledOnce
     expect(onClickStub).to.have.been.calledWith(1, undefined);
