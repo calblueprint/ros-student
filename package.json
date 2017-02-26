@@ -1,7 +1,11 @@
 {
-  "name": "RoS",
+  "name": "RootsOfSuccess",
   "version": "0.0.1",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calblueprint/ros-student"
+  },
   "dependencies": {
     "babel-core": "6.14.0",
     "babel-loader": "6.2.5",
@@ -11,10 +15,10 @@
     "es6-promise": "^4.0.5",
     "immutability-helper": "^2.1.2",
     "node-sass": "3.10.0",
-    "react": "15.3.1",
+    "react": "^15.3.1",
     "react-bootstrap-modal": "^3.0.1",
     "react-collapse": "^2.3.3",
-    "react-dom": "15.3.1",
+    "react-dom": "^15.3.1",
     "react-height": "^2.1.1",
     "react-hot-loader": "^1.3.0",
     "react-motion": "^0.4.5",
@@ -31,7 +35,23 @@
     "webpack-dev-server": "^1.9.0",
     "webpack-hot-middleware": "2.13.0"
   },
+  "devDependencies": {
+    "babel-register": "^6.22.0",
+    "babel-runtime": "^6.22.0",
+    "chai": "^3.5.0",
+    "chai-enzyme": "^0.6.1",
+    "cheerio": "^0.22.0",
+    "enzyme": "^2.7.0",
+    "jquery": "^3.1.1",
+    "jsdom": "^9.9.1",
+    "mocha": "^3.2.0",
+    "mocha-jsdom": "^1.1.0",
+    "react-addons-test-utils": "^15.4.2",
+    "sinon": "^1.17.7",
+    "sinon-chai": "^2.8.0"
+  },
   "scripts": {
+    "test": "mocha test/helpers/browser.js test/**/*.spec.js --compilers js:babel-register",
     "heroku-postbuild": "cp config/database.yml.heroku config/database.yml"
   }
 }

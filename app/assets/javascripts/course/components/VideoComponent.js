@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import YouTube from 'react-youtube'
 import ReactDOM from 'react-dom'
 
@@ -9,7 +9,6 @@ class VideoComponent extends React.Component {
     super(props)
 
     this.onReady = this.onReady.bind(this);
-    this.onEnd = this.onEnd.bind(this);
   }
 
   getConfigOptions() {
@@ -35,12 +34,17 @@ class VideoComponent extends React.Component {
         <YouTube
           videoId={getYoutubeKey(this.props.videoUrl)}
           onReady={this.onReady}
-          onEnd={this.onEnd}
+          onEnd={this.props.onEnd}
           opts={this.getConfigOptions()}
         />
       </div>
     )
   }
+}
+
+VideoComponent.propTypes = {
+  onEnd: PropTypes.func.isRequired,
+  videoUrl: PropTypes.string.isRequired,
 }
 
 export default VideoComponent

@@ -1,11 +1,15 @@
 class Request {
   initialize(type, route, content='application/json') {
-    const request = new XMLHttpRequest();
-    request.open(type, route);
-    request.setRequestHeader('Accept', content);
-    request.setRequestHeader('Content-Type', content);
-    request.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
-    return request;
+    const request = new XMLHttpRequest()
+    request.open(type, route)
+    request.setRequestHeader('Accept', content)
+    request.setRequestHeader('Content-Type', content)
+
+    const header = document.querySelector('meta[name="images"]')
+    if (header) {
+      request.setRequestHeader('X-CSRF-Token', header.content)
+    }
+    return request
   }
 
   download(response, encoding, fileName) {
@@ -19,57 +23,59 @@ class Request {
   }
 
   delete(route, resolve, reject) {
-    const request = this.initialize('DELETE', route);
+    const request = this.initialize('DELETE', route)
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200 && resolve) {
-          resolve(JSON.parse(request.response));
+          resolve(JSON.parse(request.response))
         } else if (request.status === 204 && resolve) {
-          resolve();
+          resolve()
         }
       }
-    };
-    request.send();
+    }
+    request.send()
   }
 
   get(route, resolve, reject) {
-    const request = this.initialize('GET', route);
+    const request = this.initialize('GET', route)
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200 && resolve) {
-          resolve(JSON.parse(request.response));
+          resolve(JSON.parse(request.response))
+        } else if (reject) {
+          reject(JSON.parse(request.response))
         }
       }
-    };
-    request.send();
+    }
+    request.send()
   }
 
   post(route, params, resolve, reject) {
-    const request = this.initialize('POST', route);
+    const request = this.initialize('POST', route)
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200 && resolve) {
-          resolve(JSON.parse(request.response));
+          resolve(JSON.parse(request.response))
         } else if (reject) {
-          reject(JSON.parse(request.response));
+          reject(JSON.parse(request.response))
         }
       }
-    };
-    request.send(JSON.stringify(params));
+    }
+    request.send(JSON.stringify(params))
   }
 
   update(route, params, resolve, reject) {
-    const request = this.initialize('PATCH', route);
+    const request = this.initialize('PATCH', route)
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200 && resolve) {
-          resolve(JSON.parse(request.response));
+          resolve(JSON.parse(request.response))
         } else if (reject) {
-          reject(JSON.parse(request.response));
+          reject(JSON.parse(request.response))
         }
       }
-    };
-    request.send(JSON.stringify(params));
+    }
+    request.send(JSON.stringify(params))
   }
 
   csv(route, resolve, reject) {

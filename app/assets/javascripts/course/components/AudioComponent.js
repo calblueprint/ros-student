@@ -1,5 +1,5 @@
 import _ from 'underscore'
-import React from 'react'
+import React, { PropTypes } from 'react'
 import ReactPlayer from 'react-player'
 
 import { audioComponentProgress } from '../../utils/component_helpers'
@@ -74,7 +74,7 @@ class AudioComponent extends React.Component {
 
   renderAudio() {
     return (
-      <div className='flex center fill'>
+      <div id='audio-component' className='flex center fill'>
         <button
           className='button'
           onClick={this.onAudioToggle}>
@@ -112,10 +112,15 @@ class AudioComponent extends React.Component {
   render() {
     return (
       <div className='audio-component-container padding-md'>
-        {!_.isUndefined(this.props.audioUrl) ? this.renderAudio() : ''}
+        {this.props.audioUrl ? this.renderAudio() : ''}
       </div>
     )
   }
+}
+
+AudioComponent.propTypes = {
+  callback: PropTypes.func.isRequired,
+  audioUrl: PropTypes.string,
 }
 
 export default AudioComponent

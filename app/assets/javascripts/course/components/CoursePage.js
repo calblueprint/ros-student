@@ -34,7 +34,22 @@ class CoursePage extends React.Component {
   }
 
   componentDidMount() {
-    this.requestSidebar()
+    const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
+
+    request.get(path, (response) => {
+      const currentSubsection = response.course_sidebar.current_subsection
+
+      this.setState({
+        courseSidebar: response.course_sidebar,
+        displayedSubsection: currentSubsection,
+      }, () => {
+        if (currentSubsection) {
+          this.displaySubsection(currentSubsection.id)
+        }
+      })
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   displayComponent(index) {
@@ -51,6 +66,7 @@ class CoursePage extends React.Component {
 
     request.get(path, (response) => {
       const length = response.components.length
+
       const displayedSection = this.getDisplayedSection(response)
 
       let displayedComponent
@@ -61,7 +77,6 @@ class CoursePage extends React.Component {
       } else {
         displayedComponent = response.components[componentIndex - 1]
       }
-
       this.setState({
         displayedSubsection: response,
         displayedComponent: displayedComponent,
@@ -209,23 +224,6 @@ class CoursePage extends React.Component {
     }
   }
 
-  requestSidebar() {
-    const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
-    request.get(path, (response) => {
-      const currentSubsection = response.course_sidebar.current_subsection
-      if (currentSubsection) {
-        this.displaySubsection(currentSubsection.id)
-      }
-
-      this.setState({
-        courseSidebar: response.course_sidebar,
-        displayedSubsection: currentSubsection,
-      })
-    }, (error) => {
-      console.log(error)
-    })
-  }
-
   render() {
     return (
       <div className='flex'>
@@ -236,6 +234,7 @@ class CoursePage extends React.Component {
             callback={this.displaySubsection}
           />
         </div>
+
         <div className='component-display-container'>
 
           <div className='flex flex-vertical center'>
@@ -253,15 +252,15 @@ class CoursePage extends React.Component {
 
             <div className='flex marginTopBot-md'>
               <button
+                id='previous-button'
                 className='marginRight-lg course-navigation-button'
                 onClick={this.displayPrevComponent}>
-                <img
-                  src={Images.left_arrow}
-                />
+                <img src={Images.left_arrow} />
               </button>
 
               <div className='tooltip'>
                 <button
+                  id='next-button'
                   disabled={this.nextDisabled()}
                   className='course-navigation-button'
                   onClick={this.displayNextComponent}>

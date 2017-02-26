@@ -22,8 +22,7 @@ class SectionSidebar extends React.Component {
   }
 
   toggleCollapse() {
-    const isOpen = this.state.isOpen
-    this.setState({ isOpen: !isOpen })
+    this.setState({ isOpen: !this.state.isOpen })
   }
 
   renderSubsections() {

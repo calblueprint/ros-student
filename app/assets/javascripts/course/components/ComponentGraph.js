@@ -73,10 +73,10 @@ class ComponentGraph extends React.Component {
     this.props.callback(component.position)
   }
 
-  renderComponentIcon(component) {
+  renderComponentIcon(component, index) {
     return (
       <div key={component.id} className='flex'>
-        {component.position == 1 ? '' :
+        {index == 0 ? '' :
           <div
             style={this.getDisabledComponentStyle(component)}
             className='component-graph-line'
@@ -107,8 +107,8 @@ class ComponentGraph extends React.Component {
     } else if (_.isEmpty(subsection.components)) {
       return 'Loading'
     } else {
-      return subsection.components.map((component) => {
-        return this.renderComponentIcon(component)
+      return subsection.components.map((component, index) => {
+        return this.renderComponentIcon(component, index)
       })
     }
   }
