@@ -1,11 +1,13 @@
 import _ from 'underscore'
 import React from 'react'
+import Modal from 'react-bootstrap-modal'
 
 import request from '../../shared/requests/request'
 
 import { getUser, setUser } from '../../utils/user_helpers'
 import { getInputToParams } from '../../utils/form_helpers'
 import { APIRoutes } from '../../shared/routes'
+import { Images } from '../../utils/image_helpers'
 
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
@@ -108,26 +110,46 @@ class GenerateCodeCsvModal extends React.Component {
 
   render() {
     return (
-      <div>
-        <Form
-          className='generate_code_csv_form'
-          id='generate_code_csv_form'
-          method='post'
-          action={this.props.action}>
+      <Modal
+        show={this.props.isModalOpen}
+        onHide={this.props.closeModal}
+      >
+        <Modal.Header>
+          <Modal.Title>Generate New Codes</Modal.Title>
+          <Modal.Dismiss
+            className='flex center modal-dismiss-container'
+            onClick={this.closeModal}>
+            <img
+              src={Images.close_modal}
+              className='modal-dismiss'/>
+          </Modal.Dismiss>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <Form
+              className='generate_code_csv_form'
+              id='generate_code_csv_form'
+              method='post'
+              action={this.props.action}>
 
-          {this.renderFields()}
+              {this.renderFields()}
 
-          <h3>Select courses</h3>
-          <div className='generate-code-csv-course-list'>
-            <ul>{this.renderCourses()}</ul>
+              <h3>Select courses</h3>
+              <div className='generate-code-csv-course-list'>
+                <ul>{this.renderCourses()}</ul>
+              </div>
+              <button
+                className='button'
+                onClick={this.generateCodes}>
+                Submit
+              </button>
+            </Form>
           </div>
-          <button
-            className='button'
-            onClick={this.generateCodes}>
-            Submit
-          </button>
-        </Form>
-      </div>
+        </Modal.Body>
+        <Modal.Footer>
+        </Modal.Footer>
+      </Modal>
+
     )
   }
 }
