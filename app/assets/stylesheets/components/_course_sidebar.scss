@@ -1,6 +1,7 @@
 .sidebar-course-title-container {
   background: $black;
   padding: $sm $lg;
+  justify-content: space-between;
 }
 
 .sidebar-course-logo {
@@ -13,6 +14,15 @@
   font-size: $md;
   font-weight: 900;
   color: $white;
+}
+
+.sidebar-back-button {
+  height: $md;
+  padding-right: $sm;
+}
+
+.sidebar-course-title-filler {
+  width: $md;
 }
 
 .sidebar-section-card {

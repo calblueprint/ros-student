@@ -193,39 +193,41 @@ class CourseEditPage extends React.Component {
           className='flex center course-edit-header'
           style={this.getImageStyle()}
         >
-          <div className='container course-edit-header-container'>
-            <div className='course-edit-header-text'>
-              <div className='course-edit-header-title'>
-                <InlineEditInput
-                  value={this.state.course.name}
-                  onBlur={this.onBlurName}
-                  buttonStyle='button button--sm button--white'
-                />
+          <div className='linear-gradient-60-mask flex center course-edit-header'>
+            <div className='container course-edit-header-container'>
+              <div className='course-edit-header-text'>
+                <div className='course-edit-header-title'>
+                  <InlineEditInput
+                    value={this.state.course.name}
+                    onBlur={this.onBlurName}
+                    buttonStyle='button button--sm button--white'
+                  />
+                </div>
+
+                <div>
+                  <InlineEditInput
+                    value={this.state.course.description}
+                    onBlur={this.onBlurDescription}
+                    buttonStyle='button button--sm button--white'
+                  />
+                </div>
               </div>
 
-              <div>
-                <InlineEditInput
-                  value={this.state.course.description}
-                  onBlur={this.onBlurDescription}
-                  buttonStyle='button button--sm button--white'
+              <div className='course-edit-image-container'>
+                <label
+                  htmlFor='course-edit-image-upload'
+                  className='button course-edit-image-upload'
+                  onChange={this.handleImage}>
+                  Change Cover
+                </label>
+                <input
+                  id='course-edit-image-upload'
+                  className='hidden-input'
+                  type='file'
+                  onChange={this.setImage}
+                  accept='image/jpg, image/jpeg, image/png'
                 />
               </div>
-            </div>
-
-            <div className='course-edit-image-container'>
-              <label
-                htmlFor='course-edit-image-upload'
-                className='button course-edit-image-upload'
-                onChange={this.handleImage}>
-                Change Cover
-              </label>
-              <input
-                id='course-edit-image-upload'
-                className='hidden-input'
-                type='file'
-                onChange={this.setImage}
-                accept='image/jpg, image/jpeg, image/png'
-              />
             </div>
           </div>
         </div>

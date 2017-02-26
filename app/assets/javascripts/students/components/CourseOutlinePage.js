@@ -32,7 +32,6 @@ class CourseOutlinePage extends React.Component {
     const path = APIRoutes.getStudentCourseOutlinePath(this.id)
 
     request.get(path, (response) => {
-      console.log(response)
       this.setState({ courseOutline: response.course_outline })
     }, (error) => {
       console.log(error)
