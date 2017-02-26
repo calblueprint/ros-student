@@ -1,5 +1,5 @@
 import _ from 'underscore'
-import React from 'react'
+import React, { PropTypes } from 'react'
 import Modal from 'react-bootstrap-modal'
 
 import request from '../../shared/requests/request'
@@ -11,6 +11,7 @@ import { Images } from '../../utils/image_helpers'
 
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
+import SimpleModal from '../../shared/components/widgets/SimpleModal'
 import GenerateCodeCsvCourseCard from './GenerateCodeCsvCourseCard'
 
 class GenerateCodeCsvModal extends React.Component {
@@ -36,7 +37,7 @@ class GenerateCodeCsvModal extends React.Component {
       activeCourseIds: new Set()
     }
 
-    // Get courses for admin to selectively activate
+    /* Get courses for admin to selectively activate */
     this.getCourses()
     this.generateCodes = _.bind(this.generateCodes, this)
   }
@@ -66,8 +67,8 @@ class GenerateCodeCsvModal extends React.Component {
   }
 
   updateCourseList(course) {
-    // Removes `course` if already in active course list
-    // Otherwise adds `course` to active course list
+    /*  Removes `course` if already in active course list
+        Otherwise adds `course` to active course list  */
     var activeCourseIds = this.state.activeCourseIds
     if (activeCourseIds.has(course.id)) {
       activeCourseIds.delete(course.id)
@@ -82,12 +83,12 @@ class GenerateCodeCsvModal extends React.Component {
     var inputs = getInputToParams(this.state.formFields)
     var params = {
       code_csv: {
-        name: inputs.name
+        name: inputs.name,
       },
       code_csv_args: {
         amount: parseInt(inputs.amount),
-        course_ids: JSON.stringify([...this.state.activeCourseIds])
-      }
+        course_ids: JSON.stringify([...this.state.activeCourseIds]),
+      },
     }
     request.post(path, params, (response) => {
       this.props.update(response.code_csv)
@@ -101,8 +102,12 @@ class GenerateCodeCsvModal extends React.Component {
   renderCourses() {
     return this.state.courses.map((value) => {
       return (
-        <li>
-          <GenerateCodeCsvCourseCard course={value} selected={false} updateActive={_.bind(this.updateCourseList, this)}/>
+        <li key={value.id}>
+          <GenerateCodeCsvCourseCard
+            course={value}
+            selected={false}
+            updateActive={_.bind(this.updateCourseList, this)}
+          />
         </li>
       )
     })
@@ -110,48 +115,42 @@ class GenerateCodeCsvModal extends React.Component {
 
   render() {
     return (
-      <Modal
-        show={this.props.isModalOpen}
-        onHide={this.props.closeModal}
+      <SimpleModal
+        title='Generate New Codes'
+        isModalOpen={this.props.isModalOpen}
+        closeModal={this.props.closeModal}
       >
-        <Modal.Header>
-          <Modal.Title>Generate New Codes</Modal.Title>
-          <Modal.Dismiss
-            className='flex center modal-dismiss-container'
-            onClick={this.closeModal}>
-            <img
-              src={Images.close_modal}
-              className='modal-dismiss'/>
-          </Modal.Dismiss>
-        </Modal.Header>
-        <Modal.Body>
-          <div>
-            <Form
-              className='generate_code_csv_form'
-              id='generate_code_csv_form'
-              method='post'
-              action={this.props.action}>
+        <div>
+          <Form
+            className='generate_code_csv_form'
+            id='generate_code_csv_form'
+            method='post'
+            action={this.props.action}
+          >
 
-              {this.renderFields()}
+            {this.renderFields()}
 
-              <h3>Select courses</h3>
-              <div className='generate-code-csv-course-list'>
-                <ul>{this.renderCourses()}</ul>
-              </div>
-              <button
-                className='button'
-                onClick={this.generateCodes}>
-                Submit
-              </button>
-            </Form>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-        </Modal.Footer>
-      </Modal>
-
+            <h3>Select courses</h3>
+            <div className='generate-code-csv-course-list'>
+              <ul>{this.renderCourses()}</ul>
+            </div>
+            <button
+              className='button'
+              onClick={this.generateCodes}
+            >
+              Submit
+            </button>
+          </Form>
+        </div>
+      </SimpleModal>
     )
   }
+}
+
+GenerateCodeCsvModal.propTypes = {
+  isModalOpen: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  update: PropTypes.func.isRequired,
 }
 
 export default GenerateCodeCsvModal

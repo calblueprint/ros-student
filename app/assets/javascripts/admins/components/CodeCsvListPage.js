@@ -17,7 +17,7 @@ class CodeCsvListPage extends React.Component {
     super(props)
     this.state = {
       code_csvs: [],
-      isModalOpen: false
+      isModalOpen: false,
     }
     this.getCodeCsvs()
     this.updateCodeCsvs = this.updateCodeCsvs.bind(this)
@@ -52,7 +52,9 @@ class CodeCsvListPage extends React.Component {
   renderCodeCsvBlank() {
     return (
       <li>
-        <div className="flex flex-horizontal code-csv-card empty" onClick={this.openModal}>
+        <div
+          className="flex flex-horizontal code-csv-card empty" onClick={this.openModal}
+        >
           <h3 className="code-csv-name">Generate new codes</h3>
         </div>
       </li>
@@ -62,7 +64,7 @@ class CodeCsvListPage extends React.Component {
   renderCodeCsvs() {
     return this.state.code_csvs.map((codeCsv) => {
       return (
-        <li key={codeCsv.id}  >
+        <li key={codeCsv.id}>
           <CodeCsvCard code_csv={codeCsv} />
         </li>
       )

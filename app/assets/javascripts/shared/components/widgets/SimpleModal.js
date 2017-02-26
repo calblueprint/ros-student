@@ -2,6 +2,8 @@ import _ from 'underscore'
 import React, { PropTypes } from 'react'
 import Modal from 'react-bootstrap-modal'
 
+import { Images } from '../../../utils/image_helpers'
+
 class SimpleModal extends React.Component {
   constructor(props) {
     super(props)
@@ -20,15 +22,19 @@ class SimpleModal extends React.Component {
           <Modal.Title>{this.props.title}</Modal.Title>
           <Modal.Dismiss
             className='flex center modal-dismiss-container'
-            onClick={this.closeModal}>
+            onClick={this.closeModal}
+          >
             <img
               src={Images.close_modal}
-              className='modal-dismiss'/>
+              className='modal-dismiss'
+            />
           </Modal.Dismiss>
         </Modal.Header>
         <Modal.Body>
           {this.props.children}
         </Modal.Body>
+        <Modal.Footer>
+        </Modal.Footer>
       </Modal>
     )
   }
