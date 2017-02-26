@@ -17,7 +17,7 @@ class CodeCsvListPage extends React.Component {
     super(props)
     this.state = {
       code_csvs: [],
-      isModalOpen: false
+      isModalOpen: false,
     }
     this.getCodeCsvs()
     this.updateCodeCsvs = this.updateCodeCsvs.bind(this)
@@ -52,7 +52,9 @@ class CodeCsvListPage extends React.Component {
   renderCodeCsvBlank() {
     return (
       <li>
-        <div className="flex flex-horizontal code-csv-card empty" onClick={this.openModal}>
+        <div
+          className="flex flex-horizontal code-csv-card empty" onClick={this.openModal}
+        >
           <h3 className="code-csv-name">Generate new codes</h3>
         </div>
       </li>
@@ -62,7 +64,7 @@ class CodeCsvListPage extends React.Component {
   renderCodeCsvs() {
     return this.state.code_csvs.map((codeCsv) => {
       return (
-        <li key={codeCsv.id}  >
+        <li key={codeCsv.id}>
           <CodeCsvCard code_csv={codeCsv} />
         </li>
       )
@@ -73,29 +75,11 @@ class CodeCsvListPage extends React.Component {
     return (
       <div className='flex center'>
         <div className='container marginTop-xxl'>
-          <Modal
-            show={this.state.isModalOpen}
-            onHide={this.closeModal}
-          >
-            <Modal.Header>
-              <Modal.Title>Generate New Codes</Modal.Title>
-              <Modal.Dismiss
-                className='flex center modal-dismiss-container'
-                onClick={this.closeModal}>
-                <img
-                  src={Images.close_modal}
-                  className='modal-dismiss'/>
-              </Modal.Dismiss>
-            </Modal.Header>
-            <Modal.Body>
-              <GenerateCodeCsvModal
-                update={this.updateCodeCsvs}
-                closeModal={this.closeModal}
-              />
-            </Modal.Body>
-            <Modal.Footer>
-            </Modal.Footer>
-          </Modal>
+          <GenerateCodeCsvModal
+            isModalOpen={this.state.isModalOpen}
+            closeModal={this.closeModal}
+            update={this.updateCodeCsvs}
+          />
 
           <h2 className='h2'>List of codes</h2>
           <ul>

@@ -5,7 +5,7 @@ class Request {
     request.setRequestHeader('Accept', content)
     request.setRequestHeader('Content-Type', content)
 
-    const header = document.querySelector('meta[name="images"]')
+    const header = document.querySelector('meta[name="csrf-token"]')
     if (header) {
       request.setRequestHeader('X-CSRF-Token', header.content)
     }

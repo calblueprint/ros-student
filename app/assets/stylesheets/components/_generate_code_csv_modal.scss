@@ -2,13 +2,13 @@
   ol {
     list-style-position: inside;
   }
-  margin-bottom: 30px;
+  margin-bottom: $lg;
 }
 
 .generate-code-csv-course-card {
-  height: 60px;
-  margin: 10px 0px;
-  padding: 15px 20px;
+  height: $xxxl;
+  margin: $xs 0px;
+  padding: $sm $md;
   background: $white;
   &:hover {
     background: $dark-gray-10;
@@ -18,6 +18,9 @@
     border-left-color: $blue;
     border-left-width: 5px;
     font-weight: bold;
+    .generate-code-csv-course-text {
+      margin-left: -5px;
+    }
   }
 }
 
