@@ -34,6 +34,6 @@ class Code < ActiveRecord::Base
 
   # Assigns this code to every course that it is valid for
   def assign_to_courses(course_ids)
-    course_ids.each { |course_id| code_courses.create(course_id: course_id) }
+    course_ids.map { |course_id| code_courses.create(course_id: course_id) }
   end
 end
