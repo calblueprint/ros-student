@@ -9,18 +9,18 @@ $light                          : 300;
 $font-stack                     : 'Lato', 'Helvetica', sans-serif;
 
 body {
-  color: $black;
+  color: $charcoal;
   font-family: $font-stack;
   font-size: 16px;
   line-height: 1.5;
 }
 
 ::selection {
-  background: $black-80;
+  background: $charcoal-80;
   color: white;
 }
 ::-moz-selection {
-  background: $black-80;
+  background: $charcoal-80;
   color: white;
 }
 

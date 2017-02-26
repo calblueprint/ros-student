@@ -2,8 +2,8 @@
   width: 30%;
   overflow-y: scroll;
   height: 100vh;
-  box-shadow: 2px 0px 15px $black-40;
-  background: $black;
+  box-shadow: 2px 0px 15px $charcoal-40;
+  background: $charcoal;
 }
 
 .component-display-container {
@@ -45,7 +45,7 @@
   }
 
   &:hover {
-    box-shadow: 0 2px 8px $black-40;
+    box-shadow: 0 2px 8px $charcoal-40;
   }
 
   &:active {

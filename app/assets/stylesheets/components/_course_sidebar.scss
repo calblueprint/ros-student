@@ -1,5 +1,5 @@
 .sidebar-course-title-container {
-  background: $black;
+  background: $charcoal;
   padding: $sm $lg;
   justify-content: space-between;
 }
@@ -54,11 +54,11 @@
   color: $white;
 
   &:hover {
-    background: $black;
+    background: $charcoal;
   }
 
   &.active {
-    background: $black;
+    background: $charcoal;
     font-weight: $bold;
     border-left: 5px solid $blue;
     .sidebar-subsection-title {

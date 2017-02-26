@@ -1,11 +1,18 @@
 /* Main colors */
 
-$black                          : #2C3037;
+$black                          : #000000;
 $black-80                       : rgba($black, 0.80);
 $black-60                       : rgba($black, 0.60);
 $black-40                       : rgba($black, 0.40);
 $black-20                       : rgba($black, 0.20);
 $black-10                       : rgba($black, 0.10);
+
+$charcoal                       : #2C3037;
+$charcoal-80                    : rgba($charcoal, 0.80);
+$charcoal-60                    : rgba($charcoal, 0.60);
+$charcoal-40                    : rgba($charcoal, 0.40);
+$charcoal-20                    : rgba($charcoal, 0.20);
+$charcoal-10                    : rgba($charcoal, 0.10);
 
 $light-charcoal                 : #5B5B5E;
 $light-charcoal-80              : rgba($light-charcoal, 0.80);
@@ -21,12 +28,19 @@ $silver-40                      : rgba($silver, 0.40);
 $silver-20                      : rgba($silver, 0.20);
 $silver-10                      : rgba($silver, 0.10);
 
-$gray                           : #E1E1E1;
-$gray-80                        : rgba($gray, 0.80);
-$gray-60                        : rgba($gray, 0.60);
-$gray-40                        : rgba($gray, 0.40);
-$gray-20                        : rgba($gray, 0.20);
-$gray-10                        : rgba($gray, 0.10);
+$dark-silver                    : #3C4858;
+$dark-silver-80                 : rgba($dark-silver, 0.80);
+$dark-silver-60                 : rgba($dark-silver, 0.60);
+$dark-silver-40                 : rgba($dark-silver, 0.40);
+$dark-silver-20                 : rgba($dark-silver, 0.20);
+$dark-silver-10                 : rgba($dark-silver, 0.10);
+
+$light-silver                   : #D9DDE0;
+$light-silver-80                : rgba($light-silver, 0.80);
+$light-silver-60                : rgba($light-silver, 0.60);
+$light-silver-40                : rgba($light-silver, 0.40);
+$light-silver-20                : rgba($light-silver, 0.20);
+$light-silver-10                : rgba($light-silver, 0.10);
 
 $snow                           : #F0F2F4;
 $snow-80                        : rgba($snow, 0.80);
@@ -54,25 +68,21 @@ $yellow-80                      : rgba($yellow, 0.80);
 $yellow-60                      : rgba($yellow, 0.60);
 $yellow-40                      : rgba($yellow, 0.40);
 $yellow-20                      : rgba($yellow, 0.20);
+$yellow-10                      : rgba($yellow, 0.10);
 
 $red                            : #E44438;
 $red-80                         : rgba($red, 0.80);
 $red-60                         : rgba($red, 0.60);
 $red-40                         : rgba($red, 0.40);
 $red-20                         : rgba($red, 0.20);
+$red-10                         : rgba($red, 0.10);
 
 $green                          : #20B844;
 $green-80                       : rgba($green, 0.80);
 $green-60                       : rgba($green, 0.60);
 $green-40                       : rgba($green, 0.40);
 $green-20                       : rgba($green, 0.20);
-
-$dark-gray                      : #3C4858;
-$dark-gray-80                   : rgba($dark-gray, 0.80);
-$dark-gray-60                   : rgba($dark-gray, 0.60);
-$dark-gray-40                   : rgba($dark-gray, 0.40);
-$dark-gray-20                   : rgba($dark-gray, 0.20);
-$dark-gray-10                   : rgba($dark-gray, 0.10);
+$green-10                       : rgba($green, 0.10);
 
 $white                          : #FFFFFF;
 $white-80                       : rgba($white, 0.80);
@@ -86,4 +96,4 @@ $transparent                    : rgba($white, 0);
 /* Specific-use colors */
 
 $blue-dark                      : #09556A;  // Buttons
-$component-gray                 : #A2A2A2;  // Components
+$component-gray                 : #A2A2A2;  // Components (do not modify--linked to svg color)
