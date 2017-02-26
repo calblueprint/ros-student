@@ -18,9 +18,9 @@ class ApplicationController < ActionController::Base
 
   def redirect_user
     if current_user
-      dashboard_path
+      redirect_to dashboard_path
     else
-      root_path
+      redirect_to root_path
     end
   end
 
