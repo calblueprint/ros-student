@@ -23,23 +23,24 @@ class StudentCourseCard extends React.Component {
   }
 
   getCourseCardStyle() {
-    return `card ${this.props.course.is_enrolled ? '' : 'inactive'}`
+    return this.props.course.is_enrolled ? '' : 'inactive-card-container'
   }
 
   render() {
     return (
-      <Link
-        className='card-column'
-        onClick={this.disableLink.bind(this)}
-        to={this.props.route}>
-        <div className={this.getCourseCardStyle()}>
-          <div className="card-img-container">
-            <Image src={this.getImgStyle()}/>
+      <div className={`${this.getCourseCardStyle()} card-column`}>
+        <Link
+          onClick={this.disableLink.bind(this)}
+          to={this.props.route}>
+          <div className='card'>
+            <div className="card-img-container">
+              <Image src={this.getImgStyle()}/>
+            </div>
+            <h2 className="card-title">{this.props.course.name}</h2>
+            <TopProgressBar className="card-progress-bar" progress={this.props.course.progress} />
           </div>
-          <h2 className="card-title">{this.props.course.name}</h2>
-          <TopProgressBar className="card-progress-bar" progress={this.props.course.progress} />
-        </div>
-      </Link>
+        </Link>
+      </div>
     )
   }
 }

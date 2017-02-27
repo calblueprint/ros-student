@@ -119,10 +119,11 @@ class Navbar extends React.Component {
         return (
           <div
             className={this.getActiveStyle(i)}
-            onClick={_.partial(this.setActiveChild, i)}
             key={i}
           >
-            {child}
+            <div onClick={_.partial(this.setActiveChild, i)}>
+              {child}
+            </div>
           </div>
         )
       })

@@ -2,9 +2,15 @@
   position: relative;
   background: $white;
   height: 340px;
-  &.inactive {
-    @include filter(grayscale(100%));
-  }
+  // &.inactive {
+  //   @include filter(grayscale(100%));
+  //   pointer-events: none;
+  // }
+}
+
+.inactive-card-container {
+  @include filter(grayscale(100%));
+  pointer-events: none;
 }
 
 .card-column {
