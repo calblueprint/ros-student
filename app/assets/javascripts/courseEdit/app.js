@@ -33,7 +33,9 @@ class App extends React.Component {
             <div className="nav-element marginRight-xl right">Users</div>
           </a>
         </Navbar>
-        {this.props.children}
+        <div className='flex center'>
+          {this.props.children}
+        </div>
       </div>
     )
   }

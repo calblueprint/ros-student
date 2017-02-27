@@ -69,7 +69,10 @@ class Navbar extends React.Component {
         <p className="prof-name">
           {`${this.user.first_name} ${this.user.last_name}`}
         </p>
-        <div className="dropdown-container">
+        <div
+          className="dropdown-container"
+          onClick={this.resetActiveChild}
+        >
           <Link
             className='dropdown-link'
             to={this.getProfilePath()}>
