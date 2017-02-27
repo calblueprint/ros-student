@@ -53,7 +53,10 @@ class Navbar extends React.Component {
 
   renderLogo() {
     return (
-      <Link to={ReactRoutes.dashboardPath()} onClick={this.resetActiveChild}>
+      <Link
+        to={ReactRoutes.dashboardPath()}
+        onClick={this.resetActiveChild}
+      >
         <header className='nav-element logo'>Roots of Success</header>
       </Link>
     )
@@ -85,18 +88,19 @@ class Navbar extends React.Component {
   }
 
   renderChildren() {
-    console.log(this.state.activeIndex)
-    return this.props.children.map((child, i) => {
-      return (
-        <div
-          className={this.getActiveStyle(i)}
-          onClick={_.partial(this.setActiveChild, i)}
-          key={i}
-        >
-          {child}
-        </div>
-      )
-    })
+    if (this.props.children) {
+      return this.props.children.map((child, i) => {
+        return (
+          <div
+            className={this.getActiveStyle(i)}
+            onClick={_.partial(this.setActiveChild, i)}
+            key={i}
+          >
+            {child}
+          </div>
+        )
+      })
+    }
   }
 
   render() {
