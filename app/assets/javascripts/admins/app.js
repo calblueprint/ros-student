@@ -28,7 +28,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar userType="admin">
+        <Navbar bundleType="admin">
           <Link
             to={ReactRoutes.codeCsvListPath()}>
             <div className="nav-element right">Codes</div>

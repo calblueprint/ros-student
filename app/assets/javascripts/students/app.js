@@ -40,8 +40,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar userType="student" />
-  
+        <Navbar bundleType="student" />
+
         <div className='flex center'>
           {this.props.children}
         </div>

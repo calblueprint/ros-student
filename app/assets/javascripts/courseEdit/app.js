@@ -20,7 +20,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar userType="admin">
+        <Navbar bundleType="courseEdit">
           <a href={RailsRoutes.codeCsvListPath()}>
             <div className="nav-element marginRight-xl right">Codes</div>
           </a>
