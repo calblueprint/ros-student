@@ -4,24 +4,6 @@
   background: $dark-silver;
 }
 
-.nav-element-container {
-  float: right;
-  display: inline-block;
-  &.logo {
-    float: left;
-  }
-
-  &.right {
-    float: right;
-  }
-
-  .image {
-    width: 40px;
-    height: 40px;
-    border: 2px solid $white;
-  }
-}
-
 .nav-element {
   color: $white;
   cursor: pointer;
@@ -42,6 +24,24 @@
       color: $white;
     }
   }
+
+  &.logo {
+    float: left;
+  }
+
+  .prof-image {
+    display: inline-block;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: $sm;
+    border: 2px solid $light-silver;
+    border-radius: 50%;
+  }
+
+  .prof-name {
+    float: right;
+  }
 }
 
 .dropdown {
@@ -52,11 +52,11 @@
 .dropdown-container {
   display: none;
   position: absolute;
-  float: left;
   min-width: 160px;
   line-height: 24px;
   left: auto;
   right: 0;
+  top: 55px;
   margin: 2px 0 0;
   z-index: 1000;
   list-style: none;

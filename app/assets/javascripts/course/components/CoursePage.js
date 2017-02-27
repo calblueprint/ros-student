@@ -224,6 +224,15 @@ class CoursePage extends React.Component {
     }
   }
 
+  openModal() {
+    this.setState({ isModalOpen: True })
+  }
+
+  // checkAndRenderModal() {
+  //   // If course object isn't here call API request (look at StudentDashboard)
+  //   course.progress == 100 && this.openModal()
+  // }
+
   render() {
     return (
       <div className='flex'>
