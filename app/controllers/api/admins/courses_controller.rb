@@ -1,3 +1,4 @@
+
 class Api::Admins::CoursesController < Api::Admins::BaseController
   load_and_authorize_resource
 

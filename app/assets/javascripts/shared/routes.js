@@ -91,7 +91,7 @@ class APIRoutes {
   // Codes
   static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`) }
   static codeCsvDownloadPath(id) { return APIRoutes.createRoute(`admins/code_csvs/${id}/download.csv`) }
-
+  static getCodeCsvPath(id)      { return APIRoutes.createRoute(`admins/code_csvs/${id}`)}
   // Courses
   static getSubsectionPath(id)       { return APIRoutes.createRoute(`students/subsections/${id}`) }
   static getComponentProgressPath(id) { return APIRoutes.createRoute(`students/components/${id}/component_progresses`) }

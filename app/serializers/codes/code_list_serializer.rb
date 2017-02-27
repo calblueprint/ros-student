@@ -1,2 +1,2 @@
-class CodeListSerializer < BaseCodeSerializer
+class CodeListSerializer < BaseCodeSerializerw
 end

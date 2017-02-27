@@ -19,7 +19,11 @@ class Api::Admins::CodeCsvsController < Api::Admins::BaseController
   end
 
   def index
-    render json: @code_csvs, each_serializer: CodeCsvListSerializer
+    render json: @code_csvs.order("name"), each_serializer: CodeCsvListSerializer
+  end
+
+  def show
+    render json: @code_csv, serializer: CodeCsvSerializer
   end
 
   private
@@ -38,7 +42,6 @@ class Api::Admins::CodeCsvsController < Api::Admins::BaseController
   end
 
   def show_csv
-    code_csv = CodeCsv.find params[:id]
-    send_data code_csv.to_csv
+    send_data @code_csv.to_csv
   end
 end

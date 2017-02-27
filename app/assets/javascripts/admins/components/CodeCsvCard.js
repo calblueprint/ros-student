@@ -2,12 +2,17 @@ import React from 'react'
 import request from '../../shared/requests/request'
 import { APIRoutes } from '../../shared/routes'
 
+import CodeCsvModal from './CodeCsvModal'
+
 class CodeCsvCard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      isModalOpen: false,
     }
     this.downloadCodeCsv = this.downloadCodeCsv.bind(this)
+    this.openCodeCsv = this.openCodeCsv.bind(this)
+    this.closeCsvModal = this.closeCsvModal.bind(this)
   }
 
   downloadCodeCsv(e) {
@@ -20,18 +25,40 @@ class CodeCsvCard extends React.Component {
     })
   }
 
+  openCodeCsv() {
+    this.setState({ isModalOpen: true })
+  }
+
+  closeCsvModal() {
+    this.setState({ isModalOpen: false })
+  }
+
   render() {
+    var created_at = new Date(this.props.code_csv.created_at)
+    created_at = created_at.toUTCString()
     return (
-      <div className='flex flex-horizontal code-csv-card'>
-        <div className='code-csv-name'>
-          <h3>{this.props.code_csv.name}</h3>
+      <div className='flex code-csv-card' onClick={this.openCodeCsv}>
+        <div className='flex name-date-wrapper'>
+          <div className='code-csv-name'>
+            {this.props.code_csv.name}
+          </div>
+          <div className='code-csv-date'>
+            {created_at}
+          </div>
         </div>
         <div className='code-csv-download'>
           <button className='button' onClick={this.downloadCodeCsv}>Download</button>
         </div>
+        <CodeCsvModal
+          isModalOpen={this.state.isModalOpen}
+          closeModal={this.closeCsvModal}
+          codeCsv={this.props.code_csv}
+        />
       </div>
     )
   }
+
+
 }
 
 export default CodeCsvCard
