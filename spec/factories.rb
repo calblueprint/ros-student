@@ -10,12 +10,24 @@ FactoryGirl.define do
   end
 
   factory :component do
-    component_type 0
+    component_type :slide
     audio_url 'audio_url_string'
     content_url 'content_url_string'
     title 'Title'
     position 1
     subsection
+
+    trait :slide do
+      component_type :slide
+    end
+
+    trait :form do
+      component_type :form
+    end
+
+    trait :video do
+      component_type :multimedia
+    end
   end
 
   factory :component_progress do
@@ -28,6 +40,12 @@ FactoryGirl.define do
     title 'MyString'
     section
     position 1
+
+    factory :subsection_with_components do
+      after(:create) do |subsection|
+        2.times { create :component, :slide, subsection: subsection }
+      end
+    end
   end
 
   factory :section do

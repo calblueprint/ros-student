@@ -21,7 +21,7 @@ describe Component, type: :model do
   describe 'should not be valid' do
     describe 'if it has' do
       let!(:component) { build :component }
-      let!(:invalid_component) { create :component, position: 2, subsection_id: 1}
+      let!(:invalid_component) { create :component, :slide, position: 2, subsection_id: 1 }
 
       it 'no component type' do
         component.component_type = nil
@@ -37,7 +37,7 @@ describe Component, type: :model do
 
   describe 'should be valid' do
     describe 'if it has' do
-      let!(:valid_component) { create :component, position: 3 }
+      let!(:valid_component) { create :component, :slide, position: 3 }
 
       it 'all valid fields' do
         expect(valid_component.valid?).to be true

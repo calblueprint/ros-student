@@ -24,7 +24,7 @@ class Subsection < ActiveRecord::Base
   end
 
   def current_component(user)
-    components.find { |component| !component.is_complete?(user) }
+    components.find { |component| !component.is_complete?(user) } || components.last
   end
 
   def switch(params)

@@ -5,5 +5,6 @@ end
 def validate_serializer(response, serializer, list=false)
   JSON::Validator.validate serializer,
                            response,
-                           list: list
+                           list: list,
+                           insert_defaults: true
 end
