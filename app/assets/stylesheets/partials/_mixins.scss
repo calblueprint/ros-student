@@ -23,6 +23,10 @@
   @include prefixer(appearance, $property);
 }
 
+@mixin filter($property: none) {
+  @include prefixer(filter, $property);
+}
+
 // Clearfix for floats
 @mixin clearAfter {
   &:after {

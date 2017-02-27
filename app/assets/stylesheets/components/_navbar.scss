@@ -1,21 +1,59 @@
 .nav {
   width: 100%;
-  background: $dark-gray;
+  height: 60px;
+  background: $dark-silver;
+}
+
+.nav-element-container {
+  display: inline-block;
+  float: right;
+  height: 60px;
+  margin: 0px;
+  padding: 0px $sm;
+
+  &.active {
+    background-color: $white-10;
+    border-bottom: 3px solid $blue;
+    box-sizing: border-box;
+    .nav-element {
+      color: $white;
+      font-weight: $bold;
+    }
+  }
 }
 
 .nav-element {
-  color: $white;
-  display: inline-block;
   cursor: pointer;
   padding: 10px 0px;
   position: relative;
-  font-size: 20px;
-
-  &:hover {
-    color: $snow;
-  }
+  color: $white;
+  font-size: 24px;
+  line-height: 40px;
 
   &.right {
+    float: right;
+    color: $light-silver;
+    font-size: 16px;
+    &:hover {
+      color: $white;
+    }
+  }
+
+  &.logo {
+    float: left;
+  }
+
+  .prof-image {
+    display: inline-block;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin: 0px $sm;
+    border: 2px solid $light-silver;
+    border-radius: 50%;
+  }
+
+  .prof-name {
     float: right;
   }
 }
@@ -26,29 +64,30 @@
 }
 
 .dropdown-container {
+  display: none;
   position: absolute;
+  min-width: 160px;
+  line-height: 24px;
   left: auto;
   right: 0;
-  z-index: 1000;
-  display: none;
-  float: left;
-  min-width: 160px;
+  top: 55px;
   margin: 2px 0 0;
+  z-index: 1000;
   list-style: none;
   font-size: 14px;
   text-align: left;
-  background-color: #f9f9f9;
+  background-color: $snow;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .dropdown-link {
+  display: block;
   color: black;
   padding: 12px 16px;
   text-decoration: none;
-  display: block;
 
   &:hover {
-    background-color: #f1f1f1;
+    background-color: $light-silver;
   }
 }
 

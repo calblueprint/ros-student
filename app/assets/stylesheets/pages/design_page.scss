@@ -8,8 +8,8 @@
   &.blue { background: $blue; }
   &.blue-dark { background: $blue-dark; color: $snow; }
   &.yellow { background: $yellow; }
-  &.black { background: $black; color: $snow; }
+  &.black { background: $charcoal; color: $snow; }
   &.silver { background: $silver; }
-  &.gray { background: $gray; color: $black; }
-  &.snow { background: $snow; color: $black; }
+  &.gray { background: $light-silver; color: $charcoal; }
+  &.snow { background: $snow; color: $charcoal; }
 }

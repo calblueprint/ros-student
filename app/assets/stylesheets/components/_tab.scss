@@ -2,7 +2,7 @@
   @include appearance(none);
   background: $white;
   border: 0px;
-  color: $black;
+  color: $charcoal;
   display: inline-block;
   font-family: $font-stack;
   font-size: 14px;
@@ -45,7 +45,7 @@
   }
 
   &:hover {
-    background: $gray;
+    background: $light-silver;
   }
 
   &:hover::after {

@@ -34,7 +34,7 @@
   &:hover {
     background: $dark-blue;
     border: 1px solid $dark-blue;
-    box-shadow: 0 2px 8px $black-40;
+    box-shadow: 0 2px 8px $charcoal-40;
     text-decoration: none;
   }
 
@@ -62,8 +62,8 @@
 }
 
 .button--black {
-  background: $black;
-  border-color: $black;
+  background: $charcoal;
+  border-color: $charcoal;
   color: $snow;
 }
 
@@ -139,12 +139,12 @@
 .button--text-black {
   background: transparent;
   border-color: transparent;
-  color: $black;
+  color: $charcoal;
   font-weight: 700;
   opacity: 0.8;
 
   &:hover {
-    background: $black-10;
+    background: $charcoal-10;
     box-shadow: none;
     opacity: 1;
   }

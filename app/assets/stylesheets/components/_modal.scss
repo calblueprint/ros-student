@@ -50,7 +50,7 @@
 .modal-title {
   font-size: 20px;
   font-weight: $bold;
-  color: $black;
+  color: $charcoal;
 }
 
 .modal-body {
@@ -69,12 +69,12 @@
   cursor: pointer;
 
   &:hover {
-    background: $black-20;
+    background: $charcoal-20;
   }
 }
 
 .modal-content {
-  box-shadow: 0 0 15px $black-40;
+  box-shadow: 0 0 15px $charcoal-40;
 }
 
 .modal-dismiss {

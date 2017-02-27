@@ -35,6 +35,8 @@ class Course < ActiveRecord::Base
         end
       end
     end
+
+    sections.last.subsections.last
   end
 
   def progress(user)

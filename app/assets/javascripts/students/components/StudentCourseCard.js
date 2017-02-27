@@ -23,11 +23,7 @@ class StudentCourseCard extends React.Component {
   }
 
   getCourseCardStyle() {
-    const newOpacity = this.props.course.is_enrolled ? 1 : 0.5
-
-    return ({
-      opacity: `${newOpacity}`
-    })
+    return `card ${this.props.course.is_enrolled ? '' : 'inactive'}`
   }
 
   render() {
@@ -36,7 +32,7 @@ class StudentCourseCard extends React.Component {
         className='card-column'
         onClick={this.disableLink.bind(this)}
         to={this.props.route}>
-        <div className="card" style={this.getCourseCardStyle()}>
+        <div className={this.getCourseCardStyle()}>
           <div className="card-img-container">
             <Image src={this.getImgStyle()}/>
           </div>

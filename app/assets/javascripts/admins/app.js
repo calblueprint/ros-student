@@ -28,42 +28,25 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar>
-          <Link to={ReactRoutes.dashboardPath()}>
-            <header className='nav-element logo'>Roots of Success</header>
-          </Link>
-          <div className="nav-element right">
-            <p>{`${getUser().first_name} ${getUser().last_name}`}</p>
-            <div className="dropdown-container">
-              <Link
-                className='dropdown-link'
-                to={ReactRoutes.adminProfilePath(getUser().id)}>
-                Profile
-              </Link>
-              <a
-                href={RailsRoutes.adminsSignOutPath()}
-                data-method="delete"
-                className='dropdown-link'
-                >Sign out</a>
-            </div>
-          </div>
-
+        <Navbar userType="admin">
           <Link
             to={ReactRoutes.codeCsvListPath()}>
-            <div className="nav-element marginRight-xl right">Codes</div>
+            <div className="nav-element right">Codes</div>
           </Link>
 
           <Link
             to={ReactRoutes.courseToolsPath()}>
-            <div className="nav-element marginRight-xl right">Tools</div>
+            <div className="nav-element right">Tools</div>
           </Link>
 
           <Link
             to={ReactRoutes.usersListPath()}>
-            <div className="nav-element marginRight-xl right">Users</div>
+            <div className="nav-element right">Users</div>
           </Link>
         </Navbar>
-        {this.props.children}
+        <div className='flex center'>
+          {this.props.children}
+        </div>
       </div>
     )
   }
