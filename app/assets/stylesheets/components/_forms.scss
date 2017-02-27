@@ -37,7 +37,6 @@
 
 .input-text {
   color: $silver-60;
-
   &.error {
     color: $red;
   }
@@ -45,6 +44,14 @@
   &.success {
     color: $green;
   }
+}
+
+.input-label {
+  font-size: 12px;
+  font-weight: $extra-bold;
+  color: $charcoal-60;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .flash {

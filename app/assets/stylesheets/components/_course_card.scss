@@ -2,6 +2,9 @@
   position: relative;
   background: $white;
   height: 340px;
+  &.inactive {
+    @include filter(grayscale(100%));
+  }
 }
 
 .card-column {
@@ -45,5 +48,3 @@
     width: 25%;
   }
 }
-
-

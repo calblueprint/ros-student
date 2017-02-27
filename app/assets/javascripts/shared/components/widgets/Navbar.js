@@ -38,17 +38,16 @@ class Navbar extends React.Component {
     return i === this.state.activeIndex ? 'nav-element-container active' : 'nav-element-container'
   }
 
+  getImage() {
+    return this.user.image_url || Images.default_profile
+  }
+
   setActiveChild(i) {
     this.setState({ activeIndex: i })
   }
 
   resetActiveChild() {
     this.setState({ activeIndex: -1 })
-  }
-
-  renderImage() {
-    const imageState = this.state.imageField.imageData
-    return imageState.value || imageState.imageUrl || Images.default_profile
   }
 
   renderLogo() {
@@ -65,7 +64,7 @@ class Navbar extends React.Component {
   renderProfileTab() {
     return (
       <div className="nav-element right">
-        <img src={this.user.image_url} className="prof-image"/>
+        <img src={this.getImage()} className="prof-image"/>
         <p className="prof-name">
           {`${this.user.first_name} ${this.user.last_name}`}
         </p>

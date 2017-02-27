@@ -130,7 +130,7 @@ class GenerateCodeCsvModal extends React.Component {
 
             {this.renderFields()}
 
-            <h3>Select courses</h3>
+            <h3 className="input-label">Select courses</h3>
             <div className='generate-code-csv-course-list'>
               <ul>{this.renderCourses()}</ul>
             </div>
