@@ -20,44 +20,16 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar>
-          <a href={RailsRoutes.dashboardPath()}>
-            <header className='nav-element logo'>Roots of Success</header>
-          </a>
-          <div className="nav-element right">
-            <p>{`${getUser().first_name} ${getUser().last_name}`}</p>
-            <div className="dropdown-container">
-              <a
-                className='dropdown-link'
-                href={RailsRoutes.adminProfilePath(getUser().id)}>
-                Profile
-              </a>
-              <a
-                href={RailsRoutes.adminsSignOutPath()}
-                data-method="delete"
-                className='dropdown-link'
-                >Sign out</a>
-            </div>
-          </div>
-
-          <a
-            href={RailsRoutes.codeCsvListPath()}>
+        <Navbar userType="admin">
+          <a href={RailsRoutes.codeCsvListPath()}>
             <div className="nav-element marginRight-xl right">Codes</div>
           </a>
 
-
-          <a
-            href={ReactRoutes.codeCsvListPath()}>
-            <div className="nav-element marginRight-xl right">Codes</div>
-          </a>
-
-          <a
-            href={ReactRoutes.courseToolsPath()}>
+          <a href={ReactRoutes.courseToolsPath()}>
             <div className="nav-element marginRight-xl right">Tools</div>
           </a>
 
-          <a
-            href={ReactRoutes.usersListPath()}>
+          <a href={ReactRoutes.usersListPath()}>
             <div className="nav-element marginRight-xl right">Users</div>
           </a>
         </Navbar>
@@ -66,6 +38,7 @@ class App extends React.Component {
     )
   }
 }
+
 render((
   <Router history={browserHistory}>
     <Route path={ReactRoutes.rootPath()} component={App}>

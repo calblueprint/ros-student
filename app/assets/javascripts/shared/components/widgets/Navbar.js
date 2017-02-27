@@ -1,4 +1,5 @@
-import React from 'react'
+import _ from 'underscore'
+import React, { PropTypes } from 'react'
 
 import { getUser, setUser } from '../../../utils/user_helpers'
 import { Images, convertImage } from '../../../utils/image_helpers'
@@ -11,15 +12,38 @@ class Navbar extends React.Component {
     super(props)
     this.user = getUser()
     this.state = {
-      activeIndex: 1,
-      imageField: {
-        imageData: {
-          label: 'Profile Image',
-          value: '',
-          imageUrl: this.user.image_url,
-        },
-      },
+      activeIndex: null,
     }
+    this.setActiveChild = this.setActiveChild.bind(this)
+    this.resetActiveChild = this.resetActiveChild.bind(this)
+  }
+
+  getProfilePath() {
+    return this.props.userType === 'admin' ? (
+      ReactRoutes.adminProfilePath(this.user.id)
+    ) : (
+      ReactRoutes.studentProfilePath(this.user.id)
+    )
+  }
+
+  getSignOutPath() {
+    return this.props.userTypes === 'admin' ? (
+      RailsRoutes.adminsSignOutPath()
+    ) : (
+      RailsRoutes.studentsSignOutPath()
+    )
+  }
+
+  getActiveStyle(i) {
+    return i === this.state.activeIndex ? 'nav-element-container active' : 'nav-element-container'
+  }
+
+  setActiveChild(i) {
+    this.setState({ activeIndex: i })
+  }
+
+  resetActiveChild() {
+    this.setState({ activeIndex: -1 })
   }
 
   renderImage() {
@@ -29,45 +53,27 @@ class Navbar extends React.Component {
 
   renderLogo() {
     return (
-      <Link to={ReactRoutes.dashboardPath()}>
+      <Link to={ReactRoutes.dashboardPath()} onClick={this.resetActiveChild}>
         <header className='nav-element logo'>Roots of Success</header>
       </Link>
     )
   }
 
   renderProfileTab() {
-    return this.props.userType == 'admin' ? (
+    return (
       <div className="nav-element right">
         <img src={this.user.image_url} className="prof-image"/>
-        <p className="prof-name">{`${this.user.first_name} ${this.user.last_name}`}</p>
-        <div className="dropdown-container">
-          <Link
-            className='dropdown-link'
-            to={ReactRoutes.adminProfilePath(this.user.id)}>
-            Profile
-          </Link>
-          <a
-            href={RailsRoutes.adminsSignOutPath()}
-            data-method="delete"
-            className='dropdown-link'
-          >
-            Sign out
-          </a>
-        </div>
-      </div>
-    ) : (
-      <div className="nav-element right">
         <p className="prof-name">
           {`${this.user.first_name} ${this.user.last_name}`}
         </p>
         <div className="dropdown-container">
           <Link
             className='dropdown-link'
-            to={ReactRoutes.studentProfilePath(this.user.id)}>
+            to={this.getProfilePath()}>
             Profile
           </Link>
           <a
-            href={RailsRoutes.studentsSignOutPath()}
+            href={this.getSignOutPath()}
             data-method="delete"
             className='dropdown-link'
           >
@@ -79,9 +85,17 @@ class Navbar extends React.Component {
   }
 
   renderChildren() {
-    console.log(this.user.image_url)
+    console.log(this.state.activeIndex)
     return this.props.children.map((child, i) => {
-      return child
+      return (
+        <div
+          className={this.getActiveStyle(i)}
+          onClick={_.partial(this.setActiveChild, i)}
+          key={i}
+        >
+          {child}
+        </div>
+      )
     })
   }
 
@@ -98,6 +112,10 @@ class Navbar extends React.Component {
       </nav>
     )
   }
+}
+
+Navbar.propTypes = {
+  userType: PropTypes.oneOf(['admin', 'student']),
 }
 
 export default Navbar

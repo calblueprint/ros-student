@@ -4,22 +4,36 @@
   background: $dark-silver;
 }
 
+.nav-element-container {
+  display: inline-block;
+  float: right;
+  height: 60px;
+  margin: 0px;
+  padding: 0px $sm;
+
+  &.active {
+    background-color: $white-10;
+    border-bottom: 3px solid $blue;
+    box-sizing: border-box;
+    .nav-element {
+      color: $white;
+      font-weight: $bold;
+    }
+  }
+}
+
 .nav-element {
-  color: $white;
   cursor: pointer;
   padding: 10px 0px;
   position: relative;
+  color: $white;
   font-size: 24px;
   line-height: 40px;
-
-  &:hover {
-    color: $white;
-  }
 
   &.right {
     float: right;
     color: $light-silver;
-    font-size: 18px;
+    font-size: 16px;
     &:hover {
       color: $white;
     }
@@ -34,7 +48,7 @@
     float: left;
     width: 40px;
     height: 40px;
-    margin-right: $sm;
+    margin: 0px $sm;
     border: 2px solid $light-silver;
     border-radius: 50%;
   }

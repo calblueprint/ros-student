@@ -31,17 +31,17 @@ class App extends React.Component {
         <Navbar userType="admin">
           <Link
             to={ReactRoutes.codeCsvListPath()}>
-            <div className="nav-element marginRight-xl right">Codes</div>
+            <div className="nav-element right">Codes</div>
           </Link>
 
           <Link
             to={ReactRoutes.courseToolsPath()}>
-            <div className="nav-element marginRight-xl right">Tools</div>
+            <div className="nav-element right">Tools</div>
           </Link>
 
           <Link
             to={ReactRoutes.usersListPath()}>
-            <div className="nav-element marginRight-xl right">Users</div>
+            <div className="nav-element right">Users</div>
           </Link>
         </Navbar>
         {this.props.children}
