@@ -1,32 +1,66 @@
 import React from 'react'
 
 import Form from '../../shared/components/forms/Form'
+import Input from '../../shared/components/forms/Input'
+import request from '../../shared/requests/request'
 
 class ForgotPasswordForm extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      email: '',
+      error: '',
+      success: '',
+    }
+
+    this.updateEmail = this.updateEmail.bind(this)
+    this.submitEmail = this.submitEmail.bind(this)
+  }
+
+  updateEmail(e) {
+    this.setState({
+      email: e.target.value
+    })
+  }
+
+  submitEmail() {
+    const path = this.props.route
+    const params = { email: this.state.email }
+    request.post(path, params, (response) => {
+      console.log(response)
+      this.setState({
+        success: response.success.message,
+      })
+    }, (error) => {
+      console.log(error)
+      this.setState({
+        error: error.error.message,
+      })
+    })
+  }
+
   render() {
     return (
-      <div>
-        <Form
-          className='forgot_password_form'
-          id='forgot_password_form'
-          action={this.props.action}
-          method='post'>
+      <div className='forgot-password-form'>
+        <div className="forgot-password-form">
+          <Input
+            name={`${this.props.userType}[email]`}
+            label='Email'
+            value={this.state.email}
+            error={this.state.error}
+            success={this.state.success}
+            onChange={this.updateEmail}
+          />
+        </div>
 
-          <div className="field">
-            <label htmlFor="admin_email">Email</label><br />
-            <input
-              id="admin_email"
-              autoFocus="autofocus"
-              type="email"
-              value=""
-              name={`${this.props.userType}[email]`}
-            />
-          </div>
-
-          <div className="actions">
-            <input type="submit" name="commit" value="Send me reset password instructions" />
-          </div>
-        </Form>
+        <div>
+          <button
+            className='button marginTopBot-xxs forgot-password-button'
+            onClick={this.submitEmail}>
+            Send password reset email
+          </button>
+        </div>
       </div>
     )
   }
