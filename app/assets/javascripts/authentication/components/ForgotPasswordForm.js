@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
@@ -64,6 +64,11 @@ class ForgotPasswordForm extends React.Component {
       </div>
     )
   }
+}
+
+ForgotPasswordForm.propTypes = {
+  userType: PropTypes.string.isRequired,
+  route: PropTypes.string.isRequired,
 }
 
 export default ForgotPasswordForm
