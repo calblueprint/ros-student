@@ -22,7 +22,6 @@ class CodeCsvModal extends React.Component {
   }
 
   renderCourses() {
-    console.log(this.state.courses)
     return this.state.courses.map((value) => {
       return (
         <div className='courses' key={value.id}>
