@@ -55,6 +55,8 @@ class CodeCsvModal extends React.Component {
           <h2 className='input-label'>Courses Selected</h2>
           {this.renderCourses()}
         </Modal.Body>
+        <Modal.Footer>
+        </Modal.Footer>
       </Modal>
     )
   }
