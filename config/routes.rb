@@ -108,5 +108,17 @@ Rails.application.routes.draw do
         post :verify
       end
     end
+
+    resources :admins, only: [] do
+      collection do
+        post :reset_password
+      end
+    end
+
+    resources :students, only: [] do
+      collection do
+        post :reset_password
+      end
+    end
   end
 end

@@ -1,6 +1,7 @@
 import _ from 'underscore'
 import React from 'react'
 import Modal from 'react-bootstrap-modal'
+import Collapse from 'react-collapse'
 
 import request from '../../requests/request'
 
@@ -19,10 +20,12 @@ class UpdateUserModal extends React.Component {
     this.state = _.extend(this.getUserFields(), {
       previousImage: '',
       isModalOpen: false,
+      isDropdownOpen: false,
     })
 
     this.updateUser = this.updateUser.bind(this)
     this.setImage = this.setImage.bind(this)
+    this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this)
   }
 
   getUserFields() {
@@ -56,7 +59,7 @@ class UpdateUserModal extends React.Component {
           label: 'New Password',
           value: '',
           type: 'password',
-          onChange: _.bind(this.handleChange, this, 'newPassword'),
+          onChange: _.bind(this.handleNewPasswordChange, this, 'newPassword'),
           error: '',
         },
         confirmPassword: {
@@ -69,6 +72,7 @@ class UpdateUserModal extends React.Component {
         currentPassword: {
           label: 'Current Password',
           value: '',
+          placeholder: 'Enter current password to update',
           type: 'password',
           onChange: _.bind(this.handleChange, this, 'currentPassword'),
           error: '',
@@ -110,6 +114,15 @@ class UpdateUserModal extends React.Component {
   renderImage() {
     const imageState = this.state.imageField.imageData
     return imageState.value || imageState.imageUrl || Images.default_profile
+  }
+
+  handleNewPasswordChange(attr, e) {
+    const formFields = this.state.formFields
+    formFields[attr].value = e.target.value
+    this.setState({
+     formFields: formFields,
+     isDropdownOpen: true
+   })
   }
 
   render() {
@@ -161,7 +174,9 @@ class UpdateUserModal extends React.Component {
                     <Input {...this.state.formFields.newPassword} />
                   </div>
                   <div className='update-user-input'>
-                    <Input {...this.state.formFields.confirmPassword} />
+                    <Collapse isOpened={this.state.isDropdownOpen}>
+                        <Input {...this.state.formFields.confirmPassword} />
+                    </Collapse>
                   </div>
                   <div className='update-user-input'>
                     <Input {...this.state.formFields.currentPassword} />

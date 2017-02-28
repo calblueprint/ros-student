@@ -33,11 +33,7 @@ class Input extends React.Component {
   render() {
     return (
       <div className='marginTopBot-xxs'>
-        <div
-          className={`
-            marginTopBot-xxs input-label ${this.getStyling(this.props.error, 'error')}`
-          }
-        >
+        <div className='input-label marginTop-xs marginBot-xxs'>
           {this.props.label}
         </div>
         <div className='marginTopBot-xxs'>
