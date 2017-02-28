@@ -11,7 +11,7 @@ class CodeCsvCard extends React.Component {
       isModalOpen: false,
     }
     this.downloadCodeCsv = this.downloadCodeCsv.bind(this)
-    this.openCodeCsv = this.openCodeCsv.bind(this)
+    this.openCsvModal = this.openCsvModal.bind(this)
     this.closeCsvModal = this.closeCsvModal.bind(this)
   }
 
@@ -25,7 +25,7 @@ class CodeCsvCard extends React.Component {
     })
   }
 
-  openCodeCsv() {
+  openCsvModal() {
     this.setState({ isModalOpen: true })
   }
 
@@ -37,7 +37,7 @@ class CodeCsvCard extends React.Component {
     var created_at = new Date(this.props.code_csv.created_at)
     created_at = created_at.toUTCString()
     return (
-      <div className='flex code-csv-card' onClick={this.openCodeCsv}>
+      <div className='flex code-csv-card' onClick={this.openCsvModal}>
         <div className='flex name-date-wrapper'>
           <div className='code-csv-name'>
             {this.props.code_csv.name}

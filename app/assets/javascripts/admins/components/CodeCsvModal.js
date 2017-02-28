@@ -52,11 +52,18 @@ class CodeCsvModal extends React.Component {
           </Modal.Dismiss>
         </Modal.Header>
         <Modal.Body>
+          <h2 className='input-label'>Courses Selected</h2>
           {this.renderCourses()}
         </Modal.Body>
       </Modal>
     )
   }
+}
+
+CodeCsvModal.propTypes = {
+  codeCsv: PropTypes.object.isRequired,
+  isModalOpen: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
 }
 
 export default CodeCsvModal
