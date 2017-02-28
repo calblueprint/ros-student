@@ -82,9 +82,14 @@ class TestingPage extends React.Component {
       image: '',
       openModal: true,
     }
+    this.closeModal = this.closeModal.bind(this)
   }
 
-  //SET CALLBACK FUNCTION FOR SET STATE
+  closeModal() {
+    this.setState({
+      openModal:false
+    });
+  }
 
   onSortEnd({oldIndex, newIndex}) {
     this.setState({
@@ -166,11 +171,14 @@ class TestingPage extends React.Component {
 
         <InlineEditInput value={this.state.value1} onBlur={this.onBlur1.bind(this)} />
         <InlineEditInput value={this.state.value2} onBlur={this.onBlur2.bind(this)} />
-        <ImageUploadInput label='image' onChange={this.onImage.bind(this)} />
         <AudioUploadInput label='audio' onChange={this.onAudio.bind(this)} />
         <audio src={this.state.url} controls preload />
         <img src={this.state.image} />
-        <CongratsModal openModal={this.state.openModal} />
+        <CongratsModal 
+          openModal={this.state.openModal} 
+          closeModal={this.closeModal} 
+        />
+
 
       </div>
     )

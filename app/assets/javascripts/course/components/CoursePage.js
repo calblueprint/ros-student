@@ -21,7 +21,8 @@ class CoursePage extends React.Component {
       displayedSection: {},
       displayedSubsection: {},
       displayedComponent: {},
-      nextDisabled: true
+      nextDisabled: true,
+      isModalOpen: false,
     }
 
     this.displaySubsection = this.displaySubsection.bind(this)
@@ -224,6 +225,16 @@ class CoursePage extends React.Component {
     }
   }
 
+  openModal() {
+    this.setState({
+      isModalOpen:true
+    });
+  }
+
+  checkAndRenderModal() {
+    course.progress == 100 && this.openModal()
+  }
+
   render() {
     return (
       <div className='flex'>
@@ -272,6 +283,7 @@ class CoursePage extends React.Component {
                   </span>
                   <img
                     src={Images.right_arrow}
+                    onClick={this.checkAndRenderModal()}
                   />
                 </button>
               </div>

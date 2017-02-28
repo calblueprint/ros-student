@@ -18,7 +18,7 @@ class CongratsModal extends React.Component {
             </Modal.Title>
             <Modal.Dismiss
               className='flex center modal-dismiss-container'
-              onClick={this.closeModal}>
+              onClick={this.props.closeModal}>
               <img
                 src={Images.close_modal}
                 className='modal-dismiss'/>
