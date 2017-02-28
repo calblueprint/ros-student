@@ -19,15 +19,18 @@ class Navbar extends React.Component {
   }
 
   getProfilePath() {
-    return this.props.userType === 'admin' ? (
-      ReactRoutes.adminProfilePath(this.user.id)
-    ) : (
-      ReactRoutes.studentProfilePath(this.user.id)
-    )
+    switch (this.props.bundleType) {
+      case 'admin':
+        return ReactRoutes.adminProfilePath(this.user.id)
+      case 'student':
+        return ReactRoutes.studentProfilePath(this.user.id)
+      case 'courseEdit':
+        return RailsRoutes.adminProfilePath(this.user.id)
+    }
   }
 
   getSignOutPath() {
-    return this.props.userTypes === 'admin' ? (
+    return this.props.bundleTypes === 'admin' ? (
       RailsRoutes.adminsSignOutPath()
     ) : (
       RailsRoutes.studentsSignOutPath()
@@ -47,16 +50,41 @@ class Navbar extends React.Component {
   }
 
   resetActiveChild() {
-    this.setState({ activeIndex: -1 })
+    this.setState({ activeIndex: null })
   }
 
   renderLogo() {
-    return (
+    return this.props.bundleType === 'courseEdit' ? (
+      <a
+        href={RailsRoutes.dashboardPath()}
+        onClick={this.resetActiveChild}
+      >
+        <header className='nav-element logo'>Roots of Success</header>
+      </a>
+    ) : (
       <Link
         to={ReactRoutes.dashboardPath()}
         onClick={this.resetActiveChild}
       >
         <header className='nav-element logo'>Roots of Success</header>
+      </Link>
+    )
+  }
+
+  renderProfileLink() {
+    return this.props.bundleType === 'courseEdit' ? (
+      <a
+        className='dropdown-link'
+        href={this.getProfilePath()}
+      >
+        Profile
+      </a>
+    ) : (
+      <Link
+        className='dropdown-link'
+        to={this.getProfilePath()}
+      >
+        Profile
       </Link>
     )
   }
@@ -72,11 +100,7 @@ class Navbar extends React.Component {
           className="dropdown-container"
           onClick={this.resetActiveChild}
         >
-          <Link
-            className='dropdown-link'
-            to={this.getProfilePath()}>
-            Profile
-          </Link>
+          {this.renderProfileLink()}
           <a
             href={this.getSignOutPath()}
             data-method="delete"
@@ -95,10 +119,11 @@ class Navbar extends React.Component {
         return (
           <div
             className={this.getActiveStyle(i)}
-            onClick={_.partial(this.setActiveChild, i)}
             key={i}
           >
-            {child}
+            <div onClick={_.partial(this.setActiveChild, i)}>
+              {child}
+            </div>
           </div>
         )
       })
@@ -121,7 +146,7 @@ class Navbar extends React.Component {
 }
 
 Navbar.propTypes = {
-  userType: PropTypes.oneOf(['admin', 'student']),
+  bundleType: PropTypes.oneOf(['admin', 'student', 'courseEdit']),
 }
 
 export default Navbar

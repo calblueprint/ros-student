@@ -20,17 +20,17 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar userType="admin">
+        <Navbar bundleType="courseEdit">
           <a href={RailsRoutes.codeCsvListPath()}>
-            <div className="nav-element marginRight-xl right">Codes</div>
+            <div className="nav-element right">Codes</div>
           </a>
 
           <a href={ReactRoutes.courseToolsPath()}>
-            <div className="nav-element marginRight-xl right">Tools</div>
+            <div className="nav-element right">Tools</div>
           </a>
 
           <a href={ReactRoutes.usersListPath()}>
-            <div className="nav-element marginRight-xl right">Users</div>
+            <div className="nav-element right">Users</div>
           </a>
         </Navbar>
         <div className='flex center'>
