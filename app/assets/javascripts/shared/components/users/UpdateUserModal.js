@@ -10,7 +10,6 @@ import { Images, convertImage } from '../../../utils/image_helpers'
 
 import Form from '../forms/Form'
 import Input from '../forms/Input'
-import ImageUploadInput from '../forms/ImageUploadInput'
 
 class UpdateUserModal extends React.Component {
   constructor(props) {

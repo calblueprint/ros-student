@@ -1,12 +1,13 @@
 .code-csv-card {
-  justify-content: space-between;
-  height: 60px;
   padding: 15px 20px;
   margin: 10px auto;
   background: $white;
+  cursor: pointer;
+
   &.empty {
     opacity: 0.6;
     font-weight: bold;
+
     &:hover {
       opacity: 0.8;
       background-color: $blue;
@@ -19,12 +20,22 @@
   }
 }
 
+.name-date-wrapper {
+  flex-flow: column;
+}
+
 .code-csv-name {
-  margin: auto 0px;
-  float: left;
+  margin-right: 15px;
+  font-weight: 600;
+}
+
+.code-csv-date {
+  color: $silver;
+  font-size:$xs;
 }
 
 .code-csv-download {
-  margin: auto 0px;
-  float: right;
+  margin-left: auto;
 }
+
+
