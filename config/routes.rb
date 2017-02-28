@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get '/students/sign_in', to: redirect('/')
   get '/students/sign_up', to: 'pages#home'
   get '/students/forgot_password', to: 'pages#home'
+  get '/students/password/edit', to: 'pages#home'
   get '/admins/sign_in', to: 'pages#home'
   get '/admins/forgot_password', to: 'pages#home'
+  get '/admins/password/edit', to: 'pages#home'
   get '/design', to: 'pages#home'
   get '/testing', to: 'pages#home'
 
@@ -112,12 +114,14 @@ Rails.application.routes.draw do
     resources :admins, only: [] do
       collection do
         post :reset_password
+        put :update
       end
     end
 
     resources :students, only: [] do
       collection do
         post :reset_password
+        put :update
       end
     end
   end

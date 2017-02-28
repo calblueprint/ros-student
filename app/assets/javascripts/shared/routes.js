@@ -7,6 +7,8 @@ class ReactRoutes {
   static adminsSignInPath()           { return '/admins/sign_in' }
   static adminsForgotPasswordPath()   { return '/admins/forgot_password' }
   static studentsForgotPasswordPath() { return '/students/forgot_password' }
+  static adminsResetPasswordPath()    { return '/admins/password/edit' }
+  static studentsResetPasswordPath()  { return '/students/password/edit' }
   static designPath()                 { return '/design' }
   static studentsRenderPath()         { return '/students'}
 
@@ -64,6 +66,8 @@ class APIRoutes {
   // Authentication
   static adminsForgotPasswordPath() { return APIRoutes.createRoute(`admins/reset_password`) }
   static studentsForgotPasswordPath() { return APIRoutes.createRoute(`students/reset_password`) }
+  static adminsResetPasswordPath() { return APIRoutes.createRoute(`admins/update`) }
+  static studentsResetPasswordPath() { return APIRoutes.createRoute(`students/update`) }
 
   // Students
   static verifyCodePath()      { return APIRoutes.createRoute(`codes/verify`) }

@@ -9,6 +9,9 @@ class Api::AdminsController < Api::BaseController
     end
   end
 
+  def update
+  end
+
   def reset_params
     params.require(:email)
   end
