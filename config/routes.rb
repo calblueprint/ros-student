@@ -71,7 +71,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :code_csvs, only: [:create, :index] do
+      resources :code_csvs, only: [:create, :index, :show] do
         member do
           get :download
         end
