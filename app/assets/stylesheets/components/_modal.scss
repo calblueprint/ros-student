@@ -45,21 +45,12 @@
   padding: 35px 35px;
   justify-content: space-between;
   align-items: center;
-<<<<<<< HEAD
-=======
-  // background: $dark-gray;
->>>>>>> Fixing up the modal
 }
 
 .modal-title {
   font-size: 20px;
-<<<<<<< HEAD
   font-weight: $bold;
   color: $charcoal;
-=======
-  font-weight: 500;
-  color: $black;
->>>>>>> Fixing up the modal
 }
 
 .modal-body {
@@ -78,20 +69,12 @@
   cursor: pointer;
 
   &:hover {
-<<<<<<< HEAD
     background: $charcoal-20;
-=======
-    background: $black-20;
->>>>>>> Fixing up the modal
   }
 }
 
 .modal-content {
-<<<<<<< HEAD
   box-shadow: 0 0 15px $charcoal-40;
-=======
-  box-shadow: 0 0 15px $black-40;
->>>>>>> Fixing up the modal
 }
 
 .modal-dismiss {
