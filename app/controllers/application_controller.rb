@@ -4,23 +4,23 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_user
+    redirect_to redirect_user_path
   end
 
   def after_sign_in_path_for(user)
-    redirect_user
+    redirect_user_path
   end
 
   def after_sign_out_path_for(user)
     return admins_sign_in_path if user == :admin
-    redirect_user
+    redirect_user_path
   end
 
-  def redirect_user
+  def redirect_user_path
     if current_user
-      redirect_to dashboard_path
+      dashboard_path
     else
-      redirect_to root_path
+      root_path
     end
   end
 

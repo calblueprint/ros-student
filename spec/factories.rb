@@ -83,6 +83,7 @@ FactoryGirl.define do
     last_name 'last'
     username { FFaker::Internet.user_name }
     code
+    photo
   end
 
   factory :admin do

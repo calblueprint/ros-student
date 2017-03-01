@@ -13,11 +13,11 @@
 class Photo < ActiveRecord::Base
   belongs_to :parent, polymorphic: true
 
-  validates :image, presence: true
+  # validates :image, presence: true
 
   mount_uploader :image, ImageUploader
 
   def url
-    image.url
+    image.url if image
   end
 end
