@@ -4,6 +4,13 @@
   font-size: 28px;
 }
 
+.courses-subtitle {
+  margin: $sm 0px;
+  font-size: 24px;
+  font-weight: $semi-bold;
+  color: $charcoal-60;
+}
+
 .course-list {
   display: flex;
   flex-direction: row;
@@ -20,5 +27,3 @@
 
 
 // Admin
-
-
