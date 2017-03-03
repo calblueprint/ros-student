@@ -8,4 +8,62 @@
   height: 100%;
   top: 0px;
   left: 0px;
+  opacity: 0;
+  @extend .rise-and-fade-animation;
+  @extend .delay2;
+  &.circle {
+    @extend .delay1;
+  }
+  &.book-left {
+    @extend .rotate-left-animation;
+    @extend .delay3;
+    transform-origin: center;
+  }
+  &.book-right {
+    @extend .rotate-right-animation;
+    @extend .delay3;
+    transform-origin: center;
+  }
+}
+
+.rise-and-fade-animation {
+  animation: riseFadeIn 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.rotate-left-animation {
+  animation: riseFadeIn 0.2s, rotateLeft 0.4s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.rotate-right-animation {
+  animation: riseFadeIn 0.2s, rotateRight 0.4s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.delay0 {
+  animation-delay: 0ms;
+}
+
+.delay1 {
+  animation-delay: 100ms;
+}
+
+.delay2 {
+  animation-delay: 200ms;
+}
+
+.delay3 {
+  animation-delay: 300ms;
+}
+
+.delay4 {
+  animation-delay: 400ms;
+}
+
+.delay5 {
+  animation-delay: 500ms;
 }

@@ -13,7 +13,7 @@ class StudentLoginPage extends React.Component {
       <div className='flex center flex-vertical login-container'>
         <div className='flex center flex-vertical login-modal'>
 
-          <RootsLogo size={150} />
+          <RootsLogo size={200} />
           <h2 className='h2 marginTopBot-xxs'>Let's get started.</h2>
           <LoginForm userType='student' action={RailsRoutes.studentsSignInPath()} />
           <Link className='marginTop-xs' to={ReactRoutes.studentsSignUpPath()}>Sign up</Link>

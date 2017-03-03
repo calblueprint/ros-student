@@ -14,9 +14,9 @@ class RootsLogo extends React.Component {
   render() {
     return (
       <div className='roots-logo-container' style={this.getContainerStyle()}>
-        <img className='roots-logo-svg' src={Images.circle} />
-        <img className='roots-logo-svg' src={Images.bookLeft} />
-        <img className='roots-logo-svg' src={Images.bookRight} />
+        <img className='roots-logo-svg circle' src={Images.circle} />
+        <img className='roots-logo-svg book-left' src={Images.bookLeft} />
+        <img className='roots-logo-svg book-right' src={Images.bookRight} />
         <img className='roots-logo-svg' src={Images.bookSpine} />
         <img className='roots-logo-svg' src={Images.page1} />
         <img className='roots-logo-svg' src={Images.page2} />
