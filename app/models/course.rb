@@ -23,7 +23,6 @@ class Course < ActiveRecord::Base
   scope :is_published, -> { where(:is_published => true) }
 
   def is_enrolled?(user)
-    user.instance_of?(Admin) ||
     StudentCourse.find_by({ course_id: id, student_id: user.id})
   end
 

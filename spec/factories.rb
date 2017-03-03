@@ -14,7 +14,7 @@ FactoryGirl.define do
     audio_url 'audio_url_string'
     content_url 'content_url_string'
     title 'Title'
-    position 1
+    # position 1
     subsection
 
     trait :slide do
@@ -39,7 +39,7 @@ FactoryGirl.define do
   factory :subsection do
     title 'MyString'
     section
-    position 1
+    # position 1
 
     factory :subsection_with_components do
       after(:create) do |subsection|
@@ -50,8 +50,14 @@ FactoryGirl.define do
 
   factory :section do
     title 'MyString'
-    position 1
+    # position 1
     course
+
+    factory :section_with_subsections do
+      after(:create) do |section|
+        2.times { create :subsection_with_components, section: section }
+      end
+    end
   end
 
   factory :student_course do
@@ -69,6 +75,12 @@ FactoryGirl.define do
   factory :course do
     name 'MyString'
     description 'MyString'
+
+    factory :course_with_sections do
+      after(:create) do |course|
+        2.times { create :section_with_subsections, course: course }
+      end
+    end
   end
 
   factory :code do

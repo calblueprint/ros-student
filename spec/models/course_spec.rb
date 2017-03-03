@@ -12,19 +12,24 @@
 
 require 'rails_helper'
 
-RSpec.describe Course, type: :model do
-  describe 'is invalid' do
-    let!(:course) { build :course }
+describe Course, type: :model do
+  let!(:published_course) { create :course_with_sections, is_published: true }
+
+  context 'when invalid' do
+    let!(:invalid_course) { build :course }
 
     it 'has no name' do
-      course.name = nil
-      expect(course.valid?).to be false
+      invalid_course.name = nil
+      expect(invalid_course.valid?).to be false
     end
 
     it 'has no description' do
-      course.description = nil
-      expect(course.valid?).to be false
+      invalid_course.description = nil
+      expect(invalid_course.valid?).to be false
     end
-    
+  end
+
+  describe '#is_enrolled?' do
+    # let!(:enrolled_student)
   end
 end

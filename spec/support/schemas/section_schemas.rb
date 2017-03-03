@@ -13,14 +13,14 @@ BASE_SECTION_SERIALIZER = {
   }
 }
 
-SECTION_ADMIN_SERIALIZER = {
-  type: OBJECT,
-  required: ['id', 'title', 'course_id', 'position', 'subsections'],
-  properties: {
-    id: { type: INTEGER },
-    title: { type: STRING },
-    course_id: { type: INTEGER },
-    position: { type: INTEGER },
-    subsections: { type: ARRAY, items: SUBSECTION_ADMIN_SERIALIZER }
-  }
-}
+SECTION_ADMIN_SERIALIZER = extend_schema(
+  BASE_SECTION_SERIALIZER,
+  ['subsections'],
+  { subsections: { type: ARRAY, items: SUBSECTION_ADMIN_SERIALIZER } }
+)
+
+SECTION_STUDENT_SERIALIZER = extend_schema(
+  BASE_SECTION_SERIALIZER,
+  ['subsections'],
+  { subsections: { type: ARRAY, items: SUBSECTION_STUDENT_SERIALIZER } }
+)

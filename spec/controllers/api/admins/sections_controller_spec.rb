@@ -24,10 +24,8 @@ describe Api::Admins::SectionsController, type: :controller do
 
   describe '#update' do
     it 'should update a new section if the title updates' do
-      UPDATE = 'update'
-
       section = create :section
-      put :update, id: section.id, section: { title: UPDATE }
+      put :update, id: section.id, section: { title: 'update' }
 
       validate_result
       parsed_response = JSON.parse(response.body)
@@ -35,7 +33,7 @@ describe Api::Admins::SectionsController, type: :controller do
       expect(validate_serializer(parsed_response,
                                  SECTION_ADMIN_SERIALIZER,
                                  false)).to be true
-      expect(parsed_response['title']).to eq UPDATE
+      expect(parsed_response['title']).to eq 'update'
     end
 
     it 'shouldn\'t update the section with empty title' do
