@@ -7,20 +7,44 @@ import { Images } from '../../utils/image_helpers'
 import Image from '../../shared/components/widgets/Image'
 
 class AdminCourseCard extends React.Component {
+
   getImgStyle() {
-    return this.props.course.imageUrl ?
-             this.props.course.imageUrl :
-             Images.doge
+    const image_url = this.props.course.image_url ?
+      this.props.course.image_url :
+      Images.doge
+
+    return image_url
+  }
+
+  getPublishText(course) {
+    return course.is_published ? (
+      <div className='card-publish-text-box'>
+        <i className='fa fa-bookmark' aria-hidden='true'></i>
+        <span className='card-publish-text'>published</span>
+      </div>
+    ) : (
+      <div className='card-publish-text-box'>
+        <i className='fa fa-wrench' aria-hidden='true'></i>
+        <span className='card-publish-text'>draft</span>
+      </div>
+    )
   }
 
   render() {
     return (
-      <a className='card-column' href={this.props.route} data-method='get'>
+      <a
+        className='card-column'
+        href={this.props.route}
+        data-method='get'
+      >
         <div className='card'>
           <div className='card-img-container'>
-            <Image src={this.getImgStyle()}/>
+            <Image src={this.getImgStyle()} />
           </div>
-          <h2 className='card-title'>{this.props.course.name}</h2>
+          <h2 className='card-title'>
+            {this.props.course.name}
+          </h2>
+          {this.getPublishText(this.props.course)}
         </div>
       </a>
     )

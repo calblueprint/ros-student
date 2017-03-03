@@ -26,6 +26,22 @@
   margin: 16px;
 }
 
+.card-publish-text-box {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding: $xs $sm;
+  color: $light-silver;
+  font-size: 14px;
+  font-weight: $bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-publish-text {
+  margin-left: $xxs;
+}
+
 .card-progress-bar {
   position: absolute;
   bottom: 0;

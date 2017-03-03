@@ -7,7 +7,7 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
   prepend_before_filter :convert_image, only: [:update]
 
   def index
-    render json: @courses, each_serializer: CourseAdminListSerializer
+    render json: @courses.order("is_published").reverse_order, each_serializer: CourseAdminListSerializer
   end
 
   def edit

@@ -34,10 +34,12 @@ class StudentCourseCard extends React.Component {
           to={this.props.route}>
           <div className='card'>
             <div className="card-img-container">
-              <Image src={this.getImgStyle()}/>
+              <Image src={this.getImgStyle()} />
             </div>
             <h2 className="card-title">{this.props.course.name}</h2>
-            <TopProgressBar className="card-progress-bar" progress={this.props.course.progress} />
+            <TopProgressBar
+              className="card-progress-bar" progress={this.props.course.progress}
+            />
           </div>
         </Link>
       </div>
