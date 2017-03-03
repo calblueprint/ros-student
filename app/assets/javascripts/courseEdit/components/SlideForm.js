@@ -46,19 +46,6 @@ class SlideForm extends React.Component {
     this.props.callback(this.state.component)
   }
 
-  renderImage() {
-    const image = this.state.component.imageData || this.state.imageUrl
-    if (_.isNull(image)) {
-      return
-    }
-
-    return (
-      <div className='add-component-form-item'>
-        <img className='component-image' src={image} />
-      </div>
-    )
-  }
-
   renderAudio() {
     const audio = this.state.component.audioData || this.state.audioUrl
     if (_.isNull(audio)) {
@@ -85,19 +72,18 @@ class SlideForm extends React.Component {
             />
           </div>
 
-          {this.renderImage()}
-
           <div className='add-component-form-item'>
             <ImageUploadInput
-              label="Image"
-              onChange={this.updateImageData}/>
+              label='Image'
+              image={this.state.component.imageData || this.state.imageUrl}
+              setImage={this.updateImageData}/>
           </div>
 
           {this.renderAudio()}
 
           <div className='add-component-form-item'>
             <AudioUploadInput
-              label="Audio"
+              label='Audio'
               onChange={this.updateAudioData}/>
           </div>
 
