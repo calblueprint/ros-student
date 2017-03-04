@@ -1,17 +1,3 @@
-/* Example
-  @include keyframes(dropFadeIn) {
-    from {
-      opacity: 0;
-      @include transform(translateY(-20px));
-    }
-    to {
-      opacity: 1;
-      @include transform(translateY(0px));
-    }
-  }
-*/
-@import './mixins';
-
 @include keyframes(fadeIn) {
   from {
     opacity: 0;
@@ -82,4 +68,16 @@ Example:
 
 @mixin delay($ms) {
   animation-delay: #{$ms}ms;
+}
+
+/* Easing Functions */
+
+@mixin slow-ease {
+  // http://cubic-bezier.com/#.24,.31,.41,.9
+  animation-timing-function: cubic-bezier(.24, .31, .41, .9);
+}
+
+@mixin fast-ease {
+  // http://cubic-bezier.com/#.22,.35,.28,.96
+  animation-timing-function: cubic-bezier(.22, .35, .28, .96);
 }
