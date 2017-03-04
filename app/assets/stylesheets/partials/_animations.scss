@@ -12,6 +12,26 @@
 */
 @import './mixins';
 
+@include keyframes(fadeIn) {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@include keyframes(rise) {
+  from {
+    @include transform(translateY(50px));
+    opacity: 1;
+  }
+  to {
+    @include transform(translateY(0px));
+    opacity: 1;
+  }
+}
+
 @include keyframes(riseFadeIn) {
   from {
     opacity: 0;
@@ -40,6 +60,8 @@ Example:
   animation: rotateLeft90 2s ease-in-out;
 */
 @include rotateLeft(90);
+@include rotateLeft(28);
+@include rotateLeft(56);
 
 @mixin rotateRight($angle: 90) {
   @include keyframes(rotateRight#{$angle}) {
@@ -53,6 +75,8 @@ Example:
 }
 
 @include rotateRight(90);
+@include rotateRight(28);
+@include rotateRight(56);
 
 /* Animation Utilities */
 
