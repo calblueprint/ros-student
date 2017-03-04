@@ -23,20 +23,39 @@
   }
 }
 
-@include keyframes(rotateLeft) {
-  from {
-    @include transform(rotate(90deg));
-  }
-  to {
-    @include transform(rotate(0deg));
+@mixin rotateLeft($angle: 90) {
+  @include keyframes(rotateLeft#{$angle}) {
+    from {
+      @include transform(rotate(#{$angle}deg));
+    }
+    to {
+      @include transform(rotate(0deg));
+    }
   }
 }
 
-@include keyframes(rotateRight) {
-  from {
-    @include transform(rotate(-90deg));
+/* Add more angles below as necessary
+
+Example:
+  animation: rotateLeft90 2s ease-in-out;
+*/
+@include rotateLeft(90);
+
+@mixin rotateRight($angle: 90) {
+  @include keyframes(rotateRight#{$angle}) {
+    from {
+      @include transform(rotate(-#{$angle}deg));
+    }
+    to {
+      @include transform(rotate(0deg));
+    }
   }
-  to {
-    @include transform(rotate(0deg));
-  }
+}
+
+@include rotateRight(90);
+
+/* Animation Utilities */
+
+@mixin delay($ms) {
+  animation-delay: #{$ms}ms;
 }

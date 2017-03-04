@@ -9,61 +9,38 @@
   top: 0px;
   left: 0px;
   opacity: 0;
-  @extend .rise-and-fade-animation;
-  @extend .delay2;
+  @extend .rise-and-fade;
   &.circle {
-    @extend .delay1;
+    @extend .rise-and-fade;
   }
   &.book-left {
-    @extend .rotate-left-animation;
-    @extend .delay3;
-    transform-origin: center;
+    @extend .rotate-left-90;
+    transform-origin: 46.25% 59.25%;
   }
   &.book-right {
-    @extend .rotate-right-animation;
-    @extend .delay3;
-    transform-origin: center;
+    @extend .rotate-right-90;
+    transform-origin: 53.75% 59.25%;
   }
 }
 
-.rise-and-fade-animation {
+.rise-and-fade {
   animation: riseFadeIn 0.3s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
+  @include delay(100);
 }
 
-.rotate-left-animation {
-  animation: riseFadeIn 0.2s, rotateLeft 0.4s;
+.rotate-left-90 {
+  animation: riseFadeIn 0.2s, rotateLeft90 0.4s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
+  @include delay(300);
+  transform-origin: 46.25%, 59.25%;
 }
 
-.rotate-right-animation {
-  animation: riseFadeIn 0.2s, rotateRight 0.4s;
+.rotate-right-90 {
+  animation: riseFadeIn 0.2s, rotateRight90 0.4s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
-}
-
-.delay0 {
-  animation-delay: 0ms;
-}
-
-.delay1 {
-  animation-delay: 100ms;
-}
-
-.delay2 {
-  animation-delay: 200ms;
-}
-
-.delay3 {
-  animation-delay: 300ms;
-}
-
-.delay4 {
-  animation-delay: 400ms;
-}
-
-.delay5 {
-  animation-delay: 500ms;
+  @include delay(300);
 }
