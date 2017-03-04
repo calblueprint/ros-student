@@ -1,0 +1,83 @@
+@include keyframes(fadeIn) {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@include keyframes(rise) {
+  from {
+    @include transform(translateY(50px));
+    opacity: 1;
+  }
+  to {
+    @include transform(translateY(0px));
+    opacity: 1;
+  }
+}
+
+@include keyframes(riseFadeIn) {
+  from {
+    opacity: 0;
+    @include transform(translateY(50px));
+  }
+  to {
+    opacity: 1;
+    @include transform(translateY(0px));
+  }
+}
+
+@mixin rotateLeft($angle: 90) {
+  @include keyframes(rotateLeft#{$angle}) {
+    from {
+      @include transform(rotate(#{$angle}deg));
+    }
+    to {
+      @include transform(rotate(0deg));
+    }
+  }
+}
+
+/* Add more angles below as necessary
+
+Example:
+  animation: rotateLeft90 2s ease-in-out;
+*/
+@include rotateLeft(90);
+@include rotateLeft(28);
+@include rotateLeft(56);
+
+@mixin rotateRight($angle: 90) {
+  @include keyframes(rotateRight#{$angle}) {
+    from {
+      @include transform(rotate(-#{$angle}deg));
+    }
+    to {
+      @include transform(rotate(0deg));
+    }
+  }
+}
+
+@include rotateRight(90);
+@include rotateRight(28);
+@include rotateRight(56);
+
+/* Animation Utilities */
+
+@mixin delay($ms) {
+  animation-delay: #{$ms}ms;
+}
+
+/* Easing Functions */
+
+@mixin slow-ease {
+  // http://cubic-bezier.com/#.24,.31,.41,.9
+  animation-timing-function: cubic-bezier(.24, .31, .41, .9);
+}
+
+@mixin fast-ease {
+  // http://cubic-bezier.com/#.22,.35,.28,.96
+  animation-timing-function: cubic-bezier(.22, .35, .28, .96);
+}

@@ -23,8 +23,38 @@
   @include prefixer(appearance, $property);
 }
 
+/* Use this for filters
+ * Syntax example:
+ *    @include filter(grayscale(100%));
+ */
 @mixin filter($property: none) {
   @include prefixer(filter, $property);
+}
+
+/* Use this for keyframe animations
+ * Syntax example:
+ *    @include keyframes(myRotate) {
+ *      from {
+ *        @include transform(rotate(0deg));
+ *      }
+ *      to {
+ *        @include transform(rotate(360deg));
+ *      }
+ *    }
+ */
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
 }
 
 // Clearfix for floats
