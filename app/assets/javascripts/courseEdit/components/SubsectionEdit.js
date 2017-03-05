@@ -30,32 +30,29 @@ const ComponentHandle = SortableHandle(() => {
   )
 })
 
-const ComponentItem = SortableElement(({ value, deleteComponent, isSorting }) => {
+const ComponentItem = SortableElement(({ value, deleteComponent }) => {
   return (
-    <div className='edit-section' key={value.id}>
-      <div className='flex vertical course-edit-component' key={value.id}>
-        <ComponentHandle />
-        <ComponentEdit component={value} deleteComponent={deleteComponent}/>
-      </div>
+    <div className='flex vertical' key={value.id}>
+      <ComponentHandle />
+      <ComponentEdit component={value} deleteComponent={deleteComponent}/>
     </div>
   )
 })
 
-const ComponentList = SortableContainer(({ items, deleteComponent, isSorting }) => {
+const ComponentList = SortableContainer(({ items, deleteComponent }) => {
   return (
-    <ul>
+    <div>
       {
         items.map((value, index) => {
           return <ComponentItem
-            key={`component-${index}`}
+            key={`component-${index}-${value.id}`}
             index={index}
             value={value}
             deleteComponent={deleteComponent}
-            isSorting={isSorting}
           />
         })
       }
-    </ul>
+    </div>
   )
 })
 
@@ -178,9 +175,7 @@ class SubsectionEdit extends React.Component {
     if (oldIndex == newIndex || !component) {
       return
     }
-    console.log('switching')
-    console.log(oldIndex)
-    console.log(newIndex)
+
     const path = APIRoutes.switchComponentPath(component.id)
     const params = {
       component: {
@@ -189,7 +184,6 @@ class SubsectionEdit extends React.Component {
     }
 
     const components = this.state.subsection.components
-
     this.setState({ subsection: update(this.state.subsection, {
       components: { $set: arrayMove(components, oldIndex, newIndex) },
     })})
