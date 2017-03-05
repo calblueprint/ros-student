@@ -64,20 +64,16 @@ Example:
 @include rotateRight(28);
 @include rotateRight(56);
 
-/* Animation Utilities */
-
-@mixin delay($ms) {
-  animation-delay: #{$ms}ms;
-}
-
 /* Easing Functions */
 
 @mixin slow-ease {
   // http://cubic-bezier.com/#.24,.31,.41,.9
-  animation-timing-function: cubic-bezier(.24, .31, .41, .9);
+  // animation-timing-function: cubic-bezier(.24, .31, .41, .9);
+  @include animation-timing-function(cubic-bezier(.24, .31, .41, .9));
 }
 
 @mixin fast-ease {
   // http://cubic-bezier.com/#.22,.35,.28,.96
-  animation-timing-function: cubic-bezier(.22, .35, .28, .96);
+  // animation-timing-function: cubic-bezier(.22, .35, .28, .96);
+  @include animation-timing-function(cubic-bezier(.22, .35, .28, .96));
 }
