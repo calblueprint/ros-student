@@ -37,8 +37,8 @@ class CodeCsvCard extends React.Component {
     var created_at = new Date(this.props.code_csv.created_at)
     created_at = created_at.toUTCString()
     return (
-      <div className='flex code-csv-card' onClick={this.openCsvModal}>
-        <div className='flex name-date-wrapper'>
+      <div className='flex code-csv-card'>
+        <div className='flex name-date-wrapper' onClick={this.openCsvModal}>
           <div className='code-csv-name'>
             {this.props.code_csv.name}
           </div>
@@ -57,8 +57,6 @@ class CodeCsvCard extends React.Component {
       </div>
     )
   }
-
-
 }
 
 export default CodeCsvCard
