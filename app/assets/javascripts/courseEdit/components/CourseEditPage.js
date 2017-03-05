@@ -179,7 +179,7 @@ class CourseEditPage extends React.Component {
   renderSections() {
     return this.state.course.sections.map((value) => {
       return (
-        <div className='edit-section' key={value.id}>
+        <div className='component-edit-section' key={value.id}>
           <SectionEdit section={value} deleteSection={this.deleteSection} />
         </div>
       )
