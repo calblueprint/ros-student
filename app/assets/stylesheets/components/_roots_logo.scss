@@ -19,67 +19,76 @@
   }
   &.book-left {
     @extend .rotate-left-90;
-    transform-origin: 46.25% 59.25%;
+    @include transform-origin(46.25% 59.25%);
   }
   &.book-right {
     @extend .rotate-right-90;
-    transform-origin: 53.75% 59.25%;
+    @include transform-origin(53.75% 59.25%);
   }
   &.page1 {
-    animation: riseFadeIn 0.2s, rotateLeft56 0.5s;
+    @include animation-name(riseFadeIn, rotateLeft56);
+    @include animation-duration(0.2s, 0.5s);
     @include slow-ease();
-    animation-fill-mode: forwards;
-    @include delay(500);
+    @include animation-fill-mode(forwards);
+    @include animation-delay(500ms);
   }
   &.page2 {
-    animation: riseFadeIn 0.2s, rotateLeft28 0.5s;
+    @include animation-name(riseFadeIn, rotateLeft28);
+    @include animation-duration(0.2s, 0.5s);
     @include slow-ease();
-    animation-fill-mode: forwards;
-    @include delay(400);
+    @include animation-fill-mode(forwards);
+    @include animation-delay(400ms);
   }
   &.page3 {
-    animation: fadeIn 0.3s;
+    @include animation-name(fadeIn);
+    @include animation-duration(0.3s);
     @include slow-ease();
-    animation-fill-mode: forwards;
-    @include delay(300);
+    @include animation-fill-mode(forwards);
+    @include animation-delay(300ms);
   }
   &.page4 {
-    animation: riseFadeIn 0.2s, rotateRight28 0.5s;
+    @include animation-name(riseFadeIn, rotateRight28);
+    @include animation-duration(0.2s, 0.5s);
     @include slow-ease();
-    animation-fill-mode: forwards;
-    @include delay(400);
+    @include animation-fill-mode(forwards);
+    @include animation-delay(400ms);
   }
   &.page5 {
-    animation: riseFadeIn 0.2s, rotateRight56 0.5s;
+    @include animation-name(riseFadeIn, rotateRight56);
+    @include animation-duration(0.2s, 0.5s);
     @include slow-ease();
-    animation-fill-mode: forwards;
-    @include delay(500);
+    @include animation-fill-mode(forwards);
+    @include animation-delay(500ms);
   }
 }
 
 .fade-in {
-  animation: fadeIn 0.3s;
+  @include animation-name(fadeIn);
+  @include animation-duration(0.3s);
   @include slow-ease();
-  animation-fill-mode: forwards;
+  @include animation-fill-mode(forwards);
 }
 
 .rise-and-fade {
-  animation: riseFadeIn 0.3s;
+  @include animation-name(riseFadeIn);
+  @include animation-duration(0.3s);
   @include slow-ease();
-  animation-fill-mode: forwards;
-  @include delay(100);
+  @include animation-fill-mode(forwards);
+  @include animation-delay(100ms);
 }
 
 .rotate-left-90 {
-  animation: rise 0.2s, rotateLeft90 0.4s;
+  @include animation-name(rise, rotateLeft90);
+  @include animation-duration(0.2s, 0.4s);
   @include fast-ease();
-  animation-fill-mode: forwards;
-  @include delay(300);
+  @include animation-fill-mode(forwards);
+  @include animation-delay(300ms);
 }
 
 .rotate-right-90 {
-  animation: rise 0.2s, rotateRight90 0.4s;
+  @include animation-name(rise, rotateRight90);
+  @include animation-duration(0.2s, 0.4s);
   @include fast-ease();
-  animation-fill-mode: forwards;
-  @include delay(300);
+  @include animation-fill-mode(forwards);
+  @include animation-delay(300ms);
 }
