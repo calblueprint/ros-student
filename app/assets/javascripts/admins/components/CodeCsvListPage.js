@@ -38,7 +38,6 @@ class CodeCsvListPage extends React.Component {
   updateCodeCsvs(code_csv) {
     var new_code_csvs = this.state.code_csvs
     new_code_csvs.push(code_csv)
-    console.log(new_code_csvs)
     new_code_csvs.sort((a, b) => {return (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1})
     this.setState({ code_csvs: new_code_csvs })
   }
