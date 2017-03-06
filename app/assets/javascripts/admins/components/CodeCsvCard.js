@@ -16,6 +16,7 @@ class CodeCsvCard extends React.Component {
   }
 
   downloadCodeCsv(e) {
+    e.stopPropagation()
     e.preventDefault()
     const path = APIRoutes.codeCsvDownloadPath(this.props.code_csv.id)
 
