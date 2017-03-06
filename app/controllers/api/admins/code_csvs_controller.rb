@@ -19,7 +19,7 @@ class Api::Admins::CodeCsvsController < Api::Admins::BaseController
   end
 
   def index
-    render json: @code_csvs.order("name"), each_serializer: CodeCsvListSerializer
+    render json: @code_csvs.order("LOWER(name)"), each_serializer: CodeCsvListSerializer
   end
 
   def show
