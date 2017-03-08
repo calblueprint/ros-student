@@ -22,6 +22,14 @@ class AdminLoginPage extends React.Component {
           >
             Forgot password?
           </Link>
+
+          <a
+            href={RailsRoutes.studentsSignInPath()}
+            className='switch-portal-left'
+          >
+            <i className='fa fa-long-arrow-left' aria-hidden="true"></i>
+            <span className='switch-portal-text-left'>To Student Portal</span>
+          </a>
         </div>
       </div>
     )
