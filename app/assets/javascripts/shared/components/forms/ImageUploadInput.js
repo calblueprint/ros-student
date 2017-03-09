@@ -1,7 +1,7 @@
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 
-import { Images, convertImage } from '../../../utils/image_helpers'
+import { Images, convertImage } from '../../../utils/helpers/image_helpers'
 
 class ImageUploadInput extends React.Component {
   constructor(props) {

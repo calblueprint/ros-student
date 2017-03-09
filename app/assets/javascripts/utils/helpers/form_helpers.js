@@ -170,6 +170,7 @@ export {
   getFormFields,
   getInputToParams,
   mapErrorToFormFields,
+  observeFlashes,
   resetFlash,
   snakeToCamel,
 }

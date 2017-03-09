@@ -11,7 +11,7 @@ chai.use(sinonChai)
 
 import ComponentGraph from '../../../../app/assets/javascripts/course/components/ComponentGraph'
 
-import { Images } from '../../../../app/assets/javascripts/utils/image_helpers'
+import { Images } from '../../../../app/assets/javascripts/utils/helpers/image_helpers'
 
 describe('<ComponentGraph />', () => {
   const subsection = {

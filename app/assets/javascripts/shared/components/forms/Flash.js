@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'underscore'
 
-import { getFlashes } from '../../../utils/helpers/form_helpers'
+import { getFlashes, observeFlashes } from '../../../utils/helpers/form_helpers'
 
 class Flash extends React.Component {
   constructor(props) {
@@ -10,6 +10,14 @@ class Flash extends React.Component {
     this.state = {
       flash: getFlashes(),
     }
+
+    this.showFlashes = this.showFlashes.bind(this)
+
+    observeFlashes(this.showFlashes())
+  }
+
+  showFlashes() {
+
   }
 
   renderFlashes() {

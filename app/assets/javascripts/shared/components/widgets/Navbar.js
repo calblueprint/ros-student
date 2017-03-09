@@ -1,8 +1,8 @@
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 
-import { getUser, setUser } from '../../../utils/user_helpers'
-import { Images, convertImage } from '../../../utils/image_helpers'
+import { getUser, setUser } from '../../../utils/helpers/user_helpers'
+import { Images, convertImage } from '../../../utils/helpers/image_helpers'
 import { RailsRoutes, ReactRoutes } from '../../routes'
 import { Link } from 'react-router'
 

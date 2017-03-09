@@ -54,6 +54,20 @@
   letter-spacing: 1px;
 }
 
+.fade-in-out {
+  -webkit-animation: fadeinout 4s linear forwards;
+  animation: fadeinout 4s linear forwards;
+  opacity: 0;
+}
+
+@-webkit-keyframes fadeinout {
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  50% { opacity: 1; }
+}
+
 .flash {
   padding: $xxs $md;
   width: 100%;
