@@ -88,7 +88,7 @@ class ComponentForm extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <div className='flex flex-vertical add-component-container'>
-              <div className='add-component-body-text marginTopBot-xxs'>Type</div>
+              <div className='input-label marginTopBot-xxs'>Type</div>
               <div className='flex flex-horizontal'>
                 <button
                   className={`tab ${this.isActiveStyle(0)}`}

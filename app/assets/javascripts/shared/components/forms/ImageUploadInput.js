@@ -20,16 +20,35 @@ class ImageUploadInput extends React.Component {
     this.props.setImage('')
   }
 
+  renderImage() {
+    if (this.props.image) {
+      return (
+        <img
+          className='image-input'
+          src={this.props.image}
+        />
+      )
+    } else {
+      return (
+        <div
+          className='flex center image-input image-empty'
+          src={this.props.image}
+        >
+          <h1 className='h1'>Insert Image Here</h1>
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <div className={this.props.className}>
         <div className='flex flex-vertical center image-input-flex'>
-          <div className='input-text marginTopBot-xs'>{this.props.label}</div>
+          <div className='input-label marginTopBot-xs'>{this.props.label}</div>
           <div className='image-input-container'>
-            <img
-              className='image-input'
-              src={this.props.image}
-            />
+
+            {this.renderImage()}
+
             <div className='image-input-upload'>
               <button
                 className='button button--red image-input-button margin'
@@ -60,8 +79,9 @@ class ImageUploadInput extends React.Component {
 }
 
 ImageUploadInput.propTypes = {
+  image: PropTypes.string,
   label: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+
   setImage: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
