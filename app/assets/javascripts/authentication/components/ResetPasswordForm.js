@@ -1,0 +1,114 @@
+import _ from 'underscore'
+import React, { PropTypes } from 'react'
+
+import Input from '../../shared/components/forms/Input'
+import { getInputToParams, mapErrorToFormFields } from '../../utils/form_helpers'
+import request from '../../shared/requests/request'
+
+class ResetPasswordForm extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      formFields: {
+        newPassword: {
+          label: 'New Password',
+          value: '',
+          name: `${this.props.userType}[newPassword]`,
+          type: 'password',
+          onChange: _.bind(this.handleChange, this, 'newPassword'),
+          error: '',
+        },
+        confirmPassword: {
+          label: 'Confirm Password',
+          value: '',
+          name: `${this.props.userType}[confirmPassword]`,
+          type: 'password',
+          onChange: _.bind(this.handleChange, this, 'confirmPassword'),
+          error: '',
+        },
+      }
+    }
+
+    this.changePassword = this.changePassword.bind(this)
+  }
+
+  handleChange(attr, e) {
+    const formFields = this.state.formFields
+    formFields[attr].value = e.target.value
+    this.setState({ formFields: formFields })
+  }
+
+  redirectToLogin() {
+    const path = this.props.railsRoute
+
+    request.get(path, (response) => {
+
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+  changePassword() {
+    const path = this.props.apiRoute
+    const params = {
+      reset_password_token: this.props.resetPasswordToken,
+      password: this.state.formFields.newPassword.value,
+      password_confirmation: this.state.formFields.confirmPassword.value,
+    }
+    // const params = this.props.userType === 'student' ?
+    //   {
+    //     student: getInputToParams(this.state.formFields),
+    //     reset_password_token: this.props.resetPasswordToken
+    //   } : {
+    //     admin: getInputToParams(this.state.formFields),
+    //     reset_password_token: this.props.resetPasswordToken
+    //   }
+
+    console.log(params)
+
+    request.update(path, params, (response) => {
+      this.redirectToLogin();
+    }, (error) => {
+      console.log(error)
+      // this.setState({
+      //   formFields: mapErrorToFormFields(error, this.state.formFields)
+      // })
+    })
+  }
+
+  renderFields() {
+    return (
+      _.pairs(this.state.formFields).map((values) => {
+        return <Input key={values[0]} {...values[1]} />
+      })
+    )
+  }
+
+  render() {
+    return (
+      <div className='reset-password-form'>
+        <div className="reset-password-form">
+          {this.renderFields()}
+        </div>
+
+        <div>
+          <button
+            className='button marginTopBot-xxs reset-password-button'
+            onClick={this.changePassword}>
+            Change my password
+          </button>
+        </div>
+      </div>
+    )
+  }
+}
+
+ResetPasswordForm.propTypes = {
+  userType: PropTypes.string.isRequired,
+  railsRoute: PropTypes.string.isRequired,
+  apiRoute: PropTypes.string.isRequired,
+  resetPasswordToken: PropTypes.string.isRequired,
+}
+
+export default ResetPasswordForm

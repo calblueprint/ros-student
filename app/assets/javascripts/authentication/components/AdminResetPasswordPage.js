@@ -1,9 +1,22 @@
 import React from 'react'
 
+import { RailsRoutes, APIRoutes } from '../../shared/routes'
+
+import ResetPasswordForm from './ResetPasswordForm'
+
 class AdminResetPasswordPage extends React.Component {
   render() {
     return (
-      <h1>Change Password</h1>
+      <div className='flex center flex-vertical reset-password-container'>
+        <div className='flex flex-vertical'>
+          <h2 className='h2 marginTopBot-xxs'>Change Password</h2>
+          <ResetPasswordForm
+            userType='admin'
+            railsRoute={RailsRoutes.adminsSignInPath()}
+            apiRoute={APIRoutes.adminsResetPasswordPath()}
+          />
+        </div>
+      </div>
     )
   }
 }
