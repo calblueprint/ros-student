@@ -6,25 +6,34 @@ class SaveButton extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      isSaving: false,
-      error: false,
+      currentAction: null
     }
-
     this.handlePress = this.handlePress.bind(this)
+    this.resetState = this.resetState.bind(this)
     this.startSave = this.startSave.bind(this)
     this.endSave = this.endSave.bind(this)
   }
 
+  componentWillUnmount() {
+    this.timer && clearTimeout(this.timer)
+  }
+
+  resetState() {
+    this.setState({ currentAction: null })
+  }
+
   startSave() {
-    this.setState({ isSaving: true })
+    this.setState({ currentAction: 'save' })
   }
 
   endSave() {
-    this.setState({ isSaving: false})
+    this.setState({ currentAction: 'success' })
+    this.timer = setTimeout(this.resetState, 2000);
   }
 
   showError() {
-    this.setState({ error: true })
+    this.setState({ currentAction: 'error' })
+    this.timer = setTimeout(this.resetState, 2000);
   }
 
   handlePress(event) {
@@ -33,13 +42,43 @@ class SaveButton extends React.Component {
   }
 
   getStyle() {
-    return this.state.isSaving ? 'button' : 'button'
+    switch (this.state.currentAction) {
+      case 'save':
+        return 'button'
+      case 'success':
+        return 'button'
+      case 'error':
+        return 'button'
+      default:
+        return 'button'
+    }
   }
 
-  getSpinner() {
-    return this.state.isSaving ? (
-      <i className='fa fa-spinner fa-pulse fa-fw'></i>
-    ) : null
+  getIcon() {
+    switch (this.state.currentAction) {
+      case 'save':
+        return (
+          <i className='fa fa-spinner fa-pulse fa-fw save-button-icon'></i>
+        )
+      case 'success':
+        return (
+          <i className='fa fa-check fa-fw save-button-icon'></i>
+        )
+      case 'error':
+        return (
+          <i className='fa fa-times fa-fw save-button-icon'></i>
+        )
+      default:
+        return null
+    }
+  }
+
+  getText() {
+    return this.state.currentAction === 'save' ? (
+      <span>Saving...</span>
+    ) : (
+      <span>{this.props.text}</span>
+    )
   }
 
   render() {
@@ -48,8 +87,8 @@ class SaveButton extends React.Component {
         onClick={this.handlePress}
         className={this.getStyle()}
       >
-        {this.getSpinner()}
-        <span>{this.props.text}</span>
+        {this.getIcon()}
+        {this.getText()}
       </button>
     )
   }
