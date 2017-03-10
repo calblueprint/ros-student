@@ -46,7 +46,7 @@ class SaveButton extends React.Component {
       case 'save':
         return 'button'
       case 'success':
-        return 'button'
+        return 'button button--green'
       case 'error':
         return 'button'
       default:
@@ -85,7 +85,7 @@ class SaveButton extends React.Component {
     return (
       <button
         onClick={this.handlePress}
-        className={this.getStyle()}
+        className={`${this.getStyle()} ${this.props.className}`}
       >
         {this.getIcon()}
         {this.getText()}

@@ -13,6 +13,7 @@ import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
 import SimpleModal from '../../shared/components/widgets/SimpleModal'
 import GenerateCodeCsvCourseCard from './GenerateCodeCsvCourseCard'
+import SaveButton from '../../shared/components/widgets/SaveButton'
 
 class GenerateCodeCsvModal extends React.Component {
   constructor(props) {
@@ -94,11 +95,11 @@ class GenerateCodeCsvModal extends React.Component {
       this.props.update(response.code_csv)
       console.log(response)
       success && success()
+      this.props.closeModal()
     }, (error) => {
       console.log(error)
       error && error()
     })
-    this.props.closeModal()
   }
 
   renderCourses() {
@@ -136,12 +137,11 @@ class GenerateCodeCsvModal extends React.Component {
             <div className='generate-code-csv-course-list'>
               <ul>{this.renderCourses()}</ul>
             </div>
-            <button
-              className='button'
-              onClick={this.generateCodes}
-            >
-              Submit
-            </button>
+
+            <SaveButton
+              text='Submit'
+              onPress={this.generateCodes}
+            />
           </Form>
         </div>
       </SimpleModal>

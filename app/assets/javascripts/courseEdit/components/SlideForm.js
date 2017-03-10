@@ -90,14 +90,10 @@ class SlideForm extends React.Component {
           </div>
 
           <div className='add-component-form-item'>
-            <button
-              className='button button--blue create-component-button'
-              onClick={this.submit}>
-              Save
-            </button>
             <SaveButton
               text="Save"
               onPress={this.submit}
+              className='create-component-button'
             />
           </div>
         </form>
