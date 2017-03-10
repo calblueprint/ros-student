@@ -200,7 +200,7 @@ class CourseEditPage extends React.Component {
                   <InlineEditInput
                     value={this.state.course.name}
                     onBlur={this.onBlurName}
-                    buttonStyle='button button--sm button--white'
+                    buttonStyle='button button--sm-sq button--white'
                   />
                 </div>
 
@@ -208,7 +208,7 @@ class CourseEditPage extends React.Component {
                   <InlineEditInput
                     value={this.state.course.description}
                     onBlur={this.onBlurDescription}
-                    buttonStyle='button button--sm button--white'
+                    buttonStyle='button button--sm-sq button--white'
                   />
                 </div>
               </div>
@@ -239,7 +239,7 @@ class CourseEditPage extends React.Component {
             </h1>
 
             <button
-            className='button marginLeft-sm'
+              className='button marginLeft-sm'
               onClick={this.toggleIsPublished}
             >
               {this.renderPublishLabel()}
@@ -248,7 +248,7 @@ class CourseEditPage extends React.Component {
             <button
               onClick={this.openDeleteModal}
               className='button course-edit-delete'>
-              <img className='course-image-icon' src={Images.delete} />
+              <i className='fa fa-trash fa-fw course-image-icon white' aria-hidden='true'></i>
             </button>
           </div>
 
