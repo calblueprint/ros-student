@@ -14,6 +14,7 @@ class ComponentEdit extends React.Component {
       component: this.props.component,
       openDeleteModal: false,
       openEditModal: false,
+      openParentModal: false,
     }
 
     this.id = this.props.component.id
@@ -24,6 +25,8 @@ class ComponentEdit extends React.Component {
     this.closeDeleteModal = this.closeDeleteModal.bind(this)
     this.openEditModal = this.openEditModal.bind(this)
     this.closeEditModal = this.closeEditModal.bind(this)
+    this.openParentModal = this.openParentModal.bind(this)
+    this.closeParentModal = this.closeParentModal.bind(this)
     this.onFormCompletion = this.onFormCompletion.bind(this)
   }
 
@@ -54,6 +57,14 @@ class ComponentEdit extends React.Component {
 
   closeEditModal() {
     this.setState({ openEditModal: false })
+  }
+
+  openParentModal() {
+    this.setState({ openParentModal: true })
+  }
+
+  closeParentModal() {
+    this.setState({ openParentModal: false })
   }
 
   onFormCompletion(editedComponent) {
@@ -94,6 +105,15 @@ class ComponentEdit extends React.Component {
 
             <button
               className='button button--sm button--white course-edit-delete'
+              onClick={this.openParentModal}>
+              <img
+                className='course-image-icon'
+                src={Images.delete}
+              />
+            </button>
+
+            <button
+              className='button button--sm button--white course-edit-delete'
               onClick={this.openDeleteModal}>
               <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
             </button>
@@ -113,6 +133,12 @@ class ComponentEdit extends React.Component {
           closeModal={this.closeDeleteModal}
           deleteFunction={this.deleteComponent}
           objectType='component'
+        />
+
+        <ChangeParentModal
+          openParentModal={this.state.openParentModal}
+          closeModal={this.closeParentModal}
+          objectType={TODO}
         />
       </div>
     )
