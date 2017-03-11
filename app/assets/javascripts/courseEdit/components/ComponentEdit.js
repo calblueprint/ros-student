@@ -95,10 +95,7 @@ class ComponentEdit extends React.Component {
             <button
               className='button button--sm button--white course-edit-delete'
               onClick={this.openDeleteModal}>
-              <img
-                className='course-image-icon'
-                src={Images.delete}
-              />
+              <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
             </button>
           </div>
         </div>

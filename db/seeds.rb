@@ -95,7 +95,7 @@ end
 
 def create_video_subsection(subsection)
   subsection.components.create component_type: 2,
-                               content_url: 'https://www.youtube.com/watch?v=5MgBikgcWnY',
+                               content_url: 'https://www.youtube.com/watch?v=a1Y73sPHKxw',
                                title: FFaker::Education.degree,
                                remote_audio_url: get_audio_url
 end

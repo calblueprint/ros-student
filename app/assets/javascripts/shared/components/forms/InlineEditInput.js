@@ -43,7 +43,7 @@ class InlineEditInput extends React.Component {
           {this.props.value}
         </span>
         <button className={this.props.buttonStyle} onClick={this.enableEdit}>
-          <img className='inline-edit-icon' src={Images.edit} />
+          <i className='fa fa-pencil fa-fw inline-edit-input' aria-hidden='true'></i>
         </button>
       </div>
     )

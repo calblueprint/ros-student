@@ -1,5 +1,6 @@
 /* Main colors */
 
+/* True black, use only when appropriate */
 $black                          : #000000;
 $black-80                       : rgba($black, 0.80);
 $black-60                       : rgba($black, 0.60);
@@ -7,6 +8,7 @@ $black-40                       : rgba($black, 0.40);
 $black-20                       : rgba($black, 0.20);
 $black-10                       : rgba($black, 0.10);
 
+/* Typography, dark backgrounds */
 $charcoal                       : #2C3037;
 $charcoal-80                    : rgba($charcoal, 0.80);
 $charcoal-60                    : rgba($charcoal, 0.60);
@@ -14,13 +16,15 @@ $charcoal-40                    : rgba($charcoal, 0.40);
 $charcoal-20                    : rgba($charcoal, 0.20);
 $charcoal-10                    : rgba($charcoal, 0.10);
 
-$light-charcoal                 : #5B5B5E;
+/* Lighter typography */
+$light-charcoal                 : #ABAEB2;
 $light-charcoal-80              : rgba($light-charcoal, 0.80);
 $light-charcoal-60              : rgba($light-charcoal, 0.60);
 $light-charcoal-40              : rgba($light-charcoal, 0.40);
 $light-charcoal-20              : rgba($light-charcoal, 0.20);
 $light-charcoal-10              : rgba($light-charcoal, 0.10);
 
+/* A bluer gray, modal backdrops, etc. */
 $silver                         : #8492A6;
 $silver-80                      : rgba($silver, 0.80);
 $silver-60                      : rgba($silver, 0.60);
@@ -28,13 +32,7 @@ $silver-40                      : rgba($silver, 0.40);
 $silver-20                      : rgba($silver, 0.20);
 $silver-10                      : rgba($silver, 0.10);
 
-$dark-silver                    : #3C4858;
-$dark-silver-80                 : rgba($dark-silver, 0.80);
-$dark-silver-60                 : rgba($dark-silver, 0.60);
-$dark-silver-40                 : rgba($dark-silver, 0.40);
-$dark-silver-20                 : rgba($dark-silver, 0.20);
-$dark-silver-10                 : rgba($dark-silver, 0.10);
-
+/* Lightest typography */
 $light-silver                   : #D9DDE0;
 $light-silver-80                : rgba($light-silver, 0.80);
 $light-silver-60                : rgba($light-silver, 0.60);
@@ -42,6 +40,15 @@ $light-silver-40                : rgba($light-silver, 0.40);
 $light-silver-20                : rgba($light-silver, 0.20);
 $light-silver-10                : rgba($light-silver, 0.10);
 
+/* Navbar dark color */
+$dark-silver                    : #3C4858;
+$dark-silver-80                 : rgba($dark-silver, 0.80);
+$dark-silver-60                 : rgba($dark-silver, 0.60);
+$dark-silver-40                 : rgba($dark-silver, 0.40);
+$dark-silver-20                 : rgba($dark-silver, 0.20);
+$dark-silver-10                 : rgba($dark-silver, 0.10);
+
+/* Main background color */
 $snow                           : #F0F2F4;
 $snow-80                        : rgba($snow, 0.80);
 $snow-60                        : rgba($snow, 0.60);
@@ -49,19 +56,37 @@ $snow-40                        : rgba($snow, 0.40);
 $snow-20                        : rgba($snow, 0.20);
 $snow-10                        : rgba($snow, 0.10);
 
-$blue                           : #1DA3CA;
+/* Used for active elements: buttons, etc. */
+$blue                           : #22A4DD;
 $blue-80                        : rgba($blue, 0.80);
 $blue-60                        : rgba($blue, 0.60);
 $blue-40                        : rgba($blue, 0.40);
 $blue-20                        : rgba($blue, 0.20);
 $blue-10                        : rgba($blue, 0.10);
 
-$dark-blue                      : #147D9C;
+/* Used for active elements when hovered */
+$light-blue                     : #7AC8EB;
+$light-blue-80                  : rgba($light-blue, 0.80);
+$light-blue-60                  : rgba($light-blue, 0.60);
+$light-blue-40                  : rgba($light-blue, 0.40);
+$light-blue-20                  : rgba($light-blue, 0.20);
+$light-blue-10                  : rgba($light-blue, 0.10);
+
+/* Used for active elements when depressed */
+$dark-blue                      : #448AAA;
 $dark-blue-80                   : rgba($dark-blue, 0.80);
 $dark-blue-60                   : rgba($dark-blue, 0.60);
 $dark-blue-40                   : rgba($dark-blue, 0.40);
 $dark-blue-20                   : rgba($dark-blue, 0.20);
 $dark-blue-10                   : rgba($dark-blue, 0.10);
+
+/* Used very sparingly for brightest highlights */
+$bright-blue                    : #49BEF2;
+$bright-blue-80                 : rgba($bright-blue, 0.80);
+$bright-blue-60                 : rgba($bright-blue, 0.60);
+$bright-blue-40                 : rgba($bright-blue, 0.40);
+$bright-blue-20                 : rgba($bright-blue, 0.20);
+$bright-blue-10                 : rgba($bright-blue, 0.10);
 
 $yellow                         : #FED10D;
 $yellow-80                      : rgba($yellow, 0.80);
@@ -70,13 +95,17 @@ $yellow-40                      : rgba($yellow, 0.40);
 $yellow-20                      : rgba($yellow, 0.20);
 $yellow-10                      : rgba($yellow, 0.10);
 
-$red                            : #E44438;
+/* Used sparingly for error/alert elements */
+$red                            : #D26262;
 $red-80                         : rgba($red, 0.80);
 $red-60                         : rgba($red, 0.60);
 $red-40                         : rgba($red, 0.40);
 $red-20                         : rgba($red, 0.20);
 $red-10                         : rgba($red, 0.10);
+$bright-red                     : #ED7777;
+$dark-red                       : #A15252;
 
+/* Used sparingly for success elements */
 $green                          : #20B844;
 $green-80                       : rgba($green, 0.80);
 $green-60                       : rgba($green, 0.60);
@@ -84,6 +113,7 @@ $green-40                       : rgba($green, 0.40);
 $green-20                       : rgba($green, 0.20);
 $green-10                       : rgba($green, 0.10);
 
+/* True white */
 $white                          : #FFFFFF;
 $white-80                       : rgba($white, 0.80);
 $white-60                       : rgba($white, 0.60);
@@ -95,5 +125,6 @@ $transparent                    : rgba($white, 0);
 
 /* Specific-use colors */
 
+$roots-yellow                   : #FAD334; // Roots of Success logo color
 $blue-dark                      : #09556A;  // Buttons
 $component-gray                 : #A2A2A2;  // Components (do not modify--linked to svg color)

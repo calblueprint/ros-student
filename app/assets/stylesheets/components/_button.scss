@@ -6,15 +6,15 @@
   @include appearance(none);
   background: $blue;
   border: 1px solid $blue;
-  border-radius: 4px;
+  border-radius: 3px;
   color: $snow;
   display: inline-block;
   font-family: $font-stack;
   font-size: 14px;
-  font-weight: $bold;
+  font-weight: $semi-bold;
   letter-spacing: 0.5px;
   outline: none;
-  padding: 8px 18px;
+  padding: 8px 20px;
   transition: 100ms;
   cursor: pointer;
 
@@ -32,21 +32,20 @@
   }
 
   &:hover {
-    background: $dark-blue;
-    border: 1px solid $dark-blue;
-    box-shadow: 0 2px 8px $charcoal-40;
+    background: $light-blue;
+    border: 1px solid $light-blue;
     text-decoration: none;
   }
 
   &:active {
-    box-shadow: none;
-    opacity: 0.8;
+    background: $dark-blue;
+    border: 1px solid $dark-blue;
   }
 }
 
 .button--lg {
   font-size: 16px;
-  padding: 12px 25px;
+  padding: 12px 26px;
 }
 
 .button--sm {
@@ -54,10 +53,26 @@
   padding: 5px 14px;
 }
 
+.button--lg-sq {
+  font-size: 16px;
+  padding: 12px 12px;
+}
+
+.button--sm-sq {
+  font-size: 12px;
+  padding: 5px 5px;
+}
+
 /* Button colors */
 .button--red {
   background: $red;
   border-color: $red;
+  color: $snow;
+}
+
+.button--green {
+  background: $green;
+  border-color: $green;
   color: $snow;
 }
 
