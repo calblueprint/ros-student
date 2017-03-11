@@ -44,7 +44,7 @@ class SaveButton extends React.Component {
   getStyle() {
     switch (this.state.currentAction) {
       case 'save':
-        return 'button'
+        return 'button disabled'
       case 'success':
         return 'button button--green'
       case 'error':
