@@ -37,7 +37,6 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
     end
   end
 
-
   private
 
   def component_params

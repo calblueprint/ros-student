@@ -31,7 +31,7 @@ function getFlashes() {
   }
   const content = JSON.parse(flashes.content)
 
-  resetFlash()
+  // resetFlash()
   return content
 }
 

@@ -13,7 +13,7 @@ import AdminLoginPage from './components/AdminLoginPage'
 import StudentForgotPasswordPage from './components/StudentForgotPasswordPage'
 import AdminForgotPasswordPage from './components/AdminForgotPasswordPage'
 import TestingPage from './components/TestingPage'
-import Toast from '../shared/components/widgets/Toast'
+import Flash from '../shared/components/widgets/Flash'
 
 class App extends React.Component {
   render() {
@@ -23,7 +23,7 @@ class App extends React.Component {
           {this.props.children}
         </div>
 
-        <Toast />
+        <Flash />
       </div>
     )
   }

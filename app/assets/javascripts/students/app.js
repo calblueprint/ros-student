@@ -12,31 +12,14 @@ import { render } from 'react-dom'
 import '../../stylesheets/bundle/students.scss'
 
 import { RailsRoutes, ReactRoutes } from '../shared/routes'
-import { getUser, observeUser } from '../utils/helpers/user_helpers'
 
 import StudentProfilePage from './components/StudentProfilePage'
 import StudentDashboardPage from './components/StudentDashboardPage'
 import CourseOutlinePage from './components/CourseOutlinePage'
-
+import Flash from '../shared/components/widgets/Flash'
 import Navbar from '../shared/components/widgets/Navbar'
 
 class App extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      user: getUser()
-    }
-
-    this.observeUser = observeUser(() => {
-      this.setState({ user: getUser() })
-    })
-  }
-
-  componentWillUnmount() {
-    this.observeUser.disconnect()
-  }
-
   render() {
     return (
       <div>
@@ -45,6 +28,8 @@ class App extends React.Component {
         <div className='flex center'>
           {this.props.children}
         </div>
+
+        <Flash />
       </div>
     )
   }

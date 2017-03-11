@@ -8,16 +8,35 @@ class Flash extends React.Component {
     super(props)
 
     this.state = {
-      flash: getFlashes(),
+      flash: {},
     }
 
     this.showFlashes = this.showFlashes.bind(this)
 
-    observeFlashes(this.showFlashes())
+    this.observeFlashes = observeFlashes(() => {
+      console.log('new flash')
+      this.showFlashes()
+    })
+  }
+
+  componentDidMount() {
+    this.showFlashes()
+  }
+
+  componentWillUnmount() {
+    this.observeFlashes.disconnect()
   }
 
   showFlashes() {
+    this.setState({ flash: getFlashes() }, () => {
+      setTimeout(() => {
+        this.setState({ flash: {} })
+      }, 4000)
+    })
+  }
 
+  getFlashStyle() {
+    return _.isEmpty(this.state.flash) ? 'hidden-input' : 'fade-in-out'
   }
 
   renderFlashes() {
@@ -37,7 +56,9 @@ class Flash extends React.Component {
 
   render() {
     return (
-      <div className='fill'>{this.renderFlashes()}</div>
+      <div className={`flash-container ${this.getFlashStyle()}`}>
+        {this.renderFlashes()}
+      </div>
     )
   }
 }

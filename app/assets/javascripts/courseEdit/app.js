@@ -36,6 +36,8 @@ class App extends React.Component {
         <div className='flex center'>
           {this.props.children}
         </div>
+
+        <Flash />
       </div>
     )
   }

@@ -2,7 +2,6 @@ import _ from 'underscore'
 import React from 'react'
 
 import Input from './Input'
-import Flash from './Flash'
 
 import { getCSRFFieldName, getCSRFToken } from '../../../utils/helpers/form_helpers'
 
@@ -20,8 +19,6 @@ class Form extends React.Component {
         action={this.props.action}
         method={this.props.method}
         acceptCharset='UTF-8'>
-
-        <Flash />
 
         <input type='hidden' name='utf8' value='&#x2713;' />
 
