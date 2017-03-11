@@ -7,6 +7,7 @@ import { Images } from '../../utils/image_helpers'
 import request from '../../shared/requests/request'
 
 import Form from '../../shared/components/forms/Form'
+import SaveButton from '../../shared/components/widgets/SaveButton'
 
 class ExportImportPage extends React.Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class ExportImportPage extends React.Component {
     })
   }
 
-  exportCourse(e) {
+  exportCourse(e, success, error) {
     e.preventDefault()
     const id = this.state.selectedCourse
     if (id == -1) {
@@ -46,12 +47,14 @@ class ExportImportPage extends React.Component {
     const course = this.state.courses.find((course) => course.id == id)
     request.json(route, (response) => {
       console.log(response)
+      success && success()
     }, (error) => {
       console.log(error)
+      error && error()
     }, `${course.name}.json`)
   }
 
-  importCourse(e) {
+  importCourse(e, success, error) {
     e.preventDefault()
     if (_.isEmpty(this.state.file)) {
       return
@@ -65,9 +68,10 @@ class ExportImportPage extends React.Component {
     }
 
     request.post(route, params, (response) => {
-      console.log(response)
+      success && success()
     }, (error) => {
       console.log(error)
+      error && error()
     })
   }
 
@@ -123,12 +127,10 @@ class ExportImportPage extends React.Component {
                   </option>
                   {this.renderSelectOptions()}
                 </select>
-                <input
-                  type='submit'
-                  className='button marginTop-xs'
-                  value='Submit'
-                  onClick={this.exportCourse}
-                  disabled={this.state.selectedCourse == -1}
+                <SaveButton
+                  text="Submit"
+                  onPress={this.exportCourse}
+                  className={`${this.state.selectedCourse == -1 ? 'disabled' : ''} marginTop-xs`}
                 />
               </Form>
             </div>
@@ -155,12 +157,10 @@ class ExportImportPage extends React.Component {
                   onChange={this.handleFile}
                   accept='.json'
                 />
-                <input
-                  disabled={_.isEmpty(this.state.file)}
-                  type='submit'
-                  className='button marginTop-xs'
-                  value='Submit'
-                  onClick={this.importCourse}
+                <SaveButton
+                  text="Submit"
+                  onPress={this.importCourse}
+                  className={`${_.isEmpty(this.state.file) ? 'disabled' : ''}  marginTop-xs`}
                 />
               </Form>
             </div>
