@@ -46,6 +46,8 @@ class RailsRoutes {
   static adminsSignOutPath() { return '/admins/sign_out' }
   static studentsSignOutPath() { return '/students/sign_out' }
 
+  static studentsResetPasswordPath() { return '/students/password'}
+
   // Shared
   static dashboardPath() { return '/dashboard' }
 
