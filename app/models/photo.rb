@@ -20,4 +20,8 @@ class Photo < ActiveRecord::Base
   def url
     image.url
   end
+
+  def thumbnail
+    image.thumb.url if image && image.thumb
+  end
 end

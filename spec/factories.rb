@@ -63,7 +63,7 @@ FactoryGirl.define do
     password 'password'
     first_name 'first'
     last_name 'last'
-    username { FFaker::Internet.user_name }
+    sequence(:username) { |n| "#{FFaker::Internet.user_name}#{n}" }
     code
   end
 
