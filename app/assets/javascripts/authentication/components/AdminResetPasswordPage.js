@@ -12,8 +12,8 @@ class AdminResetPasswordPage extends React.Component {
           <h2 className='h2 marginTopBot-xxs'>Change Password</h2>
           <ResetPasswordForm
             userType='admin'
-            railsRoute={RailsRoutes.adminsSignInPath()}
-            apiRoute={APIRoutes.adminsResetPasswordPath()}
+            railsRoute={RailsRoutes.adminsResetPasswordPath()}
+            resetPasswordToken={this.props.location.query.reset_password_token}
           />
         </div>
       </div>

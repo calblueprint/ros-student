@@ -13,7 +13,6 @@ class StudentResetPasswordPage extends React.Component {
           <ResetPasswordForm
             userType='student'
             railsRoute={RailsRoutes.studentsResetPasswordPath()}
-            apiRoute={APIRoutes.studentsResetPasswordPath()}
             resetPasswordToken={this.props.location.query.reset_password_token}
           />
         </div>

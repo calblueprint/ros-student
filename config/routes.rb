@@ -114,14 +114,12 @@ Rails.application.routes.draw do
     resources :admins, only: [] do
       collection do
         post :reset_password
-        put :update
       end
     end
 
     resources :students, only: [] do
       collection do
         post :reset_password
-        put :update
       end
     end
   end

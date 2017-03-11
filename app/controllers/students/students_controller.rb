@@ -1,5 +1,5 @@
 class Students::StudentsController < Students::BaseController
-  skip_before_filter :authenticate_student!, only: [:create, :reset_password]
+  skip_before_filter :authenticate_student!, only: :create
 
   load_and_authorize_resource
 
@@ -21,9 +21,6 @@ class Students::StudentsController < Students::BaseController
       render 'pages/home'
     end
   end
-
-
-  private
 
   def student_params
     params.require(:student).permit(

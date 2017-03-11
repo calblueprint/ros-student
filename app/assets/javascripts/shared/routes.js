@@ -47,6 +47,7 @@ class RailsRoutes {
   static studentsSignOutPath() { return '/students/sign_out' }
 
   static studentsResetPasswordPath() { return '/students/password'}
+  static adminsResetPasswordPath() { return '/admins/password'}
 
   // Shared
   static dashboardPath() { return '/dashboard' }
@@ -68,8 +69,6 @@ class APIRoutes {
   // Authentication
   static adminsForgotPasswordPath() { return APIRoutes.createRoute(`admins/reset_password`) }
   static studentsForgotPasswordPath() { return APIRoutes.createRoute(`students/reset_password`) }
-  static adminsResetPasswordPath() { return APIRoutes.createRoute(`admins/update`) }
-  static studentsResetPasswordPath() { return APIRoutes.createRoute(`students/update`) }
 
   // Students
   static verifyCodePath()      { return APIRoutes.createRoute(`codes/verify`) }
