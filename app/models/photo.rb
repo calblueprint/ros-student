@@ -13,11 +13,20 @@
 class Photo < ActiveRecord::Base
   belongs_to :parent, polymorphic: true
 
-  validates :image, presence: true
+  # validates :image, presence: true
 
   mount_uploader :image, ImageUploader
 
+  after_update :check_empty_image
+
   def url
     image.url
+  end
+
+  private
+
+  # Remove model if there isn't an image.
+  def check_empty_image
+    destroy unless image
   end
 end

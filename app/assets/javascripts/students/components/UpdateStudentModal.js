@@ -19,6 +19,8 @@ class UpdateStudentModal extends UpdateUserModal {
 
     if (!_.isEmpty(this.state.imageField.imageData.value)) {
       params.student.photo_attributes = getInputToParams(this.state.imageField)
+    } else {
+      params.student.photo_attributes = { remove_image: true }
     }
 
     request.update(path, params, (response) => {
