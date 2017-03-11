@@ -146,7 +146,7 @@ class UpdateUserModal extends React.Component {
             </Modal.Dismiss>
           </Modal.Header>
           <Modal.Body>
-            <Form>
+            <Form onSubmit={this.updateUser}>
               <div className='flex flex-horizontal center update-user-container'>
                 <ImageUploadInput
                   label='Profile Image'
@@ -176,7 +176,7 @@ class UpdateUserModal extends React.Component {
                   </div>
                   <div className='update-user-input'>
                     <Collapse isOpened={this.state.isDropdownOpen}>
-                        <Input {...this.state.formFields.confirmPassword} />
+                      <Input {...this.state.formFields.confirmPassword} />
                     </Collapse>
                   </div>
                   <div className='update-user-input'>

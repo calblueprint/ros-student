@@ -1,5 +1,5 @@
 import _ from 'underscore'
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import Input from './Input'
 import Flash from './Flash'
@@ -12,6 +12,20 @@ const IMAGE    = 'image'
 const AUDIO    = 'audio'
 
 class Form extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  onSubmit(e) {
+    if (this.props.onSubmit) {
+      this.props.onSubmit(e)
+    } else {
+      e.preventDefault()
+    }
+  }
+
   render() {
     return (
       <form
@@ -19,7 +33,9 @@ class Form extends React.Component {
         id={this.props.id}
         action={this.props.action}
         method={this.props.method}
-        acceptCharset='UTF-8'>
+        acceptCharset='UTF-8'
+        onSubmit={this.props.onSubmit}
+      >
 
         <Flash />
 
@@ -34,6 +50,10 @@ class Form extends React.Component {
       </form>
     )
   }
+}
+
+Form.propTypes = {
+  onSubmit: PropTypes.func,
 }
 
 Form.defaultProps = {
