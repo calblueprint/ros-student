@@ -144,21 +144,6 @@ class CourseEditPage extends React.Component {
 
   toggleIsCollapsed() {
     this.setState({ forceOpen: !this.state.forceOpen})
-    /*if (this.state.buttonState) {
-      this.setState({ isForceOpen: true }, () => {
-        this.setState({
-          isForceOpen: false,
-          buttonState: false,
-        })
-      })
-    } else {
-      this.setState({ isForceClose: true }, () => {
-        this.setState({
-          isForceClose: false,
-          buttonState: true,
-        })
-      })
-    }*/
   }
 
   setImage(e) {
