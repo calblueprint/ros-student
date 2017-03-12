@@ -214,7 +214,7 @@ class CourseEditPage extends React.Component {
                   <InlineEditInput
                     value={this.state.course.name}
                     onBlur={this.onBlurName}
-                    buttonStyle='button button--sm-sq button--white'
+                    buttonStyle="button button--sm-sq button--white"
                   />
                 </div>
 
@@ -222,7 +222,7 @@ class CourseEditPage extends React.Component {
                   <InlineEditInput
                     value={this.state.course.description}
                     onBlur={this.onBlurDescription}
-                    buttonStyle='button button--sm-sq button--white'
+                    buttonStyle="button button--sm-sq button--white"
                   />
                 </div>
               </div>
