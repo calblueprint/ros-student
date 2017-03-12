@@ -136,7 +136,7 @@ class CourseEditPage extends React.Component {
   }
 
   toggleIsCollapsed() {
-    this.setState({ forceOpen: !this.state.forceOpen})
+    this.setState({ forceOpen: !this.state.forceOpen })
   }
 
   setImage(e) {
@@ -190,7 +190,11 @@ class CourseEditPage extends React.Component {
     return this.state.course.sections.map((value) => {
       return (
         <div className='component-edit-section' key={value.id}>
-          <SectionEdit section={value} deleteSection={this.deleteSection} forceOpen={this.state.forceOpen}/>
+          <SectionEdit
+            section={value}
+            deleteSection={this.deleteSection}
+            forceOpen={this.state.forceOpen}
+          />
         </div>
       )
     })
@@ -227,7 +231,8 @@ class CourseEditPage extends React.Component {
                 <label
                   htmlFor='course-edit-image-upload'
                   className='button course-edit-image-upload'
-                  onChange={this.handleImage}>
+                  onChange={this.handleImage}
+                >
                   Change Cover
                 </label>
                 <input
@@ -255,7 +260,7 @@ class CourseEditPage extends React.Component {
               {this.renderPublishLabel()}
             </button>
             <button
-            className='button marginLeft-sm'
+              className='button marginLeft-sm'
               onClick = {this.toggleIsCollapsed}
             >
               {this.renderCollapsedLabel()}
@@ -269,7 +274,10 @@ class CourseEditPage extends React.Component {
 
           <div>{this.renderSections()}</div>
           <div className='white-box'>
-            <button className='button button--white' onClick={this.createSection}>
+            <button
+              className='button button--white'
+              onClick={this.createSection}
+            >
               <div className='flex vertical'>
                 <img className='big-blue-plus' src={Images.big_blue_plus} />
                 <div>Add new section</div>
