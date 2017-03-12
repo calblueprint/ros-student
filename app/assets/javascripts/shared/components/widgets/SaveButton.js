@@ -44,7 +44,7 @@ class SaveButton extends React.Component {
   getStyle() {
     switch (this.state.currentAction) {
       case 'save':
-        return 'button'
+        return 'button disabled'
       case 'success':
         return 'button button--green'
       case 'error':
@@ -74,11 +74,24 @@ class SaveButton extends React.Component {
   }
 
   getText() {
-    return this.state.currentAction === 'save' ? (
-      <span>Saving...</span>
-    ) : (
-      <span>{this.props.text}</span>
-    )
+    switch (this.state.currentAction) {
+      case 'save':
+        return (
+          <span>Saving...</span>
+        )
+      case 'success':
+        return (
+          <span>Success!</span>
+        )
+      case 'error':
+        return (
+          <span>Error</span>
+        )
+      default:
+        return (
+          <span>{this.props.text}</span>
+        )
+    }
   }
 
   render() {

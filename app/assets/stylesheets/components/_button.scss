@@ -18,14 +18,15 @@
   transition: 100ms;
   cursor: pointer;
 
-  &:disabled {
-    background: $dark-blue-20;
-    border: 1px solid transparent;
+  &.disabled {
+    background: $dark-blue;
+    border: 1px solid $dark-blue;
     text-decoration: none;
+    pointer-events: none;
 
     &:hover {
-      background: $dark-blue-20;
-      border: 1px solid transparent;
+      background: $dark-blue;
+      border: 1px solid $dark-blue;
       text-decoration: none;
       box-shadow: none;
     }
