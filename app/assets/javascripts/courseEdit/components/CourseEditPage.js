@@ -23,6 +23,7 @@ class CourseEditPage extends React.Component {
         isPublished: false,
       },
       isDeleteModalOpen: false,
+      forceOpen: false,
     }
 
     this.createSection = this.createSection.bind(this)
@@ -35,6 +36,7 @@ class CourseEditPage extends React.Component {
     this.closeDeleteModal = this.closeDeleteModal.bind(this)
     this.onConfirmDelete = this.onConfirmDelete.bind(this)
     this.toggleIsPublished = this.toggleIsPublished.bind(this)
+    this.toggleIsCollapsed = this.toggleIsCollapsed.bind(this)
   }
 
   componentDidMount() {
@@ -53,6 +55,13 @@ class CourseEditPage extends React.Component {
     const path = APIRoutes.getEditCoursePath(this.id)
     request.get(path, (response) => {
       this.setState({ course: snakeToCamel(response) })
+      const course = this.state.course
+      console.log(course)
+      for (const section in course.sections) {
+        course.sections[section]['isOpen'] = false
+      }
+      console.log(course)
+      this.setState({course: course})
     }, (error) => {
       console.log('error')
     })
@@ -133,6 +142,25 @@ class CourseEditPage extends React.Component {
     this.setCourseValue('isPublished', !this.state.course.isPublished)
   }
 
+  toggleIsCollapsed() {
+    this.setState({ forceOpen: !this.state.forceOpen})
+    /*if (this.state.buttonState) {
+      this.setState({ isForceOpen: true }, () => {
+        this.setState({
+          isForceOpen: false,
+          buttonState: false,
+        })
+      })
+    } else {
+      this.setState({ isForceClose: true }, () => {
+        this.setState({
+          isForceClose: false,
+          buttonState: true,
+        })
+      })
+    }*/
+  }
+
   setImage(e) {
     convertImage(e, this.onBlurImage)
   }
@@ -176,11 +204,15 @@ class CourseEditPage extends React.Component {
     return this.state.course.isPublished ? 'Unpublish course' : 'Publish course'
   }
 
+  renderCollapsedLabel() {
+    return this.state.forceOpen ? 'Collapse Courses' : 'Expand Courses'
+  }
+
   renderSections() {
     return this.state.course.sections.map((value) => {
       return (
         <div className='component-edit-section' key={value.id}>
-          <SectionEdit section={value} deleteSection={this.deleteSection} />
+          <SectionEdit section={value} deleteSection={this.deleteSection} forceOpen={this.state.forceOpen}/>
         </div>
       )
     })
@@ -244,7 +276,12 @@ class CourseEditPage extends React.Component {
             >
               {this.renderPublishLabel()}
             </button>
-
+            <button
+            className='button marginLeft-sm'
+              onClick = {this.toggleIsCollapsed}
+            >
+              {this.renderCollapsedLabel()}
+            </button>
             <button
               onClick={this.openDeleteModal}
               className='button course-edit-delete'>

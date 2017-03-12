@@ -17,7 +17,7 @@ class SectionEdit extends React.Component {
     this.state = {
       loaded: false,
       section: this.props.section,
-      isOpen: true,
+      isOpen: false,
       openDeleteModal: false,
     }
 
@@ -28,6 +28,7 @@ class SectionEdit extends React.Component {
     this.onBlurTitle = this.onBlurTitle.bind(this)
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.changeOpenCloseValue = this.changeOpenCloseValue.bind(this)
   }
 
   createSubsection() {
@@ -79,8 +80,7 @@ class SectionEdit extends React.Component {
   }
 
   toggleSubsections() {
-    const isOpen = this.state.isOpen
-    this.setState({ isOpen: !isOpen })
+    this.setState({ isOpen: !this.state.isOpen })
   }
 
   renderSubsections() {
@@ -115,9 +115,19 @@ class SectionEdit extends React.Component {
     this.setState({ openDeleteModal: false })
   }
 
+  changeOpenCloseValue(nextProps) {
+    console.log(nextProps.forceOpen)
+    this.setState({ isOpen: nextProps.forceOpen })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isUndefined(nextProps.forceOpen)) {
+      this.changeOpenCloseValue(nextProps)
+    }
+  }
+
   render() {
     const arrow = this.state.isOpen ? 'rotate' : ''
-
     return (
       <div className='white-box'>
         <div className='flex vertical h2'>
