@@ -55,13 +55,6 @@ class CourseEditPage extends React.Component {
     const path = APIRoutes.getEditCoursePath(this.id)
     request.get(path, (response) => {
       this.setState({ course: snakeToCamel(response) })
-      const course = this.state.course
-      console.log(course)
-      for (const section in course.sections) {
-        course.sections[section]['isOpen'] = false
-      }
-      console.log(course)
-      this.setState({course: course})
     }, (error) => {
       console.log('error')
     })
