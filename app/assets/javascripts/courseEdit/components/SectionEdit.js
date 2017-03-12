@@ -116,7 +116,6 @@ class SectionEdit extends React.Component {
   }
 
   changeOpenCloseValue(nextProps) {
-    console.log(nextProps.forceOpen)
     this.setState({ isOpen: nextProps.forceOpen })
   }
 
