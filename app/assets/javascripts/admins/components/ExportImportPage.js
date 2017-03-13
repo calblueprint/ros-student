@@ -115,11 +115,11 @@ class ExportImportPage extends React.Component {
           <div className='export-container'>
             <div className='flex center flex-vertical'>
               <h1 className='h1'>Export Course</h1>
-              <p className='marginTopBot-md'>To export a course, select the course that you'd like to export from the dropdown below. This will export all of a course's content in a .json format, which you can edit and re-upload as a new course.</p>
+              <p className='marginTopBot-md export-import-desc'>To export a course, select the course that you'd like to export from the dropdown below. This will export all of a course's content in a .json format, which you can edit and re-upload as a new course.</p>
               <Form>
                 <select
                   style={this.getDropdownStyle()}
-                  className='select'
+                  className='select course-export-button'
                   defaultValue={this.state.selectedCourse}
                   onChange={this.handleCourseSelect}>
                   <option value={-1}>
@@ -139,7 +139,7 @@ class ExportImportPage extends React.Component {
           <div className='import-container'>
             <div className='flex center flex-vertical'>
               <h1 className='h1'>Import Course</h1>
-              <p className='marginTopBot-md'>Be sure you want to import a course before continuing. By using this feature, you will create a new course. We will only accept properly formatted .json files. Click <span>here</span> for an example of what a formatted course looks like.</p>
+              <p className='marginTopBot-md export-import-desc'>Be sure you want to import a course before continuing. By using this feature, you will create a new course. We will only accept properly formatted .json files, such as those downloaded from Export Course.</p>
               <Form>
                 <label
                   htmlFor='course-import'
