@@ -1,6 +1,8 @@
 import React from 'react'
 import Collapse from 'react-collapse'
 import _ from 'underscore'
+import update from 'immutability-helper'
+import { arrayMove } from 'react-sortable-hoc'
 
 import { APIRoutes } from '../../shared/routes'
 import { Images } from '../../utils/image_helpers'
@@ -9,6 +11,7 @@ import request from '../../shared/requests/request'
 import SubsectionEdit from './SubsectionEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import DeleteModal from '../../shared/components/widgets/DeleteModal'
+import ReorderModal from './ReorderModal'
 
 class SectionEdit extends React.Component {
   constructor(props) {
@@ -19,6 +22,7 @@ class SectionEdit extends React.Component {
       section: this.props.section,
       isOpen: false,
       openDeleteModal: false,
+      isReorderModalOpen: false,
     }
 
     this.createSubsection = this.createSubsection.bind(this)
@@ -26,9 +30,40 @@ class SectionEdit extends React.Component {
     this.deleteSection = this.deleteSection.bind(this)
     this.toggleSubsections = this.toggleSubsections.bind(this)
     this.onBlurTitle = this.onBlurTitle.bind(this)
-    this.openModal = this.openModal.bind(this)
-    this.closeModal = this.closeModal.bind(this)
-    this.changeOpenCloseValue = this.changeOpenCloseValue.bind(this)
+
+    this.openDeleteModal = this.openDeleteModal.bind(this)
+    this.closeDeleteModal = this.closeDeleteModal.bind(this)
+    this.openReorderModal = this.openReorderModal.bind(this)
+    this.closeReorderModal = this.closeReorderModal.bind(this)
+
+    this.onReorder = this.onReorder.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isUndefined(nextProps.forceOpen)) {
+      this.setState({ isOpen: nextProps.forceOpen })
+    }
+  }
+
+  openDeleteModal(e) {
+    e.preventDefault()
+    this.setState({ openDeleteModal: true })
+  }
+
+  closeDeleteModal(e) {
+    if (!_.isUndefined(e)) {
+      e.preventDefault()
+    }
+
+    this.setState({ openDeleteModal: false })
+  }
+
+  openReorderModal() {
+    this.setState({ isReorderModalOpen: true })
+  }
+
+  closeReorderModal() {
+    this.setState({ isReorderModalOpen: false })
   }
 
   createSubsection() {
@@ -83,6 +118,33 @@ class SectionEdit extends React.Component {
     this.setState({ isOpen: !this.state.isOpen })
   }
 
+  onReorder({ oldIndex, newIndex }) {
+    const subsection = this.state.section.subsections[oldIndex]
+    if (oldIndex == newIndex || !subsection) {
+      return
+    }
+
+    const path = APIRoutes.switchSubsectionPath(subsection.id)
+    const params = {
+      subsection: {
+        position: newIndex + 1,
+      }
+    }
+
+    const subsections = this.state.section.subsections
+    this.setState({ section: update(this.state.section, {
+      subsections: { $set: arrayMove(subsections, oldIndex, newIndex) },
+    })})
+
+    request.post(path, params, (response) => {
+    }, (error) => {
+      console.log(error)
+      this.setState({ section: update(this.state.section, {
+        subsections: { $set: arrayMove(subsections, newIndex, oldIndex) },
+      })})
+    })
+  }
+
   renderSubsections() {
     if (!this.state.section.subsections) {
       return (
@@ -102,29 +164,6 @@ class SectionEdit extends React.Component {
     }
   }
 
-  openModal(e) {
-    e.preventDefault()
-    this.setState({ openDeleteModal: true })
-  }
-
-  closeModal(e) {
-    if (!_.isUndefined(e)) {
-      e.preventDefault()
-    }
-
-    this.setState({ openDeleteModal: false })
-  }
-
-  changeOpenCloseValue(nextProps) {
-    this.setState({ isOpen: nextProps.forceOpen })
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!_.isUndefined(nextProps.forceOpen)) {
-      this.changeOpenCloseValue(nextProps)
-    }
-  }
-
   render() {
     const arrow = this.state.isOpen ? 'rotate' : ''
     return (
@@ -141,8 +180,14 @@ class SectionEdit extends React.Component {
             buttonStyle='button button--sm-sq button--white'
           />
           <button
+            className='button button--sm marginLeft-sm'
+            onClick={this.openReorderModal}>
+            Reorder Subsections
+          </button>
+
+          <button
             className='button button--sm button--white course-edit-delete'
-            onClick={this.openModal}>
+            onClick={this.openDeleteModal}>
             <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
           </button>
         </div>
@@ -162,9 +207,17 @@ class SectionEdit extends React.Component {
 
         <DeleteModal
           openDeleteModal={this.state.openDeleteModal}
-          closeModal={this.closeModal}
+          closeModal={this.closeDeleteModal}
           deleteFunction={this.deleteSection}
-          objectType="section"
+          objectType='section'
+        />
+
+        <ReorderModal
+          closeModal={this.closeReorderModal}
+          isModalOpen={this.state.isReorderModalOpen}
+          type='Subsections'
+          items={this.state.section.subsections}
+          onReorder={this.onReorder}
         />
       </div>
     )

@@ -1,4 +1,6 @@
 import React from 'react'
+import update from 'immutability-helper'
+import { arrayMove } from 'react-sortable-hoc'
 
 import { APIRoutes, RailsRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
@@ -9,6 +11,7 @@ import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 
 import SectionEdit from './SectionEdit'
 import DeleteCourseModal from './DeleteCourseModal'
+import ReorderModal from './ReorderModal'
 
 class CourseEditPage extends React.Component {
   constructor(props) {
@@ -22,8 +25,9 @@ class CourseEditPage extends React.Component {
         imageUrl: '',
         isPublished: false,
       },
-      isDeleteModalOpen: false,
       forceOpen: false,
+      isDeleteModalOpen: false,
+      isReorderModalOpen: false,
     }
 
     this.createSection = this.createSection.bind(this)
@@ -32,11 +36,16 @@ class CourseEditPage extends React.Component {
     this.onBlurDescription = this.onBlurDescription.bind(this)
     this.onBlurImage = this.onBlurImage.bind(this)
     this.setImage = this.setImage.bind(this)
+
     this.openDeleteModal = this.openDeleteModal.bind(this)
     this.closeDeleteModal = this.closeDeleteModal.bind(this)
+    this.openReorderModal = this.openReorderModal.bind(this)
+    this.closeReorderModal = this.closeReorderModal.bind(this)
+
     this.onConfirmDelete = this.onConfirmDelete.bind(this)
     this.toggleIsPublished = this.toggleIsPublished.bind(this)
     this.toggleIsCollapsed = this.toggleIsCollapsed.bind(this)
+    this.onReorder = this.onReorder.bind(this)
   }
 
   componentDidMount() {
@@ -49,6 +58,14 @@ class CourseEditPage extends React.Component {
 
   closeDeleteModal() {
     this.setState({ isDeleteModalOpen: false })
+  }
+
+  openReorderModal() {
+    this.setState({ isReorderModalOpen: true })
+  }
+
+  closeReorderModal() {
+    this.setState({ isReorderModalOpen: false })
   }
 
   getCourse() {
@@ -167,6 +184,33 @@ class CourseEditPage extends React.Component {
     })
   }
 
+  onReorder({ oldIndex, newIndex }) {
+    const section = this.state.course.sections[oldIndex]
+    if (oldIndex == newIndex || !section) {
+      return
+    }
+
+    const path = APIRoutes.switchSectionPath(section.id)
+    const params = {
+      section: {
+        position: newIndex + 1,
+      }
+    }
+
+    const sections = this.state.course.sections
+    this.setState({ course: update(this.state.course, {
+      sections: { $set: arrayMove(sections, oldIndex, newIndex) },
+    })})
+
+    request.post(path, params, (response) => {
+    }, (error) => {
+      console.log(error)
+      this.setState({ course: update(this.state.course, {
+        sections: { $set: arrayMove(sections, newIndex, oldIndex) },
+      })})
+    })
+  }
+
   getImageStyle() {
     const imageUrl = this.state.course.imageUrl || Images.default_course
 
@@ -266,6 +310,12 @@ class CourseEditPage extends React.Component {
               {this.renderCollapsedLabel()}
             </button>
             <button
+              onClick={this.openReorderModal}
+              className='button marginLeft-sm'>
+              Reorder Sections
+            </button>
+
+            <button
               onClick={this.openDeleteModal}
               className='button course-edit-delete'>
               <i className='fa fa-trash fa-fw course-image-icon white' aria-hidden='true'></i>
@@ -288,9 +338,17 @@ class CourseEditPage extends React.Component {
 
         <DeleteCourseModal
           closeModal={this.closeDeleteModal}
-          openDeleteModal={this.state.isDeleteModalOpen}
+          openModal={this.state.isDeleteModalOpen}
           onDelete={this.onConfirmDelete}
           name={this.state.course.name}
+        />
+
+        <ReorderModal
+          closeModal={this.closeReorderModal}
+          isModalOpen={this.state.isReorderModalOpen}
+          type='Sections'
+          items={this.state.course.sections}
+          onReorder={this.onReorder}
         />
       </div>
     )

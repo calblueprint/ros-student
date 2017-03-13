@@ -43,7 +43,7 @@ class DeleteCourseModal extends React.Component {
     const confirmDelete = `Are you sure you want to delete this course? You can't undo this action. To confirm, please type in the name of the course: ${this.props.name}`
     return (
       <Modal
-        show={this.props.openDeleteModal}
+        show={this.props.openModal}
         onHide={this.props.closeModal}
       >
         <Modal.Header>
@@ -81,7 +81,7 @@ class DeleteCourseModal extends React.Component {
 
 DeleteCourseModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  openDeleteModal: PropTypes.bool.isRequired,
+  openModal: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
 }

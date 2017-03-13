@@ -115,6 +115,8 @@ class APIRoutes {
   static editSectionPath(id)     { return APIRoutes.createRoute(`admins/sections/${id}`) }
   static editCoursePath(id)      { return APIRoutes.createRoute(`admins/courses/${id}`) }
   static getEditCoursePath(id)   { return APIRoutes.createRoute(`admins/courses/${id}/edit`) }
+  static switchSectionPath(id) { return APIRoutes.createRoute(`admins/sections/${id}/switch_position`) }
+  static switchSubsectionPath(id) { return APIRoutes.createRoute(`admins/subsections/${id}/switch_position`) }
   static switchComponentPath(id) { return APIRoutes.createRoute(`admins/components/${id}/switch_position`) }
 }
 
