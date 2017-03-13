@@ -10,6 +10,10 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
     end
   end
 
+  def index
+    render json: @sections, each_serializer: SectionListSerializer
+  end
+
   def update
     if @section.update(section_params)
       render json: @section, user: current_user, serializer: SectionAdminSerializer, root: false

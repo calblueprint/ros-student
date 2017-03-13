@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import _ from 'underscore'
 
 import { Images } from '../../utils/helpers/image_helpers'
+import request from '../../shared/requests/request'
+
+import { APIRoutes } from '../../shared/routes'
+
 import EditComponentForm from './EditComponentForm'
 
 import DeleteModal from '../../shared/components/widgets/DeleteModal'
+import ChangeParentModal from './ChangeParentModal'
 
 class ComponentEdit extends React.Component {
   constructor(props) {
@@ -28,6 +33,7 @@ class ComponentEdit extends React.Component {
     this.openParentModal = this.openParentModal.bind(this)
     this.closeParentModal = this.closeParentModal.bind(this)
     this.onFormCompletion = this.onFormCompletion.bind(this)
+    this.moveComponent = this.moveComponent.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -59,12 +65,37 @@ class ComponentEdit extends React.Component {
     this.setState({ openEditModal: false })
   }
 
-  openParentModal() {
+  openParentModal(e) {
+    if (!_.isUndefined(e)) {
+      e.stopPropagation()
+      e.preventDefault()
+    }
+
     this.setState({ openParentModal: true })
   }
 
   closeParentModal() {
     this.setState({ openParentModal: false })
+  }
+
+  moveComponent(sectionId, subsectionId) {
+    const path = APIRoutes.switchSubsectionPath(this.id)
+    const params = {
+      component: {
+        id: this.id,
+        subsection_id: subsectionId,
+      }
+    }
+
+    console.log(this.state.component)
+
+    request.update(path, params, (response) => {
+      console.log(response)
+      this.props.removeComponent(this.id)
+      this.props.updateSubsection(sectionId, subsectionId, response)
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   onFormCompletion(editedComponent) {
@@ -108,7 +139,7 @@ class ComponentEdit extends React.Component {
               onClick={this.openParentModal}>
               <img
                 className='course-image-icon'
-                src={Images.delete}
+                src={Images.drag_handle}
               />
             </button>
 
@@ -136,13 +167,20 @@ class ComponentEdit extends React.Component {
         />
 
         <ChangeParentModal
-          openParentModal={this.state.openParentModal}
+          isChangeOpen={this.state.openParentModal}
           closeModal={this.closeParentModal}
-          objectType={TODO}
+          objectType='component'
+          courseId={this.props.courseId}
+          moveItem={this.moveComponent}
         />
       </div>
     )
   }
+}
+
+ComponentEdit.propTypes = {
+  component: PropTypes.object.isRequired,
+  courseId: PropTypes.number.isRequired,
 }
 
 export default ComponentEdit

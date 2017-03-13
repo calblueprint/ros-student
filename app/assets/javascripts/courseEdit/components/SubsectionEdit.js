@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import Collapse from 'react-collapse'
 import _ from 'underscore'
 import update from 'immutability-helper'
@@ -19,6 +19,7 @@ import AddComponentForm from './AddComponentForm'
 import { Images } from '../../utils/helpers/image_helpers'
 
 import DeleteModal from '../../shared/components/widgets/DeleteModal'
+import ChangeParentModal from './ChangeParentModal'
 
 const ComponentHandle = SortableHandle(() => {
   return(
@@ -30,16 +31,21 @@ const ComponentHandle = SortableHandle(() => {
   )
 })
 
-const ComponentItem = SortableElement(({ value, deleteComponent }) => {
+const ComponentItem = SortableElement(({ value, deleteComponent, removeComponent, courseId }) => {
   return (
     <div className='flex vertical' key={value.id}>
       <ComponentHandle />
-      <ComponentEdit component={value} deleteComponent={deleteComponent}/>
+      <ComponentEdit
+        component={value}
+        deleteComponent={deleteComponent}
+        removeComponent={removeComponent}
+        courseId={courseId}
+      />
     </div>
   )
 })
 
-const ComponentList = SortableContainer(({ items, deleteComponent }) => {
+const ComponentList = SortableContainer(({ items, deleteComponent, removeComponent, courseId }) => {
   return (
     <div>
       {
@@ -49,6 +55,8 @@ const ComponentList = SortableContainer(({ items, deleteComponent }) => {
             index={index}
             value={value}
             deleteComponent={deleteComponent}
+            removeComponent={removeComponent}
+            courseId={courseId}
           />
         })
       }
@@ -65,18 +73,23 @@ class SubsectionEdit extends React.Component {
       loaded: false,
       openAddModal: false,
       openDeleteModal: false,
+      openParentModal: false,
       subsection: this.props.subsection,
     }
 
     this.deleteSubsection = this.deleteSubsection.bind(this)
     this.deleteComponent = this.deleteComponent.bind(this)
+    this.removeComponent = this.removeComponent.bind(this)
     this.onFormCompletion = this.onFormCompletion.bind(this)
     this.toggleComponents = this.toggleComponents.bind(this)
     this.onBlurTitle      = this.onBlurTitle.bind(this)
     this.closeNewComponentForm = this.closeNewComponentForm.bind(this)
     this.showNewComponentForm = this.showNewComponentForm.bind(this)
-    this.openModal = this.openModal.bind(this)
-    this.closeModal = this.closeModal.bind(this)
+    this.openDeleteModal = this.openDeleteModal.bind(this)
+    this.closeDeleteModal = this.closeDeleteModal.bind(this)
+    this.openParentModal = this.openParentModal.bind(this)
+    this.closeParentModal = this.closeParentModal.bind(this)
+    this.moveSubsection = this.moveSubsection.bind(this)
 
     this.onSortEnd = this.onSortEnd.bind(this)
   }
@@ -113,6 +126,13 @@ class SubsectionEdit extends React.Component {
     })
   }
 
+  removeComponent(id) {
+    this.subsection.components = _.filter(
+      this.subsection.components,
+      function(component) { return component.id != id }
+    )
+  }
+
   deleteSubsection() {
     this.props.deleteSubsection(this.state.subsection.id)
   }
@@ -131,7 +151,9 @@ class SubsectionEdit extends React.Component {
           lockAxis='y'
 
           deleteComponent={this.deleteComponent}
+          removeComponent={removeComponent}
           onSortEnd={this.onSortEnd}
+          courseId={this.props.courseId}
         />
       )
     }
@@ -157,17 +179,34 @@ class SubsectionEdit extends React.Component {
     this.setState({ isOpen: !isOpen })
   }
 
-  openModal(e) {
+  openDeleteModal(e) {
     e.preventDefault()
     this.setState({ openDeleteModal: true })
   }
 
-  closeModal(e) {
+  closeDeleteModal(e) {
     if (!_.isUndefined(e)) {
       e.preventDefault()
     }
 
     this.setState({ openDeleteModal: false })
+  }
+
+  openParentModal(e) {
+    e.preventDefault()
+    this.setState({ openParentModal: true })
+  }
+
+  closeParentModal(e) {
+    if (!_.isUndefined(e)) {
+      e.preventDefault()
+    }
+
+    this.setState({ openParentModal: false })
+  }
+
+  moveSubsection(sectionId) {
+
   }
 
   onSortEnd({ oldIndex, newIndex }) {
@@ -218,14 +257,30 @@ class SubsectionEdit extends React.Component {
           </div>
           <button
             className='button button--sm button--white course-edit-delete'
-            onClick={this.openModal}>
+            onClick={this.openParentModal}>
+            <img
+              className='course-image-icon'
+              src={Images.drag_handle}
+            />
+          </button>
+          <button
+            className='button button--sm button--white course-edit-delete'
+            onClick={this.openDeleteModal}>
             <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
           </button>
           <DeleteModal
             openDeleteModal={this.state.openDeleteModal}
-            closeModal={this.closeModal}
+            closeModal={this.closeDeleteModal}
             deleteFunction={this.deleteSubsection}
             objectType="subsection"
+          />
+
+          <ChangeParentModal
+            isChangeOpen={this.state.openParentModal}
+            closeModal={this.closeParentModal}
+            objectType='subsection'
+            courseId={this.props.courseId}
+            moveItem={this.moveSubsection}
           />
         </div>
 
@@ -250,6 +305,11 @@ class SubsectionEdit extends React.Component {
       </div>
     )
   }
+}
+
+SubsectionEdit.propTypes = {
+  subsection: PropTypes.object.isRequired,
+  courseId: PropTypes.number.isRequired,
 }
 
 export default SubsectionEdit

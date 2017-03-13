@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import Collapse from 'react-collapse'
 import _ from 'underscore'
 import update from 'immutability-helper'
@@ -157,6 +157,7 @@ class SectionEdit extends React.Component {
             <SubsectionEdit
               subsection={value}
               deleteSubsection={this.deleteSubsection}
+              courseId={this.props.courseId}
             />
           </div>
         )
@@ -222,6 +223,12 @@ class SectionEdit extends React.Component {
       </div>
     )
   }
+}
+
+SectionEdit.propTypes = {
+  section: PropTypes.object.isRequired,
+  courseId: PropTypes.number.isRequired,
+  isSorting: PropTypes.bool,
 }
 
 export default SectionEdit

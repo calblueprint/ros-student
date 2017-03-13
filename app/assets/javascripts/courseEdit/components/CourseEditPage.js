@@ -211,6 +211,15 @@ class CourseEditPage extends React.Component {
     })
   }
 
+  updateSubsection(sectionId, subsectionId, components) {
+    const course = this.course
+
+    const sectionIndex = _.findIndex(course.sections, function(section) { section.id == sectionId })
+    const subsectionIndex = _.findIndex(course.sections[sectionIndex].subsections, function(subsection) { subsection.id == subsectionId })
+    course.sections[sectionIndex][subsectionIndex].components = components
+    this.setState({ course: course })
+  }
+
   getImageStyle() {
     const imageUrl = this.state.course.imageUrl || Images.default_course
 

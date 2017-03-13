@@ -44,4 +44,8 @@ class Component < ActiveRecord::Base
     insert_at(new_position)
     true
   end
+
+  def move_to_position
+    insert_at(subsection.components.size)
+  end
 end
