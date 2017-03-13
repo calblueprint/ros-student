@@ -4,10 +4,16 @@ import React, { PropTypes } from 'react'
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
 import request from '../../shared/requests/request'
+import { getErrors, getFormErrors, getFormFields } from '../../utils/form_helpers'
+
 
 class ResetPasswordForm extends React.Component {
   constructor(props) {
     super(props)
+
+    const formErrors = getFormErrors()
+
+    console.log(formErrors)
 
     this.state = {
       formFields: {
@@ -17,7 +23,7 @@ class ResetPasswordForm extends React.Component {
           name: `${this.props.userType}[password]`,
           type: 'password',
           onChange: _.bind(this.handleChange, this, 'newPassword'),
-          error: '',
+          error: formErrors.newPassword,
         },
         confirmPassword: {
           label: 'Confirm Password',
@@ -25,7 +31,7 @@ class ResetPasswordForm extends React.Component {
           name: `${this.props.userType}[password_confirmation]`,
           type: 'password',
           onChange: _.bind(this.handleChange, this, 'confirmPassword'),
-          error: '',
+          error: formErrors.confirmPassword,
         },
       }
     }
@@ -52,7 +58,7 @@ class ResetPasswordForm extends React.Component {
   render() {
     return (
       <Form
-        action={this.props.railsRoute}
+        action={`${this.props.railsRoute}?reset_password_token=${this.props.resetPasswordToken}`}
         method='post'>
         <input name='_method' type='hidden' value='patch' />
         <input name={this.getResetPasswordTokenName()} type='hidden' value={this.props.resetPasswordToken} />

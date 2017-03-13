@@ -25,6 +25,8 @@ render((
     <Route path={ReactRoutes.adminsForgotPasswordPath()} name='AdminForgotPasswordPage' component={AdminForgotPasswordPage} />
     <Route path={ReactRoutes.studentsResetPasswordPath()} name='StudentResetPasswordPage' component={StudentResetPasswordPage} />
     <Route path={ReactRoutes.adminsResetPasswordPath()} name='AdminResetPasswordPage' component={AdminResetPasswordPage} />
+    <Route path={ReactRoutes.studentsResetPasswordEditPath()} name='StudentResetPasswordPage' component={StudentResetPasswordPage} />
+    <Route path={ReactRoutes.adminsResetPasswordEditPath()} name='AdminResetPasswordPage' component={AdminResetPasswordPage} />
     <Route path={ReactRoutes.designPath()} name='DesignPage' component={DesignPage} />
     <Route path='/testing' name='TestingPage' component={TestingPage} />
     <Redirect from={ReactRoutes.studentsRenderPath()} to={ReactRoutes.studentsSignUpPath()} />
