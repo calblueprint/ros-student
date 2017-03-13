@@ -11,6 +11,7 @@ import { Images, convertImage } from '../../../utils/image_helpers'
 import ImageUploadInput from '../forms/ImageUploadInput'
 import Form from '../forms/Form'
 import Input from '../forms/Input'
+import SaveButton from '../widgets/SaveButton'
 
 class UpdateUserModal extends React.Component {
   constructor(props) {
@@ -139,14 +140,16 @@ class UpdateUserModal extends React.Component {
             </Modal.Title>
             <Modal.Dismiss
               className='flex center modal-dismiss-container'
-              onClick={this.closeModal}>
+              onClick={this.closeModal}
+            >
               <img
                 src={Images.close_modal}
-                className='modal-dismiss'/>
+                className='modal-dismiss'
+              />
             </Modal.Dismiss>
           </Modal.Header>
-          <Modal.Body>
-            <Form>
+          <Form onSubmit={this.updateUser}>
+            <Modal.Body>
               <div className='flex flex-horizontal center update-user-container'>
                 <ImageUploadInput
                   label='Profile Image'
@@ -176,7 +179,7 @@ class UpdateUserModal extends React.Component {
                   </div>
                   <div className='update-user-input'>
                     <Collapse isOpened={this.state.isDropdownOpen}>
-                        <Input {...this.state.formFields.confirmPassword} />
+                      <Input {...this.state.formFields.confirmPassword} />
                     </Collapse>
                   </div>
                   <div className='update-user-input'>
@@ -184,29 +187,27 @@ class UpdateUserModal extends React.Component {
                   </div>
                 </div>
               </div>
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <div className='flex flex-horizontal update-user-container'>
-              <div className='update-user-column update-user-input'>
-                <input
-                  type='submit'
-                  className='button button--red marginTop-xs update-user-button'
-                  value='Cancel'
-                  onClick={this.props.closeModal}
-                />
+            </Modal.Body>
+            <Modal.Footer>
+              <div className='flex flex-horizontal update-user-container'>
+                <div className='update-user-column update-user-input'>
+                  <input
+                    className='button button--red marginTop-xs update-user-button'
+                    value='Cancel'
+                    onClick={this.props.closeModal}
+                  />
+                </div>
+                <div className='update-user-column update-user-input'>
+                  <SaveButton
+                    text="Update user"
+                    onPress={this.updateUser}
+                    type="submit"
+                    className='button marginTop-xs update-user-button'
+                  />
+                </div>
               </div>
-
-              <div className='update-user-column update-user-input'>
-                <input
-                  type='submit'
-                  className='button marginTop-xs update-user-button'
-                  value='Update user'
-                  onClick={this.updateUser}
-                />
-              </div>
-            </div>
-          </Modal.Footer>
+            </Modal.Footer>
+          </Form>
         </Modal>
       </div>
     )

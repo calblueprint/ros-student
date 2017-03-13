@@ -99,6 +99,7 @@ class SaveButton extends React.Component {
       <button
         onClick={this.handlePress}
         className={`${this.getStyle()} ${this.props.className}`}
+        type={this.props.type}
       >
         {this.getIcon()}
         {this.getText()}
@@ -117,6 +118,7 @@ SaveButton.propTypes = {
   text: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
   onSave: PropTypes.func,
+  type: PropTypes.string,
 }
 
 export default SaveButton

@@ -53,6 +53,7 @@ class ImageUploadInput extends React.Component {
               <button
                 className='button button--red image-input-button margin'
                 onClick={this.removeImage}
+                type='button'
               >
                 Remove Image
               </button>
@@ -60,6 +61,7 @@ class ImageUploadInput extends React.Component {
                 htmlFor='image-input-upload'
                 className='button image-input-button'
                 onChange={this.handleImage}
+                type='button'
               >
                 Upload Image
               </label>

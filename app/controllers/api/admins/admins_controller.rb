@@ -50,7 +50,7 @@ class Api::Admins::AdminsController < Api::Admins::BaseController
       :password,
       :current_password,
       :password_confirmation,
-      photo_attributes: [:image],
+      photo_attributes: [:image, :remove_image],
     )
   end
 

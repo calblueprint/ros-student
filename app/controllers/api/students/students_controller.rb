@@ -22,7 +22,7 @@ class Api::Students::StudentsController < Api::Students::BaseController
       :password,
       :current_password,
       :password_confirmation,
-      photo_attributes: [:image],
+      photo_attributes: [:image, :remove_image],
     )
   end
 
