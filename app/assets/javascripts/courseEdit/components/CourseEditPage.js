@@ -23,6 +23,7 @@ class CourseEditPage extends React.Component {
         isPublished: false,
       },
       isDeleteModalOpen: false,
+      forceOpen: false,
     }
 
     this.createSection = this.createSection.bind(this)
@@ -35,6 +36,7 @@ class CourseEditPage extends React.Component {
     this.closeDeleteModal = this.closeDeleteModal.bind(this)
     this.onConfirmDelete = this.onConfirmDelete.bind(this)
     this.toggleIsPublished = this.toggleIsPublished.bind(this)
+    this.toggleIsCollapsed = this.toggleIsCollapsed.bind(this)
   }
 
   componentDidMount() {
@@ -133,6 +135,10 @@ class CourseEditPage extends React.Component {
     this.setCourseValue('isPublished', !this.state.course.isPublished)
   }
 
+  toggleIsCollapsed() {
+    this.setState({ forceOpen: !this.state.forceOpen })
+  }
+
   setImage(e) {
     convertImage(e, this.onBlurImage)
   }
@@ -176,11 +182,19 @@ class CourseEditPage extends React.Component {
     return this.state.course.isPublished ? 'Unpublish course' : 'Publish course'
   }
 
+  renderCollapsedLabel() {
+    return this.state.forceOpen ? 'Collapse Courses' : 'Expand Courses'
+  }
+
   renderSections() {
     return this.state.course.sections.map((value) => {
       return (
         <div className='component-edit-section' key={value.id}>
-          <SectionEdit section={value} deleteSection={this.deleteSection} />
+          <SectionEdit
+            section={value}
+            deleteSection={this.deleteSection}
+            forceOpen={this.state.forceOpen}
+          />
         </div>
       )
     })
@@ -200,7 +214,7 @@ class CourseEditPage extends React.Component {
                   <InlineEditInput
                     value={this.state.course.name}
                     onBlur={this.onBlurName}
-                    buttonStyle='button button--sm-sq button--white'
+                    buttonStyle="button button--sm-sq button--white"
                   />
                 </div>
 
@@ -208,7 +222,7 @@ class CourseEditPage extends React.Component {
                   <InlineEditInput
                     value={this.state.course.description}
                     onBlur={this.onBlurDescription}
-                    buttonStyle='button button--sm-sq button--white'
+                    buttonStyle="button button--sm-sq button--white"
                   />
                 </div>
               </div>
@@ -217,7 +231,8 @@ class CourseEditPage extends React.Component {
                 <label
                   htmlFor='course-edit-image-upload'
                   className='button course-edit-image-upload'
-                  onChange={this.handleImage}>
+                  onChange={this.handleImage}
+                >
                   Change Cover
                 </label>
                 <input
@@ -244,7 +259,12 @@ class CourseEditPage extends React.Component {
             >
               {this.renderPublishLabel()}
             </button>
-
+            <button
+              className='button marginLeft-sm'
+              onClick = {this.toggleIsCollapsed}
+            >
+              {this.renderCollapsedLabel()}
+            </button>
             <button
               onClick={this.openDeleteModal}
               className='button course-edit-delete'>
@@ -254,7 +274,10 @@ class CourseEditPage extends React.Component {
 
           <div>{this.renderSections()}</div>
           <div className='white-box'>
-            <button className='button button--white' onClick={this.createSection}>
+            <button
+              className='button button--white'
+              onClick={this.createSection}
+            >
               <div className='flex vertical'>
                 <img className='big-blue-plus' src={Images.big_blue_plus} />
                 <div>Add new section</div>

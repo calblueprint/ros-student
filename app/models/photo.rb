@@ -29,4 +29,8 @@ class Photo < ActiveRecord::Base
   def check_empty_image
     destroy unless image
   end
+  
+  def thumbnail
+    image.thumb.url if image && image.thumb
+  end
 end

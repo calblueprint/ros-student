@@ -9,6 +9,8 @@ class Api::StudentsController < Api::BaseController
     end
   end
 
+  private
+
   def reset_params
     params.require(:email)
   end

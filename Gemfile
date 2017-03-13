@@ -32,7 +32,7 @@ gem 'acts_as_list', '0.8.0'
 gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave-aws', '1.0.2'
 gem 'carrierwave-audio', '~> 1.0', '>= 1.0.1'
-
+gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 gem 'ffaker'
 
 group :development, :test do
