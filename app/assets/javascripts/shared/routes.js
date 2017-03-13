@@ -7,6 +7,10 @@ class ReactRoutes {
   static adminsSignInPath()           { return '/admins/sign_in' }
   static adminsForgotPasswordPath()   { return '/admins/forgot_password' }
   static studentsForgotPasswordPath() { return '/students/forgot_password' }
+  static adminsResetPasswordEditPath()    { return '/admins/password/edit' }
+  static studentsResetPasswordEditPath()  { return '/students/password/edit' }
+  static adminsResetPasswordPath()    { return '/admins/password' }
+  static studentsResetPasswordPath()  { return '/students/password' }
   static designPath()                 { return '/design' }
   static studentsRenderPath()         { return '/students'}
 
@@ -43,6 +47,9 @@ class RailsRoutes {
 
   static adminsSignOutPath() { return '/admins/sign_out' }
   static studentsSignOutPath() { return '/students/sign_out' }
+
+  static studentsResetPasswordPath() { return '/students/password'}
+  static adminsResetPasswordPath() { return '/admins/password'}
 
   // Shared
   static dashboardPath() { return '/dashboard' }
