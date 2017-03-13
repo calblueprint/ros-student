@@ -1,13 +1,14 @@
 import React from 'react'
 import Modal from 'react-bootstrap-modal'
 import { RailsRoutes } from '../../shared/routes'
+import { Images, convertImage } from '../../utils/image_helpers'
 
 class FinalCongratsModal extends React.Component {
   render() {
     return(
       <div>
         <Modal
-          show={this.props.openModal}
+          show={this.props.isModalOpen}
           onHide={this.props.closeModal}
         >
           <Modal.Header>
@@ -17,7 +18,7 @@ class FinalCongratsModal extends React.Component {
             </Modal.Title>
             <Modal.Dismiss
               className='flex center modal-dismiss-container'
-              onClick={this.closeModal}>
+              onClick={this.props.closeModal}>
               <img
                 src={Images.close_modal}
                 className='modal-dismiss'/>

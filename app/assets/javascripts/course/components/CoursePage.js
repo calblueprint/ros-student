@@ -12,6 +12,10 @@ import CourseSidebar from './CourseSidebar'
 import ParentComponent from './ParentComponent'
 import ComponentGraph from './ComponentGraph'
 
+import CongratsModal from '../../students/components'
+import FinalCongratsModal from '../../students/components'
+
+
 class CoursePage extends React.Component {
   constructor(props) {
     super(props)
@@ -32,6 +36,7 @@ class CoursePage extends React.Component {
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
     this.enableNextButton = this.enableNextButton.bind(this)
     this.showNextButtonTooltip = this.showNextButtonTooltip.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   componentDidMount() {
@@ -231,9 +236,15 @@ class CoursePage extends React.Component {
     });
   }
 
-  checkAndRenderModal() {
-    course.progress == 100 && this.openModal()
+  closeModal() {
+    this.setState({
+      isModalOpen:false
+    });
   }
+
+  // checkAndRenderModal() {
+  //   course.progress == 100 && this.openModal()
+  // }
 
   render() {
     return (
@@ -275,7 +286,8 @@ class CoursePage extends React.Component {
                   id='next-button'
                   disabled={this.nextDisabled()}
                   className='course-navigation-button'
-                  onClick={this.displayNextComponent}>
+                  onClick={() => {this.checkAndRenderModal() || this.displayNextComponent()}}
+                  >
                   <span
                     className='tooltip tooltiptext right'
                     style={this.showNextButtonTooltip()}>
@@ -283,16 +295,23 @@ class CoursePage extends React.Component {
                   </span>
                   <img
                     src={Images.right_arrow}
-                    onClick={this.checkAndRenderModal()}
                   />
                 </button>
               </div>
             </div>
           </div>
         </div>
+        <CongratsModal 
+          openModal={this.state.isModalOpen}
+          closeModal={this.closeModal}
+        />
       </div>
     )
   }
 }
+
+//slap in modal at end. every time user presses display component, whch is triggered by action
+//it will call set state on entire course page and at theat time make conditional check to see if completed
+//if completed, set modal to be open.
 
 export default CoursePage

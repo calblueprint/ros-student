@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import Modal from 'react-bootstrap-modal'
 import { RailsRoutes } from '../../shared/routes'
 import { Images, convertImage } from '../../utils/image_helpers'
@@ -8,7 +8,7 @@ class CongratsModal extends React.Component {
     return(
       <div>
         <Modal
-          show={this.props.openModal}
+          show={this.props.isModalOpen}
           onHide={this.props.closeModal}
         >
           <Modal.Header>
@@ -40,6 +40,11 @@ class CongratsModal extends React.Component {
       </div>
     )
   }
+}
+
+CongratsModal.PropTypes = {
+  openModal: PropTypes.bool.isRequired, 
+  closeModal: PropTypes.func.isRequired,
 }
 
 export default CongratsModal
