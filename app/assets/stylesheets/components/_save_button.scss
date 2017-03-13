@@ -1,3 +1,7 @@
 .save-button-icon {
   margin-right: $xs;
 }
+
+.save-button-disabled {
+  pointer-events: none;
+}

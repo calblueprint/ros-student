@@ -46,9 +46,9 @@ class SaveButton extends React.Component {
       case 'save':
         return 'button disabled'
       case 'success':
-        return 'button button--green'
+        return 'button button--green save-button-disabled'
       case 'error':
-        return 'button'
+        return 'button button--red save-button-disabled'
       default:
         return 'button'
     }
