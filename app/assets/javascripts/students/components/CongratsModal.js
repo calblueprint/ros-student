@@ -43,7 +43,7 @@ class CongratsModal extends React.Component {
 }
 
 CongratsModal.PropTypes = {
-  openModal: PropTypes.bool.isRequired, 
+  isModalOpen: PropTypes.bool.isRequired, 
   closeModal: PropTypes.func.isRequired,
 }
 

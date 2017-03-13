@@ -15,6 +15,7 @@ import ComponentGraph from './ComponentGraph'
 import CongratsModal from '../../students/components/CongratsModal'
 import FinalCongratsModal from '../../students/components/FinalCongratsModal'
 
+
 class CoursePage extends React.Component {
   constructor(props) {
     super(props)
@@ -26,7 +27,7 @@ class CoursePage extends React.Component {
       displayedComponent: {},
       courseProgress: 0,
       nextDisabled: true,
-      isModalOpen: false,
+      isModalOpen: true,
     }
 
     this.displaySubsection = this.displaySubsection.bind(this)
@@ -242,9 +243,9 @@ class CoursePage extends React.Component {
     });
   }
 
-  // checkAndRenderModal() {
-  //   course.progress == 100 && this.openModal()
-  // }
+  checkAndRenderModal() {
+    //course.progress == 100 && this.openModal()
+  }
 
   render() {
     return (
@@ -301,8 +302,8 @@ class CoursePage extends React.Component {
             </div>
           </div>
         </div>
-        <CongratsModal
-          openModal={this.state.isModalOpen}
+        <CongratsModal 
+          isModalOpen={this.state.isModalOpen}
           closeModal={this.closeModal}
         />
       </div>
