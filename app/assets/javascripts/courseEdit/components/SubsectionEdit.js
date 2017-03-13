@@ -235,7 +235,8 @@ class SubsectionEdit extends React.Component {
             openComponentForm={this.state.openAddModal}
             closeModal={this.closeNewComponentForm}
             subsectionId={this.state.subsection.id}
-            callback={this.onFormCompletion} />
+            callback={this.onFormCompletion}
+          />
           <button
             className='button button--white add-component-button'
             onClick={this.showNewComponentForm}
