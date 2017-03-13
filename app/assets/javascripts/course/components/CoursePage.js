@@ -27,7 +27,7 @@ class CoursePage extends React.Component {
       displayedComponent: {},
       courseProgress: 0,
       nextDisabled: true,
-      isModalOpen: true,
+      isModalOpen: false,
     }
 
     this.displaySubsection = this.displaySubsection.bind(this)
@@ -244,7 +244,7 @@ class CoursePage extends React.Component {
   }
 
   checkAndRenderModal() {
-    //course.progress == 100 && this.openModal()
+    this.state.courseProgress == 100 && this.openModal()
   }
 
   render() {
