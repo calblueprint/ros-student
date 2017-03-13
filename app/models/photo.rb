@@ -23,14 +23,14 @@ class Photo < ActiveRecord::Base
     image.url
   end
 
+  def thumbnail
+    image.thumb.url if image && image.thumb
+  end
+
   private
 
   # Remove model if there isn't an image.
   def check_empty_image
     destroy unless image
-  end
-  
-  def thumbnail
-    image.thumb.url if image && image.thumb
   end
 end
