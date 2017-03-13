@@ -110,6 +110,8 @@ class CoursePage extends React.Component {
   displayNextComponent() {
     this.setState({ nextDisabled: true })
 
+    console.log(this.state.courseSidebar)
+
     const sections = this.state.courseSidebar.sections
     const section = this.state.displayedSection
     const subsection = this.state.displayedSubsection
@@ -124,6 +126,15 @@ class CoursePage extends React.Component {
       this.displaySubsection(displayedSubsection.id, 1)
     } else if (!isLast(sections, section)) {
       this.displaySection(section.position + 1, 1, 1)
+    } else {
+      // Component not complete
+      // is last component in subsection
+      // is last subsection in section
+      // is last section in sections
+      /* Last component of course completed */
+      console.log("yes")
+      this.markComponentAsComplete(component)
+      this.openModal()
     }
   }
 
@@ -287,7 +298,7 @@ class CoursePage extends React.Component {
                   id='next-button'
                   disabled={this.nextDisabled()}
                   className='course-navigation-button'
-                  onClick={() => {this.checkAndRenderModal() || this.displayNextComponent()}}
+                  onClick={this.displayNextComponent}
                   >
                   <span
                     className='tooltip tooltiptext right'
@@ -302,7 +313,8 @@ class CoursePage extends React.Component {
             </div>
           </div>
         </div>
-        <CongratsModal 
+
+        <CongratsModal
           isModalOpen={this.state.isModalOpen}
           closeModal={this.closeModal}
         />
