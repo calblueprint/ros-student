@@ -26,19 +26,29 @@ class StudentCourseCard extends React.Component {
     return this.props.course.is_enrolled ? '' : 'inactive-card-container'
   }
 
+  getCourseDescription() {
+    const desc = this.props.course.description
+    return desc.length < 150 ? desc : desc.substring(0, 150) + '...'
+  }
+
   render() {
     return (
       <div className={`${this.getCourseCardStyle()} card-column`}>
         <Link
           onClick={this.disableLink.bind(this)}
-          to={this.props.route}>
+          to={this.props.route}
+          className='card-link'
+        >
           <div className='card'>
-            <div className="card-img-container">
+            <div className='card-img-container'>
               <Image src={this.getImgStyle()} />
             </div>
-            <h2 className="card-title">{this.props.course.name}</h2>
+            <h2 className='card-title'>{this.props.course.name}</h2>
+            <div className='card-line-divider' />
+            <h3 className='card-description'>{this.getCourseDescription()}</h3>
             <TopProgressBar
-              className="card-progress-bar" progress={this.props.course.progress}
+              className='card-progress-bar'
+              progress={this.props.course.progress}
             />
           </div>
         </Link>
@@ -53,6 +63,7 @@ StudentCourseCard.propTypes = {
     progress: PropTypes.number.isRequired,
     is_enrolled: PropTypes.bool.isRequired,
     name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
   }),
 
   route: PropTypes.string.isRequired,

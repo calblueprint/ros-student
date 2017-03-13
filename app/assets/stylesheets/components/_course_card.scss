@@ -1,7 +1,12 @@
 .card {
   position: relative;
   background: $white;
-  height: 340px;
+  height: 400px;
+  transition: 100ms;
+  box-shadow: 0px 5px 15px $charcoal-10;
+  &:hover {
+    @include transform(scale(1.05, 1.05));
+  }
 }
 
 .inactive-card-container {
@@ -20,10 +25,25 @@
   object-fit: cover;
 }
 
+.card-link {
+  &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+  }
+}
+
 .card-title {
+  margin: 10px 20px 6px 20px;
   color: $charcoal;
   font-size: 20px;
-  margin: 16px;
+  text-align: center;
+}
+
+.card-description {
+  margin: 12px 20px 20px 20px;
+  color: $light-charcoal;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
 }
 
 .card-publish-text-box {
@@ -47,6 +67,22 @@
   bottom: 0;
   margin: 16px;
   width: 85%;
+}
+
+.card-line-divider {
+  width: 80%;
+  height: 1px;
+  margin: 0px auto;
+  background-color: $snow;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    background-color: $snow;
+    width: 6px;
+    height: 6px;
+    @include transform(rotate(45deg) translateY(-50%));
+  }
 }
 
 @media (min-width: 500px) {

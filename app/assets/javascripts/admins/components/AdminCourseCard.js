@@ -33,7 +33,7 @@ class AdminCourseCard extends React.Component {
   render() {
     return (
       <a
-        className='card-column'
+        className='card-column card-link'
         href={this.props.route}
         data-method='get'
       >

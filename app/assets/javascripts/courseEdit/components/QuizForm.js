@@ -34,6 +34,7 @@ class QuizForm extends React.Component {
 
   updateContentURL(e) {
     this.setComponent('contentUrl', e.target.value)
+    this.refs.iframe.src = e.target.value
   }
 
   updateAudioData(audio) {
@@ -66,6 +67,34 @@ class QuizForm extends React.Component {
     )
   }
 
+  getIFrameOptions(shouldShowIFrame) {
+    return shouldShowIFrame ? { display: 'none' } : {}
+  }
+
+  renderIFrame() {
+    const shouldShowIFrame = !_.isEmpty(this.state.component.contentUrl)
+    return (
+      <div>
+        <div style={this.getIFrameOptions(shouldShowIFrame)}>
+          Enter form url for preview.
+        </div>
+        <div
+          style={this.getIFrameOptions(!shouldShowIFrame)}
+          className='form-component-container'
+        >
+          <iframe
+            ref='iframe'
+            className='form-iframe'
+            src={this.props.component.content_url}
+            sandbox='allow-scripts'
+          >
+            Loading...
+          </iframe>
+        </div>
+      </div>
+    )
+  }
+
 
   render() {
     return (
@@ -85,6 +114,8 @@ class QuizForm extends React.Component {
               value={this.state.component.contentUrl}
               onChange={this.updateContentURL} />
           </div>
+
+          <div>{this.renderIFrame()}</div>
 
           <div className='add-component-form-item'>
             <Input

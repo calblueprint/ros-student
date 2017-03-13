@@ -17,7 +17,7 @@ class AddComponentForm extends ComponentForm {
     super(props)
   }
 
-  handleComponent(componentJson) {
+  handleComponent(componentJson, success, error) {
     const path = APIRoutes.createComponentPath(this.props.subsectionId)
     const componentParams = super.getComponentParams(componentJson)
 
@@ -27,8 +27,10 @@ class AddComponentForm extends ComponentForm {
 
     request.post(path, componentParams, (response) => {
       this.props.callback(response)
+      success && success()
     }, (error) => {
       console.log(error)
+      error && error()
     })
   }
 

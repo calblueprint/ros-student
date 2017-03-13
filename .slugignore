@@ -1,0 +1,2 @@
+# Ignore yarn lock on heroku - we want to use npm instead.
+yarn.lock

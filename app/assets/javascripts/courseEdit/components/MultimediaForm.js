@@ -1,8 +1,11 @@
 import _ from 'underscore'
+import YouTube from 'react-youtube'
 import React from 'react'
 
 import Input from '../../shared/components/forms/Input'
 import AudioUploadInput from '../../shared/components/forms/AudioUploadInput'
+
+import { getYoutubeKey } from '../../utils/component_helpers'
 
 class MultimediaForm extends React.Component {
 
@@ -60,6 +63,20 @@ class MultimediaForm extends React.Component {
     )
   }
 
+  renderPreview() {
+    const youtubeKey = getYoutubeKey(this.state.component.contentUrl)
+    if (youtubeKey) {
+      return (
+        <div>
+          <YouTube videoId={youtubeKey} />
+        </div>
+      )
+    } else {
+      return (
+        <div>No Preview Avaliable</div>
+      )
+    }
+  }
 
   render() {
     const audio = this.state.component.audioData || this.state.audioUrl
@@ -80,6 +97,8 @@ class MultimediaForm extends React.Component {
               value={this.state.component.contentUrl}
               onChange={this.updateContentURL} />
           </div>
+
+          {this.renderPreview()}
 
           {this.renderAudio()}
 

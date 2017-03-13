@@ -28,7 +28,6 @@ class ForgotPasswordForm extends React.Component {
     const path = this.props.route
     const params = { email: this.state.email }
     request.post(path, params, (response) => {
-      console.log(response)
       this.setState({
         success: response.success.message,
       })
@@ -51,6 +50,7 @@ class ForgotPasswordForm extends React.Component {
             error={this.state.error}
             success={this.state.success}
             onChange={this.updateEmail}
+
           />
         </div>
 

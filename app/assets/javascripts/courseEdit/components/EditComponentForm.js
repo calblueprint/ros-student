@@ -17,15 +17,17 @@ class EditComponentForm extends ComponentForm {
     super(props)
   }
 
-  handleComponent(componentJson) {
+  handleComponent(componentJson, success, error) {
     const path = APIRoutes.editComponentPath(this.props.component.id)
 
     const componentParams = super.getComponentParams(componentJson)
 
     request.update(path, componentParams, (response) => {
       this.props.callback(response)
+      success && success()
     }, (error) => {
       console.log(error)
+      error && error()
     })
   }
 

@@ -6,13 +6,26 @@
 .export-container {
   width: 50%;
   height: 100%;
+  margin: $xl $md;
+  background-color: $false-white;
+  border-radius: 4px;
   padding: $xl;
 }
 
 .import-container {
-  width: 50%;
-  height: 100%;
-  padding: $xl;
+  @extend .export-container;
+}
+
+.export-import-desc {
+  font-style: italic;
+  font-weight: $semi-bold;
+  font-size: 16px;
+  color: $light-charcoal;
+}
+
+.course-export-button {
+  background-color: $white;
+  box-shadow: 0px 0px 6px 0px $charcoal-40;
 }
 
 .course-import-button {
@@ -32,6 +45,7 @@
   padding: 8px 15px;
   transition: 50ms;
   cursor: pointer;
+  box-shadow: 0px 0px 6px 0px $charcoal-40;
 
   &:hover {
     border-color: $dark-blue;

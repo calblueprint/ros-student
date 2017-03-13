@@ -4,6 +4,7 @@ import React from 'react'
 import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
 import AudioUploadInput from '../../shared/components/forms/AudioUploadInput'
 import Input from '../../shared/components/forms/Input'
+import SaveButton from '../../shared/components/widgets/SaveButton'
 
 class SlideForm extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class SlideForm extends React.Component {
     this.updateImageData = this.updateImageData.bind(this)
     this.updateAudioData = this.updateAudioData.bind(this)
     this.updateTitle = this.updateTitle.bind(this)
+    this.submit = this.submit.bind(this)
   }
 
   setComponent(field, data) {
@@ -41,22 +43,9 @@ class SlideForm extends React.Component {
     this.setComponent('title', e.target.value)
   }
 
-  submit(e) {
-    e.preventDefault()
-    this.props.callback(this.state.component)
-  }
-
-  renderImage() {
-    const image = this.state.component.imageData || this.state.imageUrl
-    if (_.isNull(image)) {
-      return
-    }
-
-    return (
-      <div className='add-component-form-item'>
-        <img className='component-image' src={image} />
-      </div>
-    )
+  submit(event, success, error) {
+    event.preventDefault()
+    this.props.callback(this.state.component, success, error)
   }
 
   renderAudio() {
@@ -85,28 +74,27 @@ class SlideForm extends React.Component {
             />
           </div>
 
-          {this.renderImage()}
-
           <div className='add-component-form-item'>
             <ImageUploadInput
-              label="Image"
-              onChange={this.updateImageData}/>
+              label='Image'
+              image={this.state.component.imageData || this.state.imageUrl}
+              setImage={this.updateImageData}/>
           </div>
 
           {this.renderAudio()}
 
           <div className='add-component-form-item'>
             <AudioUploadInput
-              label="Audio"
+              label='Audio'
               onChange={this.updateAudioData}/>
           </div>
 
           <div className='add-component-form-item'>
-            <button
-              className='button button--blue create-component-button'
-              onClick={this.submit.bind(this)}>
-              Save
-            </button>
+            <SaveButton
+              text="Save"
+              onPress={this.submit}
+              className='create-component-button'
+            />
           </div>
         </form>
       </div>

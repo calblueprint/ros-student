@@ -20,3 +20,33 @@
   width: 100px;
   height: 100px;
 }
+
+.switch-portal {
+  position: fixed;
+  margin: $sm $sm;
+  color: $silver;
+  font-size: 14px;
+  font-weight: $bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.switch-portal-right {
+  @extend .switch-portal;
+  bottom: 0px;
+  right: 0px;
+}
+
+.switch-portal-left {
+  @extend .switch-portal;
+  bottom: 0px;
+  left: 0px;
+}
+
+.switch-portal-text-right {
+  padding-right: $xs;
+}
+
+.switch-portal-text-left {
+  padding-left: $xs;
+}

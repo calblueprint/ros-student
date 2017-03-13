@@ -7,6 +7,7 @@ import { Images } from '../../utils/helpers/image_helpers'
 import request from '../../shared/requests/request'
 
 import Form from '../../shared/components/forms/Form'
+import SaveButton from '../../shared/components/widgets/SaveButton'
 
 class ExportImportPage extends React.Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class ExportImportPage extends React.Component {
     })
   }
 
-  exportCourse(e) {
+  exportCourse(e, success, error) {
     e.preventDefault()
     const id = this.state.selectedCourse
     if (id == -1) {
@@ -46,12 +47,14 @@ class ExportImportPage extends React.Component {
     const course = this.state.courses.find((course) => course.id == id)
     request.json(route, (response) => {
       console.log(response)
+      success && success()
     }, (error) => {
       console.log(error)
+      error && error()
     }, `${course.name}.json`)
   }
 
-  importCourse(e) {
+  importCourse(e, success, error) {
     e.preventDefault()
     if (_.isEmpty(this.state.file)) {
       return
@@ -65,9 +68,10 @@ class ExportImportPage extends React.Component {
     }
 
     request.post(route, params, (response) => {
-      console.log(response)
+      success && success()
     }, (error) => {
       console.log(error)
+      error && error()
     })
   }
 
@@ -111,11 +115,11 @@ class ExportImportPage extends React.Component {
           <div className='export-container'>
             <div className='flex center flex-vertical'>
               <h1 className='h1'>Export Course</h1>
-              <p className='marginTopBot-md'>To export a course, select the course that you'd like to export from the dropdown below. This will export all of a course's content in a .json format, which you can edit and re-upload as a new course.</p>
+              <p className='marginTopBot-md export-import-desc'>To export a course, select the course that you'd like to export from the dropdown below. This will export all of a course's content in a .json format, which you can edit and re-upload as a new course.</p>
               <Form>
                 <select
                   style={this.getDropdownStyle()}
-                  className='select'
+                  className='select course-export-button'
                   defaultValue={this.state.selectedCourse}
                   onChange={this.handleCourseSelect}>
                   <option value={-1}>
@@ -123,12 +127,10 @@ class ExportImportPage extends React.Component {
                   </option>
                   {this.renderSelectOptions()}
                 </select>
-                <input
-                  type='submit'
-                  className='button marginTop-xs'
-                  value='Submit'
-                  onClick={this.exportCourse}
-                  disabled={this.state.selectedCourse == -1}
+                <SaveButton
+                  text="Submit"
+                  onPress={this.exportCourse}
+                  className={`${this.state.selectedCourse == -1 ? 'disabled' : ''} marginTop-xs`}
                 />
               </Form>
             </div>
@@ -137,7 +139,7 @@ class ExportImportPage extends React.Component {
           <div className='import-container'>
             <div className='flex center flex-vertical'>
               <h1 className='h1'>Import Course</h1>
-              <p className='marginTopBot-md'>Be sure you want to import a course before continuing. By using this feature, you will create a new course. We will only accept properly formatted .json files. Click <span>here</span> for an example of what a formatted course looks like.</p>
+              <p className='marginTopBot-md export-import-desc'>Be sure you want to import a course before continuing. By using this feature, you will create a new course. We will only accept properly formatted .json files, such as those downloaded from Export Course.</p>
               <Form>
                 <label
                   htmlFor='course-import'
@@ -155,12 +157,10 @@ class ExportImportPage extends React.Component {
                   onChange={this.handleFile}
                   accept='.json'
                 />
-                <input
-                  disabled={_.isEmpty(this.state.file)}
-                  type='submit'
-                  className='button marginTop-xs'
-                  value='Submit'
-                  onClick={this.importCourse}
+                <SaveButton
+                  text="Submit"
+                  onPress={this.importCourse}
+                  className={`${_.isEmpty(this.state.file) ? 'disabled' : ''}  marginTop-xs`}
                 />
               </Form>
             </div>

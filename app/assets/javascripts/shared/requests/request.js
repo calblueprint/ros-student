@@ -100,6 +100,9 @@ class Request {
             'data:attachment/json',
             fileName,
           )
+          resolve && resolve(request.response)
+        } else if (reject) {
+          reject(request.response)
         }
       }
     }

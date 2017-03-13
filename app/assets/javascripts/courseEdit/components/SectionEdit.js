@@ -17,7 +17,7 @@ class SectionEdit extends React.Component {
     this.state = {
       loaded: false,
       section: this.props.section,
-      isOpen: true,
+      isOpen: false,
       openDeleteModal: false,
     }
 
@@ -28,6 +28,7 @@ class SectionEdit extends React.Component {
     this.onBlurTitle = this.onBlurTitle.bind(this)
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.changeOpenCloseValue = this.changeOpenCloseValue.bind(this)
   }
 
   createSubsection() {
@@ -79,8 +80,7 @@ class SectionEdit extends React.Component {
   }
 
   toggleSubsections() {
-    const isOpen = this.state.isOpen
-    this.setState({ isOpen: !isOpen })
+    this.setState({ isOpen: !this.state.isOpen })
   }
 
   renderSubsections() {
@@ -115,9 +115,18 @@ class SectionEdit extends React.Component {
     this.setState({ openDeleteModal: false })
   }
 
+  changeOpenCloseValue(nextProps) {
+    this.setState({ isOpen: nextProps.forceOpen })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isUndefined(nextProps.forceOpen)) {
+      this.changeOpenCloseValue(nextProps)
+    }
+  }
+
   render() {
     const arrow = this.state.isOpen ? 'rotate' : ''
-
     return (
       <div className='white-box'>
         <div className='flex vertical h2'>
@@ -129,14 +138,12 @@ class SectionEdit extends React.Component {
           <InlineEditInput
             value={this.state.section.title}
             onBlur={this.onBlurTitle}
-            buttonStyle='button button--sm button--white'
+            buttonStyle='button button--sm-sq button--white'
           />
           <button
             className='button button--sm button--white course-edit-delete'
             onClick={this.openModal}>
-            <img
-              className='course-image-icon'
-              src={Images.delete} />
+            <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
           </button>
         </div>
 

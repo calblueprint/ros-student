@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   get '/students/sign_in', to: redirect('/')
   get '/students/sign_up', to: 'pages#home'
   get '/students/forgot_password', to: 'pages#home'
+  get '/students/password/edit', to: 'pages#home'
+  get '/students/password', to: 'pages#home'
   get '/admins/sign_in', to: 'pages#home'
   get '/admins/forgot_password', to: 'pages#home'
+  get '/admins/password/edit', to: 'pages#home'
+  get '/admins/password', to: 'pages#home'
   get '/design', to: 'pages#home'
   get '/testing', to: 'pages#home'
 
@@ -25,8 +29,12 @@ Rails.application.routes.draw do
   # Course flow
   resources :courses, only: [:show]
 
-  devise_for :students, skip: [:registrations]
-  devise_for :admins, skip: [:registrations]
+  devise_for :students, skip: [:registrations], controllers: {
+    passwords: 'students/passwords'
+  }
+  devise_for :admins, skip: [:registrations], controllers: {
+    passwords: 'admins/passwords'
+  }
 
   scope module: 'students' do
     resources :students, only: [:create]
