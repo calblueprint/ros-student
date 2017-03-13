@@ -197,12 +197,14 @@ class UpdateUserModal extends React.Component {
                     onClick={this.props.closeModal}
                   />
                 </div>
-                <SaveButton
-                  text="Update user"
-                  onPress={this.updateUser}
-                  type="submit"
-                  className='button marginTop-xs update-user-button'
-                />
+                <div className='update-user-column update-user-input'>
+                  <SaveButton
+                    text="Update user"
+                    onPress={this.updateUser}
+                    type="submit"
+                    className='button marginTop-xs update-user-button'
+                  />
+                </div>
               </div>
             </Modal.Footer>
           </Form>
