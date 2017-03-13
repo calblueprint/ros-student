@@ -2,8 +2,8 @@ import _ from 'underscore'
 import React from 'react'
 
 import { APIRoutes } from '../../shared/routes'
-import { readJSONFile } from '../../utils/file_helpers'
-import { Images } from '../../utils/image_helpers'
+import { readJSONFile } from '../../utils/helpers/file_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 import request from '../../shared/requests/request'
 
 import Form from '../../shared/components/forms/Form'

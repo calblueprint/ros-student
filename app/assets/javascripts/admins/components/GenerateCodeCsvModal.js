@@ -4,10 +4,10 @@ import Modal from 'react-bootstrap-modal'
 
 import request from '../../shared/requests/request'
 
-import { getUser, setUser } from '../../utils/user_helpers'
-import { getInputToParams } from '../../utils/form_helpers'
+import { getUser, setUser } from '../../utils/helpers/user_helpers'
+import { getInputToParams } from '../../utils/helpers/form_helpers'
 import { APIRoutes } from '../../shared/routes'
-import { Images } from '../../utils/image_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'

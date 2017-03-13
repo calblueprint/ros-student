@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Redirect, Router, Route, browserHistory } from 'react-router'
+import { Redirect, Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 import '../../stylesheets/bundle/authentication.scss'
 
@@ -15,6 +15,21 @@ import AdminForgotPasswordPage from './components/AdminForgotPasswordPage'
 import StudentResetPasswordPage from './components/StudentResetPasswordPage'
 import AdminResetPasswordPage from './components/AdminResetPasswordPage'
 import TestingPage from './components/TestingPage'
+import Flash from '../shared/components/widgets/Flash'
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <div className='flex center'>
+          {this.props.children}
+        </div>
+
+        <Flash />
+      </div>
+    )
+  }
+}
 
 render((
   <Router history={browserHistory}>

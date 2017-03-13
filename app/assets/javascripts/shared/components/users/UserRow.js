@@ -1,7 +1,7 @@
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 
-import { Images } from '../../../utils/image_helpers'
+import { Images } from '../../../utils/helpers/image_helpers'
 import request from '../../requests/request'
 
 import DeleteModal from '../widgets/DeleteModal'

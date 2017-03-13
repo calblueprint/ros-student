@@ -2,7 +2,7 @@ import _ from 'underscore'
 import React, { PropTypes } from 'react'
 import Modal from 'react-bootstrap-modal'
 
-import { Images } from '../../../utils/image_helpers'
+import { Images } from '../../../utils/helpers/image_helpers'
 
 class SimpleModal extends React.Component {
   constructor(props) {

@@ -16,7 +16,7 @@ import request from '../../shared/requests/request'
 import ComponentEdit from './ComponentEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import AddComponentForm from './AddComponentForm'
-import { Images } from '../../utils/image_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 
 import DeleteModal from '../../shared/components/widgets/DeleteModal'
 

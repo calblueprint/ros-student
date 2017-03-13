@@ -8,7 +8,7 @@ import {
 import { render } from 'react-dom'
 
 import { RailsRoutes, ReactRoutes } from '../shared/routes'
-import { getUser } from '../utils/user_helpers'
+import { getUser } from '../utils/helpers/user_helpers'
 
 import '../../stylesheets/bundle/course_edit.scss'
 
@@ -36,6 +36,8 @@ class App extends React.Component {
         <div className='flex center'>
           {this.props.children}
         </div>
+
+        <Flash />
       </div>
     )
   }

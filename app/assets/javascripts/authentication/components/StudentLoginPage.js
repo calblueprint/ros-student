@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 import { RailsRoutes, ReactRoutes } from '../../shared/routes'
-import { Images } from '../../utils/image_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 
 import LoginForm from './LoginForm'
 import RootsLogo from '../../shared/components/widgets/RootsLogo'

@@ -57,6 +57,33 @@
   letter-spacing: 1px;
 }
 
+.fade-in-out {
+  -webkit-animation: fadeinout 4s linear forwards;
+  animation: fadeinout 4s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeinout {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.flash-container {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: $md;
+  z-index: 999;
+}
+
 .flash {
   padding: $xxs $md;
   width: 100%;

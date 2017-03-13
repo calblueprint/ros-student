@@ -5,8 +5,8 @@ import Collapse from 'react-collapse'
 
 import request from '../../requests/request'
 
-import { getUser, setUser } from '../../../utils/user_helpers'
-import { Images, convertImage } from '../../../utils/image_helpers'
+import { getUser, setUser } from '../../../utils/helpers/user_helpers'
+import { Images, convertImage } from '../../../utils/helpers/image_helpers'
 
 import ImageUploadInput from '../forms/ImageUploadInput'
 import Form from '../forms/Form'

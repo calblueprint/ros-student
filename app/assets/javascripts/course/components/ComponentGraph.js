@@ -3,7 +3,7 @@ import _ from 'underscore'
 
 import request from '../../shared/requests/request'
 import { RailsRoutes, ReactRoutes, APIRoutes } from '../../shared/routes'
-import { Images } from '../../utils/image_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 
 class ComponentGraph extends React.Component {
   constructor(props) {

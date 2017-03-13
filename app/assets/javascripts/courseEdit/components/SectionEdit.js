@@ -5,7 +5,7 @@ import update from 'immutability-helper'
 import { arrayMove } from 'react-sortable-hoc'
 
 import { APIRoutes } from '../../shared/routes'
-import { Images } from '../../utils/image_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 import request from '../../shared/requests/request'
 
 import SubsectionEdit from './SubsectionEdit'

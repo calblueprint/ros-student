@@ -4,7 +4,7 @@ import _ from 'underscore'
 import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-hoc';
 
 import request from '../../shared/requests/request'
-import { Images } from '../../utils/image_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'

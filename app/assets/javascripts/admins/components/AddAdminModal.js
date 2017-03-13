@@ -4,8 +4,8 @@ import Modal from 'react-bootstrap-modal'
 
 import request from '../../shared/requests/request'
 import { APIRoutes } from '../../shared/routes'
-import { getInputToParams, mapErrorToFormFields } from '../../utils/form_helpers'
-import { Images } from '../../utils/image_helpers'
+import { getInputToParams, mapErrorToFormFields } from '../../utils/helpers/form_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'

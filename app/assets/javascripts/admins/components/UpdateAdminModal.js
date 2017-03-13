@@ -2,8 +2,8 @@ import _ from 'underscore'
 import React from 'react'
 
 import request from '../../shared/requests/request'
-import { getUser, setUser } from '../../utils/user_helpers'
-import { getInputToParams, mapErrorToFormFields } from '../../utils/form_helpers'
+import { getUser, setUser } from '../../utils/helpers/user_helpers'
+import { getInputToParams, mapErrorToFormFields } from '../../utils/helpers/form_helpers'
 import { APIRoutes } from '../../shared/routes'
 
 import UpdateUserModal from '../../shared/components/users/UpdateUserModal'

@@ -2,9 +2,9 @@ import React from 'react'
 import Modal from 'react-bootstrap-modal'
 
 import { APIRoutes } from '../../shared/routes'
-import { camelToSnake } from '../../utils/form_helpers'
-import { Images } from '../../utils/image_helpers'
-import { formatComponent } from '../../utils/component_helpers'
+import { camelToSnake } from '../../utils/helpers/form_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
+import { formatComponent } from '../../utils/helpers/component_helpers'
 import request from '../../shared/requests/request'
 
 import Form from '../../shared/components/forms/Form'

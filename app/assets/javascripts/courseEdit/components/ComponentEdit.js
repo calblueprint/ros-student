@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'underscore'
 
-import { Images } from '../../utils/image_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 import EditComponentForm from './EditComponentForm'
 
 import DeleteModal from '../../shared/components/widgets/DeleteModal'

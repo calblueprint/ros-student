@@ -1,8 +1,8 @@
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 
-import { getUser, setUser } from '../../../utils/user_helpers'
-import { Images, convertImage } from '../../../utils/image_helpers'
+import { getUser, setUser, observeUser } from '../../../utils/helpers/user_helpers'
+import { Images, convertImage } from '../../../utils/helpers/image_helpers'
 import { RailsRoutes, ReactRoutes } from '../../routes'
 import { Link } from 'react-router'
 
@@ -10,22 +10,32 @@ class Navbar extends React.Component {
 
   constructor(props) {
     super(props)
-    this.user = getUser()
+
     this.state = {
       activeIndex: null,
+      user: getUser(),
     }
+
     this.setActiveChild = this.setActiveChild.bind(this)
     this.resetActiveChild = this.resetActiveChild.bind(this)
+
+    this.observeUser = observeUser(() => {
+      this.setState({ user: getUser() })
+    })
+  }
+
+  componentWillUnmount() {
+    this.observeUser.disconnect()
   }
 
   getProfilePath() {
     switch (this.props.bundleType) {
       case 'admin':
-        return ReactRoutes.adminProfilePath(this.user.id)
+        return ReactRoutes.adminProfilePath(this.state.user.id)
       case 'student':
-        return ReactRoutes.studentProfilePath(this.user.id)
+        return ReactRoutes.studentProfilePath(this.state.user.id)
       case 'courseEdit':
-        return RailsRoutes.adminProfilePath(this.user.id)
+        return RailsRoutes.adminProfilePath(this.state.user.id)
     }
   }
 
@@ -42,7 +52,7 @@ class Navbar extends React.Component {
   }
 
   getImage() {
-    return this.user.image_url || Images.default_profile
+    return this.state.user.image_url || Images.default_profile
   }
 
   setActiveChild(i) {
@@ -94,7 +104,7 @@ class Navbar extends React.Component {
       <div className="nav-element right">
         <img src={this.getImage()} className="prof-image"/>
         <p className="prof-name">
-          {`${this.user.first_name} ${this.user.last_name}`}
+          {`${this.state.user.first_name} ${this.state.user.last_name}`}
         </p>
         <div
           className="dropdown-container"

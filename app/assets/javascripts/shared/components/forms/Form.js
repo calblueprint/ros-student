@@ -2,9 +2,8 @@ import _ from 'underscore'
 import React, { PropTypes } from 'react'
 
 import Input from './Input'
-import Flash from './Flash'
 
-import { getCSRFFieldName, getCSRFToken } from '../../../utils/form_helpers'
+import { getCSRFFieldName, getCSRFToken } from '../../../utils/helpers/form_helpers'
 
 const PASSWORD = 'password'
 const TEXT     = 'text'
@@ -36,8 +35,6 @@ class Form extends React.Component {
         acceptCharset='UTF-8'
         onSubmit={this.props.onSubmit}
       >
-
-        <Flash />
 
         <input type='hidden' name='utf8' value='&#x2713;' />
 

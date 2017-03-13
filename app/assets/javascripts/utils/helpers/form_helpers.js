@@ -1,6 +1,7 @@
 import _ from 'underscore'
 
-import { SERIALIZER } from '../shared/requests/serializer'
+import { SERIALIZER } from '../../shared/requests/serializer'
+import { createObserver } from '../observer'
 
 function getCSRFFieldName() {
   return document.querySelector('meta[name="csrf-param"]').content
@@ -18,6 +19,10 @@ function getErrors() {
   return JSON.parse(errors.content)
 }
 
+function observeFlashes(callback) {
+  return createObserver(callback, 'meta[name="flash"]')
+}
+
 function getFlashes() {
   const flashes = document.querySelector('meta[name="flash"]')
 
@@ -26,7 +31,7 @@ function getFlashes() {
   }
   const content = JSON.parse(flashes.content)
 
-  resetFlash()
+  // resetFlash()
   return content
 }
 
@@ -165,6 +170,7 @@ export {
   getFormFields,
   getInputToParams,
   mapErrorToFormFields,
+  observeFlashes,
   resetFlash,
   snakeToCamel,
 }
