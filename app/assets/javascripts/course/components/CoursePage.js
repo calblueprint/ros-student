@@ -12,9 +12,8 @@ import CourseSidebar from './CourseSidebar'
 import ParentComponent from './ParentComponent'
 import ComponentGraph from './ComponentGraph'
 
-import CongratsModal from '../../students/components'
-import FinalCongratsModal from '../../students/components'
-
+import CongratsModal from '../../students/components/CongratsModal'
+import FinalCongratsModal from '../../students/components/FinalCongratsModal'
 
 class CoursePage extends React.Component {
   constructor(props) {
@@ -25,6 +24,7 @@ class CoursePage extends React.Component {
       displayedSection: {},
       displayedSubsection: {},
       displayedComponent: {},
+      courseProgress: 0,
       nextDisabled: true,
       isModalOpen: false,
     }
@@ -44,10 +44,10 @@ class CoursePage extends React.Component {
 
     request.get(path, (response) => {
       const currentSubsection = response.course_sidebar.current_subsection
-
       this.setState({
         courseSidebar: response.course_sidebar,
         displayedSubsection: currentSubsection,
+        courseProgress: response.course_sidebar.progress,
       }, () => {
         if (currentSubsection) {
           this.displaySubsection(currentSubsection.id)
@@ -301,7 +301,7 @@ class CoursePage extends React.Component {
             </div>
           </div>
         </div>
-        <CongratsModal 
+        <CongratsModal
           openModal={this.state.isModalOpen}
           closeModal={this.closeModal}
         />
