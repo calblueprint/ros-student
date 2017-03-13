@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react'
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
 import request from '../../shared/requests/request'
-import { getErrors, getFormErrors, getFormFields } from '../../utils/form_helpers'
+import { getErrors, getFormErrors, getFormFields } from '../../utils/helpers/form_helpers'
 
 
 class ResetPasswordForm extends React.Component {

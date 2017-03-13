@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import _ from 'underscore'
 
 import SimpleModal from '../../shared/components/widgets/SimpleModal'
-import { Images } from '../../utils/image_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 
 import {
   SortableContainer,

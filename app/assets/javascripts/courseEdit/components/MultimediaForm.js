@@ -5,7 +5,7 @@ import React from 'react'
 import Input from '../../shared/components/forms/Input'
 import AudioUploadInput from '../../shared/components/forms/AudioUploadInput'
 
-import { getYoutubeKey } from '../../utils/component_helpers'
+import { getYoutubeKey } from '../../utils/helpers/component_helpers'
 
 class MultimediaForm extends React.Component {
 

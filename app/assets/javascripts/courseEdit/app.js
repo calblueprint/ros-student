@@ -13,7 +13,7 @@ import { getUser } from '../utils/helpers/user_helpers'
 import '../../stylesheets/bundle/course_edit.scss'
 
 import Navbar from '../shared/components/widgets/Navbar'
-
+import Flash from '../shared/components/widgets/Flash'
 import CourseEditPage from './components/CourseEditPage'
 
 class App extends React.Component {
