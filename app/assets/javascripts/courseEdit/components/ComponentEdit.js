@@ -23,7 +23,7 @@ class ComponentEdit extends React.Component {
     }
 
     this.id = this.props.component.id
-    this.subsectionId = this.props.component.subsectionId
+    this.subsectionId = this.props.component.subsection_id
 
     this.deleteComponent = this.deleteComponent.bind(this)
     this.openDeleteModal = this.openDeleteModal.bind(this)
@@ -37,6 +37,7 @@ class ComponentEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // console.log(nextProps.component)
     this.setState({ component: nextProps.component })
   }
 
@@ -87,12 +88,9 @@ class ComponentEdit extends React.Component {
       }
     }
 
-    console.log(this.state.component)
-
     request.update(path, params, (response) => {
-      console.log(response)
-      this.props.removeComponent(this.id)
-      this.props.updateSubsection(sectionId, subsectionId, response)
+      this.props.updateMoveCourse(response)
+      this.closeParentModal()
     }, (error) => {
       console.log(error)
     })
@@ -135,7 +133,7 @@ class ComponentEdit extends React.Component {
             <p>{this.state.component.title}</p>
 
             <button
-              className='button button--sm button--white course-edit-delete'
+              className='button button--sm button--white course-edit-move'
               onClick={this.openParentModal}>
               <img
                 className='course-image-icon'
@@ -144,7 +142,7 @@ class ComponentEdit extends React.Component {
             </button>
 
             <button
-              className='button button--sm button--white course-edit-delete'
+              className='button button--sm button--white course-edit-move-delete'
               onClick={this.openDeleteModal}>
               <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
             </button>
@@ -172,6 +170,8 @@ class ComponentEdit extends React.Component {
           objectType='component'
           courseId={this.props.courseId}
           moveItem={this.moveComponent}
+          selectedSection={this.props.sectionId}
+          selectedSubsection={this.subsectionId}
         />
       </div>
     )
@@ -181,6 +181,8 @@ class ComponentEdit extends React.Component {
 ComponentEdit.propTypes = {
   component: PropTypes.object.isRequired,
   courseId: PropTypes.number.isRequired,
+  updateMoveCourse: PropTypes.func.isRequired,
+  sectionId: PropTypes.number.isRequired,
 }
 
 export default ComponentEdit

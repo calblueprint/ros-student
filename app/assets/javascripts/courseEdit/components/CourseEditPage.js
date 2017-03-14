@@ -46,6 +46,7 @@ class CourseEditPage extends React.Component {
     this.toggleIsPublished = this.toggleIsPublished.bind(this)
     this.toggleIsCollapsed = this.toggleIsCollapsed.bind(this)
     this.onReorder = this.onReorder.bind(this)
+    this.updateMoveCourse = this.updateMoveCourse.bind(this)
   }
 
   componentDidMount() {
@@ -211,12 +212,7 @@ class CourseEditPage extends React.Component {
     })
   }
 
-  updateSubsection(sectionId, subsectionId, components) {
-    const course = this.course
-
-    const sectionIndex = _.findIndex(course.sections, function(section) { section.id == sectionId })
-    const subsectionIndex = _.findIndex(course.sections[sectionIndex].subsections, function(subsection) { subsection.id == subsectionId })
-    course.sections[sectionIndex][subsectionIndex].components = components
+  updateMoveCourse(course) {
     this.setState({ course: course })
   }
 
@@ -240,6 +236,9 @@ class CourseEditPage extends React.Component {
   }
 
   renderSections() {
+    // if (this.state.course.sections[0] != null) {
+    //   console.log(this.state.course.sections[0].subsections[0].components)
+    // }
     return this.state.course.sections.map((value) => {
       return (
         <div className='component-edit-section' key={value.id}>
@@ -247,6 +246,8 @@ class CourseEditPage extends React.Component {
             section={value}
             deleteSection={this.deleteSection}
             forceOpen={this.state.forceOpen}
+            courseId={parseInt(this.id)}
+            updateMoveCourse={this.updateMoveCourse}
           />
         </div>
       )

@@ -66,6 +66,11 @@ class SectionEdit extends React.Component {
     this.setState({ isReorderModalOpen: false })
   }
 
+  componentWillReceiveProps(nextProps) {
+    // console.log(nextProps.component)
+    this.setState({ section: nextProps.section })
+  }
+
   createSubsection() {
     const path = APIRoutes.createSubsectionPath(this.id)
 
@@ -146,6 +151,7 @@ class SectionEdit extends React.Component {
   }
 
   renderSubsections() {
+    // console.log(this.state.section.subsections[0].components)
     if (!this.state.section.subsections) {
       return (
         <div>No subsections to show!</div>
@@ -158,6 +164,7 @@ class SectionEdit extends React.Component {
               subsection={value}
               deleteSubsection={this.deleteSubsection}
               courseId={this.props.courseId}
+              updateMoveCourse={this.props.updateMoveCourse}
             />
           </div>
         )
@@ -229,6 +236,7 @@ SectionEdit.propTypes = {
   section: PropTypes.object.isRequired,
   courseId: PropTypes.number.isRequired,
   isSorting: PropTypes.bool,
+  updateMoveCourse: PropTypes.func.isRequired,
 }
 
 export default SectionEdit

@@ -16,11 +16,12 @@ class ChangeParentModal extends React.Component {
     this.state = {
       sections: [],
       subsections: [],
-      selectedSection: -1,
-      selectedSubsection: -1,
+      selectedSection: this.props.selectedSection,
+      selectedSubsection: this.props.selectedSubsection,
     }
 
     this.getSections()
+    this.getSubsections(this.props.selectedSection)
 
     this.handleSectionSelect = this.handleSectionSelect.bind(this)
     this.handleSubsectionSelect = this.handleSubsectionSelect.bind(this)
@@ -164,6 +165,8 @@ ChangeParentModal.propTypes = {
   objectType: PropTypes.string.isRequired,
   courseId: PropTypes.number.isRequired,
   moveItem: PropTypes.func.isRequired,
+  selectedSection: PropTypes.number.isRequired,
+  selectedSubsection: PropTypes.number,
 }
 
 export default ChangeParentModal

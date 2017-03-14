@@ -38,48 +38,12 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
   end
 
   def switch_subsection
-    # @component_list = Subsection.find(switch_subsection_params[:subsection_id]).components
-
-    # success_response('hi')
-
-    # @component = Component.find(params[:id])
-    # new_position = params[:component].delete(:position).to_i
-    # # new_position = @component.delete(:position).to_i
-    # if @component.update_attributes(switch_subsection_params)
-    # # if @component.update_attributes @component
-    #   @component.move_to_position
-    #   render json: @component, serializer: ComponentAdminSerializer, root: false
-    # else
-    #   @component.position = new_position
-    #   error_response(nil, 'Could not move component')
-    # end
-
-    # @component.add
-    # @component.set_list_position(nil)
-    # @component.remove_from_list
     if @component.remove_from_list && @component.update(switch_subsection_params)
       @component.move_to_position
-      render json: @component.subsection.components, each_serializer: ComponentListSerializer
+      render json: @component.subsection.section.course, serializer: CourseAdminSerializer, root: false
     else
       error_response(nil, 'Could not move component')
     end
-    # puts('hi')
-
-    # if @component.subsection_id(switch_subsection_params[:subsection_id])
-    #   render json: @component, serializer: ComponentAdminSerializer, root: false
-
-    # @component.set_list_position(nil)
-    # if @component.update(switch_subsection_params)
-    #   @component.position = Component.find(switch_subsection_params[:subsection_id]).components.size - 1
-    #   render json: @component, serializer: ComponentAdminSerializer, root: false
-    # else
-    #   error_response(nil, 'Could not move component')
-    # end
-    # if @component.change_subsection(switch_subsection_params[:subsection_id])
-    #   render json: @component, serializer: ComponentAdminSerializer, root: false
-    # else
-    #   error_response(nil, 'Could not move component')
-    # end
   end
 
   private

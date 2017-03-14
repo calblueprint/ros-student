@@ -31,21 +31,22 @@ const ComponentHandle = SortableHandle(() => {
   )
 })
 
-const ComponentItem = SortableElement(({ value, deleteComponent, removeComponent, courseId }) => {
+const ComponentItem = SortableElement(({ value, deleteComponent, updateMoveCourse, courseId, sectionId }) => {
   return (
     <div className='flex vertical' key={value.id}>
       <ComponentHandle />
       <ComponentEdit
         component={value}
         deleteComponent={deleteComponent}
-        removeComponent={removeComponent}
+        updateMoveCourse={updateMoveCourse}
         courseId={courseId}
+        sectionId={sectionId}
       />
     </div>
   )
 })
 
-const ComponentList = SortableContainer(({ items, deleteComponent, removeComponent, courseId }) => {
+const ComponentList = SortableContainer(({ items, deleteComponent, updateMoveCourse, courseId, sectionId }) => {
   return (
     <div>
       {
@@ -55,8 +56,9 @@ const ComponentList = SortableContainer(({ items, deleteComponent, removeCompone
             index={index}
             value={value}
             deleteComponent={deleteComponent}
-            removeComponent={removeComponent}
+            updateMoveCourse={updateMoveCourse}
             courseId={courseId}
+            sectionId={sectionId}
           />
         })
       }
@@ -79,7 +81,6 @@ class SubsectionEdit extends React.Component {
 
     this.deleteSubsection = this.deleteSubsection.bind(this)
     this.deleteComponent = this.deleteComponent.bind(this)
-    this.removeComponent = this.removeComponent.bind(this)
     this.onFormCompletion = this.onFormCompletion.bind(this)
     this.toggleComponents = this.toggleComponents.bind(this)
     this.onBlurTitle      = this.onBlurTitle.bind(this)
@@ -92,6 +93,11 @@ class SubsectionEdit extends React.Component {
     this.moveSubsection = this.moveSubsection.bind(this)
 
     this.onSortEnd = this.onSortEnd.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // console.log(nextProps.component)
+    this.setState({ subsection: nextProps.subsection })
   }
 
   updateTitle(params) {
@@ -126,13 +132,6 @@ class SubsectionEdit extends React.Component {
     })
   }
 
-  removeComponent(id) {
-    this.subsection.components = _.filter(
-      this.subsection.components,
-      function(component) { return component.id != id }
-    )
-  }
-
   deleteSubsection() {
     this.props.deleteSubsection(this.state.subsection.id)
   }
@@ -151,9 +150,10 @@ class SubsectionEdit extends React.Component {
           lockAxis='y'
 
           deleteComponent={this.deleteComponent}
-          removeComponent={removeComponent}
+          updateMoveCourse={this.props.updateMoveCourse}
           onSortEnd={this.onSortEnd}
           courseId={this.props.courseId}
+          sectionId={this.state.subsection.section_id}
         />
       )
     }
@@ -256,7 +256,7 @@ class SubsectionEdit extends React.Component {
             />
           </div>
           <button
-            className='button button--sm button--white course-edit-delete'
+            className='button button--sm button--white course-edit-move'
             onClick={this.openParentModal}>
             <img
               className='course-image-icon'
@@ -264,7 +264,7 @@ class SubsectionEdit extends React.Component {
             />
           </button>
           <button
-            className='button button--sm button--white course-edit-delete'
+            className='button button--sm button--white course-edit-move-delete'
             onClick={this.openDeleteModal}>
             <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
           </button>
@@ -281,6 +281,8 @@ class SubsectionEdit extends React.Component {
             objectType='subsection'
             courseId={this.props.courseId}
             moveItem={this.moveSubsection}
+            selectedSection={this.state.subsection.section_id}
+            selectedSubsection={-1}
           />
         </div>
 
@@ -310,6 +312,7 @@ class SubsectionEdit extends React.Component {
 SubsectionEdit.propTypes = {
   subsection: PropTypes.object.isRequired,
   courseId: PropTypes.number.isRequired,
+  updateMoveCourse: PropTypes.func.isRequired,
 }
 
 export default SubsectionEdit
