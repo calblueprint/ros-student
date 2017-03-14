@@ -177,7 +177,7 @@ class SectionEdit extends React.Component {
           <InlineEditInput
             value={this.state.section.title}
             onBlur={this.onBlurTitle}
-            buttonStyle='button button--sm-sq button--white'
+            buttonStyle='button button--sm-sq button--icon-transparent'
           />
           <button
             className='button button--sm marginLeft-sm'
@@ -186,7 +186,7 @@ class SectionEdit extends React.Component {
           </button>
 
           <button
-            className='button button--sm button--white course-edit-delete'
+            className='button button--sm-sq button--icon-transparent course-edit-delete'
             onClick={this.openDeleteModal}>
             <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
           </button>

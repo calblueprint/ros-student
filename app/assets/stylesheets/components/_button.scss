@@ -134,6 +134,23 @@
   }
 }
 
+.button--icon-transparent {
+  background: transparent;
+  border: none;
+  color: $light-charcoal;
+
+  &:hover {
+    background: transparent;
+    border: none;
+    color: $blue;
+  }
+
+  &:active {
+    background: transparent;
+    border: none;
+  }
+}
+
 .button--text-blue {
   background: transparent;
   border-color: transparent;
