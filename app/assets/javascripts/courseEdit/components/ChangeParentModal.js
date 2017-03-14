@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap-modal'
 import request from '../../shared/requests/request'
 
 import { APIRoutes } from '../../shared/routes'
-import { Images } from '../../utils/image_helpers'
+import { Images } from '../../utils/helpers/image_helpers'
 
 import SimpleModal from '../../shared/components/widgets/SimpleModal'
 

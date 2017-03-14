@@ -66,10 +66,6 @@ class SectionEdit extends React.Component {
     this.setState({ isReorderModalOpen: false })
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ section: nextProps.section })
-  }
-
   createSubsection() {
     const path = APIRoutes.createSubsectionPath(this.id)
 
