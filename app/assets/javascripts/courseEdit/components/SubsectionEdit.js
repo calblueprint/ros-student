@@ -31,7 +31,7 @@ const ComponentHandle = SortableHandle(() => {
   )
 })
 
-const ComponentItem = SortableElement(({ value, deleteComponent, updateMoveCourse, courseId, sectionId }) => {
+const ComponentItem = SortableElement(({ value, deleteComponent, updateMoveCourse, course, sectionId }) => {
   return (
     <div className='flex vertical' key={value.id}>
       <ComponentHandle />
@@ -39,14 +39,14 @@ const ComponentItem = SortableElement(({ value, deleteComponent, updateMoveCours
         component={value}
         deleteComponent={deleteComponent}
         updateMoveCourse={updateMoveCourse}
-        courseId={courseId}
+        course={course}
         sectionId={sectionId}
       />
     </div>
   )
 })
 
-const ComponentList = SortableContainer(({ items, deleteComponent, updateMoveCourse, courseId, sectionId }) => {
+const ComponentList = SortableContainer(({ items, deleteComponent, updateMoveCourse, course, sectionId }) => {
   return (
     <div>
       {
@@ -57,7 +57,7 @@ const ComponentList = SortableContainer(({ items, deleteComponent, updateMoveCou
             value={value}
             deleteComponent={deleteComponent}
             updateMoveCourse={updateMoveCourse}
-            courseId={courseId}
+            course={course}
             sectionId={sectionId}
           />
         })
@@ -96,7 +96,6 @@ class SubsectionEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log(nextProps.component)
     this.setState({ subsection: nextProps.subsection })
   }
 
@@ -152,7 +151,7 @@ class SubsectionEdit extends React.Component {
           deleteComponent={this.deleteComponent}
           updateMoveCourse={this.props.updateMoveCourse}
           onSortEnd={this.onSortEnd}
-          courseId={this.props.courseId}
+          course={this.props.course}
           sectionId={this.state.subsection.section_id}
         />
       )
@@ -263,10 +262,7 @@ class SubsectionEdit extends React.Component {
                 className='tooltip tooltiptext top'>
                 Move subsection
               </span>
-              <img
-                className='course-image-icon'
-                src={Images.drag_handle}
-              />
+              <i className='fa fa-arrows-alt course-image-icon' aria-hidden='true'></i>
             </button>
           </div>
           <button
@@ -285,7 +281,7 @@ class SubsectionEdit extends React.Component {
             isChangeOpen={this.state.openParentModal}
             closeModal={this.closeParentModal}
             objectType='subsection'
-            courseId={this.props.courseId}
+            course={this.props.course}
             moveItem={this.moveSubsection}
             selectedSection={this.state.subsection.section_id}
             selectedSubsection={-1}
@@ -317,7 +313,7 @@ class SubsectionEdit extends React.Component {
 
 SubsectionEdit.propTypes = {
   subsection: PropTypes.object.isRequired,
-  courseId: PropTypes.number.isRequired,
+  course: PropTypes.object.isRequired,
   updateMoveCourse: PropTypes.func.isRequired,
 }
 

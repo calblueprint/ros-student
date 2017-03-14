@@ -67,7 +67,6 @@ class SectionEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log(nextProps.component)
     this.setState({ section: nextProps.section })
   }
 
@@ -151,7 +150,6 @@ class SectionEdit extends React.Component {
   }
 
   renderSubsections() {
-    // console.log(this.state.section.subsections[0].components)
     if (!this.state.section.subsections) {
       return (
         <div>No subsections to show!</div>
@@ -163,7 +161,7 @@ class SectionEdit extends React.Component {
             <SubsectionEdit
               subsection={value}
               deleteSubsection={this.deleteSubsection}
-              courseId={this.props.courseId}
+              course={this.props.course}
               updateMoveCourse={this.props.updateMoveCourse}
             />
           </div>
@@ -234,7 +232,7 @@ class SectionEdit extends React.Component {
 
 SectionEdit.propTypes = {
   section: PropTypes.object.isRequired,
-  courseId: PropTypes.number.isRequired,
+  course: PropTypes.object.isRequired,
   isSorting: PropTypes.bool,
   updateMoveCourse: PropTypes.func.isRequired,
 }

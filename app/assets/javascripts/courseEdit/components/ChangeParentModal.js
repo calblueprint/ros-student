@@ -14,37 +14,26 @@ class ChangeParentModal extends React.Component {
     super(props)
 
     this.state = {
-      sections: [],
-      subsections: [],
+      sections: this.props.course.sections,
+      subsections: this.getSubsections(this.props.course.sections, this.props.selectedSection),
       selectedSection: this.props.selectedSection,
       selectedSubsection: this.props.selectedSubsection,
     }
-
-    this.getSections()
-    this.getSubsections(this.props.selectedSection)
 
     this.handleSectionSelect = this.handleSectionSelect.bind(this)
     this.handleSubsectionSelect = this.handleSubsectionSelect.bind(this)
   }
 
-  getSections() {
-    const path = APIRoutes.getSectionsPath(this.props.courseId)
+  getSubsections(sections, sectionId) {
+    const section = _.find(sections, function(section) { return section.id == sectionId })
 
-    request.get(path, (response) => {
-      this.setState({ sections: response.sections })
-    }, (error) => {
-      console.log('error')
-    })
+    return section != null ? section.subsections : []
   }
 
-  getSubsections(sectionId) {
-    const path = APIRoutes.getSubsectionsPath(sectionId)
+  updateSubsections(sectionId) {
+    const subsections = this.getSubsections(this.state.sections, sectionId)
 
-    request.get(path, (response) => {
-      this.setState({ subsections: response.subsections })
-    }, (error) => {
-      console.log('error')
-    })
+    this.setState({ subsections: subsections })
   }
 
   getDropdownStyle() {
@@ -55,7 +44,7 @@ class ChangeParentModal extends React.Component {
 
   handleSectionSelect(e) {
     if (e.target.value != -1) {
-      this.getSubsections(e.target.value)
+      this.updateSubsections(e.target.value)
       this.setState({ selectedSection: e.target.value })
     } else {
       this.setState({
@@ -163,10 +152,10 @@ ChangeParentModal.propTypes = {
   isChangeOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   objectType: PropTypes.string.isRequired,
-  courseId: PropTypes.number.isRequired,
+  course: PropTypes.object.isRequired,
   moveItem: PropTypes.func.isRequired,
   selectedSection: PropTypes.number.isRequired,
-  selectedSubsection: PropTypes.number,
+  selectedSubsection: PropTypes.number.isRequired,
 }
 
 export default ChangeParentModal

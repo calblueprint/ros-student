@@ -37,7 +37,6 @@ class ComponentEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log(nextProps.component)
     this.setState({ component: nextProps.component })
   }
 
@@ -90,7 +89,6 @@ class ComponentEdit extends React.Component {
 
     request.update(path, params, (response) => {
       this.props.updateMoveCourse(response)
-      this.closeParentModal()
     }, (error) => {
       console.log(error)
     })
@@ -139,10 +137,7 @@ class ComponentEdit extends React.Component {
                   className='tooltip tooltiptext top'>
                   Move component
                 </span>
-                <img
-                  className='course-image-icon'
-                  src={Images.drag_handle}
-                />
+                <i className='fa fa-arrows-alt course-image-icon' aria-hidden='true'></i>
               </button>
             </div>
             <button
@@ -172,7 +167,7 @@ class ComponentEdit extends React.Component {
           isChangeOpen={this.state.openParentModal}
           closeModal={this.closeParentModal}
           objectType='component'
-          courseId={this.props.courseId}
+          course={this.props.course}
           moveItem={this.moveComponent}
           selectedSection={this.props.sectionId}
           selectedSubsection={this.subsectionId}
@@ -184,7 +179,7 @@ class ComponentEdit extends React.Component {
 
 ComponentEdit.propTypes = {
   component: PropTypes.object.isRequired,
-  courseId: PropTypes.number.isRequired,
+  course: PropTypes.object.isRequired,
   updateMoveCourse: PropTypes.func.isRequired,
   sectionId: PropTypes.number.isRequired,
 }

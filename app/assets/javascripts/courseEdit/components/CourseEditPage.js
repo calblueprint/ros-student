@@ -236,9 +236,6 @@ class CourseEditPage extends React.Component {
   }
 
   renderSections() {
-    // if (this.state.course.sections[0] != null) {
-    //   console.log(this.state.course.sections[0].subsections[0].components)
-    // }
     return this.state.course.sections.map((value) => {
       return (
         <div className='component-edit-section' key={value.id}>
@@ -246,7 +243,7 @@ class CourseEditPage extends React.Component {
             section={value}
             deleteSection={this.deleteSection}
             forceOpen={this.state.forceOpen}
-            courseId={parseInt(this.id)}
+            course={this.state.course}
             updateMoveCourse={this.updateMoveCourse}
           />
         </div>
