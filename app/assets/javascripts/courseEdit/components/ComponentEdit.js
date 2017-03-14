@@ -131,16 +131,20 @@ class ComponentEdit extends React.Component {
           >
             {this.renderComponentImage()}
             <p>{this.state.component.title}</p>
-
-            <button
-              className='button button--sm button--white course-edit-move'
-              onClick={this.openParentModal}>
-              <img
-                className='course-image-icon'
-                src={Images.drag_handle}
-              />
-            </button>
-
+            <div className='tooltip course-edit-move'>
+              <button
+                className='button button--sm button--white'
+                onClick={this.openParentModal}>
+                <span
+                  className='tooltip tooltiptext top'>
+                  Move component
+                </span>
+                <img
+                  className='course-image-icon'
+                  src={Images.drag_handle}
+                />
+              </button>
+            </div>
             <button
               className='button button--sm button--white course-edit-move-delete'
               onClick={this.openDeleteModal}>
