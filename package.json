@@ -42,6 +42,11 @@
     "chai-enzyme": "^0.6.1",
     "cheerio": "^0.22.0",
     "enzyme": "^2.7.0",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0",
     "jquery": "^3.1.1",
     "jsdom": "^9.9.1",
     "mocha": "^3.2.0",
@@ -52,6 +57,7 @@
   },
   "scripts": {
     "test": "mocha test/helpers/browser.js test/**/*.spec.js --compilers js:babel-register",
-    "heroku-postbuild": "cp config/database.yml.heroku config/database.yml"
+    "heroku-postbuild": "cp config/database.yml.heroku config/database.yml",
+    "eslint": "./node_modules/.bin/eslint app/assets/javascripts"
   }
 }
