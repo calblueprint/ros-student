@@ -109,7 +109,7 @@ Rails.application.routes.draw do
 
       resources :codes, only: :none do
         collection do
-          add_courses
+          post :add_courses
         end
       end
     end

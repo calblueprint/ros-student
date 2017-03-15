@@ -40,6 +40,7 @@
 
 .input-text {
   color: $silver-60;
+
   &.error {
     color: $red;
   }
@@ -98,6 +99,10 @@
   }
 
   &.notice {
+    background: $green-60;
+  }
+
+  &.success {
     background: $green-60;
   }
 }

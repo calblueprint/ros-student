@@ -81,6 +81,7 @@ class APIRoutes {
   static getStudentCourseSidebarPath(id) { return APIRoutes.createRoute(`students/courses/${id}/sidebar`) }
   static getStudentCoursesPath() { return APIRoutes.createRoute(`students/courses`) }
   static getPublishedCourses()   { return APIRoutes.createRoute(`students/courses?is_published=true`) }
+  static addCoursesPath()        { return APIRoutes.createRoute(`students/codes/add_courses`)}
   // FIXME: Refactor to function taking optional params dictionary and converts it to url endpoint
 
   // Admins
