@@ -11,14 +11,23 @@ class Image extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.preloadImage(nextProps.src)
+  }
+
   componentDidMount() {
+    this.preloadImage(this.props.src)
+  }
+
+  preloadImage(src) {
     const downloadingImage = new window.Image()
 
     downloadingImage.onload = _.partial(function(context) {
+      console.log(this.src)
       context.setState({ loaded: true, src: this.src })
     }, this)
 
-    downloadingImage.src = this.props.src
+    downloadingImage.src = src
   }
 
   getImageStyle() {
