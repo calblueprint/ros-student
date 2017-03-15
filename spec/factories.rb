@@ -64,7 +64,7 @@ FactoryGirl.define do
     first_name 'first'
     last_name 'last'
     sequence(:username) { |n| "#{FFaker::Internet.user_name}#{n}" }
-    code
+    after(:build)  { |user| create :code, user: user }
   end
 
   factory :admin do
