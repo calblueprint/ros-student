@@ -123,20 +123,24 @@ class Navbar extends React.Component {
     )
   }
 
+  renderTab(child, i) {
+    return (
+      <div
+        className={this.getActiveStyle(i)}
+        key={i}
+      >
+        <div onClick={_.partial(this.setActiveChild, i)}>
+          {child}
+        </div>
+      </div>
+    )
+  }
+
   renderChildren() {
-    if (this.props.children) {
-      return this.props.children.map((child, i) => {
-        return (
-          <div
-            className={this.getActiveStyle(i)}
-            key={i}
-          >
-            <div onClick={_.partial(this.setActiveChild, i)}>
-              {child}
-            </div>
-          </div>
-        )
-      })
+    if (_.isArray(this.props.children)) {
+      return this.props.children.map(this.renderTab)
+    } else if (_.isObject(this.props.children)) {
+      return this.renderTab(this.props.children, 0)
     }
   }
 
