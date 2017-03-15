@@ -6,7 +6,7 @@ class Students::StudentsController < Students::BaseController
   def create
     @code = Code.verify(code_params)
     if @code
-      @student.code = @code
+      @student.codes << @code
       if @student.save
         sign_in(:student, @student)
         redirect_to dashboard_path

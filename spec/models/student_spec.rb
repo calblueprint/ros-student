@@ -79,14 +79,14 @@ describe Student do
     end
 
     it 'if there is no code' do
-      student.code = nil
+      student.codes = []
       expect(student.valid?).to be false
     end
   end
 
   describe 'should have a course' do
     it 'if the student\'s code was registered with a course' do
-      student.code.courses << course
+      student.codes.first.courses << course
       student.save
       expect(student.courses.size).to be student.code.courses.size
     end

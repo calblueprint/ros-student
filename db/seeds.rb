@@ -23,7 +23,7 @@ def create_student_and_codes
 
     code = Code.create key: Devise.friendly_token(8)
     CodeCourse.create code_id: code.id, course_id: Course.first.id
-    student.code = code
+    student.codes << code
     student.save
   end
 end
