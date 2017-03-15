@@ -16,7 +16,7 @@ class FileUploadUtils
     extension = FILE_FORMATS[data_format]
     return unless extension
 
-    temp_file = Tempfile.new [Devise.friendly_token, extension]
+    temp_file = Tempfile.new [Devise.friendly_token, ".#{extension}"]
     temp_file.binmode
     temp_file.write(Base64.decode64(data))
 
