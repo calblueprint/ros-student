@@ -85,7 +85,7 @@
 }
 
 .course-edit-inline-edit {
-  width: 80%;
+  width: 50%;
 }
 
 .course-edit-component-container {
@@ -103,6 +103,10 @@
 .course-edit-component:hover {
   background-color: $snow;
   cursor: pointer;
+}
+
+.course-buttons {
+  margin-left: auto;
 }
 
 .course-edit-delete {

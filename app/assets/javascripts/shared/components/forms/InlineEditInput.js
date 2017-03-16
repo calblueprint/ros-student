@@ -51,7 +51,7 @@ class InlineEditInput extends React.Component {
 
   render() {
     return (
-      <div className='flex vertical inline-edit inline-edit-container'>
+      <div className='flex vertical inline-edit'>
         {this.state.editable ?
           this.renderInput() :
           this.renderValue()}
