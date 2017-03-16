@@ -13,16 +13,34 @@ class InlineEditInput extends React.Component {
     this.state = {
       editable: false,
     }
+
+    this.onKeyPress = this.onKeyPress.bind(this)
+    this.onKeyDown = this.onKeyDown.bind(this)
   }
 
   enableEdit() {
     this.setState({ editable: true })
   }
 
-  onBlur(e) {
+  setValue(value) {
     this.setState({ editable: false })
-    const value = e.target.value || this.props.value
     this.props.onBlur(value)
+  }
+
+  onBlur(e) {
+    this.setValue(e.target.value || this.props.value)
+  }
+
+  onKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.onBlur(e)
+    }
+  }
+
+  onKeyDown(e) {
+    if (e.keyCode === 27) {
+      this.setValue(this.props.value)
+    }
   }
 
   renderInput() {
@@ -32,6 +50,8 @@ class InlineEditInput extends React.Component {
         className='flex inline-edit-input inline-edit-container'
         defaultValue={this.props.value}
         onBlur={this.onBlur}
+        onKeyPress={this.onKeyPress}
+        onKeyDown={this.onKeyDown}
       />
     )
   }
