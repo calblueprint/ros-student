@@ -62,8 +62,8 @@ class InlineEditInput extends React.Component {
         <span className='inline-edit-value marginRight-sm'>
           {this.props.value}
         </span>
-        <button className={this.props.buttonStyle} onClick={this.enableEdit}>
-          <i className='fa fa-pencil fa-fw inline-edit-input' aria-hidden='true'></i>
+        <button id='inline-edit-button' className={this.props.buttonStyle} onClick={this.enableEdit}>
+          <i className='fa fa-pencil fa-fw' aria-hidden='true'></i>
         </button>
       </div>
     )
