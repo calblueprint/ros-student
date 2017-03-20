@@ -40,8 +40,14 @@ class SectionEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps.section)
     if (!_.isUndefined(nextProps.forceOpen)) {
-      this.setState({ isOpen: nextProps.forceOpen })
+      this.setState({
+        isOpen: nextProps.forceOpen,
+        section: nextProps.section,
+      })
+    } else {
+      this.setState({ section: nextProps.section })
     }
   }
 
@@ -89,12 +95,15 @@ class SectionEdit extends React.Component {
     })
   }
 
-  deleteSubsection(id) {
+  deleteSubsection(id, index) {
     const path = APIRoutes.editSubsectionPath(id)
 
     request.delete(path, (response) => {
       const section = this.state.section
-      section.subsections = response.subsections
+      section.subsections.splice(index, 1)
+      section.subsections.map((value, index) => {
+        value.position = index + 1
+      })
       this.setState({ section: section })
     }, (error) => {
       console.log(error)
@@ -102,7 +111,7 @@ class SectionEdit extends React.Component {
   }
 
   deleteSection() {
-    this.props.deleteSection(this.props.section.id)
+    this.props.deleteSection(this.state.section.id, this.state.section.position - 1)
   }
 
   onBlurTitle(value) {
@@ -151,14 +160,16 @@ class SectionEdit extends React.Component {
         <div>No subsections to show!</div>
       )
     } else {
-      return this.state.section.subsections.map((value) => {
+      return this.state.section.subsections.map((value, index) => {
         return (
           <div className='course-edit-subsection' key={value.id}>
             <SubsectionEdit
               subsection={value}
               deleteSubsection={this.deleteSubsection}
               course={this.props.course}
-              updateMoveCourse={this.props.updateMoveCourse}
+              updateMoveComponent={this.props.updateMoveComponent}
+              index={index}
+              section={this.state.section}
             />
           </div>
         )
@@ -230,7 +241,8 @@ SectionEdit.propTypes = {
   section: PropTypes.object.isRequired,
   course: PropTypes.object.isRequired,
   isSorting: PropTypes.bool,
-  updateMoveCourse: PropTypes.func.isRequired,
+  updateMoveComponent: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
 }
 
 export default SectionEdit

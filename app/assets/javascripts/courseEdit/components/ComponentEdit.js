@@ -41,7 +41,7 @@ class ComponentEdit extends React.Component {
   }
 
   deleteComponent() {
-    this.props.deleteComponent(this.id)
+    this.props.deleteComponent(this.id, this.state.component.position - 1)
   }
 
   openDeleteModal(e) {
@@ -78,7 +78,7 @@ class ComponentEdit extends React.Component {
     this.setState({ openParentModal: false })
   }
 
-  moveComponent(sectionId, subsectionId) {
+  moveComponent(section, subsection) {
     const path = APIRoutes.switchSubsectionPath(this.id)
     const params = {
       component: {
@@ -88,7 +88,13 @@ class ComponentEdit extends React.Component {
     }
 
     request.update(path, params, (response) => {
-      this.props.updateMoveCourse(response)
+      this.props.updateMoveComponent(
+        this.props.section.position - 1,
+        this.props.subsection.position - 1,
+        section.position - 1,
+        subsection.position - 1,
+        this.props.index,
+      )
     }, (error) => {
       console.log(error)
     })
@@ -169,8 +175,8 @@ class ComponentEdit extends React.Component {
           objectType='component'
           course={this.props.course}
           moveItem={this.moveComponent}
-          selectedSection={this.props.sectionId}
-          selectedSubsection={this.subsectionId}
+          selectedSection={this.props.section}
+          selectedSubsection={this.props.section}
         />
       </div>
     )
@@ -180,8 +186,10 @@ class ComponentEdit extends React.Component {
 ComponentEdit.propTypes = {
   component: PropTypes.object.isRequired,
   course: PropTypes.object.isRequired,
-  updateMoveCourse: PropTypes.func.isRequired,
-  sectionId: PropTypes.number.isRequired,
+  updateMoveComponent: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  section: PropTypes.object.isRequired,
+  subsection: PropTypes.object.isRequired,
 }
 
 export default ComponentEdit

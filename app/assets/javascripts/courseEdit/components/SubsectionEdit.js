@@ -31,22 +31,24 @@ const ComponentHandle = SortableHandle(() => {
   )
 })
 
-const ComponentItem = SortableElement(({ value, deleteComponent, updateMoveCourse, course, sectionId }) => {
+const ComponentItem = SortableElement(({ value, index, deleteComponent, updateMoveComponent, course, section, subsection }) => {
   return (
     <div className='flex vertical' key={value.id}>
       <ComponentHandle />
       <ComponentEdit
         component={value}
+        index={index}
         deleteComponent={deleteComponent}
-        updateMoveCourse={updateMoveCourse}
+        updateMoveComponent={updateMoveComponent}
         course={course}
-        sectionId={sectionId}
+        section={section}
+        subsection={subsection}
       />
     </div>
   )
 })
 
-const ComponentList = SortableContainer(({ items, deleteComponent, updateMoveCourse, course, sectionId }) => {
+const ComponentList = SortableContainer(({ items, deleteComponent, updateMoveComponent, course, section, subsection }) => {
   return (
     <div>
       {
@@ -56,9 +58,10 @@ const ComponentList = SortableContainer(({ items, deleteComponent, updateMoveCou
             index={index}
             value={value}
             deleteComponent={deleteComponent}
-            updateMoveCourse={updateMoveCourse}
+            updateMoveComponent={updateMoveComponent}
             course={course}
-            sectionId={sectionId}
+            section={section}
+            subsection={subsection}
           />
         })
       }
@@ -77,6 +80,7 @@ class SubsectionEdit extends React.Component {
       openDeleteModal: false,
       openParentModal: false,
       subsection: this.props.subsection,
+      index: this.props.index,
     }
 
     this.deleteSubsection = this.deleteSubsection.bind(this)
@@ -119,12 +123,15 @@ class SubsectionEdit extends React.Component {
     this.updateTitle(params)
   }
 
-  deleteComponent(id) {
+  deleteComponent(id, index) {
     const path = APIRoutes.editComponentPath(id)
 
     request.delete(path, (response) => {
       const subsection = this.state.subsection
-      subsection.components = response.components
+      subsection.components.splice(index, 1)
+      subsection.components.map((value, index) => {
+        value.position = index + 1
+      })
       this.setState({ subsection: subsection })
     }, (error) => {
       console.log(error)
@@ -132,7 +139,7 @@ class SubsectionEdit extends React.Component {
   }
 
   deleteSubsection() {
-    this.props.deleteSubsection(this.state.subsection.id)
+    this.props.deleteSubsection(this.state.subsection.id, this.state.subsection.position - 1)
   }
 
   renderComponents() {
@@ -149,10 +156,11 @@ class SubsectionEdit extends React.Component {
           lockAxis='y'
 
           deleteComponent={this.deleteComponent}
-          updateMoveCourse={this.props.updateMoveCourse}
+          updateMoveComponent={this.props.updateMoveComponent}
           onSortEnd={this.onSortEnd}
           course={this.props.course}
-          sectionId={this.state.subsection.section_id}
+          section={this.props.section}
+          subsection={this.state.subsection}
         />
       )
     }
@@ -283,8 +291,8 @@ class SubsectionEdit extends React.Component {
             objectType='subsection'
             course={this.props.course}
             moveItem={this.moveSubsection}
-            selectedSection={this.state.subsection.section_id}
-            selectedSubsection={-1}
+            selectedSection={this.props.section}
+            selectedSubsection={null}
           />
         </div>
 
@@ -314,7 +322,9 @@ class SubsectionEdit extends React.Component {
 SubsectionEdit.propTypes = {
   subsection: PropTypes.object.isRequired,
   course: PropTypes.object.isRequired,
-  updateMoveCourse: PropTypes.func.isRequired,
+  updateMoveComponent: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  section: PropTypes.object.isRequired,
 }
 
 export default SubsectionEdit

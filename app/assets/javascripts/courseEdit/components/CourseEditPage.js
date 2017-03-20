@@ -46,7 +46,7 @@ class CourseEditPage extends React.Component {
     this.toggleIsPublished = this.toggleIsPublished.bind(this)
     this.toggleIsCollapsed = this.toggleIsCollapsed.bind(this)
     this.onReorder = this.onReorder.bind(this)
-    this.updateMoveCourse = this.updateMoveCourse.bind(this)
+    this.updateMoveComponent = this.updateMoveComponent.bind(this)
   }
 
   componentDidMount() {
@@ -173,12 +173,15 @@ class CourseEditPage extends React.Component {
     })
   }
 
-  deleteSection(id) {
+  deleteSection(id, index) {
     const path = APIRoutes.editSectionPath(id)
 
     request.delete(path, (response) => {
       const course = this.state.course
-      course.sections = response.sections
+      course.sections.splice(index, 1)
+      course.sections.map((value, index) => {
+        value.position = index + 1
+      })
       this.setState({ course: course })
     }, (error) => {
       console.log(error)
@@ -212,7 +215,9 @@ class CourseEditPage extends React.Component {
     })
   }
 
-  updateMoveCourse(course) {
+  updateMoveComponent(sectionIndex, subsectionIndex, prevSectionIndex, prevSubsectionIndex, componentIndex) {
+    const course = this.state.course
+    course.sections.
     this.setState({ course: course })
   }
 
@@ -236,7 +241,7 @@ class CourseEditPage extends React.Component {
   }
 
   renderSections() {
-    return this.state.course.sections.map((value) => {
+    return this.state.course.sections.map((value, index) => {
       return (
         <div className='component-edit-section' key={value.id}>
           <SectionEdit
@@ -244,7 +249,8 @@ class CourseEditPage extends React.Component {
             deleteSection={this.deleteSection}
             forceOpen={this.state.forceOpen}
             course={this.state.course}
-            updateMoveCourse={this.updateMoveCourse}
+            updateMoveComponent={this.updateMoveComponent}
+            index={index}
           />
         </div>
       )
