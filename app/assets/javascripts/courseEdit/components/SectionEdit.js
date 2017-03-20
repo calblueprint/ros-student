@@ -40,7 +40,6 @@ class SectionEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.section)
     if (!_.isUndefined(nextProps.forceOpen)) {
       this.setState({
         isOpen: nextProps.forceOpen,
@@ -160,7 +159,7 @@ class SectionEdit extends React.Component {
         <div>No subsections to show!</div>
       )
     } else {
-      return this.state.section.subsections.map((value, index) => {
+      return this.state.section.subsections.map((value) => {
         return (
           <div className='course-edit-subsection' key={value.id}>
             <SubsectionEdit
@@ -168,7 +167,6 @@ class SectionEdit extends React.Component {
               deleteSubsection={this.deleteSubsection}
               course={this.props.course}
               updateMoveComponent={this.props.updateMoveComponent}
-              index={index}
               section={this.state.section}
             />
           </div>
@@ -242,7 +240,6 @@ SectionEdit.propTypes = {
   course: PropTypes.object.isRequired,
   isSorting: PropTypes.bool,
   updateMoveComponent: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired,
 }
 
 export default SectionEdit

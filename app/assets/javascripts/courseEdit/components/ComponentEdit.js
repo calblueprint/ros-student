@@ -83,17 +83,18 @@ class ComponentEdit extends React.Component {
     const params = {
       component: {
         id: this.id,
-        subsection_id: subsectionId,
+        subsection_id: subsection.id,
       }
     }
 
     request.update(path, params, (response) => {
       this.props.updateMoveComponent(
+        response,
+        this.state.component.position - 1,
         this.props.section.position - 1,
         this.props.subsection.position - 1,
         section.position - 1,
         subsection.position - 1,
-        this.props.index,
       )
     }, (error) => {
       console.log(error)
@@ -176,7 +177,7 @@ class ComponentEdit extends React.Component {
           course={this.props.course}
           moveItem={this.moveComponent}
           selectedSection={this.props.section}
-          selectedSubsection={this.props.section}
+          selectedSubsection={this.props.subsection}
         />
       </div>
     )
@@ -187,7 +188,6 @@ ComponentEdit.propTypes = {
   component: PropTypes.object.isRequired,
   course: PropTypes.object.isRequired,
   updateMoveComponent: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired,
   section: PropTypes.object.isRequired,
   subsection: PropTypes.object.isRequired,
 }

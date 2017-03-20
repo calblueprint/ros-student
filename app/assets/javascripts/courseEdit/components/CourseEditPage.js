@@ -215,9 +215,31 @@ class CourseEditPage extends React.Component {
     })
   }
 
-  updateMoveComponent(sectionIndex, subsectionIndex, prevSectionIndex, prevSubsectionIndex, componentIndex) {
+  updateMoveComponent(
+    component,
+    prevComponentIndex,
+    prevSectionIndex,
+    prevSubsectionIndex,
+    sectionIndex,
+    subsectionIndex
+  ) {
+    if (prevSectionIndex == sectionIndex && prevSubsectionIndex == subsectionIndex) {
+      return
+    }
+
     const course = this.state.course
-    course.sections.
+
+    const prevComponentList = course.sections[prevSectionIndex].subsections[prevSubsectionIndex].components
+    prevComponentList.splice(prevComponentIndex, 1)
+    prevComponentList.map((value, index) => {
+      value.position = index + 1
+    })
+    course.sections[prevSectionIndex].subsections[prevSubsectionIndex].components = prevComponentList
+
+    const newComponentList = course.sections[sectionIndex].subsections[subsectionIndex].components
+    newComponentList.push(component)
+    course.sections[sectionIndex].subsections[subsectionIndex].components = newComponentList
+
     this.setState({ course: course })
   }
 
@@ -241,7 +263,7 @@ class CourseEditPage extends React.Component {
   }
 
   renderSections() {
-    return this.state.course.sections.map((value, index) => {
+    return this.state.course.sections.map((value) => {
       return (
         <div className='component-edit-section' key={value.id}>
           <SectionEdit
@@ -250,7 +272,6 @@ class CourseEditPage extends React.Component {
             forceOpen={this.state.forceOpen}
             course={this.state.course}
             updateMoveComponent={this.updateMoveComponent}
-            index={index}
           />
         </div>
       )

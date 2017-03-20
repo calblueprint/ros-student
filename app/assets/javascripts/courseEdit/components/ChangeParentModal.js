@@ -25,7 +25,7 @@ class ChangeParentModal extends React.Component {
   }
 
   updateSubsections(sectionPosition) {
-    const subsections = this.state.sections[sectionPosition - 1]
+    const subsections = this.state.sections[sectionPosition - 1].subsections
 
     this.setState({ subsections: subsections })
   }
@@ -39,24 +39,31 @@ class ChangeParentModal extends React.Component {
   handleSectionSelect(e) {
     if (e.target.value != -1) {
       this.updateSubsections(e.target.value)
-      this.setState({ selectedSection: this.state.sections[e.target.value - 1] })
+      this.setState({
+        selectedSection: this.state.sections[e.target.value - 1],
+        selectedSubsection: -1,
+      })
     } else {
       this.setState({
-        selectedSection: null,
-        selectedSubsection: null,
+        selectedSection: -1,
+        selectedSubsection: -1,
         subsections: [],
       })
     }
   }
 
   handleSubsectionSelect(e) {
-    this.setState({ selectedSubsection: this.state.subsections[e.target.value - 1] })
+    if (e.target.value != -1) {
+      this.setState({ selectedSubsection: this.state.subsections[e.target.value - 1] })
+    } else {
+      this.setState({ selectedSubsection: -1 })
+    }
   }
 
   submitIsDisabled() {
-    return this.props.objectType == 'component' ?
-      (this.state.selectedSection == null || this.state.selectedSubsection == null) :
-      this.state.selectedSection == null
+    return (this.props.objectType == 'component') ?
+      (this.state.selectedSection == -1 || this.state.selectedSubsection == -1) :
+      this.state.selectedSection == -1
   }
 
   renderSelectOptions(list) {
@@ -89,7 +96,7 @@ class ChangeParentModal extends React.Component {
       return (
         <div className='flex flex-vertical'>
           {this.renderSelect(
-            this.state.selectedSection.position,
+            this.state.selectedSection != -1 ? this.state.selectedSection.position : -1,
             this.handleSectionSelect,
             'Select a section',
             this.state.sections
@@ -100,13 +107,13 @@ class ChangeParentModal extends React.Component {
       return (
         <div className='flex flex-vertical'>
           {this.renderSelect(
-            this.state.selectedSection.position,
+            this.state.selectedSection != -1 ? this.state.selectedSection.position : -1,
             this.handleSectionSelect,
             'Select a section',
             this.state.sections,
           )}
           {this.renderSelect(
-            this.state.selectedSubsection.position,
+            this.state.selectedSubsection != -1 ? this.state.selectedSubsection.position : -1,
             this.handleSubsectionSelect,
             'Select a subsection',
             this.state.subsections,
@@ -150,6 +157,10 @@ ChangeParentModal.propTypes = {
   moveItem: PropTypes.func.isRequired,
   selectedSection: PropTypes.object.isRequired,
   selectedSubsection: PropTypes.object,
+}
+
+ChangeParentModal.defaultProps = {
+  selectedSubsection: -1,
 }
 
 export default ChangeParentModal

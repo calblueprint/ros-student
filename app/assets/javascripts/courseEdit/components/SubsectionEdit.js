@@ -31,13 +31,12 @@ const ComponentHandle = SortableHandle(() => {
   )
 })
 
-const ComponentItem = SortableElement(({ value, index, deleteComponent, updateMoveComponent, course, section, subsection }) => {
+const ComponentItem = SortableElement(({ value, deleteComponent, updateMoveComponent, course, section, subsection }) => {
   return (
     <div className='flex vertical' key={value.id}>
       <ComponentHandle />
       <ComponentEdit
         component={value}
-        index={index}
         deleteComponent={deleteComponent}
         updateMoveComponent={updateMoveComponent}
         course={course}
@@ -80,7 +79,6 @@ class SubsectionEdit extends React.Component {
       openDeleteModal: false,
       openParentModal: false,
       subsection: this.props.subsection,
-      index: this.props.index,
     }
 
     this.deleteSubsection = this.deleteSubsection.bind(this)
@@ -323,7 +321,6 @@ SubsectionEdit.propTypes = {
   subsection: PropTypes.object.isRequired,
   course: PropTypes.object.isRequired,
   updateMoveComponent: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired,
   section: PropTypes.object.isRequired,
 }
 

@@ -40,7 +40,7 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
   def switch_subsection
     if @component.remove_from_list && @component.update(switch_subsection_params)
       @component.move_to_position
-      success_response('Moved component successfully!')
+      render json: @component, serializer: ComponentAdminSerializer, root: false
     else
       error_response(nil, 'Could not move component')
     end
