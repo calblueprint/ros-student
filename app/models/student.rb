@@ -63,7 +63,7 @@ class Student < ActiveRecord::Base
   private
 
   def has_code
-    unless !codes.blank?
+    unless codes && codes.size > 0
       errors.add(:code, 'does not exist')
     end
   end

@@ -88,7 +88,7 @@ describe Student do
     it 'if the student\'s code was registered with a course' do
       student.codes.first.courses << course
       student.save
-      expect(student.courses.size).to be student.code.courses.size
+      expect(student.courses.size).to be student.codes.first.courses.size
     end
   end
 end
