@@ -35,7 +35,8 @@ class GenerateCodeCsvModal extends React.Component {
         },
       },
       courses: [],
-      activeCourseIds: new Set()
+      activeCourseIds: new Set(),
+      tabIndex: 0,
     }
 
     /* Get courses for admin to selectively activate */
@@ -89,6 +90,7 @@ class GenerateCodeCsvModal extends React.Component {
       code_csv_args: {
         amount: parseInt(inputs.amount),
         course_ids: JSON.stringify([...this.state.activeCourseIds]),
+        self_paced: this.state.tabIndex == 0 ? false : true,
       },
     }
     request.post(path, params, (response) => {
@@ -100,6 +102,16 @@ class GenerateCodeCsvModal extends React.Component {
       console.log(error)
       error && error()
     })
+  }
+
+  handleClick(index, e) {
+    e.preventDefault()
+
+    this.setState({ tabIndex: index })
+  }
+
+  isActiveStyle(index) {
+    return this.state.tabIndex == index ? 'active' : ''
   }
 
   renderCourses() {
@@ -132,8 +144,21 @@ class GenerateCodeCsvModal extends React.Component {
           >
 
             {this.renderFields()}
+            <div className='marginTopBot-xxs'>
+              <h3 className='input-label marginTop-xs marginBot-xxs'>Enrollment type</h3>
+              <button
+                className={`tab ${this.isActiveStyle(0)}`}
+                onClick={this.handleClick.bind(this, 0)}>
+                Instructor Led
+              </button>
+              <button
+                className={`tab ${this.isActiveStyle(1)}`}
+                onClick={this.handleClick.bind(this, 1)}>
+                Self Paced
+              </button>
+            </div>
 
-            <h3 className="input-label">Select courses</h3>
+            <h3 className='input-label marginTop-xs marginBot-xxs'>Select courses</h3>
             <div className='generate-code-csv-course-list'>
               <ul>{this.renderCourses()}</ul>
             </div>

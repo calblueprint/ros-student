@@ -37,7 +37,8 @@ class Api::Admins::CodeCsvsController < Api::Admins::BaseController
   def code_csv_args
     params.require(:code_csv_args).permit(
       :amount,
-      :course_ids
+      :course_ids,
+      :self_paced,
     )
   end
 
