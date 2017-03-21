@@ -12,13 +12,15 @@ class CodeCsvModal extends React.Component {
     }
   }
 
-  componentDidMount() {
-    const path = APIRoutes.getCodeCsvPath(this.props.codeCsv.id)
-    request.get(path, (response) => {
-      this.setState({ courses: response.code_csv.courses })
-    }, (error) => {
-      console.log(error)
-    })
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.isModalOpen && nextProps.isModalOpen) {
+      const path = APIRoutes.getCodeCsvPath(this.props.codeCsv.id)
+      request.get(path, (response) => {
+        this.setState({ courses: response.code_csv.courses })
+      }, (error) => {
+        console.log(error)
+      })
+    }
   }
 
   renderCourses() {

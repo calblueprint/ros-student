@@ -18,6 +18,7 @@ class Navbar extends React.Component {
 
     this.setActiveChild = this.setActiveChild.bind(this)
     this.resetActiveChild = this.resetActiveChild.bind(this)
+    this.renderTab = this.renderTab.bind(this)
 
     this.observeUser = observeUser(() => {
       this.setState({ user: getUser() })

@@ -26,7 +26,8 @@ class App extends React.Component {
       <div>
         <Navbar bundleType="student">
           <Link
-            to={ReactRoutes.addCoursesPath()}>
+            to={ReactRoutes.addCoursesPath()}
+          >
             <div className="nav-element right">Add Courses</div>
           </Link>
         </Navbar>
