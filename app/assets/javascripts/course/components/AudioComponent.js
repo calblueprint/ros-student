@@ -72,47 +72,57 @@ class AudioComponent extends React.Component {
     )
   }
 
+  displayAudio() {
+    return this.props.audioUrl && this.props.selfPaced
+  }
+
   renderAudio() {
-    return (
-      <div id='audio-component' className='flex center fill'>
-        <button
-          className='button'
-          onClick={this.onAudioToggle}>
-          {this.state.playing ? 'Pause' : 'Play'}
-        </button>
-        <div className='flex flex-vertical fill marginLeft-sm'>
-          <div
-            ref='audioContainer'
-            className='audio-progressbar-container'
-            onClick={this.onSeek}
-          >
-            <ProgressBar progress={this.state.progress} />
-          </div>
-          <div className='fill'>
-            <div className='audio-start-time'>{this.startTime()}</div>
-            <div className='audio-end-time'>{this.endTime()}</div>
+    if (this.displayAudio()) {
+      return (
+        <div className='audio-component-container padding-md'>
+          <div id='audio-component' className='flex center fill'>
+            <button
+              className='button'
+              onClick={this.onAudioToggle}>
+              {this.state.playing ? 'Pause' : 'Play'}
+            </button>
+            <div className='flex flex-vertical fill marginLeft-sm'>
+              <div
+                ref='audioContainer'
+                className='audio-progressbar-container'
+                onClick={this.onSeek}
+              >
+                <ProgressBar progress={this.state.progress} />
+              </div>
+              <div className='fill'>
+                <div className='audio-start-time'>{this.startTime()}</div>
+                <div className='audio-end-time'>{this.endTime()}</div>
+              </div>
+            </div>
+
+            <ReactPlayer
+              ref={player => { this.player = player }}
+              url={this.props.audioUrl}
+              playing={this.state.playing}
+              controls={true}
+              hidden={true}
+              progressFrequency={500}
+              onEnded={this.onEnd}
+              onProgress={this.onProgress}
+              onDuration={this.onDuration}
+            />
           </div>
         </div>
-
-        <ReactPlayer
-          ref={player => { this.player = player }}
-          url={this.props.audioUrl}
-          playing={this.state.playing}
-          controls={true}
-          hidden={true}
-          progressFrequency={500}
-          onEnded={this.onEnd}
-          onProgress={this.onProgress}
-          onDuration={this.onDuration}
-        />
-      </div>
-    )
+      )
+    } else {
+      return
+    }
   }
 
   render() {
-    return (
-      <div className='audio-component-container padding-md'>
-        {this.props.audioUrl ? this.renderAudio() : ''}
+    return(
+      <div>
+        {this.renderAudio()}
       </div>
     )
   }
@@ -121,6 +131,7 @@ class AudioComponent extends React.Component {
 AudioComponent.propTypes = {
   callback: PropTypes.func.isRequired,
   audioUrl: PropTypes.string,
+  selfPaced: PropTypes.bool.isRequired,
 }
 
 export default AudioComponent

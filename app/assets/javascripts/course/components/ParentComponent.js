@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import ImageComponent from './ImageComponent'
 import VideoComponent from './VideoComponent'
@@ -20,21 +20,26 @@ class ParentComponent extends React.Component {
             audioUrl={this.props.component.audio_url}
             imgUrl={this.props.component.content_url}
             onEnd={this.props.onEnd}
+            selfPaced={this.props.selfPaced}
           />
         )
       case 1:
         return (
           <FormComponent
             component={this.props.component}
+            audioUrl={this.props.component.audio_url}
             onEnd={this.props.onEnd}
+            selfPaced={this.props.selfPaced}
           />
         )
       case 2:
         return (
           <VideoComponent
             videoUrl={this.props.component.content_url}
+            audioUrl={this.props.component.audio_url}
             canSeek={this.props.component.is_complete}
             onEnd={this.props.onEnd}
+            selfPaced={this.props.selfPaced}
           />
         )
     }
@@ -51,6 +56,14 @@ class ParentComponent extends React.Component {
       </div>
     )
   }
+}
+
+ParentComponent.propTypes = {
+  component: PropTypes.object.isRequired,
+  subsection: PropTypes.object.isRequired,
+  onEnd: PropTypes.func.isRequired,
+  selfPaced: PropTypes.bool.isRequired,
+  audioUrl: PropTypes.string,
 }
 
 export default ParentComponent

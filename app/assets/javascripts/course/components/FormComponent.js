@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import Input from '../../shared/components/forms/Input'
+import AudioComponent from './AudioComponent'
 
 class FormComponent extends React.Component {
 
@@ -73,9 +74,20 @@ class FormComponent extends React.Component {
             </button>
           </div>
         </div>
+        <AudioComponent
+          audioUrl={this.props.audioUrl}
+          callback={this.props.onEnd}
+          canSeek={this.props.canSeek}
+          selfPaced={this.props.selfPaced}
+        />
       </div>
     )
   }
+}
+
+FormComponent.propTypes = {
+  onEnd: PropTypes.func.isRequired,
+  audioUrl: PropTypes.string,
 }
 
 export default FormComponent

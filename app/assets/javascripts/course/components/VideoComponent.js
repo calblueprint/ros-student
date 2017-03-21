@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import YouTube from 'react-youtube'
 import ReactDOM from 'react-dom'
+import AudioComponent from './AudioComponent'
 
 import { getYoutubeKey } from '../../utils/helpers/component_helpers'
 
@@ -37,6 +38,12 @@ class VideoComponent extends React.Component {
           onEnd={this.props.onEnd}
           opts={this.getConfigOptions()}
         />
+        <AudioComponent
+          audioUrl={this.props.audioUrl}
+          callback={this.props.onEnd}
+          canSeek={this.props.canSeek}
+          selfPaced={this.props.selfPaced}
+        />
       </div>
     )
   }
@@ -45,6 +52,7 @@ class VideoComponent extends React.Component {
 VideoComponent.propTypes = {
   onEnd: PropTypes.func.isRequired,
   videoUrl: PropTypes.string.isRequired,
+  audioUrl: PropTypes.string,
 }
 
 export default VideoComponent

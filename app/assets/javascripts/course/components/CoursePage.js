@@ -252,6 +252,7 @@ class CoursePage extends React.Component {
               component={this.state.displayedComponent}
               subsection={this.state.displayedSubsection}
               onEnd={this.enableNextButton}
+              selfPaced={this.isSelfPaced()}
             />
 
             <div className='flex marginTopBot-md'>

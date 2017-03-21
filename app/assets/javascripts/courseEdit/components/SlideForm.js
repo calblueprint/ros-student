@@ -81,12 +81,11 @@ class SlideForm extends React.Component {
               setImage={this.updateImageData}/>
           </div>
 
-          {this.renderAudio()}
-
           <div className='add-component-form-item'>
             <AudioUploadInput
               label='Audio'
               onChange={this.updateAudioData}/>
+            {this.renderAudio()}
           </div>
 
           <div className='add-component-form-item'>

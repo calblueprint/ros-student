@@ -14,6 +14,7 @@ class ImageComponent extends React.Component {
           audioUrl={this.props.audioUrl}
           callback={this.props.onEnd}
           canSeek={this.props.canSeek}
+          selfPaced={this.props.selfPaced}
         />
       </div>
     )
