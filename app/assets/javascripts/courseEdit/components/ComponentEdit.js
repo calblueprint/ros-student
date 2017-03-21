@@ -136,22 +136,24 @@ class ComponentEdit extends React.Component {
           >
             {this.renderComponentImage()}
             <p>{this.state.component.title}</p>
-            <div className='tooltip course-edit-move'>
+            <div className='flex course-edit-button-container'>
+              <div className='tooltip course-edit-move'>
+                <button
+                  className='button button--sm button--white'
+                  onClick={this.openParentModal}>
+                  <span
+                    className='tooltip tooltiptext top'>
+                    Move component
+                  </span>
+                  <i className='fa fa-arrows-alt course-image-icon' aria-hidden='true'></i>
+                </button>
+              </div>
               <button
                 className='button button--sm button--white'
-                onClick={this.openParentModal}>
-                <span
-                  className='tooltip tooltiptext top'>
-                  Move component
-                </span>
-                <i className='fa fa-arrows-alt course-image-icon' aria-hidden='true'></i>
+                onClick={this.openDeleteModal}>
+                <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
               </button>
             </div>
-            <button
-              className='button button--sm button--white course-edit-move-delete'
-              onClick={this.openDeleteModal}>
-              <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
-            </button>
           </div>
         </div>
 

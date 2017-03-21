@@ -106,19 +106,18 @@
   cursor: pointer;
 }
 
+.course-edit-button-container {
+  align-self: center;
+  margin-left: auto;
+}
+
 .course-edit-delete {
   align-self: center;
   margin-left: auto;
 }
 
-.course-edit-move-delete {
-  align-self: center;
-  margin-left: $xs;
-}
-
 .course-edit-move {
-  align-self: center;
-  margin-left: auto;
+  margin-right: $xs;
 }
 
 .add-subsection-button {
