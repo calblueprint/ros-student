@@ -107,6 +107,10 @@ class CoursePage extends React.Component {
     const subsection = this.state.displayedSubsection
     const component = this.state.displayedComponent
 
+    if (subsection.is_complete) {
+      this.markSubsectionComplete(subsection)
+    }
+
     if (!component.is_complete) {
       this.markComponentAsComplete(component)
     } else if (!isLast(subsection.components, component)) {
@@ -155,6 +159,7 @@ class CoursePage extends React.Component {
 
   enableNextButton() {
     this.setState({ nextDisabled: false })
+    this.markComponentAsComplete(this.state.displayedComponent)
   }
 
   isSelfPaced() {
@@ -183,14 +188,30 @@ class CoursePage extends React.Component {
     }
 
     request.post(path, componentParams, (response) => {
+      // if (response.is_complete) {
+      //   this.markSubsectionComplete(response)
+      // } else {
+      //   this.setState({
+      //     displayedSubsection: response,
+      //     displayedComponent: response.current_component,
+      //   })
+      // }
+
+      const component = this.state.displayedComponent
+      component.is_complete = true
+
       if (response.is_complete) {
-        this.markSubsectionComplete(response)
-      } else {
+        const subsection = this.state.displayedSubsection
+        subsection.is_complete = true
+
         this.setState({
-          displayedSubsection: response,
-          displayedComponent: response.current_component,
+          displayedComponent: component,
+          displayedSubsection: subsection,
         })
+      } else {
+          this.setState({ displayedComponent: component})
       }
+
     }, (error) => {
       console.log(error)
     })
