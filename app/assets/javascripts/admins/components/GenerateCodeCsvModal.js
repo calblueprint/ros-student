@@ -19,7 +19,15 @@ class GenerateCodeCsvModal extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
+    this.state = this.formDefault(true)
+
+    /* Get courses for admin to selectively activate */
+    this.getCourses()
+    this.generateCodes = _.bind(this.generateCodes, this)
+  }
+
+  formDefault(initial) {
+    return {
       formFields: {
         name: {
           label: 'Name',
@@ -34,14 +42,10 @@ class GenerateCodeCsvModal extends React.Component {
           onChange: _.bind(this.handleChange, this, 'numberOfCodes')
         },
       },
-      courses: [],
+      courses: initial ? [] : this.state.courses,
       activeCourseIds: new Set(),
       tabIndex: 0,
     }
-
-    /* Get courses for admin to selectively activate */
-    this.getCourses()
-    this.generateCodes = _.bind(this.generateCodes, this)
   }
 
   handleChange(attr, e) {
@@ -98,6 +102,7 @@ class GenerateCodeCsvModal extends React.Component {
       console.log(response)
       success && success()
       this.props.closeModal()
+      this.setState(this.formDefault(false))
     }, (error) => {
       console.log(error)
       error && error()
@@ -129,6 +134,7 @@ class GenerateCodeCsvModal extends React.Component {
   }
 
   render() {
+    console.log(this.state.activeCourseIds)
     return (
       <SimpleModal
         title='Generate New Codes'
