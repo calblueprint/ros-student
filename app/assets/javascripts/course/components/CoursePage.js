@@ -5,7 +5,6 @@ import request from '../../shared/requests/request'
 import { getUser } from '../../utils/helpers/user_helpers'
 import { APIRoutes } from '../../shared/routes'
 import { findById, isFirst, isLast } from '../../utils/helpers/course_helpers'
-import { isComponentSelfStudy } from '../../utils/helpers/component_helpers'
 import { Images } from '../../utils/helpers/image_helpers'
 
 import CourseSidebar from './CourseSidebar'
@@ -149,8 +148,6 @@ class CoursePage extends React.Component {
       return true
     } else if (component.is_complete) {
       return false
-    } else if (isComponentSelfStudy(component)) {
-      return false
     } else {
       return this.state.nextDisabled
     }
@@ -160,10 +157,15 @@ class CoursePage extends React.Component {
     this.setState({ nextDisabled: false })
   }
 
+  isSelfPaced() {
+    return this.state.courseSidebar.self_paced
+  }
+
+  // TODO
   showNextButtonTooltip() {
     const component = this.state.displayedComponent
     const display = (this.nextDisabled() && component &&
-      (component.component_type == 2 || component.audio_url)) ? 'inline' : 'none'
+      (component.component_type == 2 || (component.audio_url && this.isSelfPaced()))) ? 'inline' : 'none'
 
     return ({
       display: `${display}`
@@ -225,6 +227,7 @@ class CoursePage extends React.Component {
   }
 
   render() {
+    console.log(this.state.courseSidebar)
     return (
       <div className='flex'>
         <div className='course-sidebar-container'>

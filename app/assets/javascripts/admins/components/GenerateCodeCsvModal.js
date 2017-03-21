@@ -24,6 +24,7 @@ class GenerateCodeCsvModal extends React.Component {
     /* Get courses for admin to selectively activate */
     this.getCourses()
     this.generateCodes = _.bind(this.generateCodes, this)
+    this.closeModal = _.bind(this.closeModal, this)
   }
 
   formDefault(initial) {
@@ -133,13 +134,17 @@ class GenerateCodeCsvModal extends React.Component {
     })
   }
 
+  closeModal() {
+    this.setState(this.formDefault(false))
+    this.props.closeModal()
+  }
+
   render() {
-    console.log(this.state.activeCourseIds)
     return (
       <SimpleModal
         title='Generate New Codes'
         isModalOpen={this.props.isModalOpen}
-        closeModal={this.props.closeModal}
+        closeModal={this.closeModal}
       >
         <div>
           <Form
