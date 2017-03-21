@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161228082827) do
+ActiveRecord::Schema.define(version: 20170321003159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,9 +53,10 @@ ActiveRecord::Schema.define(version: 20161228082827) do
   create_table "codes", force: :cascade do |t|
     t.string   "key"
     t.integer  "student_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "code_csv_id"
+    t.boolean  "self_paced",  default: false
   end
 
   create_table "component_progresses", force: :cascade do |t|
