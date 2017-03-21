@@ -164,11 +164,9 @@ class CoursePage extends React.Component {
     return this.state.courseSidebar.self_paced
   }
 
-  // TODO
   showNextButtonTooltip() {
     const component = this.state.displayedComponent
-    const display = (this.nextDisabled() && component &&
-      (component.component_type == 2 || (component.audio_url && this.isSelfPaced()))) ? 'inline' : 'none'
+    const display = (this.nextDisabled() && component) ? 'inline' : 'none'
 
     return ({
       display: `${display}`
