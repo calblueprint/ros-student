@@ -1,3 +1,12 @@
+/**
+ * @prop text         - text string to be displayed in button
+ * @prop onPress      - handler function called when button pressed (see PropTypes below)
+ * @prop type         - optional type argument to button (like 'submit')
+ * @prop loadingText  - optional text to display when button is processing
+ * @prop successText  - optional text to display when request is successful
+ * @prop errorText    - optional text to display when request fails
+ */
+ 
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 
@@ -59,15 +68,15 @@ class SaveButton extends React.Component {
     switch (this.state.currentAction) {
       case 'save':
         return (
-          <i className='fa fa-spinner fa-pulse fa-fw save-button-icon'></i>
+          <i className='fa fa-spinner fa-pulse save-button-icon'></i>
         )
       case 'success':
         return (
-          <i className='fa fa-check fa-fw save-button-icon'></i>
+          <i className='fa fa-check save-button-icon'></i>
         )
       case 'error':
         return (
-          <i className='fa fa-times fa-fw save-button-icon'></i>
+          <i className='fa fa-times save-button-icon'></i>
         )
       default:
         return null
@@ -78,15 +87,15 @@ class SaveButton extends React.Component {
     switch (this.state.currentAction) {
       case 'save':
         return (
-          <span>{this.props.loading || 'Saving...'}</span>
+          <span>{this.props.loadingText || 'Saving...'}</span>
         )
       case 'success':
         return (
-          <span>Success!</span>
+          <span>{this.props.successText || 'Success!'}</span>
         )
       case 'error':
         return (
-          <span>Error</span>
+          <span>{this.props.errorText || 'Error'}</span>
         )
       default:
         return (
@@ -118,9 +127,10 @@ class SaveButton extends React.Component {
 SaveButton.propTypes = {
   text: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
-  onSave: PropTypes.func,
   type: PropTypes.string,
-  loading: PropTypes.string,
+  loadingText: PropTypes.string,
+  successText: PropTypes.string,
+  errorText: PropTypes.string,
 }
 
 export default SaveButton

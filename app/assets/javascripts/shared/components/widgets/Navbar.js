@@ -1,3 +1,8 @@
+/**
+ * Navigation bar for student and admin side
+ *
+ * @prop bundleType  - either 'admin', 'student', or 'courseEdit' depending on the Webpack bundle currently loaded
+ */
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 
