@@ -25,7 +25,6 @@ class AudioComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
     this.setState({
       playing: false,
       progress: 0,

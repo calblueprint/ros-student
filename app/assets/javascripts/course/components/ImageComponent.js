@@ -4,6 +4,12 @@ import AudioComponent from './AudioComponent'
 import Image from '../../shared/components/widgets/Image'
 
 class ImageComponent extends React.Component {
+  componentDidMount() {
+    if (!this.props.selfPaced || this.props.audioUrl == null) {
+      this.props.onEnd()
+    }
+  }
+
   render() {
     return (
       <div className='image-component-container'>

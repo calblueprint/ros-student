@@ -40,7 +40,7 @@ class FormComponent extends React.Component {
         success: 'Success! Press next to continue.',
         formEnd: true,
       })
-      this.onEnd()
+      this.onEnd(true, this.state.audioEnd)
     } else {
       this.setState({
         error: 'The secret key entered is invalid'
@@ -48,15 +48,15 @@ class FormComponent extends React.Component {
     }
   }
 
-  onEnd() {
-    if (this.state.formEnd && (this.props.audioUrl == null || this.state.audioEnd)) {
+  onEnd(formEnd, audioEnd) {
+    if (formEnd && (!this.props.selfPaced || this.props.audioUrl == null || audioEnd)) {
       this.props.onEnd()
     }
   }
 
   onAudioEnd() {
     this.setState({ audioEnd: true })
-    this.onEnd()
+    this.onEnd(this.state.formEnd, true)
   }
 
   render() {

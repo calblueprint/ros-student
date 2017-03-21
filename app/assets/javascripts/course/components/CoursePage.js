@@ -271,7 +271,7 @@ class CoursePage extends React.Component {
                   <span
                     className='tooltip tooltiptext right'
                     style={this.showNextButtonTooltip()}>
-                    Please finish the clip before continuing
+                    Please complete everything before continuing
                   </span>
                   <img
                     src={Images.right_arrow}

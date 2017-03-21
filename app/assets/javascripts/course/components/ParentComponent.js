@@ -63,7 +63,6 @@ ParentComponent.propTypes = {
   subsection: PropTypes.object.isRequired,
   onEnd: PropTypes.func.isRequired,
   selfPaced: PropTypes.bool.isRequired,
-  audioUrl: PropTypes.string,
 }
 
 export default ParentComponent

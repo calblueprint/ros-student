@@ -27,20 +27,20 @@ class VideoComponent extends React.Component {
     this.setState({ player: event.target })
   }
 
-  onEnd() {
-    if (this.state.videoEnd && (this.props.audioUrl == null || this.state.audioEnd)) {
+  onEnd(videoEnd, audioEnd) {
+    if (videoEnd && (!this.props.selfPaced || this.props.audioUrl == null || audioEnd)) {
       this.props.onEnd()
     }
   }
 
   onVideoEnd() {
     this.setState({ videoEnd: true })
-    this.onEnd()
+    this.onEnd(true, this.state.audioEnd)
   }
 
   onAudioEnd() {
     this.setState({ audioEnd: true })
-    this.onEnd()
+    this.onEnd(this.state.videoEnd, true)
   }
 
   render() {
