@@ -23,7 +23,6 @@ class Image extends React.Component {
     const downloadingImage = new window.Image()
 
     downloadingImage.onload = _.partial(function(context) {
-      console.log(this.src)
       context.setState({ loaded: true, src: this.src })
     }, this)
 

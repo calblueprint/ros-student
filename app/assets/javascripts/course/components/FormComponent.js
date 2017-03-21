@@ -15,6 +15,7 @@ class FormComponent extends React.Component {
 
     this.updateCodeState = this.updateCodeState.bind(this)
     this.formSubmit = this.formSubmit.bind(this)
+    this.onAudioEnd = this.onAudioEnd.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,15 +36,27 @@ class FormComponent extends React.Component {
 
   formSubmit() {
     if (this.state.formCode == this.props.component.form_key) {
-      this.props.onEnd()
       this.setState({
         success: 'Success! Press next to continue.',
+        formEnd: true,
       })
+      this.onEnd()
     } else {
       this.setState({
         error: 'The secret key entered is invalid'
       })
     }
+  }
+
+  onEnd() {
+    if (this.state.formEnd && (this.props.audioUrl == null || this.state.audioEnd)) {
+      this.props.onEnd()
+    }
+  }
+
+  onAudioEnd() {
+    this.setState({ audioEnd: true })
+    this.onEnd()
   }
 
   render() {
@@ -76,7 +89,7 @@ class FormComponent extends React.Component {
         </div>
         <AudioComponent
           audioUrl={this.props.audioUrl}
-          callback={this.props.onEnd}
+          callback={this.onAudioEnd}
           canSeek={this.props.canSeek}
           selfPaced={this.props.selfPaced}
         />

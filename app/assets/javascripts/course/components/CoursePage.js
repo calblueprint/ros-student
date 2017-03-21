@@ -227,7 +227,6 @@ class CoursePage extends React.Component {
   }
 
   render() {
-    console.log(this.state.courseSidebar)
     return (
       <div className='flex'>
         <div className='course-sidebar-container'>

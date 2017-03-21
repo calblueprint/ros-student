@@ -10,6 +10,8 @@ class VideoComponent extends React.Component {
     super(props)
 
     this.onReady = this.onReady.bind(this);
+    this.onVideoEnd = this.onVideoEnd.bind(this)
+    this.onAudioEnd = this.onAudioEnd.bind(this)
   }
 
   getConfigOptions() {
@@ -26,7 +28,19 @@ class VideoComponent extends React.Component {
   }
 
   onEnd() {
-    this.props.onEnd()
+    if (this.state.videoEnd && (this.props.audioUrl == null || this.state.audioEnd)) {
+      this.props.onEnd()
+    }
+  }
+
+  onVideoEnd() {
+    this.setState({ videoEnd: true })
+    this.onEnd()
+  }
+
+  onAudioEnd() {
+    this.setState({ audioEnd: true })
+    this.onEnd()
   }
 
   render() {
@@ -35,12 +49,12 @@ class VideoComponent extends React.Component {
         <YouTube
           videoId={getYoutubeKey(this.props.videoUrl)}
           onReady={this.onReady}
-          onEnd={this.props.onEnd}
+          onEnd={this.onVideoEnd}
           opts={this.getConfigOptions()}
         />
         <AudioComponent
           audioUrl={this.props.audioUrl}
-          callback={this.props.onEnd}
+          callback={this.onAudioEnd}
           canSeek={this.props.canSeek}
           selfPaced={this.props.selfPaced}
         />

@@ -6,9 +6,11 @@ import Image from '../../shared/components/widgets/Image'
 class ImageComponent extends React.Component {
   render() {
     return (
-      <div className='flex flex-vertical center image-component-container'>
-        <div className='fill marginBot-sm'>
-          <Image src={this.props.imgUrl} />
+      <div className='image-component-container'>
+        <div className='flex flex-vertical center'>
+          <div className='fill marginBot-sm'>
+            <Image src={this.props.imgUrl} />
+          </div>
         </div>
         <AudioComponent
           audioUrl={this.props.audioUrl}
