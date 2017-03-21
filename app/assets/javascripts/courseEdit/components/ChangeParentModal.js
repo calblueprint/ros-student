@@ -9,6 +9,8 @@ import { Images } from '../../utils/helpers/image_helpers'
 
 import SimpleModal from '../../shared/components/widgets/SimpleModal'
 
+const NO_ITEM_SELECTED = -1
+
 class ChangeParentModal extends React.Component {
   constructor(props) {
     super(props)
@@ -37,33 +39,33 @@ class ChangeParentModal extends React.Component {
   }
 
   handleSectionSelect(e) {
-    if (e.target.value != -1) {
+    if (e.target.value != NO_ITEM_SELECTED) {
       this.updateSubsections(e.target.value)
       this.setState({
         selectedSection: this.state.sections[e.target.value - 1],
-        selectedSubsection: -1,
+        selectedSubsection: NO_ITEM_SELECTED,
       })
     } else {
       this.setState({
-        selectedSection: -1,
-        selectedSubsection: -1,
+        selectedSection: NO_ITEM_SELECTED,
+        selectedSubsection: NO_ITEM_SELECTED,
         subsections: [],
       })
     }
   }
 
   handleSubsectionSelect(e) {
-    if (e.target.value != -1) {
+    if (e.target.value != NO_ITEM_SELECTED) {
       this.setState({ selectedSubsection: this.state.subsections[e.target.value - 1] })
     } else {
-      this.setState({ selectedSubsection: -1 })
+      this.setState({ selectedSubsection: NO_ITEM_SELECTED })
     }
   }
 
   submitIsDisabled() {
     return (this.props.objectType == 'component') ?
-      (this.state.selectedSection == -1 || this.state.selectedSubsection == -1) :
-      this.state.selectedSection == -1
+      (this.state.selectedSection == NO_ITEM_SELECTED || this.state.selectedSubsection == NO_ITEM_SELECTED) :
+      this.state.selectedSection == NO_ITEM_SELECTED
   }
 
   renderSelectOptions(list) {
@@ -83,7 +85,7 @@ class ChangeParentModal extends React.Component {
         className='select marginTopBot-sm'
         defaultValue={defaultValue}
         onChange={handle}>
-        <option value={-1}>
+        <option value={NO_ITEM_SELECTED}>
           {label}
         </option>
         {this.renderSelectOptions(list)}
@@ -96,7 +98,7 @@ class ChangeParentModal extends React.Component {
       return (
         <div className='flex flex-vertical'>
           {this.renderSelect(
-            this.state.selectedSection != -1 ? this.state.selectedSection.position : -1,
+            this.state.selectedSection != NO_ITEM_SELECTED ? this.state.selectedSection.position : NO_ITEM_SELECTED,
             this.handleSectionSelect,
             'Select a section',
             this.state.sections
@@ -107,13 +109,13 @@ class ChangeParentModal extends React.Component {
       return (
         <div className='flex flex-vertical'>
           {this.renderSelect(
-            this.state.selectedSection != -1 ? this.state.selectedSection.position : -1,
+            this.state.selectedSection != NO_ITEM_SELECTED ? this.state.selectedSection.position : NO_ITEM_SELECTED,
             this.handleSectionSelect,
             'Select a section',
             this.state.sections,
           )}
           {this.renderSelect(
-            this.state.selectedSubsection != -1 ? this.state.selectedSubsection.position : -1,
+            this.state.selectedSubsection != NO_ITEM_SELECTED ? this.state.selectedSubsection.position : NO_ITEM_SELECTED,
             this.handleSubsectionSelect,
             'Select a subsection',
             this.state.subsections,
@@ -160,7 +162,7 @@ ChangeParentModal.propTypes = {
 }
 
 ChangeParentModal.defaultProps = {
-  selectedSubsection: -1,
+  selectedSubsection: NO_ITEM_SELECTED,
 }
 
 export default ChangeParentModal
