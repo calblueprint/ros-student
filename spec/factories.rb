@@ -19,9 +19,9 @@ FactoryGirl.define do
   end
 
   factory :component_progress do
-    student
     component
     completed true
+    student
   end
 
   factory :subsection do
@@ -64,7 +64,7 @@ FactoryGirl.define do
     first_name 'first'
     last_name 'last'
     sequence(:username) { |n| "#{FFaker::Internet.user_name}#{n}" }
-    code
+    after(:build)  { |student| student.codes << FactoryGirl.create(:code, student: student) }
   end
 
   factory :admin do

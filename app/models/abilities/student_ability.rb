@@ -12,6 +12,7 @@ class StudentAbility
       :destroy,
     ], Student, id: student.id
 
+    can [:add_courses], Code
     can [:index], Course
     can [:show], Subsection
     can [:show], Component

@@ -12,6 +12,7 @@ class SaveButton extends React.Component {
     this.resetState = this.resetState.bind(this)
     this.startSave = this.startSave.bind(this)
     this.endSave = this.endSave.bind(this)
+    this.showError = this.showError.bind(this)
   }
 
   componentWillUnmount() {
@@ -77,7 +78,7 @@ class SaveButton extends React.Component {
     switch (this.state.currentAction) {
       case 'save':
         return (
-          <span>Saving...</span>
+          <span>{this.props.loading || 'Saving...'}</span>
         )
       case 'success':
         return (
@@ -119,6 +120,7 @@ SaveButton.propTypes = {
   onPress: PropTypes.func.isRequired,
   onSave: PropTypes.func,
   type: PropTypes.string,
+  loading: PropTypes.string,
 }
 
 export default SaveButton

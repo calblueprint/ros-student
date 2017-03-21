@@ -35,7 +35,7 @@ class Student < ActiveRecord::Base
   validates :username, uniqueness: true, presence: true
   validate :has_code
 
-  has_one :code
+  has_many :codes
 
   has_many :student_courses
   has_many :courses, through: :student_courses
@@ -52,15 +52,19 @@ class Student < ActiveRecord::Base
     photo.url if photo
   end
 
-  private
-
-  def has_code
-    unless code
-      errors.add(:code, 'does not exist')
+  def subscribe_to_courses
+    codes.each do |code|
+      code.courses.each do |course|
+        student_courses.find_or_create_by(course_id: course.id)
+      end
     end
   end
 
-  def subscribe_to_courses
-    code.courses.each { |course| student_courses.create(course_id: course.id) }
+  private
+
+  def has_code
+    unless codes && codes.size > 0
+      errors.add(:code, 'does not exist')
+    end
   end
 end

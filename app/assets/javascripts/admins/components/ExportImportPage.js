@@ -46,10 +46,8 @@ class ExportImportPage extends React.Component {
     const route = APIRoutes.exportCoursePath(id)
     const course = this.state.courses.find((course) => course.id == id)
     request.json(route, (response) => {
-      console.log(response)
       success && success()
     }, (error) => {
-      console.log(error)
       error && error()
     }, `${course.name}.json`)
   }

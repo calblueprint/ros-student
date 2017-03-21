@@ -44,6 +44,7 @@ class App extends React.Component {
             <div className="nav-element right">Users</div>
           </Link>
         </Navbar>
+
         <div className='flex center'>
           {this.props.children}
         </div>

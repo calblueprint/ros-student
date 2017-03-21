@@ -35,6 +35,11 @@ function getFlashes() {
   return content
 }
 
+function addFlash(type, message) {
+  document.querySelector('meta[name="flash"]')
+    .setAttribute('content', JSON.stringify({ [type]: message }))
+}
+
 function resetFlash() {
   document.querySelector('meta[name="flash"]').setAttribute('content', '{}')
 }
@@ -173,4 +178,5 @@ export {
   observeFlashes,
   resetFlash,
   snakeToCamel,
+  addFlash,
 }

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   # Student Flow
   get '/students/:id/profile', to: 'pages#dashboard'
   get '/courses/:id/outline', to: 'pages#dashboard'
+  get '/students/add_courses', to: 'pages#dashboard'
 
   # Course flow
   resources :courses, only: [:show]
@@ -103,6 +104,12 @@ Rails.application.routes.draw do
         member do
           get :outline
           get :sidebar
+        end
+      end
+
+      resources :codes, only: :none do
+        collection do
+          post :add_courses
         end
       end
     end

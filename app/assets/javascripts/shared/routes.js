@@ -26,6 +26,8 @@ class ReactRoutes {
   // Student Flow
   static studentProfilePath(id)       { return `/students/${ReactRoutes.getId(id, 'id')}/profile`}
   static courseOutlinePath(id)        { return `/courses/${ReactRoutes.getId(id, 'id')}/outline`}
+  static addCoursesPath()             {  return `/students/add_courses`}
+
 
   // Course Flow
   static coursePath(id)               { return `/students/courses/${ReactRoutes.getId(id, 'id')}` }
@@ -79,6 +81,7 @@ class APIRoutes {
   static getStudentCourseSidebarPath(id) { return APIRoutes.createRoute(`students/courses/${id}/sidebar`) }
   static getStudentCoursesPath() { return APIRoutes.createRoute(`students/courses`) }
   static getPublishedCourses()   { return APIRoutes.createRoute(`students/courses?is_published=true`) }
+  static addCoursesPath()        { return APIRoutes.createRoute(`students/codes/add_courses`)}
   // FIXME: Refactor to function taking optional params dictionary and converts it to url endpoint
 
   // Admins
