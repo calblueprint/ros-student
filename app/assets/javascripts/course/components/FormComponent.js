@@ -101,6 +101,11 @@ class FormComponent extends React.Component {
 FormComponent.propTypes = {
   onEnd: PropTypes.func.isRequired,
   audioUrl: PropTypes.string,
+  selfPaced: PropTypes.bool,
+}
+
+FormComponent.defaultProps = {
+  selfPaced: false,
 }
 
 export default FormComponent

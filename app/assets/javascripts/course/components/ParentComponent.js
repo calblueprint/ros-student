@@ -62,7 +62,11 @@ ParentComponent.propTypes = {
   component: PropTypes.object.isRequired,
   subsection: PropTypes.object.isRequired,
   onEnd: PropTypes.func.isRequired,
-  selfPaced: PropTypes.bool.isRequired,
+  selfPaced: PropTypes.bool,
+}
+
+ParentComponent.defaultProps = {
+  selfPaced: false,
 }
 
 export default ParentComponent

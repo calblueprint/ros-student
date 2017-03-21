@@ -33,6 +33,11 @@ ImageComponent.propTypes = {
   imgUrl: PropTypes.string.isRequired,
   onEnd: PropTypes.func.isRequired,
   audioUrl: PropTypes.string,
+  selfPaced: PropTypes.bool,
+}
+
+ImageComponent.defaultProps = {
+  selfPaced: false,
 }
 
 export default ImageComponent

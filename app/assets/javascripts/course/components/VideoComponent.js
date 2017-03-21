@@ -67,6 +67,11 @@ VideoComponent.propTypes = {
   onEnd: PropTypes.func.isRequired,
   videoUrl: PropTypes.string.isRequired,
   audioUrl: PropTypes.string,
+  selfPaced: PropTypes.bool,
+}
+
+VideoComponent.defaultProps = {
+  selfPaced: false,
 }
 
 export default VideoComponent
