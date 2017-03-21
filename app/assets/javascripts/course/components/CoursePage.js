@@ -111,9 +111,7 @@ class CoursePage extends React.Component {
       this.markSubsectionComplete(subsection)
     }
 
-    if (!component.is_complete) {
-      this.markComponentAsComplete(component)
-    } else if (!isLast(subsection.components, component)) {
+    if (!isLast(subsection.components, component)) {
       this.displayComponent(component.position + 1)
     } else if (!isLast(section.subsections, subsection)) {
       const displayedSubsection = section.subsections[subsection.position]
@@ -188,15 +186,6 @@ class CoursePage extends React.Component {
     }
 
     request.post(path, componentParams, (response) => {
-      // if (response.is_complete) {
-      //   this.markSubsectionComplete(response)
-      // } else {
-      //   this.setState({
-      //     displayedSubsection: response,
-      //     displayedComponent: response.current_component,
-      //   })
-      // }
-
       const component = this.state.displayedComponent
       component.is_complete = true
 
@@ -292,7 +281,7 @@ class CoursePage extends React.Component {
                   <span
                     className='tooltip tooltiptext right'
                     style={this.showNextButtonTooltip()}>
-                    Please complete everything before continuing
+                    Please finish before continuing
                   </span>
                   <img
                     src={Images.right_arrow}
