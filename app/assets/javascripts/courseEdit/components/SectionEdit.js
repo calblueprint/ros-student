@@ -40,7 +40,7 @@ class SectionEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!_.isUndefined(nextProps.forceOpen)) {
+    if (!_.isUndefined(nextProps.forceOpen) && this.props.forceOpen != nextProps.forceOpen) {
       this.setState({
         isOpen: nextProps.forceOpen,
         section: nextProps.section,
