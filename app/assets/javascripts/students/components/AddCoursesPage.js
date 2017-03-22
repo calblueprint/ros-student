@@ -75,7 +75,7 @@ class AddCoursesPage extends React.Component {
             className='marginTop-xs'
             text="Submit"
             onPress={this.addCourses}
-            loading='Verifying...'
+            loadingText="Verifying..."
           />
         </form>
 
