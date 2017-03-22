@@ -1,3 +1,12 @@
+/**
+ * Simple modal with header and dismiss built-in
+ *
+ * @prop title        - string for title in modal header
+ * @prop isModalOpen  - boolean indicating whether modal is being displayed
+ * @prop closeModal   - callback to be invoked when modal is dismissed
+ *                      (usually will setState `isModalOpen` in the parent
+ *                      to `false`)
+ */
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 import Modal from 'react-bootstrap-modal'
@@ -10,9 +19,10 @@ class SimpleModal extends React.Component {
   }
 
   render() {
-    /* If you need to render in the footer, use this instead of Modal.Footer:
-      <div className='modal-footer'>content</div>
-    */
+    /**
+     * If you need to render in the footer, use this instead of Modal.Footer:
+     *   <div className='modal-footer'>content</div>
+     */
     return (
       <Modal
         show={this.props.isModalOpen}
