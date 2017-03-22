@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import _ from 'underscore'
 
 import { Images } from '../../utils/helpers/image_helpers'
+import request from '../../shared/requests/request'
+
+import { APIRoutes } from '../../shared/routes'
+
 import EditComponentForm from './EditComponentForm'
 
 import DeleteModal from '../../shared/components/widgets/DeleteModal'
+import ChangeParentModal from './ChangeParentModal'
 
 class ComponentEdit extends React.Component {
   constructor(props) {
@@ -14,17 +19,21 @@ class ComponentEdit extends React.Component {
       component: this.props.component,
       openDeleteModal: false,
       openEditModal: false,
+      openParentModal: false,
     }
 
     this.id = this.props.component.id
-    this.subsectionId = this.props.component.subsectionId
+    this.subsectionId = this.props.component.subsection_id
 
     this.deleteComponent = this.deleteComponent.bind(this)
     this.openDeleteModal = this.openDeleteModal.bind(this)
     this.closeDeleteModal = this.closeDeleteModal.bind(this)
     this.openEditModal = this.openEditModal.bind(this)
     this.closeEditModal = this.closeEditModal.bind(this)
+    this.openParentModal = this.openParentModal.bind(this)
+    this.closeParentModal = this.closeParentModal.bind(this)
     this.onFormCompletion = this.onFormCompletion.bind(this)
+    this.moveComponent = this.moveComponent.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,7 +41,7 @@ class ComponentEdit extends React.Component {
   }
 
   deleteComponent() {
-    this.props.deleteComponent(this.id)
+    this.props.deleteComponent(this.id, this.state.component.position - 1)
   }
 
   openDeleteModal(e) {
@@ -54,6 +63,42 @@ class ComponentEdit extends React.Component {
 
   closeEditModal() {
     this.setState({ openEditModal: false })
+  }
+
+  openParentModal(e) {
+    if (!_.isUndefined(e)) {
+      e.stopPropagation()
+      e.preventDefault()
+    }
+
+    this.setState({ openParentModal: true })
+  }
+
+  closeParentModal() {
+    this.setState({ openParentModal: false })
+  }
+
+  moveComponent(section, subsection) {
+    const path = APIRoutes.switchSubsectionPath(this.id)
+    const params = {
+      component: {
+        id: this.id,
+        subsection_id: subsection.id,
+      }
+    }
+
+    request.update(path, params, (response) => {
+      this.props.updateMoveComponent(
+        response,
+        this.state.component.position - 1,
+        this.props.section.position - 1,
+        this.props.subsection.position - 1,
+        section.position - 1,
+        subsection.position - 1,
+      )
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   onFormCompletion(editedComponent) {
@@ -91,12 +136,24 @@ class ComponentEdit extends React.Component {
           >
             {this.renderComponentImage()}
             <p>{this.state.component.title}</p>
-
-            <button
-              className='button button--sm button--white course-edit-delete'
-              onClick={this.openDeleteModal}>
-              <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
-            </button>
+            <div className='flex course-edit-button-container'>
+              <div className='tooltip course-edit-move'>
+                <button
+                  className='button button--sm button--white'
+                  onClick={this.openParentModal}>
+                  <span
+                    className='tooltip tooltiptext top'>
+                    Move component
+                  </span>
+                  <i className='fa fa-arrows-alt course-image-icon' aria-hidden='true'></i>
+                </button>
+              </div>
+              <button
+                className='button button--sm button--white'
+                onClick={this.openDeleteModal}>
+                <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -114,9 +171,27 @@ class ComponentEdit extends React.Component {
           deleteFunction={this.deleteComponent}
           objectType='component'
         />
+
+        <ChangeParentModal
+          isChangeOpen={this.state.openParentModal}
+          closeModal={this.closeParentModal}
+          objectType='component'
+          course={this.props.course}
+          moveItem={this.moveComponent}
+          selectedSection={this.props.section}
+          selectedSubsection={this.props.subsection}
+        />
       </div>
     )
   }
+}
+
+ComponentEdit.propTypes = {
+  component: PropTypes.object.isRequired,
+  course: PropTypes.object.isRequired,
+  updateMoveComponent: PropTypes.func.isRequired,
+  section: PropTypes.object.isRequired,
+  subsection: PropTypes.object.isRequired,
 }
 
 export default ComponentEdit

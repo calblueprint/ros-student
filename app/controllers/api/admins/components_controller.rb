@@ -37,6 +37,15 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
     end
   end
 
+  def switch_subsection
+    if @component.remove_from_list && @component.update(switch_subsection_params)
+      @component.move_to_position
+      render json: @component, serializer: ComponentAdminSerializer, root: false
+    else
+      error_response(nil, 'Could not move component')
+    end
+  end
+
   private
 
   def component_params
@@ -54,6 +63,13 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
 
   def switch_position_params
     params.require(:component).permit(:position)
+  end
+
+  def switch_subsection_params
+    params.require(:component).permit(
+      :id,
+      :subsection_id,
+    )
   end
 
   def convert_audio

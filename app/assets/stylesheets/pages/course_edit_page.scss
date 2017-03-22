@@ -30,6 +30,7 @@
   height: 15px;
   font-size: 16px;
   color: $silver;
+
   &.margin {
     margin-right: 15px;
   }
@@ -105,9 +106,18 @@
   cursor: pointer;
 }
 
+.course-edit-button-container {
+  align-self: center;
+  margin-left: auto;
+}
+
 .course-edit-delete {
   align-self: center;
   margin-left: auto;
+}
+
+.course-edit-move {
+  margin-right: $xs;
 }
 
 .add-subsection-button {

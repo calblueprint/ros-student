@@ -10,6 +10,10 @@ class Api::Admins::SubsectionsController < Api::Admins::BaseController
     end
   end
 
+  def index
+    render json: @subsections, each_serializer: SubsectionListSerializer
+  end
+
   def update
     if @subsection.update(subsection_params)
       render json: @subsection, user: current_user, serializer: SubsectionAdminSerializer, root: false

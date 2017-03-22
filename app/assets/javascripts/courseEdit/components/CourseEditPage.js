@@ -46,6 +46,7 @@ class CourseEditPage extends React.Component {
     this.toggleIsPublished = this.toggleIsPublished.bind(this)
     this.toggleIsCollapsed = this.toggleIsCollapsed.bind(this)
     this.onReorder = this.onReorder.bind(this)
+    this.updateMoveComponent = this.updateMoveComponent.bind(this)
   }
 
   componentDidMount() {
@@ -172,12 +173,15 @@ class CourseEditPage extends React.Component {
     })
   }
 
-  deleteSection(id) {
+  deleteSection(id, index) {
     const path = APIRoutes.editSectionPath(id)
 
     request.delete(path, (response) => {
       const course = this.state.course
-      course.sections = response.sections
+      course.sections.splice(index, 1)
+      course.sections.map((value, index) => {
+        value.position = index + 1
+      })
       this.setState({ course: course })
     }, (error) => {
       console.log(error)
@@ -211,6 +215,34 @@ class CourseEditPage extends React.Component {
     })
   }
 
+  updateMoveComponent(
+    component,
+    prevComponentIndex,
+    prevSectionIndex,
+    prevSubsectionIndex,
+    sectionIndex,
+    subsectionIndex
+  ) {
+    if (prevSectionIndex == sectionIndex && prevSubsectionIndex == subsectionIndex) {
+      return
+    }
+
+    const course = this.state.course
+
+    const prevComponentList = course.sections[prevSectionIndex].subsections[prevSubsectionIndex].components
+    prevComponentList.splice(prevComponentIndex, 1)
+    prevComponentList.map((value, index) => {
+      value.position = index + 1
+    })
+    course.sections[prevSectionIndex].subsections[prevSubsectionIndex].components = prevComponentList
+
+    const newComponentList = course.sections[sectionIndex].subsections[subsectionIndex].components
+    newComponentList.push(component)
+    course.sections[sectionIndex].subsections[subsectionIndex].components = newComponentList
+
+    this.setState({ course: course })
+  }
+
   getImageStyle() {
     const imageUrl = this.state.course.imageUrl || Images.default_course
 
@@ -238,6 +270,8 @@ class CourseEditPage extends React.Component {
             section={value}
             deleteSection={this.deleteSection}
             forceOpen={this.state.forceOpen}
+            course={this.state.course}
+            updateMoveComponent={this.updateMoveComponent}
           />
         </div>
       )

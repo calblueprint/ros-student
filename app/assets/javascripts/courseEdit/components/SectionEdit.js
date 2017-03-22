@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import Collapse from 'react-collapse'
 import _ from 'underscore'
 import update from 'immutability-helper'
@@ -40,8 +40,13 @@ class SectionEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!_.isUndefined(nextProps.forceOpen)) {
-      this.setState({ isOpen: nextProps.forceOpen })
+    if (!_.isUndefined(nextProps.forceOpen) && this.props.forceOpen != nextProps.forceOpen) {
+      this.setState({
+        isOpen: nextProps.forceOpen,
+        section: nextProps.section,
+      })
+    } else {
+      this.setState({ section: nextProps.section })
     }
   }
 
@@ -89,12 +94,15 @@ class SectionEdit extends React.Component {
     })
   }
 
-  deleteSubsection(id) {
+  deleteSubsection(id, index) {
     const path = APIRoutes.editSubsectionPath(id)
 
     request.delete(path, (response) => {
       const section = this.state.section
-      section.subsections = response.subsections
+      section.subsections.splice(index, 1)
+      section.subsections.map((value, index) => {
+        value.position = index + 1
+      })
       this.setState({ section: section })
     }, (error) => {
       console.log(error)
@@ -102,7 +110,7 @@ class SectionEdit extends React.Component {
   }
 
   deleteSection() {
-    this.props.deleteSection(this.props.section.id)
+    this.props.deleteSection(this.state.section.id, this.state.section.position - 1)
   }
 
   onBlurTitle(value) {
@@ -157,6 +165,9 @@ class SectionEdit extends React.Component {
             <SubsectionEdit
               subsection={value}
               deleteSubsection={this.deleteSubsection}
+              course={this.props.course}
+              updateMoveComponent={this.props.updateMoveComponent}
+              section={this.state.section}
             />
           </div>
         )
@@ -222,6 +233,13 @@ class SectionEdit extends React.Component {
       </div>
     )
   }
+}
+
+SectionEdit.propTypes = {
+  section: PropTypes.object.isRequired,
+  course: PropTypes.object.isRequired,
+  isSorting: PropTypes.bool,
+  updateMoveComponent: PropTypes.func.isRequired,
 }
 
 export default SectionEdit
