@@ -118,9 +118,9 @@ class APIRoutes {
   static editSectionPath(id)        { return APIRoutes.createRoute(`admins/sections/${id}`) }
   static editCoursePath(id)         { return APIRoutes.createRoute(`admins/courses/${id}`) }
   static getEditCoursePath(id)      { return APIRoutes.createRoute(`admins/courses/${id}/edit`) }
-  static switchSectionPath(id)      { return APIRoutes.createRoute(`admins/sections/${id}/switch_position`) }
-  static switchSubsectionPath(id)   { return APIRoutes.createRoute(`admins/subsections/${id}/switch_position`) }
-  static switchComponentPath(id)    { return APIRoutes.createRoute(`admins/components/${id}/switch_position`) }
+  static reorderSectionPath(id)     { return APIRoutes.createRoute(`admins/sections/${id}/switch_position`) }
+  static reorderSubsectionPath(id)  { return APIRoutes.createRoute(`admins/subsections/${id}/switch_position`) }
+  static reorderComponentPath(id)   { return APIRoutes.createRoute(`admins/components/${id}/switch_position`) }
   static getSectionsPath(id)        { return APIRoutes.createRoute( `admins/courses/${id}/sections`)}
   static getSubsectionsPath(id)     { return APIRoutes.createRoute( `admins/sections/${id}/subsections`)}
   static switchSubsectionPath(id)   { return APIRoutes.createRoute( `admins/components/${id}/switch_subsection`)}

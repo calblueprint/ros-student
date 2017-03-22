@@ -1,4 +1,8 @@
 /**
+ * Button used for form/task submissions that typically use API requests, has
+ * different states showing when request was successful or errored, and disables
+ * pointer events when processing requests to prevent duplicate requests.
+ *
  * @prop text         - text string to be displayed in button
  * @prop onPress      - handler function called when button pressed (see PropTypes below)
  * @prop type         - optional type argument to button (like 'submit')
@@ -6,7 +10,7 @@
  * @prop successText  - optional text to display when request is successful
  * @prop errorText    - optional text to display when request fails
  */
- 
+
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 

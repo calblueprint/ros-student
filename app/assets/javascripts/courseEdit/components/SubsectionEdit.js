@@ -220,7 +220,7 @@ class SubsectionEdit extends React.Component {
       return
     }
 
-    const path = APIRoutes.switchComponentPath(component.id)
+    const path = APIRoutes.reorderComponentPath(component.id)
     const params = {
       component: {
         position: newIndex + 1,

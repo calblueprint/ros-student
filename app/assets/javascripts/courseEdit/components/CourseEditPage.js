@@ -194,7 +194,7 @@ class CourseEditPage extends React.Component {
       return
     }
 
-    const path = APIRoutes.switchSectionPath(section.id)
+    const path = APIRoutes.reorderSectionPath(section.id)
     const params = {
       section: {
         position: newIndex + 1,
