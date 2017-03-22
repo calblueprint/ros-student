@@ -76,6 +76,8 @@ class SignUpPage extends React.Component {
         },
       }
     }
+
+    this.makeVerifyRequest = this.makeVerifyRequest.bind(this)
   }
 
   handleCodeChange(attr, e) {
@@ -92,13 +94,13 @@ class SignUpPage extends React.Component {
 
   makeVerifyRequest(e) {
     e.preventDefault()
-
     const path = APIRoutes.verifyCodePath()
     const params = { code: getInputToParams(this.state.codeFormFields) }
 
     request.post(path, params, (response) => {
       this.setState({ verified: true })
     }, (error) => {
+      console.log(error)
       const codeFormFields = this.state.codeFormFields
       codeFormFields.key.error = 'is invalid'
       this.setState({ codeFormFields: codeFormFields })
@@ -124,8 +126,8 @@ class SignUpPage extends React.Component {
           <input
             className='button marginTopBot-xxs'
             type='submit'
-            value='Update user'
-            onClick={this.makeVerifyRequest.bind(this)}
+            value='Continue'
+            onClick={this.makeVerifyRequest}
           />
         </Form>
       </div>
@@ -145,13 +147,15 @@ class SignUpPage extends React.Component {
           <input
             type='hidden'
             name='code[key]'
-            value={this.state.codeFormFields.key.value} />
+            value={this.state.codeFormFields.key.value}
+          />
 
           <input
             className='button marginTopBot-xxs'
             type='submit'
             name='commit'
-            value='Sign up' />
+            value='Sign up'
+          />
         </Form>
       </div>
     )
