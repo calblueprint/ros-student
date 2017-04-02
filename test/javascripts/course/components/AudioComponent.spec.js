@@ -20,7 +20,7 @@ describe('<AudioComponent />', () => {
       <AudioComponent
         audioUrl={audioUrl}
         callback={audioStub}
-        selfPaced={false}
+        selfPaced={true}
       />
     )
 
@@ -32,11 +32,22 @@ describe('<AudioComponent />', () => {
       <AudioComponent
         audioUrl={null}
         callback={audioStub}
-        selfPaced={false}
+        selfPaced={true}
       />
     )
 
     expect(audioComponent2.find('#audio-component')).to.have.length(0)
+
+    // Shouldn't render unless selfPaced is true
+    const audioComponent3 = mount(
+      <AudioComponent
+        audioUrl={audioUrl}
+        callback={audioStub}
+        selfPaced={false}
+      />
+    )
+
+    expect(audioComponent3).find('#audio-component').to.have.length(0)
   })
 
   it('should invoke callback onEnd', () => {
