@@ -47,7 +47,7 @@ describe('<AudioComponent />', () => {
       />
     )
 
-    expect(audioComponent3).find('#audio-component').to.have.length(0)
+    expect(audioComponent3.find('#audio-component')).to.have.length(0)
   })
 
   it('should invoke callback onEnd', () => {

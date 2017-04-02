@@ -45,7 +45,7 @@ describe('<ImageComponent />', () => {
     expect(imageComponent2.find('#audio-component')).to.have.length(0)
 
     // AudioComponent should not render if audioUrl is not provided
-    const imageComponent2 = mount(
+    const imageComponent3 = mount(
       <ImageComponent
         imgUrl={imageUrl}
         onEnd={onEndStub}
@@ -54,13 +54,13 @@ describe('<ImageComponent />', () => {
       />
     )
 
-    expect(imageComponent2.find('#audio-component')).to.have.length(0)
+    expect(imageComponent3.find('#audio-component')).to.have.length(0)
 
     /**
      * AudioComponent should only render if audioUrl is provided and
      * the course is taken self paced
      */
-    const imageComponent3 = mount(
+    const imageComponent4 = mount(
       <ImageComponent
         imgUrl={imageUrl}
         onEnd={onEndStub}
@@ -69,6 +69,6 @@ describe('<ImageComponent />', () => {
       />
     )
 
-    expect(imageComponent3.find('#audio-component')).to.have.length(1)
+    expect(imageComponent4.find('#audio-component')).to.have.length(1)
   })
 })

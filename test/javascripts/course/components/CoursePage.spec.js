@@ -26,6 +26,7 @@ describe('<CoursePage />', () => {
       'description':'Eveniet tenetur',
       'image_url': null,
       'is_published': true,
+      'self_paced': true,
       'sections':[
         {
           'id':1,
@@ -106,7 +107,7 @@ describe('<CoursePage />', () => {
         'content_url': CONTENT_URL,
         'position': 1,
         'subsection_id': 7,
-        'is_complete': true
+        'is_complete': true,
       },
       {
         'id': 2,
@@ -117,7 +118,7 @@ describe('<CoursePage />', () => {
         'content_url': CONTENT_URL,
         'position': 2,
         'subsection_id': 7,
-        'is_complete': false
+        'is_complete': false,
       },
     ],
     'current_component': {
@@ -129,7 +130,7 @@ describe('<CoursePage />', () => {
       'content_url': CONTENT_URL,
       'position': 2,
       'subsection_id': 7,
-      'is_complete': false
+      'is_complete': false,
     }
   }
 
@@ -216,6 +217,7 @@ describe('<CoursePage />', () => {
 
     const nextButton = coursePage.find('#next-button')
     const displayNextComponentStub = sinon.stub(coursePage.instance(), 'displayNextComponent').returns({})
+    const markComponentAsCompleteStub = sinon.stub(coursePage.instance(), 'markComponentAsComplete').returns({})
 
     expect(nextButton).to.have.attr('disabled')
     expect(coursePage.state().nextDisabled).to.be.true
@@ -236,7 +238,7 @@ describe('<CoursePage />', () => {
     const coursePage = mount(<CoursePage routeParams={{id: ID}}/>)
 
     const nextButton = coursePage.find('#next-button')
-    const markComponentAsCompleteSpy = sinon.spy(coursePage.instance(), 'markComponentAsComplete')
+    const markComponentAsCompleteStub = sinon.stub(coursePage.instance(), 'markComponentAsComplete').returns({})
 
     expect(nextButton).to.have.attr('disabled')
     expect(coursePage.state().nextDisabled).to.be.true
