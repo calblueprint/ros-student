@@ -20,6 +20,7 @@ describe('<AudioComponent />', () => {
       <AudioComponent
         audioUrl={audioUrl}
         callback={audioStub}
+        selfPaced={false}
       />
     )
 
@@ -31,6 +32,7 @@ describe('<AudioComponent />', () => {
       <AudioComponent
         audioUrl={null}
         callback={audioStub}
+        selfPaced={false}
       />
     )
 
@@ -43,6 +45,7 @@ describe('<AudioComponent />', () => {
       <AudioComponent
         audioUrl={audioUrl}
         callback={audioStub}
+        selfPaced={false}
       />
     )
 
