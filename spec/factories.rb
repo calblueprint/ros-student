@@ -1,4 +1,12 @@
 FactoryGirl.define do
+  factory :course_request do
+    request_id 1
+    course_id 1
+  end
+  factory :request do
+    student_id 1
+    state 1
+  end
   factory :photo do
     parent_id 1
     parent_type "MyString"

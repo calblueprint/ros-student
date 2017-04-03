@@ -107,12 +107,12 @@ Rails.application.routes.draw do
           get :sidebar
         end
       end
-
       resources :codes, only: :none do
         collection do
           post :add_courses
         end
       end
+      resources :requests, only: [:create]
     end
 
     scope module: 'students' do
