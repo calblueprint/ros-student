@@ -25,10 +25,12 @@ class AudioComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      playing: false,
-      progress: 0,
-    })
+    if (this.props != nextProps) {
+      this.setState({
+        playing: false,
+        progress: 0,
+      })
+    }
   }
 
   onDuration(seconds) {
