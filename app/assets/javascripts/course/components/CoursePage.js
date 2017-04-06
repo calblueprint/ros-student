@@ -12,6 +12,10 @@ import CourseSidebar from './CourseSidebar'
 import ParentComponent from './ParentComponent'
 import ComponentGraph from './ComponentGraph'
 
+import CongratsModal from '../../students/components/CongratsModal'
+import FinalCongratsModal from '../../students/components/FinalCongratsModal'
+
+
 class CoursePage extends React.Component {
   constructor(props) {
     super(props)
@@ -21,7 +25,9 @@ class CoursePage extends React.Component {
       displayedSection: {},
       displayedSubsection: {},
       displayedComponent: {},
-      nextDisabled: true
+      courseProgress: 0,
+      nextDisabled: true,
+      isModalOpen: false,
     }
 
     this.displaySubsection = this.displaySubsection.bind(this)
@@ -31,6 +37,7 @@ class CoursePage extends React.Component {
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
     this.enableNextButton = this.enableNextButton.bind(this)
     this.showNextButtonTooltip = this.showNextButtonTooltip.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   componentDidMount() {
@@ -38,10 +45,10 @@ class CoursePage extends React.Component {
 
     request.get(path, (response) => {
       const currentSubsection = response.course_sidebar.current_subsection
-
       this.setState({
         courseSidebar: response.course_sidebar,
         displayedSubsection: currentSubsection,
+        courseProgress: response.course_sidebar.progress,
       }, () => {
         if (currentSubsection) {
           this.displaySubsection(currentSubsection.id)
@@ -103,6 +110,8 @@ class CoursePage extends React.Component {
   displayNextComponent() {
     this.setState({ nextDisabled: true })
 
+    console.log(this.state.courseSidebar)
+
     const sections = this.state.courseSidebar.sections
     const section = this.state.displayedSection
     const subsection = this.state.displayedSubsection
@@ -117,6 +126,15 @@ class CoursePage extends React.Component {
       this.displaySubsection(displayedSubsection.id, 1)
     } else if (!isLast(sections, section)) {
       this.displaySection(section.position + 1, 1, 1)
+    } else {
+      // Component not complete
+      // is last component in subsection
+      // is last subsection in section
+      // is last section in sections
+      /* Last component of course completed */
+      console.log("yes")
+      this.markComponentAsComplete(component)
+      this.openModal()
     }
   }
 
@@ -224,6 +242,22 @@ class CoursePage extends React.Component {
     }
   }
 
+  openModal() {
+    this.setState({
+      isModalOpen:true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      isModalOpen:false
+    });
+  }
+
+  checkAndRenderModal() {
+    this.state.courseProgress == 100 && this.openModal()
+  }
+
   render() {
     return (
       <div className='flex'>
@@ -264,7 +298,8 @@ class CoursePage extends React.Component {
                   id='next-button'
                   disabled={this.nextDisabled()}
                   className='course-navigation-button'
-                  onClick={this.displayNextComponent}>
+                  onClick={this.displayNextComponent}
+                  >
                   <span
                     className='tooltip tooltiptext right'
                     style={this.showNextButtonTooltip()}>
@@ -278,9 +313,18 @@ class CoursePage extends React.Component {
             </div>
           </div>
         </div>
+
+        <CongratsModal
+          isModalOpen={this.state.isModalOpen}
+          closeModal={this.closeModal}
+        />
       </div>
     )
   }
 }
+
+//slap in modal at end. every time user presses display component, whch is triggered by action
+//it will call set state on entire course page and at theat time make conditional check to see if completed
+//if completed, set modal to be open.
 
 export default CoursePage

@@ -9,6 +9,7 @@ import { Images } from '../../utils/helpers/image_helpers'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
 import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
 import AudioUploadInput from '../../shared/components/forms/AudioUploadInput'
+import CongratsModal from '../../students/components/CongratsModal'
 
 const SortableItem = SortableElement(({ name, index }) =>
   <li className='SortableItem'>{name}</li>
@@ -79,7 +80,15 @@ class TestingPage extends React.Component {
       value2: 'This other value',
       url: '',
       image: '',
+      openModal: true,
     }
+    this.closeModal = this.closeModal.bind(this)
+  }
+
+  closeModal() {
+    this.setState({
+      openModal:false
+    });
   }
 
   onSortEnd({oldIndex, newIndex}) {
@@ -134,6 +143,11 @@ class TestingPage extends React.Component {
     this.setState({ value2: value })
   }
 
+  // onClick(){
+  //   //DOSTUFF SET STATE
+  //   //
+  // }
+
   renderHeader() {
     return <h1>HEADER</h1>
   }
@@ -157,11 +171,15 @@ class TestingPage extends React.Component {
 
         <InlineEditInput value={this.state.value1} onBlur={this.onBlur1.bind(this)} />
         <InlineEditInput value={this.state.value2} onBlur={this.onBlur2.bind(this)} />
-        <Dropdown header={this.renderHeader()} items={this.renderItems()} />
-        <ImageUploadInput label='image' onChange={this.onImage.bind(this)} />
         <AudioUploadInput label='audio' onChange={this.onAudio.bind(this)} />
         <audio src={this.state.url} controls preload />
         <img src={this.state.image} />
+        <CongratsModal 
+          openModal={this.state.openModal} 
+          closeModal={this.closeModal} 
+        />
+
+
       </div>
     )
   }
