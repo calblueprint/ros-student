@@ -255,11 +255,11 @@ class CourseEditPage extends React.Component {
   }
 
   renderPublishLabel() {
-    return this.state.course.isPublished ? 'Unpublish course' : 'Publish course'
+    return this.state.course.isPublished ? 'Unpublish Course' : 'Publish Course'
   }
 
   renderCollapsedLabel() {
-    return this.state.forceOpen ? 'Collapse Courses' : 'Expand Courses'
+    return this.state.forceOpen ? 'Collapse Lessons' : 'Expand Lessons'
   }
 
   renderSections() {
