@@ -86,6 +86,8 @@ Rails.application.routes.draw do
           get :download
         end
       end
+
+      resources :requests, only: [:index, :update]
     end
 
     scope module: 'admins' do

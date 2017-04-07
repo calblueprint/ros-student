@@ -1,0 +1,2 @@
+class RequestListSerializer < BaseRequestSerializer
+end

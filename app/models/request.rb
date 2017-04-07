@@ -26,8 +26,4 @@ class Request < ActiveRecord::Base
     end
     generated_course_requests = course_ids.map { |course_id| course_requests.create(course_id: course_id) }
   end
-
-  def change_state(state)
-    state = 1
-  end
 end
