@@ -13,7 +13,6 @@ import { Images } from '../../utils/helpers/image_helpers'
 import SectionSidebar from './SectionSidebar'
 
 class CourseSidebar extends React.Component {
-
   renderSections() {
     return _.map(this.props.courseSidebar.sections, (value) => {
       return (
