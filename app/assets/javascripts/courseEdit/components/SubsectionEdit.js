@@ -210,8 +210,25 @@ class SubsectionEdit extends React.Component {
     this.setState({ openParentModal: false })
   }
 
-  moveSubsection(sectionId) {
+  moveSubsection(section) {
+    const path = APIRoutes.switchSectionPath(this.state.subsection.id)
+    const params = {
+      subsection: {
+        id: this.state.subsection.id,
+        section_id: section.id,
+      }
+    }
 
+    request.update(path, params, (response) => {
+      this.props.updateMoveSubsection(
+        response,
+        this.props.section.position - 1,
+        this.state.subsection.position - 1,
+        section.position - 1,
+      )
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   onSortEnd({ oldIndex, newIndex }) {

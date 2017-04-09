@@ -167,6 +167,7 @@ class SectionEdit extends React.Component {
               deleteSubsection={this.deleteSubsection}
               course={this.props.course}
               updateMoveComponent={this.props.updateMoveComponent}
+              updateMoveSubsection={this.props.updateMoveSubsection}
               section={this.state.section}
             />
           </div>
@@ -240,6 +241,7 @@ SectionEdit.propTypes = {
   course: PropTypes.object.isRequired,
   isSorting: PropTypes.bool,
   updateMoveComponent: PropTypes.func.isRequired,
+  updateMoveSubsection: PropTypes.func.isRequired,
 }
 
 export default SectionEdit
