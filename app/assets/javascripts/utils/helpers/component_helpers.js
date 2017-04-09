@@ -24,12 +24,6 @@ function formatComponent(component) {
   return formattedComponent
 }
 
-function isComponentSelfStudy(component) {
-  return component &&
-    component.component_type == 0 &&
-    component.audio_url == null
-}
-
 function pad(num) {
   return ('0' + num).slice(-2);
 }
@@ -42,6 +36,5 @@ function audioComponentProgress(fraction, duration) {
 export {
   getYoutubeKey,
   formatComponent,
-  isComponentSelfStudy,
   audioComponentProgress,
 }

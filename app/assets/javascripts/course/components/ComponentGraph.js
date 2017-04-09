@@ -13,7 +13,8 @@ class ComponentGraph extends React.Component {
   }
 
   isComponentEnabled(component) {
-    return this.isCurrentComponent(component) || component.is_complete
+    return this.isCurrentComponent(component) ||
+      component.is_complete
   }
 
   isCurrentComponent(component) {

@@ -124,12 +124,11 @@ class QuizForm extends React.Component {
               onChange={this.updateQuizKey}/>
           </div>
 
-          {this.renderAudio()}
-
           <div className='add-component-form-item'>
             <AudioUploadInput
               label="Audio"
               onChange={this.updateAudioData} />
+            {this.renderAudio()}
           </div>
 
           <div className='add-component-form-item'>

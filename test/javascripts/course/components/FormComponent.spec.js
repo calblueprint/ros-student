@@ -18,7 +18,13 @@ describe('<FormComponent />', () => {
   }
 
   it('should load the component properly', () => {
-    const formComponent = mount(<FormComponent component={component}/>)
+    const onEndStub = sinon.spy()
+    const formComponent = mount(
+      <FormComponent
+        component={component}
+        onEnd={onEndStub}
+      />
+    )
 
     expect(formComponent.state().formCode).to.equal('')
     expect(formComponent.state().error).to.equal('')

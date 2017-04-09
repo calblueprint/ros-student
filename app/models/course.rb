@@ -27,6 +27,10 @@ class Course < ActiveRecord::Base
     StudentCourse.find_by({ course_id: id, student_id: user.id})
   end
 
+  def is_self_paced?(user)
+    StudentCourse.find_by({ course_id: id, student_id: user.id, self_paced: true })
+  end
+
   def current_subsection(user)
     sections.each do |section|
       section.subsections.each do |subsection|

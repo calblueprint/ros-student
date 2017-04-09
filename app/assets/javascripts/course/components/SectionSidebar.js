@@ -21,6 +21,12 @@ class SectionSidebar extends React.Component {
     this.toggleCollapse = this.toggleCollapse.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps != this.props && nextProps.section.id == nextProps.displayedSubsection.section_id) {
+      this.setState({ isOpen: true })
+    }
+  }
+
   toggleCollapse() {
     this.setState({ isOpen: !this.state.isOpen })
   }

@@ -5,7 +5,6 @@ import request from '../../shared/requests/request'
 import { getUser } from '../../utils/helpers/user_helpers'
 import { APIRoutes } from '../../shared/routes'
 import { findById, isFirst, isLast } from '../../utils/helpers/course_helpers'
-import { isComponentSelfStudy } from '../../utils/helpers/component_helpers'
 import { Images } from '../../utils/helpers/image_helpers'
 
 import CourseSidebar from './CourseSidebar'
@@ -33,6 +32,9 @@ class CoursePage extends React.Component {
     this.showNextButtonTooltip = this.showNextButtonTooltip.bind(this)
   }
 
+  /**
+    * Sets up course sidebar and displays current subsection
+    */
   componentDidMount() {
     const path = APIRoutes.getStudentCourseSidebarPath(this.props.routeParams.id)
 
@@ -52,16 +54,24 @@ class CoursePage extends React.Component {
     })
   }
 
-  displayComponent(index) {
+  /**
+    * Displays component at the given position in the displayedSubsection list
+    */
+  displayComponent(position) {
     const components = this.state.displayedSubsection.components
     if (!components) {
       return
     }
 
-    this.setState({ displayedComponent: components[index - 1] })
+    this.setState({ displayedComponent: components[position - 1] })
   }
 
-  displaySubsection(id, componentIndex) {
+  /**
+    * Makes an API call to get the subsection with the given id. Sets the subsection's
+    * section as displayedSection.
+    * Sets displayedComponent based on given componentPosition.
+    */
+  displaySubsection(id, componentPosition) {
     const path = APIRoutes.getSubsectionPath(id)
 
     request.get(path, (response) => {
@@ -70,12 +80,15 @@ class CoursePage extends React.Component {
       const displayedSection = this.getDisplayedSection(response)
 
       let displayedComponent
-      if (!componentIndex && !response.is_complete) {
+      // If subsection is incomplete and componentPosition is null, use response.current_component
+      if (!componentPosition && !response.is_complete) {
         displayedComponent = response.current_component
-      } else if (response.is_complete || componentIndex == -1) {
+      // If subsection is complete and componentPosition is -1, get the last component
+      } else if (response.is_complete || componentPosition == -1) {
         displayedComponent = response.components[length - 1]
+      // If componentPosition is given, set displayedComponent based on given position
       } else {
-        displayedComponent = response.components[componentIndex - 1]
+        displayedComponent = response.components[componentPosition - 1]
       }
       this.setState({
         displayedSubsection: response,
@@ -87,19 +100,21 @@ class CoursePage extends React.Component {
     })
   }
 
-  displaySection(index, subsectionIndex, componentIndex) {
-    const section = this.state.courseSidebar.sections[index - 1]
+  /**
+    * Calls displaySubsection based on given subsectionPosition, which sets this section as displayedSection
+    */
+  displaySection(position, subsectionPosition, componentPosition) {
+    const section = this.state.courseSidebar.sections[position - 1]
     const length = section.subsections.length
-    subsectionIndex = subsectionIndex == -1 ? length : subsectionIndex
-    const subsection = section.subsections[subsectionIndex - 1]
+    subsectionPosition = subsectionPosition == -1 ? length : subsectionPosition
+    const subsection = section.subsections[subsectionPosition - 1]
 
-    const courseSidebar = this.state.courseSidebar
-    courseSidebar.current_subsection = subsection
-    this.setState({ courseSidebar: courseSidebar })
-
-    this.displaySubsection(subsection.id, componentIndex)
+    this.displaySubsection(subsection.id, componentPosition)
   }
 
+  /**
+    * Gets and displays the next component and possibly next subsection and/or section
+    */
   displayNextComponent() {
     this.setState({ nextDisabled: true })
 
@@ -108,34 +123,52 @@ class CoursePage extends React.Component {
     const subsection = this.state.displayedSubsection
     const component = this.state.displayedComponent
 
-    if (!component.is_complete) {
-      this.markComponentAsComplete(component)
-    } else if (!isLast(subsection.components, component)) {
+    // If not the last component, display next component in subsection
+    if (!isLast(subsection.components, component)) {
       this.displayComponent(component.position + 1)
+
+    // If it is the last component but not last subsection, display the next subsection in section
     } else if (!isLast(section.subsections, subsection)) {
       const displayedSubsection = section.subsections[subsection.position]
       this.displaySubsection(displayedSubsection.id, 1)
+
+    // If it is the last subsection but current section is not the last section
     } else if (!isLast(sections, section)) {
       this.displaySection(section.position + 1, 1, 1)
+    } else {
+      // TODO: Congratulations Modal or if already completed, something else
     }
   }
 
+  /**
+    * Displays the previous component
+    */
   displayPrevComponent() {
     const sections = this.state.courseSidebar.sections
     const section = this.state.displayedSection
     const subsection = this.state.displayedSubsection
     const component = this.state.displayedComponent
 
+    // If component is not the first in its subsection, display previous component in subsection
     if (!isFirst(component)) {
       this.displayComponent(component.position - 1)
+
+    // If component is first in its subsection, but its subsection is not first,
+    // display the last component in the previous subsection
     } else if (!isFirst(subsection)) {
       const displayedSubsection = section.subsections[subsection.position - 2]
       this.displaySubsection(displayedSubsection.id, -1)
+
+    // If subsection is first in its section, but the section is not first,
+    // display the last component of the last subsection of the previous section
     } else if (!isFirst(section)) {
       this.displaySection(section.position - 1, -1, -1)
     }
   }
 
+  /**
+    * Returns section that belongs to the given subsection
+    */
   getDisplayedSection(displayedSubsection) {
     /* Returns the section that the user is currently viewing. */
     return this.state.courseSidebar.sections.find((element) => {
@@ -143,34 +176,73 @@ class CoursePage extends React.Component {
     })
   }
 
+  /**
+    * Disables the next button if component is null and enables it
+    * if the component is complete. Otherwise, it returns this.state.nextDisabled.
+    */
   nextDisabled() {
     const component = this.state.displayedComponent
     if (!component) {
       return true
     } else if (component.is_complete) {
       return false
-    } else if (isComponentSelfStudy(component)) {
-      return false
     } else {
       return this.state.nextDisabled
     }
   }
 
-  enableNextButton() {
-    this.setState({ nextDisabled: false })
+  /**
+    * Disables the prev button if component is the first in the course
+    */
+  prevDisabled() {
+    if (!this.state.courseSidebar.sections || !this.state.displayedSubsection.components) {
+      return false
+    }
+
+    const subsectionId = this.state.courseSidebar.sections[0].subsections[0].id
+
+    const displayedSubsection = this.state.displayedSubsection
+    const componentId = this.state.displayedSubsection.components[0].id
+
+    return (displayedSubsection.id == subsectionId) && (componentId == this.state.displayedComponent.id)
   }
 
+  /**
+    * Callback when displayedComponent completes. On completion, the next button is enabled
+    * and if displayedComponent is not complete yet, mark it as complete.
+    */
+  enableNextButton() {
+    this.setState({ nextDisabled: false })
+    if (!this.state.displayedComponent.is_complete) {
+      this.markComponentAsComplete(this.state.displayedComponent)
+    }
+  }
+
+  /**
+    * Returns whether the courseSidebar's course is self paced
+    */
+  isSelfPaced() {
+    return this.state.courseSidebar.self_paced
+  }
+
+  /**
+    * Display next button tooltip if next is disabled
+    */
   showNextButtonTooltip() {
     const component = this.state.displayedComponent
-    const display = (this.nextDisabled() && component &&
-      (component.component_type == 2 || component.audio_url)) ? 'inline' : 'none'
+    const display = (this.nextDisabled() && component) ? 'inline' : 'none'
 
     return ({
       display: `${display}`
     })
   }
 
+  /**
+    * Make an API post request to mark component as complete. Update the sidebar,
+    * displayedComponent, and displayedSubsection accordingly
+    */
   markComponentAsComplete(component) {
+    // Create a component_progress object for this component to indicate completion
     const path = APIRoutes.createComponentProgressPath(component.id)
 
     const componentParams = {
@@ -181,46 +253,61 @@ class CoursePage extends React.Component {
     }
 
     request.post(path, componentParams, (response) => {
+      // Mark displayedComponent as complete
+      const component = this.state.displayedComponent
+      component.is_complete = true
+
+      // Update displayedSubsection's components and current_component based on response
+      const subsection = this.state.displayedSubsection
+      subsection.components = response.components
+      subsection.current_component = response.current_component
+
+      const courseSidebar = this.state.courseSidebar
+      const section = courseSidebar.sections[this.state.displayedSection.position - 1]
+
+      // If displayedSubsection is complete, mark it and update the sidebar with the next current_subsection
       if (response.is_complete) {
-        this.markSubsectionComplete(response)
-      } else {
-        this.setState({
-          displayedSubsection: response,
-          displayedComponent: response.current_component,
-        })
+        subsection.is_complete = true
+
+        const nextSubsection = this.getNextSubsection(section, subsection)
+        courseSidebar.current_subsection = nextSubsection
       }
+
+      section.subsections[this.state.displayedSubsection.position - 1] = subsection
+      courseSidebar.sections[this.state.displayedSection.position - 1] = section
+
+      this.setState({
+        displayedComponent: component,
+        displayedSubsection: subsection,
+        courseSidebar: courseSidebar,
+      })
+
     }, (error) => {
       console.log(error)
     })
   }
 
-  markSubsectionComplete(subsection) {
-    const courseSidebar = this.state.courseSidebar
-    const sections = courseSidebar.sections
-
-    if (!sections) {
+  /**
+    * Gets the next subsection after the given subsection in the given section
+    */
+  getNextSubsection(section, subsection) {
+    if (!section || !subsection) {
       return
     }
 
-    const section = sections.find((section) => {
-      return section.id == subsection.section_id
-    })
-    if (!section) {
-      return
-    }
-
-    section.subsections[subsection.position - 1] = subsection
-    courseSidebar.sections[section.position - 1] = section
-
+    // If not the last subsection in section, return the next subsection in section
     if (!isLast(section.subsections, subsection)) {
-      const displayedSubsection = section.subsections[subsection.position]
-
-      courseSidebar.current_subsection = displayedSubsection
-      this.setState({ courseSidebar: courseSidebar })
-
-      this.displaySubsection(displayedSubsection.id, 1)
-    } else if (!isLast(sections, section)) {
-      this.displaySection(section.position + 1, 1, 1)
+      const nextSubsection = section.subsections[subsection.position]
+      return nextSubsection
+    // If the last subsection, but section is not the last in the course, return
+    // the first subsection in the next section
+    } else if (!isLast(this.state.courseSidebar.sections, section)) {
+      const nextSection = this.state.courseSidebar.sections[section.position]
+      const nextSubsection = nextSection.subsections[0]
+      return nextSubsection
+    // If this is the last subsection and section in the course, return the given subsection
+    } else {
+      return subsection
     }
   }
 
@@ -249,11 +336,13 @@ class CoursePage extends React.Component {
               component={this.state.displayedComponent}
               subsection={this.state.displayedSubsection}
               onEnd={this.enableNextButton}
+              selfPaced={this.isSelfPaced()}
             />
 
             <div className='flex marginTopBot-md'>
               <button
                 id='previous-button'
+                disabled={this.prevDisabled()}
                 className='marginRight-lg course-navigation-button'
                 onClick={this.displayPrevComponent}>
                 <img src={Images.left_arrow} />
@@ -268,7 +357,7 @@ class CoursePage extends React.Component {
                   <span
                     className='tooltip tooltiptext right'
                     style={this.showNextButtonTooltip()}>
-                    Please finish the clip before continuing
+                    Please finish before continuing
                   </span>
                   <img
                     src={Images.right_arrow}

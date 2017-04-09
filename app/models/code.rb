@@ -8,6 +8,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  code_csv_id :integer
+#  self_paced  :boolean          default(FALSE)
 #
 
 class Code < ActiveRecord::Base
