@@ -12,4 +12,10 @@ class Api::Admins::RequestsController < Api::Admins::BaseController
   def index
     render json: @requests, each_serializer: RequestListSerializer
   end
+
+  def update_params
+    params.require(:update_params).permit(
+      :request_id,
+    )
+  end
 end

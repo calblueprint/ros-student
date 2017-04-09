@@ -1,5 +1,5 @@
 class Api::Admins::CodeCsvsController < Api::Admins::BaseController
-  load_and_authorize_resource
+  load_resource
 
   def create
     if @code_csv.save

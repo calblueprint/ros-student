@@ -20,5 +20,6 @@ class StudentAbility
     can [:show, :outline, :sidebar], Course do |course|
       course.is_enrolled?(student) && course.is_published
     end
+    can [:create], Request
   end
 end

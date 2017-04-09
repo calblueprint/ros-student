@@ -35,7 +35,7 @@ class GenerateCodeCsvModal extends React.Component {
         },
       },
       courses: [],
-      activeCourseIds: new Set()
+      activeCourseIds: new Set(),
     }
 
     /* Get courses for admin to selectively activate */

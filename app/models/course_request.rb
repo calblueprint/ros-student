@@ -14,5 +14,4 @@ class CourseRequest < ActiveRecord::Base
 
   belongs_to :request
   belongs_to :course
-
 end

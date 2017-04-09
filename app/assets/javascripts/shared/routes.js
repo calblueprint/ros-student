@@ -22,6 +22,8 @@ class ReactRoutes {
   static codeCsvListPath()                { return `/admins/code_csvs`}
   static courseToolsPath()                { return `/admins/courses/tools`}
   static usersListPath()                  { return `/admins/users`}
+  static courseRequestPath()              { return `/students/requests` }
+
 
   // Student Flow
   static studentProfilePath(id)           { return `/students/${ReactRoutes.getId(id, 'id')}/profile`}
@@ -38,6 +40,9 @@ class ReactRoutes {
 
   // Codes
   static codeCsvListPath()                { return `/admins/code_csvs` }
+
+  //Requests
+  static courseRequestPath()              { return `/students/requests` }
 }
 
 
@@ -65,6 +70,7 @@ class RailsRoutes {
   static courseEditPath(id)           { return `/courses/${id}/edit` }
   static adminProfilePath(id)         { return `/admins/${ReactRoutes.getId(id, 'id')}/profile`}
   static codeCsvListPath()            { return `/admins/code_csvs`}
+  static courseRequestPath()          { return `/students/requests`}
 }
 
 class APIRoutes {
@@ -107,6 +113,10 @@ class APIRoutes {
   static getSubsectionPath(id)            { return APIRoutes.createRoute(`students/subsections/${id}`) }
   static getComponentProgressPath(id)     { return APIRoutes.createRoute(`students/components/${id}/component_progresses`) }
   static createComponentProgressPath(id)  { return APIRoutes.createRoute(`students/components/${id}/component_progresses`)}
+
+  //Requests
+  static courseRequestPath()        { return APIRoutes.createRoute(`students/requests`) }
+  static requestUpdatePath(id)      { return APIRoutes.createRoute(`admins/requests/${id}`) }
 
   // Course Edit
   static createComponentPath(id)    { return APIRoutes.createRoute(`admins/subsections/${id}/components`) }

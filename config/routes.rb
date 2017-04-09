@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get '/students/:id/profile', to: 'pages#dashboard'
   get '/courses/:id/outline', to: 'pages#dashboard'
   get '/students/add_courses', to: 'pages#dashboard'
+  get '/students/requests', to: 'pages#dashboard'
 
   # Course flow
   resources :courses, only: [:show]
