@@ -21,6 +21,7 @@ import AdminProfilePage from './components/AdminProfilePage'
 import CodeCsvListPage from './components/CodeCsvListPage'
 import ExportImportPage from './components/ExportImportPage'
 import UsersListPage from './components/UsersListPage'
+import CourseRequestApprovePage from './components/CourseRequestApprovePage'
 import Flash from '../shared/components/widgets/Flash'
 import Navbar from '../shared/components/widgets/Navbar'
 
@@ -43,6 +44,11 @@ class App extends React.Component {
             to={ReactRoutes.usersListPath()}>
             <div className="nav-element right">Users</div>
           </Link>
+
+          <Link
+            to={ReactRoutes.courseRequestApprovePath()}>
+            <div className="nav-element right">Course Requests</div>
+          </Link>
         </Navbar>
 
         <div className='flex center'>
@@ -63,6 +69,7 @@ render((
       <Route path={ReactRoutes.codeCsvListPath()} name='CodeCsvListPage' component={CodeCsvListPage} />
       <Route path={ReactRoutes.courseToolsPath()} name='ExportImportPage' component={ExportImportPage} />
       <Route path={ReactRoutes.usersListPath()} name='UsersListPath' component={UsersListPage} />
+      <Route path={ReactRoutes.courseRequestApprovePath()} name='CourseRequestApprovePath' component={CourseRequestApprovePage}/>
       <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />
     </Route>
   </Router>

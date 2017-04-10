@@ -22,8 +22,6 @@ class ReactRoutes {
   static codeCsvListPath()                { return `/admins/code_csvs`}
   static courseToolsPath()                { return `/admins/courses/tools`}
   static usersListPath()                  { return `/admins/users`}
-  static courseRequestPath()              { return `/students/requests` }
-
 
   // Student Flow
   static studentProfilePath(id)           { return `/students/${ReactRoutes.getId(id, 'id')}/profile`}
@@ -43,6 +41,7 @@ class ReactRoutes {
 
   //Requests
   static courseRequestPath()              { return `/students/requests` }
+  static courseRequestApprovePath()       { return `/admins/requests` }
 }
 
 
@@ -70,7 +69,8 @@ class RailsRoutes {
   static courseEditPath(id)           { return `/courses/${id}/edit` }
   static adminProfilePath(id)         { return `/admins/${ReactRoutes.getId(id, 'id')}/profile`}
   static codeCsvListPath()            { return `/admins/code_csvs`}
-  static courseRequestPath()          { return `/students/requests`}
+  //is this needed?
+  //static courseRequestPath()          { return `/students/requests`}
 }
 
 class APIRoutes {
@@ -109,6 +109,7 @@ class APIRoutes {
   static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`) }
   static codeCsvDownloadPath(id) { return APIRoutes.createRoute(`admins/code_csvs/${id}/download.csv`) }
   static getCodeCsvPath(id)      { return APIRoutes.createRoute(`admins/code_csvs/${id}`)}
+
   // Courses
   static getSubsectionPath(id)            { return APIRoutes.createRoute(`students/subsections/${id}`) }
   static getComponentProgressPath(id)     { return APIRoutes.createRoute(`students/components/${id}/component_progresses`) }
@@ -117,6 +118,7 @@ class APIRoutes {
   //Requests
   static courseRequestPath()        { return APIRoutes.createRoute(`students/requests`) }
   static requestUpdatePath(id)      { return APIRoutes.createRoute(`admins/requests/${id}`) }
+  static getRequestsPath()          { return APIRoutes.createRoute(`admins/requests`)}
 
   // Course Edit
   static createComponentPath(id)    { return APIRoutes.createRoute(`admins/subsections/${id}/components`) }

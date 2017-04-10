@@ -55,7 +55,7 @@ render((
       <Route path={ReactRoutes.dashboardPath()} component={StudentDashboardPage} />
       <Route path={ReactRoutes.courseOutlinePath()} component={CourseOutlinePage} />
       <Route path={ReactRoutes.addCoursesPath()} component={AddCoursesPage} />
-      <Route path={ReactRoutes.courseRequestPath()} name='CourseRequestPage' component={CourseRequestPage} />
+      <Route path={ReactRoutes.courseRequestPath()} component={CourseRequestPage} />
       <Redirect from={ReactRoutes.rootPath()} to={ReactRoutes.dashboardPath()} />
     </Route>
   </Router>

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/admins/courses/tools', to: 'pages#dashboard'
   get '/admins/code_csvs', to: 'pages#dashboard'
   get '/admins/users', to: 'pages#dashboard'
+  get '/admins/requests', to: 'pages#dashboard'
 
   # Student Flow
   get '/students/:id/profile', to: 'pages#dashboard'
