@@ -37,7 +37,9 @@ class ComponentEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ component: nextProps.component })
+    if (this.props.component != nextProps.component) {
+      this.setState({ component: nextProps.component })
+    }
   }
 
   deleteComponent() {
