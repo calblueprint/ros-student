@@ -2,7 +2,8 @@ import _ from 'underscore'
 import YouTube from 'react-youtube'
 import React from 'react'
 
-import Input from '../../shared/components/forms/Input'
+import Input, Form from '../../shared/components/forms/Input'
+
 import AudioUploadInput from '../../shared/components/forms/AudioUploadInput'
 
 import { getYoutubeKey } from '../../utils/helpers/component_helpers'
@@ -83,7 +84,7 @@ class MultimediaForm extends React.Component {
 
     return (
       <div className='add-component-body-text'>
-        <form>
+        <Form>
           <div className='add-component-form-item'>
             <Input
               label='Title'
@@ -114,7 +115,7 @@ class MultimediaForm extends React.Component {
               Save
             </button>
           </div>
-        </form>
+        </Form>
       </div>
     )
   }
