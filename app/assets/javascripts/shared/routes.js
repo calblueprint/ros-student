@@ -117,7 +117,7 @@ class APIRoutes {
 
   //Requests
   static courseRequestPath()        { return APIRoutes.createRoute(`students/requests`) }
-  static requestUpdatePath(id)      { return APIRoutes.createRoute(`admins/requests/${id}`) }
+  static requestUpdatePath(id)        { return APIRoutes.createRoute(`admins/requests/${id}`) }
   static getRequestsPath()          { return APIRoutes.createRoute(`admins/requests`)}
 
   // Course Edit
