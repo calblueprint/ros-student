@@ -27,7 +27,7 @@ class EditComponentForm extends ComponentForm {
       successFunction && successFunction()
     }, (error) => {
       console.log(error)
-      error && errorFunction()
+      error && errorFunction(error)
     })
   }
 

@@ -2,10 +2,12 @@ import _ from 'underscore'
 import YouTube from 'react-youtube'
 import React from 'react'
 
-import Input, Form from '../../shared/components/forms/Input'
+import Input from '../../shared/components/forms/Input'
+import Form from '../../shared/components/forms/Form'
 
 import AudioUploadInput from '../../shared/components/forms/AudioUploadInput'
 
+import { mapErrorToFormFields } from '../../utils/helpers/form_helpers'
 import { getYoutubeKey } from '../../utils/helpers/component_helpers'
 
 class MultimediaForm extends React.Component {
@@ -13,59 +15,74 @@ class MultimediaForm extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      component: {
-        componentType: 2,
-        title: this.props.component.title,
-        contentUrl: this.props.component.content_url,
-      },
-
+    this.state = _.extend(this.getFormFields(), {
       audioUrl: this.props.component.audio_url,
+    })
+
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  getFormFields() {
+    return {
+      formFields: {
+        title: {
+          label: 'Title',
+          value: this.props.component.title,
+          onChange: _.bind(this.handleChange, this, 'title'),
+          error: '',
+        },
+        contentUrl: {
+          label: 'Youtube Url',
+          value: this.props.component.content_url,
+          onChange: _.bind(this.handleChange, this, 'contentUrl'),
+          error: '',
+        },
+      }
     }
-
-    this.updateContentURL = this.updateContentURL.bind(this)
-    this.updateAudioData = this.updateAudioData.bind(this)
-    this.updateTitle = this.updateTitle.bind(this)
   }
 
-  setComponent(field, data) {
-    const component = this.state.component
-    component[field] = data
-    this.setState({ component: component})
-  }
-
-  updateContentURL(e) {
-    this.setComponent('contentUrl', e.target.value)
-  }
-
-  updateTitle(e) {
-    this.setComponent('title', e.target.value)
+  handleChange(attr, e) {
+    const formFields = this.state.formFields
+    formFields[attr].value = e.target.value
+    this.setState({ formFields: formFields })
   }
 
   updateAudioData(audio) {
-    this.setComponent('audioData', audio)
+    this.setState({ audioUrl: audio })
   }
 
   submit(e) {
     e.preventDefault()
-    this.props.callback(this.state.component)
+
+    const component = {
+      componentType: 2,
+      title: this.state.formFields.title.value,
+      contentUrl: this.state.formFields.contentUrl.value,
+      audio: this.state.audioUrl ? this.state.audioUrl : null,
+    }
+    this.props.callback(component, null, this.setErrorFormFields.bind(this))
+  }
+
+  setErrorFormFields(error) {
+    this.setState({
+      formFields: mapErrorToFormFields(error, this.state.formFields)
+    })
   }
 
   renderAudio() {
-    const audio = this.state.component.audioData || this.state.audioUrl
-    if (_.isNull(audio)) {
+    if (_.isNull(this.state.audioUrl)) {
       return
     }
 
     return (
       <div className='add-component-form-item'>
-        <audio src={audio} controls preload />
+        <audio src={this.state.audioUrl} controls preload />
       </div>
     )
   }
 
   renderPreview() {
-    const youtubeKey = getYoutubeKey(this.state.component.contentUrl)
+    const youtubeKey = getYoutubeKey(this.state.formFields.contentUrl.value)
     if (youtubeKey) {
       return (
         <div>
@@ -74,29 +91,22 @@ class MultimediaForm extends React.Component {
       )
     } else {
       return (
-        <div>No Preview Avaliable</div>
+        <div>No Preview Available</div>
       )
     }
   }
 
   render() {
-    const audio = this.state.component.audioData || this.state.audioUrl
-
+    const audio = this.state.audioUrl
     return (
       <div className='add-component-body-text'>
         <Form>
           <div className='add-component-form-item'>
-            <Input
-              label='Title'
-              value={this.state.component.title}
-              onChange={this.updateTitle}/>
+            <Input {...this.state.formFields.title} />
           </div>
 
           <div className='add-component-form-item'>
-            <Input
-              label='Youtube Url'
-              value={this.state.component.contentUrl}
-              onChange={this.updateContentURL} />
+            <Input {...this.state.formFields.contentUrl} />
           </div>
 
           {this.renderPreview()}

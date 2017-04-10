@@ -9,43 +9,67 @@ import SaveButton from '../../shared/components/widgets/SaveButton'
 class SlideForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      component: {
-        componentType: 0,
-        title: this.props.component.title,
-      },
 
+    this.state = _.extend(this.getFormFields(), {
       imageUrl: this.props.component.image_data,
       audioUrl: this.props.component.audio_url,
-    }
+    })
 
-    this.updateImageData = this.updateImageData.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+
     this.updateAudioData = this.updateAudioData.bind(this)
     this.updateTitle = this.updateTitle.bind(this)
     this.submit = this.submit.bind(this)
   }
 
-  setComponent(field, data) {
-    const component = this.state.component
-    component[field] = data
-    this.setState({ component: component})
+  getFormFields() {
+    return {
+      formFields: {
+        title: {
+          label: 'Title',
+          value: this.props.component.title,
+          onChange: _.bind(this.handleChange, this, 'title'),
+          error: '',
+        },
+      }
+    }
+  }
+
+  handleChange(attr, e) {
+    const formFields = this.state.formFields
+    formFields[attr].value = e.target.value
+    this.setState({ formFields: formFields })
   }
 
   updateImageData(image) {
-    this.setComponent('imageData', image)
+    this.setState({ imageUrl: image })
   }
 
   updateAudioData(audio) {
-    this.setComponent('audioData', audio)
+    this.setState({ audioUrl: audio })
   }
 
-  updateTitle(e) {
-    this.setComponent('title', e.target.value)
-  }
-
-  submit(event, success, error) {
+  submit(event, successFunction, errorFunction) {
     event.preventDefault()
-    this.props.callback(this.state.component, success, error)
+
+    const component = {
+      componentType: 0,
+      title: this.state.formFields.title.value,
+      contentUrl: this.state.formFields.contentUrl.value,
+      audio: this.state.audioUrl ? this.state.audioUrl : null,
+      imageData: this.state.imageUrl,
+    }
+
+    this.props.callback(component, success, (error) => {
+      errorFunction(error)
+      this.setErrorFormFields(error)
+    }.bind(this))
+  }
+
+  setErrorFormFields(error) {
+    this.setState({
+      formFields: mapErrorToFormFields(error, this.state.formFields)
+    })
   }
 
   renderAudio() {

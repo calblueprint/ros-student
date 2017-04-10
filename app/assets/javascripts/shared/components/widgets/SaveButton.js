@@ -45,7 +45,7 @@ class SaveButton extends React.Component {
     this.timer = setTimeout(this.resetState, 2000);
   }
 
-  showError() {
+  showError(error) {
     this.setState({ currentAction: 'error' })
     this.timer = setTimeout(this.resetState, 2000);
   }
