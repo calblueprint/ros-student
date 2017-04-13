@@ -59,7 +59,7 @@ class MultimediaForm extends React.Component {
       componentType: 2,
       title: this.state.formFields.title.value,
       contentUrl: this.state.formFields.contentUrl.value,
-      audio: this.state.audioUrl ? this.state.audioUrl : null,
+      audioData: this.state.audioUrl ? this.state.audioUrl : null,
     }
     this.props.callback(component, null, this.setErrorFormFields.bind(this))
   }

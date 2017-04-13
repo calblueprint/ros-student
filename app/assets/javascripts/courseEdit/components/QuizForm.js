@@ -63,7 +63,7 @@ class QuizForm extends React.Component {
       title: this.state.formFields.title.value,
       formKey: this.state.formFields.formKey.value,
       contentUrl: this.state.formFields.contentUrl.value,
-      audio: this.state.audioUrl ? this.state.audioUrl : null,
+      audioData: this.state.audioUrl ? this.state.audioUrl : null,
     }
     this.props.callback(component, null, this.setErrorFormFields.bind(this))
   }

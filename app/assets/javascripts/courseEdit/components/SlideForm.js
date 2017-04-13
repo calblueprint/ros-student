@@ -62,7 +62,7 @@ class SlideForm extends React.Component {
     const component = {
       componentType: 0,
       title: this.state.formFields.title.value,
-      audio: this.state.audioUrl ? this.state.audioUrl : null,
+      audioData: this.state.audioUrl ? this.state.audioUrl : null,
       imageData: this.state.imageUrl,
     }
 
@@ -70,8 +70,6 @@ class SlideForm extends React.Component {
       errorFunction(error)
       this.setErrorFormFields(error)
     })
-
-    console.log(this.state.formFields)
   }
 
   setErrorFormFields(error) {
@@ -87,7 +85,7 @@ class SlideForm extends React.Component {
     }
 
     return (
-      <div className='add-component-form-item'>
+      <div className='add-component-form-item marginTop-sm'>
         <audio src={audio} controls preload />
       </div>
     )
