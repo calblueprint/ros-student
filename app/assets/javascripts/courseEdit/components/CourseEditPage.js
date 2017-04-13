@@ -361,12 +361,6 @@ class CourseEditPage extends React.Component {
 
             <button
               className='button marginLeft-sm'
-              onClick={this.toggleIsPublished}
-            >
-              {this.renderPublishLabel()}
-            </button>
-            <button
-              className='button marginLeft-sm'
               onClick = {this.toggleIsCollapsed}
             >
               {this.renderCollapsedLabel()}
@@ -375,12 +369,6 @@ class CourseEditPage extends React.Component {
               onClick={this.openReorderModal}
               className='button marginLeft-sm'>
               Reorder Sections
-            </button>
-
-            <button
-              onClick={this.openDeleteModal}
-              className='button course-edit-delete'>
-              <i className='fa fa-trash fa-fw course-image-icon white' aria-hidden='true'></i>
             </button>
           </div>
 
@@ -395,6 +383,31 @@ class CourseEditPage extends React.Component {
                 <div>Add new section</div>
               </div>
             </button>
+          </div>
+
+
+          <div className='course-edit-controls'>
+            <h2 className='course-edit-controls-title'>
+              COURSE CONTROLS
+            </h2>
+            <p className='course-edit-controls-warning'>
+              Please take caution before using the features below. Drastic changes may significantly affect students' current progress in the course.
+            </p>
+            <div className='course-edit-controls-container'>
+              <button
+                className='button marginRight-md'
+                onClick={this.toggleIsPublished}
+              >
+                {this.renderPublishLabel()}
+              </button>
+
+              <button
+                onClick={this.openDeleteModal}
+                className='button course-edit-delete marginLeft-sm'
+              >
+                <i className='fa fa-trash fa-fw course-image-icon white' aria-hidden='true'></i>
+              </button>
+            </div>
           </div>
         </div>
 

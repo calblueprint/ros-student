@@ -131,10 +131,12 @@ class ComponentEdit extends React.Component {
   render() {
     return (
       <div className='fill'>
-        <div className='course-edit-component-container'>
+        <div
+          className='course-edit-component-container'
+          onClick={this.openEditModal}
+        >
           <div
             className='flex vertical course-edit-component'
-            onClick={this.openEditModal}
           >
             {this.renderComponentImage()}
             <p>{this.state.component.title}</p>
