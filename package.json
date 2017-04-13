@@ -15,6 +15,7 @@
     "es6-promise": "^4.0.5",
     "immutability-helper": "^2.1.2",
     "node-sass": "3.10.0",
+    "prop-types": "^15.5.8",
     "react": "^15.3.1",
     "react-bootstrap-modal": "^3.0.1",
     "react-collapse": "^2.3.3",
@@ -47,6 +48,7 @@
     "mocha": "^3.2.0",
     "mocha-jsdom": "^1.1.0",
     "react-addons-test-utils": "^15.4.2",
+    "react-test-renderer": "^15.3.1",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0"
   },
