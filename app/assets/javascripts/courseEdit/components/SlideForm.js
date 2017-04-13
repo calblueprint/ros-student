@@ -6,20 +6,23 @@ import AudioUploadInput from '../../shared/components/forms/AudioUploadInput'
 import Input from '../../shared/components/forms/Input'
 import SaveButton from '../../shared/components/widgets/SaveButton'
 
+import { mapErrorToFormFields } from '../../utils/helpers/form_helpers'
+
 class SlideForm extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = _.extend(this.getFormFields(), {
-      imageUrl: this.props.component.image_data,
+      // imageUrl: this.props.component.image_data,
       audioUrl: this.props.component.audio_url,
     })
 
     this.handleChange = this.handleChange.bind(this)
 
     this.updateAudioData = this.updateAudioData.bind(this)
-    this.updateTitle = this.updateTitle.bind(this)
+    // this.updateImageData = this.updateImageData.bind(this)
     this.submit = this.submit.bind(this)
+    this.setErrorFormFields = this.setErrorFormFields.bind(this)
   }
 
   getFormFields() {
@@ -31,6 +34,12 @@ class SlideForm extends React.Component {
           onChange: _.bind(this.handleChange, this, 'title'),
           error: '',
         },
+        image: {
+          label: 'Image',
+          image: this.props.component.image_data,
+          setImage: _.bind(this.handleImageChange, this, 'image'),
+          eror: '',
+        }
       }
     }
   }
@@ -41,9 +50,15 @@ class SlideForm extends React.Component {
     this.setState({ formFields: formFields })
   }
 
-  updateImageData(image) {
-    this.setState({ imageUrl: image })
+  handleImageChange(attr, e) {
+    const formFields = this.state.formFields
+    formFields[attr].image = e
+    this.setState({ formFields: formFields })
   }
+
+  // updateImageData(image) {
+  //   this.setState({ imageUrl: image })
+  // }
 
   updateAudioData(audio) {
     this.setState({ audioUrl: audio })
@@ -55,15 +70,14 @@ class SlideForm extends React.Component {
     const component = {
       componentType: 0,
       title: this.state.formFields.title.value,
-      contentUrl: this.state.formFields.contentUrl.value,
       audio: this.state.audioUrl ? this.state.audioUrl : null,
-      imageData: this.state.imageUrl,
+      imageData: this.state.formFields.image,
     }
 
-    this.props.callback(component, success, (error) => {
+    this.props.callback(component, successFunction, (error) => {
       errorFunction(error)
       this.setErrorFormFields(error)
-    }.bind(this))
+    })
   }
 
   setErrorFormFields(error) {
@@ -73,7 +87,7 @@ class SlideForm extends React.Component {
   }
 
   renderAudio() {
-    const audio = this.state.component.audioData || this.state.audioUrl
+    const audio = this.state.audioUrl
     if (_.isNull(audio)) {
       return
     }
@@ -90,19 +104,12 @@ class SlideForm extends React.Component {
       <div className='add-component-body-text'>
         <form>
           <div className='add-component-form-item'>
-            <Input
-              className='text-input'
-              label='Title'
-              value={this.state.component.title}
-              onChange={this.updateTitle}
-            />
+            <Input {...this.state.formFields.title} />
           </div>
 
           <div className='add-component-form-item'>
             <ImageUploadInput
-              label='Image'
-              image={this.state.component.imageData || this.state.imageUrl}
-              setImage={this.updateImageData}/>
+              {...this.state.formFields.image}/>
           </div>
 
           <div className='add-component-form-item'>
@@ -130,7 +137,6 @@ SlideForm.defaultProps = {
     componentType: 0,
     title: '',
     audioUrl: null,
-    contentUrl: null,
     audioData: null,
     imageData: null,
   },
