@@ -20,6 +20,7 @@ class MultimediaForm extends React.Component {
     })
 
     this.handleChange = this.handleChange.bind(this)
+    this.updateAudioData = this.updateAudioData.bind(this)
   }
 
   getFormFields() {

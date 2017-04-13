@@ -4,6 +4,7 @@ import React from 'react'
 import ImageUploadInput from '../../shared/components/forms/ImageUploadInput'
 import AudioUploadInput from '../../shared/components/forms/AudioUploadInput'
 import Input from '../../shared/components/forms/Input'
+import Form from '../../shared/components/forms/Form'
 import SaveButton from '../../shared/components/widgets/SaveButton'
 
 import { mapErrorToFormFields, getFormErrors } from '../../utils/helpers/form_helpers'
@@ -95,7 +96,7 @@ class SlideForm extends React.Component {
   render() {
     return (
       <div className='add-component-body-text'>
-        <form>
+        <Form>
           <div className='add-component-form-item'>
             <Input {...this.state.formFields.title} />
           </div>
@@ -122,7 +123,7 @@ class SlideForm extends React.Component {
               className='create-component-button'
             />
           </div>
-        </form>
+        </Form>
       </div>
     )
   }
@@ -133,7 +134,6 @@ SlideForm.defaultProps = {
     componentType: 0,
     title: '',
     audioUrl: null,
-    contentUrl: null,
     audioData: null,
     imageData: null,
   },
