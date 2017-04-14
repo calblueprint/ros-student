@@ -193,10 +193,14 @@ class SectionEdit extends React.Component {
           />
           <div className='course-edit-button-container'>
             <button
-              className='button button--sm button--white marginRight-sm'
+              className='button button--sm button--white marginRight-sm tooltip'
               onClick={this.openReorderModal}
             >
               <i className='fa fa-random course-image-icon' aria-hidden='true'></i>
+              <span
+                className='tooltiptext top'>
+                Reorder subsections
+              </span>
             </button>
 
             <button
