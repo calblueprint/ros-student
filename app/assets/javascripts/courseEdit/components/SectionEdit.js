@@ -204,9 +204,13 @@ class SectionEdit extends React.Component {
             </button>
 
             <button
-              className='button button--sm button--white course-edit-delete'
+              className='button button--sm button--white course-edit-delete tooltip'
               onClick={this.openDeleteModal}>
               <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
+              <span
+                className='tooltiptext top'>
+                Delete section
+              </span>
             </button>
           </div>
         </div>

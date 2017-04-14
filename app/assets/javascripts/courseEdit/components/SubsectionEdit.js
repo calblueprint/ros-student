@@ -293,9 +293,13 @@ class SubsectionEdit extends React.Component {
               </button>
             </div>
             <button
-              className='button button--sm button--white'
+              className='button button--sm button--white tooltip'
               onClick={this.openDeleteModal}>
               <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
+              <span
+                className='tooltiptext top'>
+                Delete subsection
+              </span>
             </button>
           </div>
           <DeleteModal
