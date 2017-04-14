@@ -286,7 +286,17 @@ class CourseEditPage extends React.Component {
   }
 
   renderCollapsedLabel() {
-    return this.state.forceOpen ? 'Collapse Lessons' : 'Expand Lessons'
+    return this.state.forceOpen ? (
+      <span>
+        Collapse Lessons
+        <i className='fa fa-compress marginLeft-sm' aria-hidden='true'></i>
+      </span>
+    ) : (
+      <span>
+        Expand Lessons
+        <i className='fa fa-expand marginLeft-sm' aria-hidden='true'></i>
+      </span>
+    )
   }
 
   renderSections() {
@@ -320,7 +330,7 @@ class CourseEditPage extends React.Component {
                   <InlineEditInput
                     value={this.state.course.name}
                     onBlur={this.onBlurName}
-                    buttonStyle="button button--sm-sq button--white"
+                    buttonStyle="button button--sm-sq button--ghost"
                   />
                 </div>
 
@@ -328,7 +338,7 @@ class CourseEditPage extends React.Component {
                   <InlineEditInput
                     value={this.state.course.description}
                     onBlur={this.onBlurDescription}
-                    buttonStyle="button button--sm-sq button--white"
+                    buttonStyle="button button--sm-sq button--ghost"
                   />
                 </div>
               </div>
@@ -369,6 +379,7 @@ class CourseEditPage extends React.Component {
               onClick={this.openReorderModal}
               className='button marginLeft-sm'>
               Reorder Sections
+              <i className='fa fa-random marginLeft-sm' aria-hidden='true'></i>
             </button>
           </div>
 

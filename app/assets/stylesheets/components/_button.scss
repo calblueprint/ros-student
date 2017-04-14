@@ -85,10 +85,15 @@
 
 .button--white {
   background: $white;
-  border-color: $white;
-  color: $blue;
+  border: 1px solid $light-charcoal-20;
+  color: $light-charcoal;
   font-weight: 700;
   opacity: 0.95;
+
+  &:hover {
+    background-color: $light-charcoal-20;
+    border: 1px solid $light-charcoal-20;
+  }
 }
 
 .button--blue-dark {
@@ -124,13 +129,14 @@
 
 .button--ghost {
   background: transparent;
-  border-color: $snow-40;
-  color: $snow;
+  border-color: transparent;
+  color: $light-charcoal-40;
   font-weight: 500;
 
   &:hover {
-    border-color: $snow;
-    color: white;
+    color: $light-charcoal-80;
+    background-color: $white-80;
+    border-color: $light-charcoal-80;
   }
 }
 
