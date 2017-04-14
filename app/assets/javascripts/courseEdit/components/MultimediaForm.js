@@ -4,6 +4,7 @@ import React from 'react'
 
 import Input from '../../shared/components/forms/Input'
 import Form from '../../shared/components/forms/Form'
+import SaveButton from '../../shared/components/widgets/SaveButton'
 
 import AudioUploadInput from '../../shared/components/forms/AudioUploadInput'
 
@@ -21,6 +22,8 @@ class MultimediaForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.updateAudioData = this.updateAudioData.bind(this)
+    this.submit = this.submit.bind(this)
+    this.setErrorFormFields = this.setErrorFormFields.bind(this)
   }
 
   getFormFields() {
@@ -52,7 +55,7 @@ class MultimediaForm extends React.Component {
     this.setState({ audioUrl: audio })
   }
 
-  submit(e) {
+  submit(e, successFunction, errorFunction) {
     e.preventDefault()
 
     const component = {
@@ -61,7 +64,10 @@ class MultimediaForm extends React.Component {
       contentUrl: this.state.formFields.contentUrl.value,
       audioData: this.state.audioUrl ? this.state.audioUrl : null,
     }
-    this.props.callback(component, null, this.setErrorFormFields.bind(this))
+    this.props.callback(component, successFunction, (error) => {
+      errorFunction(error)
+      this.setErrorFormFields(error)
+    })
   }
 
   setErrorFormFields(error) {
@@ -120,11 +126,11 @@ class MultimediaForm extends React.Component {
           </div>
 
           <div className='add-component-form-item'>
-            <button
-              className='button button--blue create-component-button'
-              onClick={this.submit.bind(this)}>
-              Save
-            </button>
+            <SaveButton
+              text="Save"
+              onPress={this.submit}
+              className='create-component-button'
+            />
           </div>
         </Form>
       </div>
