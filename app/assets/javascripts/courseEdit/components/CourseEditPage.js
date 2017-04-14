@@ -388,7 +388,9 @@ class CourseEditPage extends React.Component {
 
           <div className='course-edit-controls'>
             <h2 className='course-edit-controls-title'>
+              <i className='fa fa-exclamation-triangle marginRight-sm' aria-hidden='true'></i>
               COURSE CONTROLS
+              <i className='fa fa-exclamation-triangle marginLeft-sm' aria-hidden='true'></i>
             </h2>
             <p className='course-edit-controls-warning'>
               Please take caution before using the features below. Drastic changes may significantly affect students' current progress in the course.
