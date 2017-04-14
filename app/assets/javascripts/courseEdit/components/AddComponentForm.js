@@ -30,7 +30,7 @@ class AddComponentForm extends ComponentForm {
       successFunction && successFunction()
     }, (error) => {
       console.log(error)
-      error && errorFunction()
+      errorFunction && errorFunction(error)
     })
   }
 
