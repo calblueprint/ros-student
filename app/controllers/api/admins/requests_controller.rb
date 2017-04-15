@@ -5,7 +5,11 @@ class Api::Admins::RequestsController < Api::Admins::BaseController
 
   def update
     if @request.update(update_params)
-      render json: @request, serializer: RequestSerializer
+      if @request.send_email
+        render json: @request, serializer: RequestSerializer
+      else
+        error_response(@request)
+      end
     else
       error_response(@request)
     end
