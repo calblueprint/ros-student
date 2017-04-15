@@ -2,7 +2,6 @@ class Api::Admins::RequestsController < Api::Admins::BaseController
   load_and_authorize_resource
 
   def update
-    puts @request
     if @request.update(update_params)
       render json: @request, serializer: RequestSerializer
     else

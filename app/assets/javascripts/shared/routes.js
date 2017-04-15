@@ -69,8 +69,6 @@ class RailsRoutes {
   static courseEditPath(id)           { return `/courses/${id}/edit` }
   static adminProfilePath(id)         { return `/admins/${ReactRoutes.getId(id, 'id')}/profile`}
   static codeCsvListPath()            { return `/admins/code_csvs`}
-  //is this needed?
-  //static courseRequestPath()          { return `/students/requests`}
 }
 
 class APIRoutes {

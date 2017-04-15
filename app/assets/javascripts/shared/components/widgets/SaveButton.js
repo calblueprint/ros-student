@@ -125,8 +125,8 @@ class SaveButton extends React.Component {
 /* NOTE:
  * onPress must be a handler function with three arguments:
  *   - event: DOM event object
- *   - success: callback to be executed upon success
- *   - error: callback to be executed upon error
+ *   - success: callback to be executed upon success of handler
+ *   - error: callback to be executed upon error during handler
  */
 SaveButton.propTypes = {
   text: PropTypes.string.isRequired,
