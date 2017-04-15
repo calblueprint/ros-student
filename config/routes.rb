@@ -21,11 +21,13 @@ Rails.application.routes.draw do
   get '/admins/courses/tools', to: 'pages#dashboard'
   get '/admins/code_csvs', to: 'pages#dashboard'
   get '/admins/users', to: 'pages#dashboard'
+  get '/admins/requests', to: 'pages#dashboard'
 
   # Student Flow
   get '/students/:id/profile', to: 'pages#dashboard'
   get '/courses/:id/outline', to: 'pages#dashboard'
   get '/students/add_courses', to: 'pages#dashboard'
+  get '/students/requests', to: 'pages#dashboard'
 
   # Course flow
   resources :courses, only: [:show]
@@ -87,6 +89,8 @@ Rails.application.routes.draw do
           get :download
         end
       end
+
+      resources :requests, only: [:index, :update]
     end
 
     scope module: 'admins' do
@@ -108,12 +112,12 @@ Rails.application.routes.draw do
           get :sidebar
         end
       end
-
       resources :codes, only: :none do
         collection do
           post :add_courses
         end
       end
+      resources :requests, only: [:create]
     end
 
     scope module: 'students' do

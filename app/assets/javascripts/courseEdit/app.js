@@ -32,6 +32,10 @@ class App extends React.Component {
           <a href={ReactRoutes.usersListPath()}>
             <div className="nav-element right">Users</div>
           </a>
+
+          <a href={ReactRoutes.courseRequestApprovePath()}>
+            <div className="nav-element right">Course Requests</div>
+          </a>
         </Navbar>
         <div className='flex center'>
           {this.props.children}

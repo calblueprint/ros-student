@@ -22,16 +22,16 @@ class ReactRoutes {
   static codeCsvListPath()                { return `/admins/code_csvs`}
   static courseToolsPath()                { return `/admins/courses/tools`}
   static usersListPath()                  { return `/admins/users`}
+  static courseRequestApprovePath()       { return `/admins/requests` }
 
   // Student Flow
   static studentProfilePath(id)           { return `/students/${ReactRoutes.getId(id, 'id')}/profile`}
   static courseOutlinePath(id)            { return `/courses/${ReactRoutes.getId(id, 'id')}/outline`}
   static addCoursesPath()                 {  return `/students/add_courses`}
-
+  static courseRequestPath()              { return `/students/requests` }
 
   // Course Flow
   static coursePath(id)                   { return `/students/courses/${ReactRoutes.getId(id, 'id')}` }
-
 
   // Course Edit Flow
   static courseEditPath(id)               { return `/courses/${ReactRoutes.getId(id, 'id')}/edit` }
@@ -65,7 +65,9 @@ class RailsRoutes {
   static courseEditPath(id)           { return `/courses/${id}/edit` }
   static adminProfilePath(id)         { return `/admins/${ReactRoutes.getId(id, 'id')}/profile`}
   static codeCsvListPath()            { return `/admins/code_csvs`}
+  static courseRequestApprovePath()   { return `/admins/requests` }
 }
+
 
 class APIRoutes {
   static createRoute(route)             { return `/api/${route}` }
@@ -103,10 +105,16 @@ class APIRoutes {
   static codeCsvListPath()       { return APIRoutes.createRoute(`admins/code_csvs`) }
   static codeCsvDownloadPath(id) { return APIRoutes.createRoute(`admins/code_csvs/${id}/download.csv`) }
   static getCodeCsvPath(id)      { return APIRoutes.createRoute(`admins/code_csvs/${id}`)}
+
   // Courses
   static getSubsectionPath(id)            { return APIRoutes.createRoute(`students/subsections/${id}`) }
   static getComponentProgressPath(id)     { return APIRoutes.createRoute(`students/components/${id}/component_progresses`) }
   static createComponentProgressPath(id)  { return APIRoutes.createRoute(`students/components/${id}/component_progresses`)}
+
+  //Requests
+  static courseRequestPath()        { return APIRoutes.createRoute(`students/requests`) }
+  static requestUpdatePath(id)        { return APIRoutes.createRoute(`admins/requests/${id}`) }
+  static getRequestsPath()          { return APIRoutes.createRoute(`admins/requests`)}
 
   // Course Edit
   static createComponentPath(id)    { return APIRoutes.createRoute(`admins/subsections/${id}/components`) }
