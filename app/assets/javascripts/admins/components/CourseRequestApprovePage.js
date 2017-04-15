@@ -48,7 +48,7 @@ class CourseRequestApprovePage extends React.Component {
     })
   }
 
-  generateUpdate(event, success, error) {
+  generateUpdate(event, onSuccess, onFailure) {
     event.preventDefault()
     var inputs = getInputToParams(this.state.formFields)
     const path = APIRoutes.requestUpdatePath(inputs.request_id)
@@ -59,9 +59,10 @@ class CourseRequestApprovePage extends React.Component {
     }
     console.log(params)
     request.update(path, params, (response) => {
-      console.log(response)
+      onSuccess && onSuccess()
     }, (error) => {
       console.log(error)
+      onFailure && onFailure()
     })
   }
 

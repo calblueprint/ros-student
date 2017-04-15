@@ -22,26 +22,22 @@ class ReactRoutes {
   static codeCsvListPath()                { return `/admins/code_csvs`}
   static courseToolsPath()                { return `/admins/courses/tools`}
   static usersListPath()                  { return `/admins/users`}
+  static courseRequestApprovePath()       { return `/admins/requests` }
 
   // Student Flow
   static studentProfilePath(id)           { return `/students/${ReactRoutes.getId(id, 'id')}/profile`}
   static courseOutlinePath(id)            { return `/courses/${ReactRoutes.getId(id, 'id')}/outline`}
   static addCoursesPath()                 {  return `/students/add_courses`}
-
+  static courseRequestPath()              { return `/students/requests` }
 
   // Course Flow
   static coursePath(id)                   { return `/students/courses/${ReactRoutes.getId(id, 'id')}` }
-
 
   // Course Edit Flow
   static courseEditPath(id)               { return `/courses/${ReactRoutes.getId(id, 'id')}/edit` }
 
   // Codes
   static codeCsvListPath()                { return `/admins/code_csvs` }
-
-  //Requests
-  static courseRequestPath()              { return `/students/requests` }
-  static courseRequestApprovePath()       { return `/admins/requests` }
 }
 
 
@@ -69,7 +65,9 @@ class RailsRoutes {
   static courseEditPath(id)           { return `/courses/${id}/edit` }
   static adminProfilePath(id)         { return `/admins/${ReactRoutes.getId(id, 'id')}/profile`}
   static codeCsvListPath()            { return `/admins/code_csvs`}
+  static courseRequestApprovePath()   { return `/admins/requests` }
 }
+
 
 class APIRoutes {
   static createRoute(route)             { return `/api/${route}` }

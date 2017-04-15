@@ -43,7 +43,7 @@ class CourseRequestPage extends React.Component {
     })
   }
 
-  generateRequests(event, success, error) {
+  generateRequests(event, onSuccess, onFailure) {
     event.preventDefault()
     const path = APIRoutes.courseRequestPath()
     var inputs = getInputToParams(this.state.formFields)
@@ -53,9 +53,10 @@ class CourseRequestPage extends React.Component {
       },
     }
     request.post(path, params, (response) => {
-      console.log(response)
+      onSuccess && onSuccess()
     }, (error) => {
       console.log(error)
+      onFailure && onFailure()
     })
   }
 
