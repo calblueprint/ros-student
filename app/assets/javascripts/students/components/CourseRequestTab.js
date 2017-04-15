@@ -23,9 +23,11 @@ class CourseRequestTab extends React.Component {
         },
       },
       courses: [],
+      activeCourseIds: new Set(),
     }
 
-    this.generateRequests = _.bind(this.generateRequests, this)
+    this.generateRequests = this.generateRequests.bind(this)
+    this.switchCourseSelectedState = this.switchCourseSelectedState.bind(this)
   }
 
   componentDidMount() {
@@ -47,6 +49,20 @@ class CourseRequestTab extends React.Component {
     }, (error) => {
       console.log(error)
     })
+  }
+
+  /**
+   * Removes `course` if already in this.state.activeCourseIds
+   * Otherwise adds `course` to this.state.activeCourseIds
+   */
+  switchCourseSelectedState(courseId) {
+    var activeCourseIds = this.state.activeCourseIds
+    if (activeCourseIds.has(courseId)) {
+      activeCourseIds.delete(courseId)
+    } else {
+      activeCourseIds.add(courseId)
+    }
+    console.log(this.state.activeCourseIds)
   }
 
   generateRequests(event, onSuccess, onFailure) {
@@ -78,9 +94,8 @@ class CourseRequestTab extends React.Component {
     return this.state.courses.map((value) => {
       return (
         <StudentCourseRequestCard
-          name={value.name}
-          description={value.description}
-          image_url={value.image_url}
+          course={value}
+          updateSelected={this.switchCourseSelectedState}
         />
       )
     })
