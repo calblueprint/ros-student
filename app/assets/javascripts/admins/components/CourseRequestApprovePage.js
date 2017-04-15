@@ -27,26 +27,6 @@ class CourseRequestApprovePage extends React.Component {
 
     this.setActiveRequest = this.setActiveRequest.bind(this)
     this.completeRequest = this.completeRequest.bind(this)
-<<<<<<< 1e7afc6a2bb179248f351aac4690fc97f0591969
-  }
-
-  getFormFields() {
-    return {
-      request_id: {
-        label: 'Request ID',
-        value: '',
-        name: 'Request Ids',
-        onChange: _.bind(this.handleChange, this, 'request_id')
-      },
-      state: {
-        label: 'State',
-        value: '',
-        name: 'State',
-        onChange: _.bind(this.handleChange, this, 'state')
-      }
-    }
-=======
->>>>>>> Finishes request filter on incomplete and implements reject/approve endpoint on UI.
   }
 
   componentDidMount() {
@@ -67,8 +47,6 @@ class CourseRequestApprovePage extends React.Component {
       this.setState({ activeRequestId: null })
     } else {
       this.setState({ activeRequestId: id })
-    }
-  }
 
   completeRequest(id) {
     this.setState({
