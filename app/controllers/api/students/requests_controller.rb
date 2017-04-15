@@ -2,8 +2,6 @@ class Api::Students::RequestsController < Api::Students::BaseController
   load_and_authorize_resource
 
   def create
-    @request.student_id = current_user.id
-    puts "hi"
     if @request.save
       @request.generate_request(request_params)
       render json: @request, serializer: RequestSerializer
@@ -16,7 +14,7 @@ class Api::Students::RequestsController < Api::Students::BaseController
 
   def request_params
     params.require(:request).permit(
-      :course_ids
+      {:course_ids => []}
     )
   end
 end

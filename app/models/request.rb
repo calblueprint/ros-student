@@ -10,7 +10,7 @@
 #
 
 class Request < ActiveRecord::Base
-  validates :student_id, presence: true
+  # validates :student_id, presence: true
 
   has_many :course_requests
   has_many :courses, through: :course_requests
@@ -25,7 +25,7 @@ class Request < ActiveRecord::Base
     rescue => e
       course_ids = []
     end
-    #Hacky this line below should eventually be deleted
+
     generated_course_requests = course_ids.map do |course_id|
       course_requests.create(course_id: course_id)
     end

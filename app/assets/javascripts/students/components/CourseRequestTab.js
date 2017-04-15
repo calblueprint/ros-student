@@ -72,7 +72,8 @@ class CourseRequestTab extends React.Component {
     const path = APIRoutes.courseRequestPath()
     var params = {
       request: {
-        course_ids: JSON.stringify([...this.state.activeCourseIds])
+        // course_ids: JSON.stringify([...this.state.activeCourseIds]), 
+        course_ids: [...this.state.activeCourseIds],
       },
     }
     console.log(params)
