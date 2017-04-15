@@ -44,7 +44,7 @@ class CourseRequestApprovePage extends React.Component {
     request.get(path, (response) => {
       this.setState({ requests: response.requests })
     }, (error) => {
-      console.log("error")
+      console.log(error)
     })
   }
 

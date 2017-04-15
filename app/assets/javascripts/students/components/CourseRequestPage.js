@@ -39,7 +39,7 @@ class CourseRequestPage extends React.Component {
     request.get(path, (response) => {
       this.setState({ courses: response.courses })
     }, (error) => {
-      console.log('error')
+      console.log(error)
     })
   }
 
