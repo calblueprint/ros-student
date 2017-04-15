@@ -37,17 +37,29 @@ class CourseRequestApprovePage extends React.Component {
     const path = APIRoutes.getIncompleteRequestsPath()
     request.get(path, (response) => {
       this.setState({ requests: response.requests })
-      
+
     }, (error) => {
       console.log(error)
     })
   }
 
+<<<<<<< 11c6e32fca86996f54e6921c1ebda1ba57b0986a
   setActiveRequest(id) {
     if (id === this.state.activeRequestId) {
       this.setState({ activeRequestId: null })
     } else {
       this.setState({ activeRequestId: id })
+=======
+  generateUpdate(event, onSuccess, onFailure) {
+    event.preventDefault()
+    var inputs = getInputToParams(this.state.formFields)
+    const path = APIRoutes.requestUpdatePath(inputs.request_id)
+    var params = {
+      update_params: {
+        state: inputs.state,
+        message: inputs.message,
+      },
+>>>>>>> Finished functionality to add a message to your request
     }
   }
 

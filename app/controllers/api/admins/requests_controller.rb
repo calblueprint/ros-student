@@ -19,6 +19,7 @@ class Api::Admins::RequestsController < Api::Admins::BaseController
   def update_params
     params.require(:update_params).permit(
       :state,
+      :message,
     )
   end
 end
