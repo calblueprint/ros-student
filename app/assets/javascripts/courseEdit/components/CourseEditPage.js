@@ -286,7 +286,17 @@ class CourseEditPage extends React.Component {
   }
 
   renderCollapsedLabel() {
-    return this.state.forceOpen ? 'Collapse Lessons' : 'Expand Lessons'
+    return this.state.forceOpen ? (
+      <span>
+        Collapse Lessons
+        <i className='fa fa-compress marginLeft-sm' aria-hidden='true'></i>
+      </span>
+    ) : (
+      <span>
+        Expand Lessons
+        <i className='fa fa-expand marginLeft-sm' aria-hidden='true'></i>
+      </span>
+    )
   }
 
   renderSections() {
@@ -320,7 +330,7 @@ class CourseEditPage extends React.Component {
                   <InlineEditInput
                     value={this.state.course.name}
                     onBlur={this.onBlurName}
-                    buttonStyle="button button--sm-sq button--white"
+                    buttonStyle="button button--sm-sq button--ghost"
                   />
                 </div>
 
@@ -328,7 +338,7 @@ class CourseEditPage extends React.Component {
                   <InlineEditInput
                     value={this.state.course.description}
                     onBlur={this.onBlurDescription}
-                    buttonStyle="button button--sm-sq button--white"
+                    buttonStyle="button button--sm-sq button--ghost"
                   />
                 </div>
               </div>
@@ -361,12 +371,6 @@ class CourseEditPage extends React.Component {
 
             <button
               className='button marginLeft-sm'
-              onClick={this.toggleIsPublished}
-            >
-              {this.renderPublishLabel()}
-            </button>
-            <button
-              className='button marginLeft-sm'
               onClick = {this.toggleIsCollapsed}
             >
               {this.renderCollapsedLabel()}
@@ -375,12 +379,7 @@ class CourseEditPage extends React.Component {
               onClick={this.openReorderModal}
               className='button marginLeft-sm'>
               Reorder Sections
-            </button>
-
-            <button
-              onClick={this.openDeleteModal}
-              className='button course-edit-delete'>
-              <i className='fa fa-trash fa-fw course-image-icon white' aria-hidden='true'></i>
+              <i className='fa fa-random marginLeft-sm' aria-hidden='true'></i>
             </button>
           </div>
 
@@ -395,6 +394,33 @@ class CourseEditPage extends React.Component {
                 <div>Add new section</div>
               </div>
             </button>
+          </div>
+
+
+          <div className='course-edit-controls'>
+            <h2 className='course-edit-controls-title'>
+              <i className='fa fa-exclamation-triangle marginRight-sm' aria-hidden='true'></i>
+              COURSE CONTROLS
+              <i className='fa fa-exclamation-triangle marginLeft-sm' aria-hidden='true'></i>
+            </h2>
+            <p className='course-edit-controls-warning'>
+              Please take caution before using the features below. Drastic changes may significantly affect students' current progress in the course.
+            </p>
+            <div className='course-edit-controls-container'>
+              <button
+                className='button marginRight-md'
+                onClick={this.toggleIsPublished}
+              >
+                {this.renderPublishLabel()}
+              </button>
+
+              <button
+                onClick={this.openDeleteModal}
+                className='button course-edit-delete marginLeft-sm'
+              >
+                <i className='fa fa-trash fa-fw course-image-icon white' aria-hidden='true'></i>
+              </button>
+            </div>
           </div>
         </div>
 

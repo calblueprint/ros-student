@@ -19,13 +19,12 @@
   width: 100%;
   word-wrap: inherit;
   font-size: 2.5vh;
-  color: $silver;
+  color: $light-charcoal;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .inline-edit-icon {
-  width: 20px;
-  height: 20px;
-  fill: $white;
+  color: $silver-60;
+  font-size: 2.5vh;
 }

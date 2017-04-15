@@ -98,7 +98,9 @@ class SubsectionEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ subsection: nextProps.subsection })
+    if (this.props.subsection != nextProps.subsection) {
+      this.setState({ subsection: nextProps.subsection })
+    }
   }
 
   updateTitle(params) {
@@ -138,30 +140,6 @@ class SubsectionEdit extends React.Component {
 
   deleteSubsection() {
     this.props.deleteSubsection(this.state.subsection.id, this.state.subsection.position - 1)
-  }
-
-  renderComponents() {
-    if (!this.state.subsection.components) {
-      return (
-        <div className='course-edit-component'>No components to show!</div>
-      )
-    } else {
-      return (
-        <ComponentList
-          items={this.state.subsection.components}
-          useDragHandle
-          useWindowAsScrollContainer
-          lockAxis='y'
-
-          deleteComponent={this.deleteComponent}
-          updateMoveComponent={this.props.updateMoveComponent}
-          onSortEnd={this.onSortEnd}
-          course={this.props.course}
-          section={this.props.section}
-          subsection={this.state.subsection}
-        />
-      )
-    }
   }
 
   showNewComponentForm() {
@@ -259,6 +237,30 @@ class SubsectionEdit extends React.Component {
     })
   }
 
+  renderComponents() {
+    if (!this.state.subsection.components) {
+      return (
+        <div className='course-edit-component'>No components to show!</div>
+      )
+    } else {
+      return (
+        <ComponentList
+          items={this.state.subsection.components}
+          useDragHandle
+          useWindowAsScrollContainer
+          lockAxis='y'
+
+          deleteComponent={this.deleteComponent}
+          updateMoveComponent={this.props.updateMoveComponent}
+          onSortEnd={this.onSortEnd}
+          course={this.props.course}
+          section={this.props.section}
+          subsection={this.state.subsection}
+        />
+      )
+    }
+  }
+
   render() {
     const arrow = this.state.isOpen ? 'rotate' : ''
 
@@ -290,9 +292,13 @@ class SubsectionEdit extends React.Component {
               </button>
             </div>
             <button
-              className='button button--sm button--white'
+              className='button button--sm button--white tooltip'
               onClick={this.openDeleteModal}>
               <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
+              <span
+                className='tooltiptext top'>
+                Delete subsection
+              </span>
             </button>
           </div>
           <DeleteModal

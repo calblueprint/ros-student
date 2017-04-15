@@ -92,6 +92,11 @@
 .course-edit-component-container {
   padding: $xs;
   margin: 10px 0px;
+
+  &:hover {
+    background-color: $snow;
+    cursor: pointer;
+  }
 }
 
 .course-edit-component-handle {
@@ -99,11 +104,6 @@
   height: 15px;
   cursor: move;
   margin: $xs;
-}
-
-.course-edit-component:hover {
-  background-color: $snow;
-  cursor: pointer;
 }
 
 .course-edit-button-container {
@@ -126,6 +126,40 @@
 
 .add-component-button {
   margin: $sm 0px;
+}
+
+.course-edit-controls {
+  display: block;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center
+}
+
+.course-edit-controls-title {
+  display: block;
+  margin: 10px auto;
+  font-size: 20px;
+  font-weight: $bold;
+  color: $light-charcoal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.course-edit-controls-warning {
+  display: block;
+  margin: 10px auto;
+  width: 60%;
+  font-size: $sm;
+  font-weight: $regular;
+  color: $light-charcoal;
+}
+
+.course-edit-controls-container {
+  display: inline-block;
+  margin: 10px auto;
+  border-radius: 4px;
+  background-color: $light-charcoal-10;
+  padding: 30px 50px;
 }
 
 .sorting {

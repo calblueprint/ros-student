@@ -191,17 +191,28 @@ class SectionEdit extends React.Component {
             onBlur={this.onBlurTitle}
             buttonStyle='button button--sm-sq button--white'
           />
-          <button
-            className='button button--sm marginLeft-sm'
-            onClick={this.openReorderModal}>
-            Reorder Subsections
-          </button>
+          <div className='course-edit-button-container'>
+            <button
+              className='button button--sm button--white marginRight-sm tooltip'
+              onClick={this.openReorderModal}
+            >
+              <i className='fa fa-random course-image-icon' aria-hidden='true'></i>
+              <span
+                className='tooltiptext top'>
+                Reorder subsections
+              </span>
+            </button>
 
-          <button
-            className='button button--sm button--white course-edit-delete'
-            onClick={this.openDeleteModal}>
-            <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
-          </button>
+            <button
+              className='button button--sm button--white course-edit-delete tooltip'
+              onClick={this.openDeleteModal}>
+              <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
+              <span
+                className='tooltiptext top'>
+                Delete section
+              </span>
+            </button>
+          </div>
         </div>
 
         <Collapse isOpened={this.state.isOpen && !this.props.isSorting}>

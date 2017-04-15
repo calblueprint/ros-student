@@ -37,7 +37,9 @@ class ComponentEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ component: nextProps.component })
+    if (this.props.component != nextProps.component) {
+      this.setState({ component: nextProps.component })
+    }
   }
 
   deleteComponent() {
@@ -129,10 +131,12 @@ class ComponentEdit extends React.Component {
   render() {
     return (
       <div className='fill'>
-        <div className='course-edit-component-container'>
+        <div
+          className='course-edit-component-container'
+          onClick={this.openEditModal}
+        >
           <div
             className='flex vertical course-edit-component'
-            onClick={this.openEditModal}
           >
             {this.renderComponentImage()}
             <p>{this.state.component.title}</p>
@@ -149,9 +153,13 @@ class ComponentEdit extends React.Component {
                 </button>
               </div>
               <button
-                className='button button--sm button--white'
+                className='button button--sm button--white tooltip'
                 onClick={this.openDeleteModal}>
                 <i className='fa fa-trash fa-fw course-image-icon' aria-hidden='true'></i>
+                <span
+                  className='tooltiptext top'>
+                  Delete component
+                </span>
               </button>
             </div>
           </div>
