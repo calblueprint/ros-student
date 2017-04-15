@@ -7,7 +7,7 @@ import Input from '../../shared/components/forms/Input'
 import SaveButton from '../../shared/components/widgets/SaveButton'
 import { getInputToParams } from '../../utils/helpers/form_helpers'
 
-class CourseRequestPage extends React.Component {
+class CourseRequestTab extends React.Component {
   constructor(props) {
     super(props)
 
@@ -22,9 +22,11 @@ class CourseRequestPage extends React.Component {
       courses: [],
     }
 
-    this.getCourses()
     this.generateRequests = _.bind(this.generateRequests, this)
+  }
 
+  componentDidMount() {
+    this.getCourses()
   }
 
   handleChange(attr, e) {
@@ -38,6 +40,7 @@ class CourseRequestPage extends React.Component {
 
     request.get(path, (response) => {
       this.setState({ courses: response.courses })
+      console.log(response.courses)
     }, (error) => {
       console.log(error)
     })
@@ -98,4 +101,4 @@ class CourseRequestPage extends React.Component {
 
 }
 
-export default CourseRequestPage
+export default CourseRequestTab

@@ -29,7 +29,7 @@ class UsersListPage extends React.Component {
 
   renderTab() {
     switch (this.state.activeTab) {
-      case this.tabs.STUDENT:
+      case (this.tabs.STUDENT):
         return (
           <div className='marginTop-sm admin-list-container'>
             <StudentListTab />

@@ -6,6 +6,8 @@ import { APIRoutes } from '../../shared/routes'
 import { getInputToParams, addFlash } from '../../utils/helpers/form_helpers'
 import request from '../../shared/requests/request'
 
+import CourseRequestTab from './CourseRequestTab'
+import AddCodeTab from './AddCodeTab'
 import Input from '../../shared/components/forms/Input'
 import SaveButton from '../../shared/components/widgets/SaveButton'
 
@@ -14,71 +16,55 @@ class AddCoursesPage extends React.Component {
     super(props)
 
     this.state = {
-      formFields: this.getDefaultFormFields(),
+      activeTab: 0,
     }
 
-    this.addCourses = this.addCourses.bind(this)
-  }
-
-  getDefaultFormFields() {
-    return {
-      key: {
-        label: 'Code',
-        value: '',
-        onChange: _.bind(this.handleKeyChange, this, 'key'),
-        error: '',
-      },
+    this.tabs = {
+      REQUEST: 0,
+      CODE: 1,
     }
   }
 
-  handleKeyChange(attr, e) {
-    this.setState({ formFields: update(this.state.formFields, {
-      key: {
-        value: {
-          $set: e.target.value
-        }
-      },
-    })})
-  }
-
-  addCourses(e, onSuccess, onFailure) {
+  setActiveTab(index, e) {
     e.preventDefault()
+    this.setState({ activeTab: index })
+  }
 
-    const path = APIRoutes.addCoursesPath()
-    const params = { code: getInputToParams(this.state.formFields) }
+  getTabStyle(index) {
+    return this.state.activeTab == index ? 'active' : ''
+  }
 
-    request.post(path, params, (response) => {
-      addFlash('success', response.success.message)
-      this.setState({ formFields: this.getDefaultFormFields() })
-      onSuccess && onSuccess()
-    }, (error) => {
-      this.setState({ formFields: update(this.state.formFields, {
-        key: {
-          error: {
-            $set: 'is invalid'
-          }
-        },
-      })})
-
-      onFailure && onFailure()
-    })
+  renderTab() {
+    switch (this.state.activeTab) {
+      case (this.tabs.REQUEST):
+        return (
+          <div className='marginTop-sm'>
+            <CourseRequestTab />
+          </div>
+        )
+      case (this.tabs.CODE):
+        return(
+          <div className='marginTop-sm'>
+            <AddCodeTab />
+          </div>
+        )
+    }
   }
 
   render() {
     return (
-      <div>
-        <div>Add Courses</div>
-        <p>Please enter the code here to add additional courses to your account.</p>
-        <form>
-          <Input {...this.state.formFields.key} />
-          <SaveButton
-            className='marginTop-xs'
-            text="Submit"
-            onPress={this.addCourses}
-            loadingText="Verifying..."
-          />
-        </form>
-
+      <div className='add-courses-container marginTop-sm'>
+        <button
+          onClick={_.bind(this.setActiveTab, this, this.tabs.REQUEST)}
+          className={`tab ${this.getTabStyle(this.tabs.REQUEST)}`}>
+          Request courses
+        </button>
+        <button
+          onClick={_.bind(this.setActiveTab, this, this.tabs.CODE)}
+          className={`tab ${this.getTabStyle(this.tabs.CODE)}`}>
+          Add courses with codes
+        </button>
+        {this.renderTab()}
       </div>
     )
   }
