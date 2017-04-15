@@ -1,5 +1,5 @@
-import _ from 'underscore'
 import React from 'react'
+import _ from 'underscore'
 import update from 'immutability-helper'
 
 import { APIRoutes } from '../../shared/routes'

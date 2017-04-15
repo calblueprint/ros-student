@@ -1,7 +1,10 @@
 import React from 'react'
+import _ from 'underscore'
+
 import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
-import _ from 'underscore'
+
+import StudentCourseRequestCard from './StudentCourseRequestCard'
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
 import SaveButton from '../../shared/components/widgets/SaveButton'
@@ -74,7 +77,11 @@ class CourseRequestTab extends React.Component {
   renderCourses() {
     return this.state.courses.map((value) => {
       return (
-        <li key={value.id}>{value.name+" "+value.id}</li>
+        <StudentCourseRequestCard
+          name={value.name}
+          description={value.description}
+          image_url={value.image_url}
+        />
       )
     })
   }
