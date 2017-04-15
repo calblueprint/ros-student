@@ -9,6 +9,7 @@
  * @prop loadingText  - optional text to display when button is processing
  * @prop successText  - optional text to display when request is successful
  * @prop errorText    - optional text to display when request fails
+ * @prop disabled     - optional bool to disable pressing button
  */
 
 import _ from 'underscore'
@@ -56,6 +57,9 @@ class SaveButton extends React.Component {
   }
 
   getStyle() {
+    if (this.props.disabled) {
+      return 'button disabled'
+    }
     switch (this.state.currentAction) {
       case 'save':
         return 'button disabled'
@@ -135,6 +139,7 @@ SaveButton.propTypes = {
   loadingText: PropTypes.string,
   successText: PropTypes.string,
   errorText: PropTypes.string,
+  disabled: PropTypes.bool,
 }
 
 export default SaveButton

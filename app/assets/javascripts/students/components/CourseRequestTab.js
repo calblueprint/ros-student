@@ -62,32 +62,26 @@ class CourseRequestTab extends React.Component {
     } else {
       activeCourseIds.add(courseId)
     }
+    this.setState({ activeCourseIds: activeCourseIds })
     console.log(this.state.activeCourseIds)
+    console.log(this.state.activeCourseIds.size)
   }
 
   generateRequests(event, onSuccess, onFailure) {
     event.preventDefault()
     const path = APIRoutes.courseRequestPath()
-    var inputs = getInputToParams(this.state.formFields)
     var params = {
-      request_args: {
-        course_ids: JSON.stringify(this.state.formFields.course_ids.value)
+      request: {
+        course_ids: JSON.stringify([...this.state.activeCourseIds])
       },
     }
+    console.log(params)
     request.post(path, params, (response) => {
       onSuccess && onSuccess()
     }, (error) => {
       console.log(error)
       onFailure && onFailure()
     })
-  }
-
-  renderFields() {
-    return (
-      _.pairs(this.state.formFields).map((values) => {
-        return <Input key={values[0]} {...values[1]} />
-      })
-    )
   }
 
   renderCourses() {
@@ -105,18 +99,11 @@ class CourseRequestTab extends React.Component {
     return (
       <div>
         {this.renderCourses()}
-        <Form
-          className='submit_request_ids_form'
-          id='submit_request_ids_form'
-          method='post'
-          action={this.props.action}
-        >
-          {this.renderFields()}
-          <SaveButton
-            text='Submit Requests'
-            onPress={this.generateRequests}
-          />
-        </Form>
+        <SaveButton
+          text='Submit Requests'
+          onPress={this.generateRequests}
+          disabled={this.state.activeCourseIds.size === 0}
+        />
       </div>
     )
   }

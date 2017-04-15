@@ -3,18 +3,20 @@ class Api::Students::RequestsController < Api::Students::BaseController
 
   def create
     @request.student_id = current_user.id
+    puts "hi"
     if @request.save
-      @request.generate_request(request_args)
+      @request.generate_request(request_params)
       render json: @request, serializer: RequestSerializer
     else
       error_response(@request)
     end
   end
 
-  def request_args
-    params.require(:request_args).permit(
-      :course_ids,
-      :state
+  private
+
+  def request_params
+    params.require(:request).permit(
+      :course_ids
     )
   end
 end
