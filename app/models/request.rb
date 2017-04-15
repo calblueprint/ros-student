@@ -14,7 +14,6 @@ class Request < ActiveRecord::Base
 
   has_many :course_requests
   has_many :courses, through: :course_requests
-  validates_associated :course_requests
 
   belongs_to :student
 
