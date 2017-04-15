@@ -64,6 +64,7 @@ Rails.application.routes.draw do
           resources :subsections, only: [:create, :index, :update, :destroy] do
             member do
               post :switch_position
+              patch :switch_section
             end
             resources :components, only: [:create, :update, :destroy] do
               member do

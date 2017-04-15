@@ -136,6 +136,7 @@ class APIRoutes {
   static getSectionsPath(id)        { return APIRoutes.createRoute( `admins/courses/${id}/sections`)}
   static getSubsectionsPath(id)     { return APIRoutes.createRoute( `admins/sections/${id}/subsections`)}
   static switchSubsectionPath(id)   { return APIRoutes.createRoute( `admins/components/${id}/switch_subsection`)}
+  static switchSectionPath(id)      { return APIRoutes.createRoute( `admins/subsections/${id}/switch_section`)}
 }
 
 export {

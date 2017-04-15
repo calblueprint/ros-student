@@ -4,16 +4,25 @@ import AudioComponent from './AudioComponent'
 import Image from '../../shared/components/widgets/Image'
 
 class ImageComponent extends React.Component {
+  componentDidMount() {
+    if (!this.props.selfPaced || this.props.audioUrl == null) {
+      this.props.onEnd()
+    }
+  }
+
   render() {
     return (
-      <div className='flex flex-vertical center image-component-container'>
-        <div className='fill marginBot-sm'>
-          <Image src={this.props.imgUrl} />
+      <div className='image-component-container'>
+        <div className='flex flex-vertical center'>
+          <div className='fill marginBot-sm'>
+            <Image src={this.props.imgUrl} />
+          </div>
         </div>
         <AudioComponent
           audioUrl={this.props.audioUrl}
           callback={this.props.onEnd}
           canSeek={this.props.canSeek}
+          selfPaced={this.props.selfPaced}
         />
       </div>
     )
@@ -24,6 +33,11 @@ ImageComponent.propTypes = {
   imgUrl: PropTypes.string.isRequired,
   onEnd: PropTypes.func.isRequired,
   audioUrl: PropTypes.string,
+  selfPaced: PropTypes.bool,
+}
+
+ImageComponent.defaultProps = {
+  selfPaced: false,
 }
 
 export default ImageComponent

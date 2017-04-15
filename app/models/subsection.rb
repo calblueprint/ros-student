@@ -33,4 +33,8 @@ class Subsection < ActiveRecord::Base
     insert_at(new_position)
     true
   end
+
+  def move_to_position
+    insert_at(section.subsections.size)
+  end
 end

@@ -71,7 +71,12 @@ class CourseOutlinePage extends React.Component {
               </div>
               <div className="course-outline-header-progress">
                 <div className="course-outline-header-button marginBot-sm">
-                  <a className="button" href={RailsRoutes.coursePath(this.state.courseOutline.id)}>Continue course</a>
+                  <a
+                    className="button"
+                    href={RailsRoutes.coursePath(this.state.courseOutline.id)}
+                  >
+                    {this.state.courseOutline.progress === 0 ? 'Start course' : 'Continue course' }
+                  </a>
                 </div>
                 <div className="course-outline-header-bar">
                   <TopProgressBar progress={this.state.courseOutline.progress}/>

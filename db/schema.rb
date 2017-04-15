@@ -53,9 +53,10 @@ ActiveRecord::Schema.define(version: 20170322010437) do
   create_table "codes", force: :cascade do |t|
     t.string   "key"
     t.integer  "student_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "code_csv_id"
+    t.boolean  "self_paced",  default: false
   end
 
   create_table "component_progresses", force: :cascade do |t|

@@ -55,7 +55,7 @@ class Student < ActiveRecord::Base
   def subscribe_to_courses
     codes.each do |code|
       code.courses.each do |course|
-        student_courses.find_or_create_by(course_id: course.id)
+        student_courses.find_or_create_by(course_id: course.id, self_paced: code.self_paced)
       end
     end
   end

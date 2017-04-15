@@ -18,7 +18,7 @@ FactoryGirl.define do
   end
 
   factory :component do
-    component_type 0
+    component_type 1
     audio_url 'audio_url_string'
     content_url 'content_url_string'
     title 'Title'

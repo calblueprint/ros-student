@@ -3,11 +3,16 @@ import React, { PropTypes } from 'react'
 import ProgressBar from './ProgressBar'
 
 class TopProgressBar extends React.Component {
+
+  getDisplayProgress() {
+    return Math.round(this.props.progress)
+  }
+
   render() {
     return(
       <div className={this.props.className}>
-          <p className="progress-bar-label">{this.props.progress}% Complete</p>
-          <ProgressBar progress={this.props.progress} />
+          <p className="progress-bar-label">{this.getDisplayProgress()}% Complete</p>
+          <ProgressBar progress={this.getDisplayProgress()} />
       </div>
     )
   }

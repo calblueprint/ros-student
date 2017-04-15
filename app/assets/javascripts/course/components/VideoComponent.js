@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import YouTube from 'react-youtube'
 import ReactDOM from 'react-dom'
+import AudioComponent from './AudioComponent'
 
 import { getYoutubeKey } from '../../utils/helpers/component_helpers'
 
@@ -9,6 +10,8 @@ class VideoComponent extends React.Component {
     super(props)
 
     this.onReady = this.onReady.bind(this);
+    this.onVideoEnd = this.onVideoEnd.bind(this)
+    this.onAudioEnd = this.onAudioEnd.bind(this)
   }
 
   getConfigOptions() {
@@ -24,8 +27,20 @@ class VideoComponent extends React.Component {
     this.setState({ player: event.target })
   }
 
-  onEnd() {
-    this.props.onEnd()
+  onEnd(videoEnd, audioEnd) {
+    if (videoEnd && (!this.props.selfPaced || this.props.audioUrl == null || audioEnd)) {
+      this.props.onEnd()
+    }
+  }
+
+  onVideoEnd() {
+    this.setState({ videoEnd: true })
+    this.onEnd(true, this.state.audioEnd)
+  }
+
+  onAudioEnd() {
+    this.setState({ audioEnd: true })
+    this.onEnd(this.state.videoEnd, true)
   }
 
   render() {
@@ -34,8 +49,14 @@ class VideoComponent extends React.Component {
         <YouTube
           videoId={getYoutubeKey(this.props.videoUrl)}
           onReady={this.onReady}
-          onEnd={this.props.onEnd}
+          onEnd={this.onVideoEnd}
           opts={this.getConfigOptions()}
+        />
+        <AudioComponent
+          audioUrl={this.props.audioUrl}
+          callback={this.onAudioEnd}
+          canSeek={this.props.canSeek}
+          selfPaced={this.props.selfPaced}
         />
       </div>
     )
@@ -45,6 +66,12 @@ class VideoComponent extends React.Component {
 VideoComponent.propTypes = {
   onEnd: PropTypes.func.isRequired,
   videoUrl: PropTypes.string.isRequired,
+  audioUrl: PropTypes.string,
+  selfPaced: PropTypes.bool,
+}
+
+VideoComponent.defaultProps = {
+  selfPaced: false,
 }
 
 export default VideoComponent

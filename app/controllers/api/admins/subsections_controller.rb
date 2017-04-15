@@ -38,6 +38,15 @@ class Api::Admins::SubsectionsController < Api::Admins::BaseController
     end
   end
 
+  def switch_section
+    if @subsection.remove_from_list && @subsection.update(switch_section_params)
+      @subsection.move_to_position
+      render json: @subsection, serializer: SubsectionAdminSerializer, root: false
+    else
+      error_response(nil, 'Could not move subsection')
+    end
+  end
+
   private
 
   def subsection_params
@@ -49,5 +58,12 @@ class Api::Admins::SubsectionsController < Api::Admins::BaseController
 
   def switch_position_params
     params.require(:subsection).permit(:position)
+  end
+
+  def switch_section_params
+    params.require(:subsection).permit(
+      :id,
+      :section_id,
+    )
   end
 end

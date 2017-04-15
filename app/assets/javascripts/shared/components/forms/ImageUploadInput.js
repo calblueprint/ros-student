@@ -11,6 +11,18 @@ class ImageUploadInput extends React.Component {
     this.removeImage = this.removeImage.bind(this)
   }
 
+  getStyling(attr, style) {
+    return _.isEmpty(attr) ? '' : style
+  }
+
+  setResponseMessage() {
+    if (!_.isEmpty(this.props.error)) {
+      return this.props.error
+    } else {
+      return null
+    }
+  }
+
   handleImage(e) {
     convertImage(e, this.props.setImage)
   }
@@ -73,6 +85,13 @@ class ImageUploadInput extends React.Component {
                 accept='image/jpg, image/jpeg, image/png'
               />
             </div>
+          </div>
+          <div
+            className={
+              `marginTopBot-xxs ${this.getStyling(this.props.error, 'input-text error')}`
+            }
+          >
+            {this.setResponseMessage()}
           </div>
         </div>
       </div>

@@ -20,8 +20,8 @@ class AudioUploadInput extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>{this.props.label}</div>
+      <div className='marginBot-xs'>
+        <div className='input-label marginTop-xs marginBot-xxs'>{this.props.label}</div>
         <UploadInput
           accept='audio/mp3'
           onChange={this.setChosenAudio}

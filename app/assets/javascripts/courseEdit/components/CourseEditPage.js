@@ -47,6 +47,7 @@ class CourseEditPage extends React.Component {
     this.toggleIsCollapsed = this.toggleIsCollapsed.bind(this)
     this.onReorder = this.onReorder.bind(this)
     this.updateMoveComponent = this.updateMoveComponent.bind(this)
+    this.updateMoveSubsection = this.updateMoveSubsection.bind(this)
   }
 
   componentDidMount() {
@@ -243,6 +244,32 @@ class CourseEditPage extends React.Component {
     this.setState({ course: course })
   }
 
+  updateMoveSubsection(
+    subsection,
+    prevSectionIndex,
+    prevSubsectionIndex,
+    sectionIndex,
+  ) {
+    if (prevSectionIndex == sectionIndex) {
+      return
+    }
+
+    const course = this.state.course
+
+    const prevSubsectionList = course.sections[prevSectionIndex].subsections
+    prevSubsectionList.splice(prevSubsectionIndex, 1)
+    prevSubsectionList.map((value, index) => {
+      value.position = index + 1
+    })
+    course.sections[prevSectionIndex].subsections = prevSubsectionList
+
+    const newSubsectionList = course.sections[sectionIndex].subsections
+    newSubsectionList.push(subsection)
+    course.sections[sectionIndex].subsections = newSubsectionList
+
+    this.setState({ course: course })
+  }
+
   getImageStyle() {
     const imageUrl = this.state.course.imageUrl || Images.default_course
 
@@ -255,11 +282,11 @@ class CourseEditPage extends React.Component {
   }
 
   renderPublishLabel() {
-    return this.state.course.isPublished ? 'Unpublish course' : 'Publish course'
+    return this.state.course.isPublished ? 'Unpublish Course' : 'Publish Course'
   }
 
   renderCollapsedLabel() {
-    return this.state.forceOpen ? 'Collapse Courses' : 'Expand Courses'
+    return this.state.forceOpen ? 'Collapse Lessons' : 'Expand Lessons'
   }
 
   renderSections() {
@@ -272,6 +299,7 @@ class CourseEditPage extends React.Component {
             forceOpen={this.state.forceOpen}
             course={this.state.course}
             updateMoveComponent={this.updateMoveComponent}
+            updateMoveSubsection={this.updateMoveSubsection}
           />
         </div>
       )

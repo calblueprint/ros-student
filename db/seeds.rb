@@ -8,7 +8,8 @@
 def create_codes
   10.times do |n|
     code = Code.create key: "code#{n}"
-    CodeCourse.create code_id: code.id, course_id: Course.first.id
+    CodeCourse.create code_id: code.id,
+                      course_id: Course.first.id
   end
 end
 

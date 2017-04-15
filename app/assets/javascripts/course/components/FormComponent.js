@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import Input from '../../shared/components/forms/Input'
+import AudioComponent from './AudioComponent'
 
 class FormComponent extends React.Component {
 
@@ -14,6 +15,7 @@ class FormComponent extends React.Component {
 
     this.updateCodeState = this.updateCodeState.bind(this)
     this.formSubmit = this.formSubmit.bind(this)
+    this.onAudioEnd = this.onAudioEnd.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,15 +36,27 @@ class FormComponent extends React.Component {
 
   formSubmit() {
     if (this.state.formCode == this.props.component.form_key) {
-      this.props.onEnd()
       this.setState({
         success: 'Success! Press next to continue.',
+        formEnd: true,
       })
+      this.onEnd(true, this.state.audioEnd)
     } else {
       this.setState({
         error: 'The secret key entered is invalid'
       })
     }
+  }
+
+  onEnd(formEnd, audioEnd) {
+    if (formEnd && (!this.props.selfPaced || this.props.audioUrl == null || audioEnd)) {
+      this.props.onEnd()
+    }
+  }
+
+  onAudioEnd() {
+    this.setState({ audioEnd: true })
+    this.onEnd(this.state.formEnd, true)
   }
 
   render() {
@@ -73,9 +87,25 @@ class FormComponent extends React.Component {
             </button>
           </div>
         </div>
+        <AudioComponent
+          audioUrl={this.props.audioUrl}
+          callback={this.onAudioEnd}
+          canSeek={this.props.canSeek}
+          selfPaced={this.props.selfPaced}
+        />
       </div>
     )
   }
+}
+
+FormComponent.propTypes = {
+  onEnd: PropTypes.func.isRequired,
+  audioUrl: PropTypes.string,
+  selfPaced: PropTypes.bool,
+}
+
+FormComponent.defaultProps = {
+  selfPaced: false,
 }
 
 export default FormComponent
