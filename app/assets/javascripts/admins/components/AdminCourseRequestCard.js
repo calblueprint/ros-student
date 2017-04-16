@@ -113,6 +113,10 @@ class AdminCourseRequestCard extends React.Component {
 
   updateRequest(params) {
     const path = this.props.updateRequestPath
+<<<<<<< 1e7afc6a2bb179248f351aac4690fc97f0591969
+=======
+    console.log(params)
+>>>>>>> Finishes request filter on incomplete and implements reject/approve endpoint on UI.
     request.update(path, params, (response) => {
       this.props.callback(this.props.id)
     }, (error) => {
@@ -176,14 +180,22 @@ class AdminCourseRequestCard extends React.Component {
             </div>
             <div className='right-container flex center'>
               <button
+<<<<<<< 1e7afc6a2bb179248f351aac4690fc97f0591969
                 className='course-request-icon-button approve marginRight-sm tooltip'
+=======
+                className='course-request-icon-button approve marginRight-sm'
+>>>>>>> Finishes request filter on incomplete and implements reject/approve endpoint on UI.
                 onClick={this.approveRequest}
               >
                 <i className='fa fa-check' aria-hidden='true'></i>
                 <span className='tooltiptext top course-request-tooltip'>Approve</span>
               </button>
               <button
+<<<<<<< 1e7afc6a2bb179248f351aac4690fc97f0591969
                 className='course-request-icon-button reject tooltip'
+=======
+                className='course-request-icon-button reject'
+>>>>>>> Finishes request filter on incomplete and implements reject/approve endpoint on UI.
                 onClick={this.rejectRequest}
               >
                 <i className='fa fa-times' aria-hidden='true'></i>
