@@ -3,7 +3,6 @@ class Api::Students::RequestsController < Api::Students::BaseController
 
   def create
     @request.student_id = current_user.id
-    puts "hi"
     if @request.save
       @request.generate_request(request_params)
       render json: @request, serializer: RequestSerializer
