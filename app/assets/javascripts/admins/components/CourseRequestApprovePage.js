@@ -8,7 +8,7 @@ import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
 import SaveButton from '../../shared/components/widgets/SaveButton'
 import { getInputToParams } from '../../utils/helpers/form_helpers'
-
+import AdminCourseRequestCard from './AdminCourseRequestCard'
 
 class CourseRequestApprovePage extends React.Component {
   constructor(props) {
@@ -87,20 +87,18 @@ class CourseRequestApprovePage extends React.Component {
 
   renderRequests() {
     return this.state.requests.map((value) => {
-      return value.course_requests.map((course_request) => {
-        return (
-          <div>
-            <li key={value.id}>{"Request id:"+value.id+" ;Request State:"+value.state}</li>
-            <li>{"Course_id associated with request:"+course_request.course_id+"; "}</li>
-          </div>
-        )
-      })
+      return (
+        <AdminCourseRequestCard
+          student={value.student}
+          courses={value.courses}
+        />
+      )
     })
   }
 
   render() {
     return (
-      <div>
+      <div className='container'>
         {this.renderRequests()}
         <Form
           className='submit_request_update_form'
