@@ -26,12 +26,19 @@ class CourseRequestTab extends React.Component {
       activeCourseIds: new Set(),
     }
 
+    this._mounted = false
+
     this.generateRequests = this.generateRequests.bind(this)
     this.switchCourseSelectedState = this.switchCourseSelectedState.bind(this)
   }
 
   componentDidMount() {
     this.getCourses()
+    this._mounted = true
+  }
+
+  componentWillUnmount() {
+    this._mounted = false
   }
 
   handleChange(attr, e) {
@@ -44,7 +51,7 @@ class CourseRequestTab extends React.Component {
     const path = APIRoutes.getPublishedCourses()
 
     request.get(path, (response) => {
-      this.setState({ courses: response.courses })
+      this._mounted && this.setState({ courses: response.courses })
     }, (error) => {
       console.log(error)
     })

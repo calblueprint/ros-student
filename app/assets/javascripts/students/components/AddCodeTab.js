@@ -8,7 +8,7 @@ import request from '../../shared/requests/request'
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
 import SaveButton from '../../shared/components/widgets/SaveButton'
-import { getInputToParams } from '../../utils/helpers/form_helpers'
+import { getInputToParams, addFlash } from '../../utils/helpers/form_helpers'
 
 class AddCodeTab extends React.Component {
   constructor(props) {
@@ -67,11 +67,10 @@ class AddCodeTab extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>Add Courses</div>
-        <p>Please enter the code here to add additional courses to your account.</p>
+      <div className='add-codes-container'>
+        <p className='add-codes-description marginBot-md'>Please enter the code you received here to add additional courses to your account. You will be automatically enrolled, and you should see the new courses on your dashboard.</p>
         <form>
-          <Input {...this.state.formFields.key} />
+          <Input style="add-codes-input marginBot-md" {...this.state.formFields.key} />
           <SaveButton
             className='marginTop-xs'
             text="Submit"

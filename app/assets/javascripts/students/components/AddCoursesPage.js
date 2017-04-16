@@ -53,7 +53,7 @@ class AddCoursesPage extends React.Component {
 
   render() {
     return (
-      <div className='add-courses-container marginTop-sm'>
+      <div className='add-courses-container marginTop-xxl'>
         <button
           onClick={_.bind(this.setActiveTab, this, this.tabs.REQUEST)}
           className={`tab ${this.getTabStyle(this.tabs.REQUEST)}`}>

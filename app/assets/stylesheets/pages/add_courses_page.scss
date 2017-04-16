@@ -46,6 +46,24 @@
   }
 }
 
+.add-codes-container {
+  width: 100%;
+  height: 100%;
+  background-color: $false-white;
+  border-radius: 4px;
+  padding: $xl;
+}
+
+.add-codes-description {
+  font-size: 14px;
+  font-style: italic;
+  color: $light-charcoal;
+}
+
+.add-codes-input {
+  background: $light-charcoal-10;
+}
+
 .submit-request-button {
   float: right;
 }

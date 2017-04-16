@@ -54,6 +54,13 @@ class CourseRequestApprovePage extends React.Component {
   }
 
   renderRequests() {
+    if (_.isEmpty(this.state.requests)) {
+      return (
+        <div className='course-request-approval-page-placeholder'>
+          No student requests at the moment!
+        </div>
+      )
+    }
     return this.state.requests.map((value) => {
       return (
         <AdminCourseRequestCard
@@ -72,7 +79,7 @@ class CourseRequestApprovePage extends React.Component {
 
   render() {
     return (
-      <div className='container'>
+      <div className='container marginBot-xxl'>
         <div className='course-request-approval-page-header'>
           Student Course Requests
         </div>
