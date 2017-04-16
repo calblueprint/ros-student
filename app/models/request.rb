@@ -10,8 +10,6 @@
 #
 
 class Request < ActiveRecord::Base
-  # validates :student_id, presence: true
-
   has_many :course_requests
   has_many :courses, through: :course_requests
 
