@@ -32,7 +32,7 @@ class AdminCourseRequestCard extends React.Component {
   getImgStyle() {
     const image_url = this.props.student.image_url ?
       this.props.student.image_url :
-      Images.doge
+      Images.default_profile
 
     return image_url
   }
