@@ -12,7 +12,7 @@
   cursor: default;
 
   &:hover {
-    @include transform(scale(1.05, 1.05));
+    @include transform(scale(1.03, 1.03));
   }
 
   &.selected {

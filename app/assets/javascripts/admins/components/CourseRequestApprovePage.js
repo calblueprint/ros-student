@@ -16,9 +16,11 @@ class CourseRequestApprovePage extends React.Component {
     this.state = {
       formFields: this.getFormFields(),
       requests: [],
+      activeRequestId: null,
     }
 
-    this.generateUpdate = _.bind(this.generateUpdate, this)
+    this.generateUpdate = this.generateUpdate.bind(this)
+    this.setActiveRequest = this.setActiveRequest.bind(this)
   }
 
   getFormFields() {
@@ -59,6 +61,14 @@ class CourseRequestApprovePage extends React.Component {
     })
   }
 
+  setActiveRequest(id) {
+    if (id === this.state.activeRequestId) {
+      this.setState({ activeRequestId: null })
+    } else {
+      this.setState({ activeRequestId: id })
+    }
+  }
+
   generateUpdate(event, onSuccess, onFailure) {
     event.preventDefault()
     var inputs = getInputToParams(this.state.formFields)
@@ -89,9 +99,12 @@ class CourseRequestApprovePage extends React.Component {
     return this.state.requests.map((value) => {
       return (
         <AdminCourseRequestCard
+          id={value.id}
           student={value.student}
           courses={value.courses}
           key={value.id}
+          setActive={this.setActiveRequest}
+          isActive={this.state.activeRequestId === value.id}
         />
       )
     })
@@ -100,6 +113,9 @@ class CourseRequestApprovePage extends React.Component {
   render() {
     return (
       <div className='container'>
+        <div className='course-request-approval-page-header'>
+          Student Course Requests
+        </div>
         {this.renderRequests()}
         <Form
           className='submit_request_update_form'

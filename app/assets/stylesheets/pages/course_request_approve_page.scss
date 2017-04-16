@@ -1,17 +1,33 @@
-$admin-course-request-card-width : 80px;
+$admin-course-request-card-height : 80px;
+
+.admin-course-request-card-container {
+  width: 80%;
+  margin: 10px auto;
+}
 
 .admin-course-request-card {
   position: relative;
-  width: 80%;
-  height: $admin-course-request-card-width;
-  margin: 10px auto;
+  width: 100%;
+  height: $admin-course-request-card-height;
+  margin: 0px auto;
   background: $white;
+  transition: 100ms;
   box-shadow: 0px 5px 15px $charcoal-10;
+  border-radius: 2px;
+  cursor: default;
+
+  &:hover {
+    @include transform(scale(1.03, 1.03));
+  }
+
+  &.active {
+    border-radius: 2px 2px 0px 0px;
+  }
 
   .student-image-container {
     float: left;
     height: 100%;
-    width: $admin-course-request-card-width;
+    width: $admin-course-request-card-height;
     padding: 10px;
     object-fit: cover;
   }
@@ -22,14 +38,14 @@ $admin-course-request-card-width : 80px;
 
   .student-request-info-container {
     float: left;
-    width: calc((100% - #{$admin-course-request-card-width}) * 0.5);
+    width: calc((100% - #{$admin-course-request-card-height}) * 0.5);
     height: 100%;
     padding: 10px;
   }
 
   .student-request-courses-container {
     float: right;
-    width: calc((100% - #{$admin-course-request-card-width}) * 0.5);
+    width: calc((100% - #{$admin-course-request-card-height}) * 0.5);
     height: 100%;
     padding: 10px;
     overflow-y: auto;
@@ -54,4 +70,41 @@ $admin-course-request-card-width : 80px;
     font-weight: $semi-bold;
     color: $charcoal;
   }
+}
+
+.admin-course-request-card-controls {
+  position: relative;
+  width: 100%;
+  height: calc(#{$admin-course-request-card-height} * 1.5);
+  margin: 0px auto;
+  padding: 20px 15px;
+  background: $white;
+  box-shadow: inset 0px 15px 15px -10px $charcoal-10;
+  border-radius: 0px 0px 2px 2px;
+
+  .left-container {
+    float: left;
+    height: 100%;
+    width: 70%;
+  }
+
+  .right-container {
+    float: right;
+    height: 100%;
+    width: 30%;
+  }
+
+  .directions-text {
+    font-size: 12px;
+    font-weight: $light;
+    color: $light-charcoal;
+    font-style: italic;
+  }
+}
+
+.course-request-approval-page-header {
+  margin-top: $xxl;
+  margin-bottom: $lg;
+  font-size: 24px;
+  font-weight: $bold;
 }
