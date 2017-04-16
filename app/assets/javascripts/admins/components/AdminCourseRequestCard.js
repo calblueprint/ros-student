@@ -108,7 +108,13 @@ class AdminCourseRequestCard extends React.Component {
                 {this.renderFields()}
               </form>
             </div>
-            <div className='right-container'>
+            <div className='right-container flex center'>
+              <button className='course-request-icon-button approve marginRight-sm'>
+                <i className='fa fa-check' aria-hidden='true'></i>
+              </button>
+              <button className='course-request-icon-button reject'>
+                <i className='fa fa-times' aria-hidden='true'></i>
+              </button>
             </div>
           </div>
         </Collapse>
