@@ -67,6 +67,7 @@ StudentCourseRequestCard.propTypes = {
     description: PropTypes.string.isRequired,
     image_url: PropTypes.string.isRequired,
   }),
+  selected: PropTypes.bool.isRequired,
   updateSelected: PropTypes.func.isRequired,
 }
 
