@@ -1,14 +1,32 @@
 import React, { PropTypes } from 'react'
 import Collapse from 'react-collapse'
+import _ from 'underscore'
 
 import { Images } from '../../utils/helpers/image_helpers'
 import Image from '../../shared/components/widgets/Image'
+import Form from '../../shared/components/forms/Form'
+import Input from '../../shared/components/forms/Input'
+import { getInputToParams } from '../../utils/helpers/form_helpers'
 
 class AdminCourseRequestCard extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      formFields: this.getFormFields(),
+    }
     this.handleClick = this.handleClick.bind(this)
+  }
+
+  getFormFields() {
+    return {
+      message: {
+        label: '',
+        value: '',
+        name: 'Request message',
+        onChange: _.bind(this.handleChange, this, 'message')
+      },
+    }
   }
 
   getImgStyle() {
@@ -25,7 +43,7 @@ class AdminCourseRequestCard extends React.Component {
       'admin-course-request-card'
   }
 
-  getRequestCourses() {
+  getRequests() {
     return this.props.courses.map((course) => {
       return (
         <div className='course-name'>
@@ -35,9 +53,23 @@ class AdminCourseRequestCard extends React.Component {
     })
   }
 
+  handleChange(attr, e) {
+    const formFields = this.state.formFields
+    formFields[attr].value = e.target.value
+    this.setState({ formFields: formFields })
+  }
+
   handleClick(event) {
     event.preventDefault()
     this.props.setActive(this.props.id)
+  }
+
+  renderFields() {
+    return (
+      _.pairs(this.state.formFields).map((values) => {
+        return <Input style="fill marginBot-xxs message-input" multiline={2} key={values[0]} {...values[1]} />
+      })
+    )
   }
 
   render() {
@@ -62,7 +94,7 @@ class AdminCourseRequestCard extends React.Component {
             </span>
           </div>
           <div className='student-request-courses-container'>
-            {this.getRequestCourses()}
+            {this.getRequests()}
           </div>
         </div>
 
@@ -72,6 +104,9 @@ class AdminCourseRequestCard extends React.Component {
               <div className='directions-text'>
                 Write a message here and either approve or reject this request.
               </div>
+              <form className='message-form'>
+                {this.renderFields()}
+              </form>
             </div>
             <div className='right-container'>
             </div>

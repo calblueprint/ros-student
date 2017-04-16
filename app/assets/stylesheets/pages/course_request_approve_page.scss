@@ -100,6 +100,14 @@ $admin-course-request-card-height : 80px;
     color: $light-charcoal;
     font-style: italic;
   }
+
+  .message-form {
+    margin-bottom: $xs;
+  }
+
+  .message-input {
+    background: $light-charcoal-10;
+  }
 }
 
 .course-request-approval-page-header {
