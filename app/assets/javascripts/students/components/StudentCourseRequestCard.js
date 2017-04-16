@@ -15,7 +15,7 @@ class StudentCourseRequestCard extends React.Component {
   }
 
   getCardStyle() {
-    return this.state.selected ?
+    return this.props.selected ?
       'student-course-request-card selected' :
       'student-course-request-card'
   }
@@ -35,7 +35,6 @@ class StudentCourseRequestCard extends React.Component {
 
   handleClick(event) {
     event.preventDefault()
-    this.setState({ selected: !this.state.selected })
     this.props.updateSelected(this.props.course.id)
   }
 
@@ -68,6 +67,7 @@ StudentCourseRequestCard.propTypes = {
     description: PropTypes.string.isRequired,
     image_url: PropTypes.string.isRequired,
   }),
+  selected: PropTypes.bool.isRequired,
   updateSelected: PropTypes.func.isRequired,
 }
 

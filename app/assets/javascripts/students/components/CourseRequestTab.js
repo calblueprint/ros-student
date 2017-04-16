@@ -45,7 +45,6 @@ class CourseRequestTab extends React.Component {
 
     request.get(path, (response) => {
       this.setState({ courses: response.courses })
-      console.log(response.courses)
     }, (error) => {
       console.log(error)
     })
@@ -63,8 +62,10 @@ class CourseRequestTab extends React.Component {
       activeCourseIds.add(courseId)
     }
     this.setState({ activeCourseIds: activeCourseIds })
-    console.log(this.state.activeCourseIds)
-    console.log(this.state.activeCourseIds.size)
+  }
+
+  resetAllSelectedStates() {
+    this.setState({ activeCourseIds: new Set() })
   }
 
   generateRequests(event, onSuccess, onFailure) {
@@ -72,13 +73,12 @@ class CourseRequestTab extends React.Component {
     const path = APIRoutes.courseRequestPath()
     var params = {
       request: {
-        // course_ids: JSON.stringify([...this.state.activeCourseIds]), 
         course_ids: [...this.state.activeCourseIds],
       },
     }
-    console.log(params)
     request.post(path, params, (response) => {
       onSuccess && onSuccess()
+      this.resetAllSelectedStates()
     }, (error) => {
       console.log(error)
       onFailure && onFailure()
@@ -90,6 +90,7 @@ class CourseRequestTab extends React.Component {
       return (
         <StudentCourseRequestCard
           course={value}
+          selected={this.state.activeCourseIds.has(value.id)}
           updateSelected={this.switchCourseSelectedState}
         />
       )
@@ -101,14 +102,14 @@ class CourseRequestTab extends React.Component {
       <div>
         {this.renderCourses()}
         <SaveButton
-          text='Submit Requests'
+          className='marginTop-md marginBot-xl submit-request-button'
+          text='Submit request'
           onPress={this.generateRequests}
           disabled={this.state.activeCourseIds.size === 0}
         />
       </div>
     )
   }
-
 }
 
 export default CourseRequestTab
