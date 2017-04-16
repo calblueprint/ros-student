@@ -85,14 +85,14 @@ $admin-course-request-card-height : 80px;
   .left-container {
     float: left;
     height: 100%;
-    width: 70%;
+    width: 75%;
   }
 
   .right-container {
     float: right;
     margin-left: 15px;
     height: 100%;
-    width: calc(30% - 15px);
+    width: calc(25% - 15px);
   }
 
   .directions-text {
@@ -119,8 +119,8 @@ $admin-course-request-card-height : 80px;
 }
 
 .course-request-icon-button {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: $white;
   border: none;
