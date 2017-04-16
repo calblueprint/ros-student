@@ -91,6 +91,7 @@ class CourseRequestApprovePage extends React.Component {
         <AdminCourseRequestCard
           student={value.student}
           courses={value.courses}
+          key={value.id}
         />
       )
     })

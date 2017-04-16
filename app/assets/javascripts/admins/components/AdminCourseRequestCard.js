@@ -20,13 +20,36 @@ class AdminCourseRequestCard extends React.Component {
     return image_url
   }
 
+  getRequestCourses() {
+    return this.props.courses.map((course) => {
+      return (
+        <div className='course-name'>
+          {course.name}
+        </div>
+      )
+    })
+  }
+
   render() {
     return (
       <div className='admin-course-request-card'>
-        <div className='student-image'>
-          <Image src={this.getImgStyle()} />
+        <div className='student-image-container'>
+          <Image
+            src={this.getImgStyle()}
+            img_style="student-image"
+          />
         </div>
-        {this.props.student.first_name}
+        <div className='student-request-info-container'>
+          <span className='student-name'>
+            {`${this.props.student.first_name} ${this.props.student.last_name}`}
+          </span>
+          <span className='student-email'>
+            {this.props.student.email}
+          </span>
+        </div>
+        <div className='student-request-courses-container'>
+          {this.getRequestCourses()}
+        </div>
       </div>
     )
   }
