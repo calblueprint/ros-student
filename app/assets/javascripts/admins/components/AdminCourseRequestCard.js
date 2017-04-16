@@ -124,6 +124,9 @@ class AdminCourseRequestCard extends React.Component {
           className={this.getCardStyle()}
           onClick={this.handleClick}
         >
+          <div className='course-request-id'>
+            {`#${this.props.id}`}
+          </div>
           <div className='student-image-container'>
             <Image
               src={this.getImgStyle()}
@@ -155,16 +158,18 @@ class AdminCourseRequestCard extends React.Component {
             </div>
             <div className='right-container flex center'>
               <button
-                className='course-request-icon-button approve marginRight-sm'
+                className='course-request-icon-button approve marginRight-sm tooltip'
                 onClick={this.approveRequest}
               >
                 <i className='fa fa-check' aria-hidden='true'></i>
+                <span className='tooltiptext top course-request-tooltip'>Approve</span>
               </button>
               <button
-                className='course-request-icon-button reject'
+                className='course-request-icon-button reject tooltip'
                 onClick={this.rejectRequest}
               >
                 <i className='fa fa-times' aria-hidden='true'></i>
+                <span className='tooltiptext top course-request-tooltip'>Reject</span>
               </button>
             </div>
           </div>

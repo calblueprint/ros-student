@@ -148,3 +148,18 @@ $admin-course-request-card-height : 80px;
     color: $red;
   }
 }
+
+.course-request-id {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  background: $white;
+  font-size: 12px;
+  font-weight: $extra-bold;
+  color: $light-charcoal-60;
+  z-index: 100;
+}
+
+.course-request-tooltip {
+  font-size: 12px;
+}
