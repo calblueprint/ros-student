@@ -15,7 +15,8 @@ class Request < ActiveRecord::Base
 
   belongs_to :student
 
-  enum states: [:incomplete, :rejected, :accepted]
+  enum state: [:incomplete, :rejected, :accepted]
+  scope :by_state, -> state { where(:state => state) }
 
   def generate_request(params)
     begin

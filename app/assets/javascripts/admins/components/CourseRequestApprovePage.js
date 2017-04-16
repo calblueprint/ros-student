@@ -14,45 +14,20 @@ class CourseRequestApprovePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      formFields: this.getFormFields(),
       requests: [],
       activeRequestId: null,
     }
 
-    this.generateUpdate = this.generateUpdate.bind(this)
     this.setActiveRequest = this.setActiveRequest.bind(this)
-  }
-
-  getFormFields() {
-    return {
-      request_id: {
-        label: 'Request ID',
-        value: '',
-        name: 'Request Ids',
-        onChange: _.bind(this.handleChange, this, 'request_id')
-      },
-      state: {
-        label: 'State',
-        value: '',
-        name: 'State',
-        onChange: _.bind(this.handleChange, this, 'state')
-      }
-    }
+    this.completeRequest = this.completeRequest.bind(this)
   }
 
   componentDidMount() {
     this.getRequests()
   }
 
-  handleChange(attr, e) {
-    const formFields = this.state.formFields
-    formFields[attr].value = e.target.value
-    this.setState({ formFields: formFields })
-  }
-
   getRequests() {
-    const path = APIRoutes.getRequestsPath()
-
+    const path = APIRoutes.getIncompleteRequestsPath()
     request.get(path, (response) => {
       this.setState({ requests: response.requests })
       console.log(response.requests)
@@ -69,30 +44,13 @@ class CourseRequestApprovePage extends React.Component {
     }
   }
 
-  generateUpdate(event, onSuccess, onFailure) {
-    event.preventDefault()
-    var inputs = getInputToParams(this.state.formFields)
-    const path = APIRoutes.requestUpdatePath(inputs.request_id)
-    var params = {
-      update_params: {
-        state: inputs.state,
-      },
-    }
-    console.log(params)
-    request.update(path, params, (response) => {
-      onSuccess && onSuccess()
-    }, (error) => {
-      console.log(error)
-      onFailure && onFailure()
+  completeRequest(id) {
+    this.setState({
+      requests: this.state.requests.filter((request) => {
+        return request.id != id
+      }),
+      activeRequestId: null,
     })
-  }
-
-  renderFields() {
-    return (
-      _.pairs(this.state.formFields).map((values) => {
-        return <Input key={values[0]} {...values[1]} />
-      })
-    )
   }
 
   renderRequests() {
@@ -105,6 +63,8 @@ class CourseRequestApprovePage extends React.Component {
           key={value.id}
           setActive={this.setActiveRequest}
           isActive={this.state.activeRequestId === value.id}
+          updateRequestPath={APIRoutes.requestUpdatePath(value.id)}
+          callback={this.completeRequest}
         />
       )
     })
@@ -117,19 +77,6 @@ class CourseRequestApprovePage extends React.Component {
           Student Course Requests
         </div>
         {this.renderRequests()}
-        <Form
-          className='submit_request_update_form'
-          id='submit_request_update_form'
-          method='post'
-          action={this.props.action}
-        >
-          {this.renderFields()}
-          <SaveButton
-            text='Submit Approvals'
-            onPress={this.generateUpdate}
-          />
-        </Form>
-
       </div>
     )
   }

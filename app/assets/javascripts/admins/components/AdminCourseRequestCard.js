@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import Collapse from 'react-collapse'
 import _ from 'underscore'
 
+import request from '../../shared/requests/request'
 import { Images } from '../../utils/helpers/image_helpers'
 import Image from '../../shared/components/widgets/Image'
 import Form from '../../shared/components/forms/Form'
@@ -15,7 +16,16 @@ class AdminCourseRequestCard extends React.Component {
     this.state = {
       formFields: this.getFormFields(),
     }
+
+    this.requestStates = {
+      INCOMPLETE: 0,
+      REJECTED: 1,
+      ACCEPTED: 2,
+    }
+
     this.handleClick = this.handleClick.bind(this)
+    this.approveRequest = this.approveRequest.bind(this)
+    this.rejectRequest = this.rejectRequest.bind(this)
   }
 
   getFormFields() {
@@ -43,10 +53,10 @@ class AdminCourseRequestCard extends React.Component {
       'admin-course-request-card'
   }
 
-  getRequests() {
+  getRequestCourses() {
     return this.props.courses.map((course) => {
       return (
-        <div className='course-name'>
+        <div className='course-name' key={course.id}>
           {course.name}
         </div>
       )
@@ -64,10 +74,45 @@ class AdminCourseRequestCard extends React.Component {
     this.props.setActive(this.props.id)
   }
 
+  approveRequest(event) {
+    event.preventDefault()
+    this.updateRequest({
+      update_params: {
+        state: this.requestStates.ACCEPTED,
+      }
+    })
+  }
+
+  rejectRequest(event) {
+    event.preventDefault()
+    this.updateRequest({
+      update_params: {
+        state: this.requestStates.REJECTED,
+      }
+    })
+  }
+
+  updateRequest(params) {
+    const path = this.props.updateRequestPath
+    console.log(params)
+    request.update(path, params, (response) => {
+      this.props.callback(this.props.id)
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
   renderFields() {
     return (
       _.pairs(this.state.formFields).map((values) => {
-        return <Input style="fill marginBot-xxs message-input" multiline={2} key={values[0]} {...values[1]} />
+        return (
+          <Input
+            style="fill marginBot-xxs message-input"
+            multiline={2}
+            key={values[0]}
+            {...values[1]}
+          />
+        )
       })
     )
   }
@@ -94,7 +139,7 @@ class AdminCourseRequestCard extends React.Component {
             </span>
           </div>
           <div className='student-request-courses-container'>
-            {this.getRequests()}
+            {this.getRequestCourses()}
           </div>
         </div>
 
@@ -109,10 +154,16 @@ class AdminCourseRequestCard extends React.Component {
               </form>
             </div>
             <div className='right-container flex center'>
-              <button className='course-request-icon-button approve marginRight-sm'>
+              <button
+                className='course-request-icon-button approve marginRight-sm'
+                onClick={this.approveRequest}
+              >
                 <i className='fa fa-check' aria-hidden='true'></i>
               </button>
-              <button className='course-request-icon-button reject'>
+              <button
+                className='course-request-icon-button reject'
+                onClick={this.rejectRequest}
+              >
                 <i className='fa fa-times' aria-hidden='true'></i>
               </button>
             </div>
@@ -133,10 +184,12 @@ AdminCourseRequestCard.propTypes = {
     image_url: PropTypes.string,
   }),
   courses: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
   })),
   setActive: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired,
+  updateRequestPath: PropTypes.string.isRequired,
 }
 
 export default AdminCourseRequestCard
