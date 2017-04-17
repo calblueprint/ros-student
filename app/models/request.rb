@@ -17,7 +17,10 @@ class Request < ActiveRecord::Base
   belongs_to :student
 
   enum state: [:incomplete, :rejected, :accepted]
+<<<<<<< HEAD
   scope :by_state, -> state { where(:state => state) }
+=======
+>>>>>>> added functionality so that if the course request was accepted, student is automatically enrolled in that course
 
   def generate_request(params)
     begin
