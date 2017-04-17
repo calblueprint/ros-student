@@ -236,11 +236,12 @@ class SectionEdit extends React.Component {
         />
 
         <ReorderModal
+          type='Subsections'
           closeModal={this.closeReorderModal}
           isModalOpen={this.state.isReorderModalOpen}
-          type='Subsections'
           items={this.state.section.subsections}
           onReorder={this.onReorder}
+          disabled={this.props.course.isPublished}
         />
       </div>
     )
