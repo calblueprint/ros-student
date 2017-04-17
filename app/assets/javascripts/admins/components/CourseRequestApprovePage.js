@@ -1,3 +1,10 @@
+/**
+ * Page on admin-side that allows admins to review student requests and either
+ * approve or reject them. A message is allowed to be included, which will be
+ * emailed to the student upon the request being accepted or rejected. Data and
+ * most logic is handled in `AdminCourseRequestCard`.
+ */
+
 import React from 'react'
 import _ from 'underscore'
 

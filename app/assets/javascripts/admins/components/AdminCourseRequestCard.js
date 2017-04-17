@@ -1,3 +1,22 @@
+/**
+ * Card on admin-side that shows information about a students request to
+ * enroll in additional courses. Contains info about the student (name, email)
+ * as well as a list of all the courses that they wish to add. Upon clicking
+ * the card, a collapse will expand with a field for a message to go along with
+ * accepting or rejecting the request. If the request is accepted, then the
+ * student will be automatically enrolled in those courses selected.
+ *
+ * @prop id                 - ID associated with this request
+ * @prop student            - object containing information about the student
+ *                            who submitted the request
+ * @prop courses            - array of course objects containing the titles of
+ *                            all courses that the student is requesting
+ * @prop setActive          - callback that tells parent the currently active 
+ *                            card
+ * @prop isActive           - bool indicating whether current card is 'opened'
+ * @prop updateRequestPath  - string with API route to updating the request
+ */
+
 import React, { PropTypes } from 'react'
 import Collapse from 'react-collapse'
 import _ from 'underscore'
