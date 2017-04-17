@@ -1,6 +1,8 @@
 class Api::Admins::RequestsController < Api::Admins::BaseController
   load_and_authorize_resource
 
+  has_scope :by_state
+
   def update
     if @request.update(update_params)
       render json: @request, serializer: RequestSerializer
@@ -10,6 +12,7 @@ class Api::Admins::RequestsController < Api::Admins::BaseController
   end
 
   def index
+    @requests = apply_scopes(Request).all
     render json: @requests, each_serializer: RequestListSerializer
   end
 

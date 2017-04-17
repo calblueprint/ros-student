@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import _ from 'underscore'
 
 import request from '../../shared/requests/request'
@@ -32,25 +32,42 @@ class ComponentGraph extends React.Component {
 
   getComponentSvg(component) {
     let imageUrl
-    switch (component.component_type) {
-      case 0: // Slide
-        imageUrl = Images.empty_basic
-        break
-      case 1: // Form
-        imageUrl = Images.open_quiz
-        break
-      case 2: // Multimedia
-        imageUrl = Images.open_play
-        break
-      default:
-        imageUrl = Images.empty_basic
-        break
+    if (component.is_complete) {
+      switch (component.component_type) {
+        case 0: // Slide
+          imageUrl = Images.filled_basic
+          break
+        case 1: // Form
+          imageUrl = Images.filled_quiz
+          break
+        case 2: // Multimedia
+          imageUrl = Images.filled_play
+          break
+        default:
+          imageUrl = Images.filled_basic
+          break
+      }
+    } else {
+      switch (component.component_type) {
+        case 0: // Slide
+          imageUrl = Images.empty_basic
+          break
+        case 1: // Form
+          imageUrl = Images.open_quiz
+          break
+        case 2: // Multimedia
+          imageUrl = Images.open_play
+          break
+        default:
+          imageUrl = Images.empty_basic
+          break
+      }
     }
 
     return {
       backgroundImage: `url(${imageUrl})`,
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "center",
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
       backgroundSize: 'cover',
       opacity: this.isComponentEnabled(component) ? 1 : 0.2,
     }
@@ -122,6 +139,24 @@ class ComponentGraph extends React.Component {
       </div>
     )
   }
+}
+
+ComponentGraph.propTypes = {
+  subsection: PropTypes.shape({
+    current_component: {
+      id: PropTypes.number.isRequired,
+    },
+    components: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      component_type: PropTypes.oneOf([0, 1, 2]),
+      title: PropTypes.string.isRequired,
+      is_complete: PropTypes.bool.isRequired,
+    }))
+  }),
+  displayedComponent: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }),
+  callback: PropTypes.func.isRequired,
 }
 
 export default ComponentGraph

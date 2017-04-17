@@ -16,10 +16,38 @@ class Input extends React.Component {
     }
   }
 
-  renderInput() {
+  getResponseMessage() {
+    if (_.isEmpty(this.props.success) && _.isEmpty(this.props.error)) {
+      return ''
+    }
     return (
+      <div
+        className={
+          `marginTopBot-xxs ${this.getStyling(this.props.error, 'input-text error')}
+          ${this.getStyling(this.props.success, 'input-text success')}`
+        }
+      >
+        {!_.isEmpty(this.props.success) ? (
+          this.props.success
+        ) : (
+          this.props.error
+        )}
+      </div>
+    )
+  }
+
+  renderLabel() {
+    return this.props.label ? (
+      <div className='input-label marginTop-xs marginBot-xxs'>
+        {this.props.label}
+      </div>
+    ) : ''
+  }
+
+  renderInput() {
+    return this.props.multiline === 1 ? (
       <input
-        className={`input ${this.getStyling(this.props.error, 'error')} ${this.getStyling(this.props.success, 'success')}`}
+        className={`input ${this.getStyling(this.props.error, 'error')} ${this.getStyling(this.props.success, 'success')} ${this.props.style}`}
         autoComplete={this.props.autoComplete}
         type={this.props.type}
         value={this.props.value}
@@ -27,26 +55,29 @@ class Input extends React.Component {
         onChange={this.props.onChange}
         placeholder={this.props.placeholder}
       />
+    ) : (
+      <textarea
+        className={`input ${this.getStyling(this.props.error, 'error')} ${this.getStyling(this.props.success, 'success')} ${this.props.style}`}
+        autoComplete={this.props.autoComplete}
+        type={this.props.type}
+        value={this.props.value}
+        name={this.props.name}
+        onChange={this.props.onChange}
+        placeholder={this.props.placeholder}
+        rows={this.props.multiline}
+      >
+      </textarea>
     )
   }
 
   render() {
     return (
       <div className='marginTopBot-xxs'>
-        <div className='input-label marginTop-xs marginBot-xxs'>
-          {this.props.label}
-        </div>
+        {this.renderLabel()}
         <div className='marginTopBot-xxs'>
           {this.renderInput()}
         </div>
-        <div
-          className={
-            `marginTopBot-xxs ${this.getStyling(this.props.error, 'input-text error')}
-            ${this.getStyling(this.props.success, 'input-text success')}`
-          }
-        >
-          {this.setResponseMessage()}
-        </div>
+        {this.getResponseMessage()}
       </div>
     )
   }
@@ -61,7 +92,9 @@ Input.propTypes = {
   error: PropTypes.string,
   success: PropTypes.string,
   name: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  style: PropTypes.string,
+  multiline: PropTypes.number.isRequired,
 }
 
 Input.defaultProps = {
@@ -71,6 +104,8 @@ Input.defaultProps = {
   error: '',
   success: '',
   name: '',
+  style: '',
+  multiline: 1,
 }
 
 export default Input

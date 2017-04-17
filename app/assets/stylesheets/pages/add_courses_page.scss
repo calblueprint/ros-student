@@ -1,0 +1,76 @@
+.add-courses-container {
+  width: 60%;
+}
+
+.student-course-request-card {
+  position: relative;
+  margin: 10px;
+  background: $white;
+  height: 100px;
+  transition: 100ms;
+  box-shadow: 0px 5px 15px $charcoal-10;
+  cursor: default;
+
+  &:hover {
+    @include transform(scale(1.03, 1.03));
+  }
+
+  &.selected {
+    background: $light-charcoal-10;
+  }
+
+  .course-image {
+    float: left;
+    height: 100%;
+    width: 100px;
+    object-fit: cover;
+  }
+
+  .course-info-container {
+    float: right;
+    padding: 15px;
+    width: calc(100% - 100px)
+  }
+
+  .course-title {
+    font-size: $sm;
+    font-weight: $bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .course-description {
+    font-size: 14px;
+    font-style: italic;
+    color: $light-charcoal;
+  }
+}
+
+.add-codes-container {
+  width: 100%;
+  height: 100%;
+  background-color: $false-white;
+  border-radius: 4px;
+  padding: $xl;
+}
+
+.add-codes-description {
+  font-size: 14px;
+  font-style: italic;
+  color: $light-charcoal;
+}
+
+.add-codes-input {
+  background: $light-charcoal-10;
+}
+
+.submit-request-button {
+  float: right;
+}
+
+.student-course-request-placeholder {
+  font-size: 16px;
+  text-align: center;
+  color: $light-charcoal;
+  margin: $xl auto;
+}

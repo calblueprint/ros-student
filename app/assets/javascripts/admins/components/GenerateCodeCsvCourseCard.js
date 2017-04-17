@@ -12,7 +12,7 @@ class GenerateCodeCsvCourseCard extends React.Component {
   }
 
   handleClick() {
-    this.setState({ selected: !this.state.selected})
+    this.setState({ selected: !this.state.selected })
     this.props.updateActive(this.props.course)
   }
 

@@ -1,109 +1,96 @@
+/**
+ * Page on admin-side that allows admins to review student requests and either
+ * approve or reject them. A message is allowed to be included, which will be
+ * emailed to the student upon the request being accepted or rejected. Data and
+ * most logic is handled in `AdminCourseRequestCard`.
+ */
+
 import React from 'react'
+import _ from 'underscore'
+
 import { APIRoutes } from '../../shared/routes'
 import request from '../../shared/requests/request'
+
 import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
 import SaveButton from '../../shared/components/widgets/SaveButton'
 import { getInputToParams } from '../../utils/helpers/form_helpers'
-import _ from 'underscore'
+import AdminCourseRequestCard from './AdminCourseRequestCard'
 
 class CourseRequestApprovePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      formFields: {
-        request_id: {
-          label: 'Request ID',
-          value: '',
-          name: 'Request Ids',
-          onChange: _.bind(this.handleChange, this, 'request_id')
-        },
-        state: {
-          label: 'State',
-          value: '',
-          name: 'State',
-          onChange: _.bind(this.handleChange, this, 'state')
-        }
-      },
       requests: [],
+      activeRequestId: null,
     }
-    this.getRequests()
-    this.generateUpdate = _.bind(this.generateUpdate, this)
 
+    this.setActiveRequest = this.setActiveRequest.bind(this)
+    this.completeRequest = this.completeRequest.bind(this)
   }
 
-  handleChange(attr, e) {
-    const formFields = this.state.formFields
-    formFields[attr].value = e.target.value
-    this.setState({ formFields: formFields })
+  componentDidMount() {
+    this.getRequests()
   }
 
   getRequests() {
-    const path = APIRoutes.getRequestsPath()
-
+    const path = APIRoutes.getIncompleteRequestsPath()
     request.get(path, (response) => {
       this.setState({ requests: response.requests })
+      
     }, (error) => {
       console.log(error)
     })
   }
 
-  generateUpdate(event, onSuccess, onFailure) {
-    event.preventDefault()
-    var inputs = getInputToParams(this.state.formFields)
-    const path = APIRoutes.requestUpdatePath(inputs.request_id)
-    var params = {
-      update_params: {
-        state: inputs.state,
-      },
+  setActiveRequest(id) {
+    if (id === this.state.activeRequestId) {
+      this.setState({ activeRequestId: null })
+    } else {
+      this.setState({ activeRequestId: id })
     }
-    console.log(params)
-    request.update(path, params, (response) => {
-      onSuccess && onSuccess()
-    }, (error) => {
-      console.log(error)
-      onFailure && onFailure()
-    })
   }
 
-  renderFields() {
-    return (
-      _.pairs(this.state.formFields).map((values) => {
-        return <Input key={values[0]} {...values[1]} />
-      })
-    )
+  completeRequest(id) {
+    this.setState({
+      requests: this.state.requests.filter((request) => {
+        return request.id != id
+      }),
+      activeRequestId: null,
+    })
   }
 
   renderRequests() {
+    if (_.isEmpty(this.state.requests)) {
+      return (
+        <div className='course-request-approval-page-placeholder'>
+          No student requests at the moment!
+        </div>
+      )
+    }
     return this.state.requests.map((value) => {
-      return value.course_requests.map((course_request) => {
-        return (
-          <div>
-            <li key={value.id}>{"Request id:"+value.id+" ;Request State:"+value.state}</li>
-            <li>{"Course_id associated with request:"+course_request.course_id+"; "}</li>
-          </div>
-        )
-      })
+      return (
+        <AdminCourseRequestCard
+          id={value.id}
+          student={value.student}
+          courses={value.courses}
+          key={value.id}
+          setActive={this.setActiveRequest}
+          isActive={this.state.activeRequestId === value.id}
+          updateRequestPath={APIRoutes.requestUpdatePath(value.id)}
+          callback={this.completeRequest}
+        />
+      )
     })
   }
 
   render() {
     return (
-      <div>
+      <div className='container marginBot-xxl'>
+        <div className='course-request-approval-page-header'>
+          Student Course Requests
+        </div>
         {this.renderRequests()}
-        <Form
-          className='submit_request_update_form'
-          id='submit_request_update_form'
-          method='post'
-          action={this.props.action}
-        >
-          {this.renderFields()}
-          <SaveButton
-            text='Submit Approvals'
-            onPress={this.generateUpdate}
-          />
-        </Form>
-
       </div>
     )
   }

@@ -17,6 +17,9 @@ class Course < ActiveRecord::Base
   has_many :code_courses
   has_many :codes, through: :code_courses
 
+  has_many :course_requests
+  has_many :requests, through: :course_requests
+
   has_one :photo, as: :parent, dependent: :destroy
   accepts_nested_attributes_for :photo
 

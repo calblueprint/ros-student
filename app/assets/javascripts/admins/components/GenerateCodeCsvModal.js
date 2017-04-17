@@ -84,7 +84,7 @@ class GenerateCodeCsvModal extends React.Component {
     }
   }
 
-  generateCodes(event, success, error) {
+  generateCodes(event, onSuccess, onFailure) {
     event.preventDefault()
     const path = APIRoutes.codeCsvListPath()
     var inputs = getInputToParams(this.state.formFields)
@@ -100,13 +100,12 @@ class GenerateCodeCsvModal extends React.Component {
     }
     request.post(path, params, (response) => {
       this.props.update(response.code_csv)
-      console.log(response)
-      success && success()
+      onSuccess && onSuccess()
       this.props.closeModal()
       this.setState(this.formDefault(false))
     }, (error) => {
       console.log(error)
-      error && error()
+      onFailure && onFailure()
     })
   }
 

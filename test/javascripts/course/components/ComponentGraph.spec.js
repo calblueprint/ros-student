@@ -54,6 +54,7 @@ describe('<ComponentGraph />', () => {
 
   it('renders correctly', () => {
     Images.empty_basic = 'empty_basic'
+    Images.filled_basic = 'filled_basic'
     Images.open_quiz = 'open_quiz'
     Images.open_play = 'open_play'
 
@@ -68,7 +69,7 @@ describe('<ComponentGraph />', () => {
     expect(componentGraph.find('.tooltiptext')).to.have.length(3)
 
     const icons = componentGraph.find('.component-icon')
-    expect(icons.at(0)).to.have.style('background-image', 'url(empty_basic)')
+    expect(icons.at(0)).to.have.style('background-image', 'url(filled_basic)')
     expect(icons.at(1)).to.have.style('background-image', 'url(open_quiz)')
     expect(icons.at(2)).to.have.style('background-image', 'url(open_play)')
   })

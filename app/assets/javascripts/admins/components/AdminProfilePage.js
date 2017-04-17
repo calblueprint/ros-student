@@ -6,7 +6,7 @@ class AdminProfilePage extends React.Component {
   render() {
     return (
       <div className='container'>
-        <div className='marginTop-sm profile-container'>
+        <div className='marginTop-xxl profile-container'>
           <AdminProfile id={this.props.routeParams.id} />
         </div>
       </div>

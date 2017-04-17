@@ -1,5 +1,5 @@
 import _ from 'underscore'
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 class Image extends React.Component {
   constructor(props) {
@@ -45,7 +45,7 @@ class Image extends React.Component {
     return (
       <div className='image-container'>
         <img
-          className='image'
+          className={`image ${this.props.img_style}`}
           src={this.state.src}
           alt='Image not found.'
         />
@@ -56,6 +56,11 @@ class Image extends React.Component {
   render() {
     return this.state.loaded ? this.renderImage() : this.renderSpinner()
   }
+}
+
+Image.propTypes = {
+  src: PropTypes.string,
+  img_style: PropTypes.string,
 }
 
 export default Image

@@ -8,6 +8,7 @@ import Image from '../../shared/components/widgets/Image'
 import TopProgressBar from '../../shared/components/widgets/TopProgressBar'
 
 class StudentCourseCard extends React.Component {
+
   getImgStyle() {
     const image_url = this.props.course.image_url ?
       this.props.course.image_url :

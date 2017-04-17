@@ -112,9 +112,10 @@ class APIRoutes {
   static createComponentProgressPath(id)  { return APIRoutes.createRoute(`students/components/${id}/component_progresses`)}
 
   //Requests
-  static courseRequestPath()        { return APIRoutes.createRoute(`students/requests`) }
-  static requestUpdatePath(id)        { return APIRoutes.createRoute(`admins/requests/${id}`) }
-  static getRequestsPath()          { return APIRoutes.createRoute(`admins/requests`)}
+  static courseRequestPath()              { return APIRoutes.createRoute(`students/requests`) }
+  static requestUpdatePath(id)            { return APIRoutes.createRoute(`admins/requests/${id}`) }
+  static getRequestsPath()                { return APIRoutes.createRoute(`admins/requests`)}
+  static getIncompleteRequestsPath()      { return APIRoutes.createRoute(`admins/requests?by_state=0`)}
 
   // Course Edit
   static createComponentPath(id)    { return APIRoutes.createRoute(`admins/subsections/${id}/components`) }
