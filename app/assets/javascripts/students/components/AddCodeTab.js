@@ -1,3 +1,10 @@
+/**
+ * Component of `AddCoursesPage` that allows students to add more courses by
+ * entering a code supplied by an admin. The student will then be enrolled in
+ * the courses included as part of the code that he/she is not already enrolled
+ * in.  
+ */
+
 import React from 'react'
 import _ from 'underscore'
 import update from 'immutability-helper'

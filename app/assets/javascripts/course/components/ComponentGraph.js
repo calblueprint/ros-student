@@ -133,7 +133,6 @@ class ComponentGraph extends React.Component {
 
 
   render() {
-    console.log(this.props.subsection)
     return (
       <div className='component-graph-container'>
         {this.renderComponents()}

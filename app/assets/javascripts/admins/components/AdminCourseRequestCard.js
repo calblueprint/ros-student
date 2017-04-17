@@ -11,7 +11,7 @@
  *                            who submitted the request
  * @prop courses            - array of course objects containing the titles of
  *                            all courses that the student is requesting
- * @prop setActive          - callback that tells parent the currently active 
+ * @prop setActive          - callback that tells parent the currently active
  *                            card
  * @prop isActive           - bool indicating whether current card is 'opened'
  * @prop updateRequestPath  - string with API route to updating the request
@@ -113,7 +113,6 @@ class AdminCourseRequestCard extends React.Component {
 
   updateRequest(params) {
     const path = this.props.updateRequestPath
-    console.log(params)
     request.update(path, params, (response) => {
       this.props.callback(this.props.id)
     }, (error) => {

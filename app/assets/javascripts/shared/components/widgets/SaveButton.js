@@ -4,7 +4,8 @@
  * pointer events when processing requests to prevent duplicate requests.
  *
  * @prop text         - text string to be displayed in button
- * @prop onPress      - handler function called when button pressed (see PropTypes below)
+ * @prop onPress      - handler function called when button pressed (see
+ *                      PropTypes below)
  * @prop type         - optional type argument to button (like 'submit')
  * @prop loadingText  - optional text to display when button is processing
  * @prop successText  - optional text to display when request is successful

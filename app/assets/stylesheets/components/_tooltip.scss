@@ -8,11 +8,11 @@
     color: #fff;
     text-align: center;
     padding: 5px 12px;
-    border-radius: 5px;
+    border-radius: 2px;
 
     position: absolute;
     z-index: 1;
-    transition: opacity 0.3s;
+    transition: opacity 0.2s;
 
     &.top {
       bottom: 120%;

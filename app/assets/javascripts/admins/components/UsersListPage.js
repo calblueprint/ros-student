@@ -46,7 +46,7 @@ class UsersListPage extends React.Component {
 
   render() {
     return (
-      <div className='flex center marginTop-xl'>
+      <div className='flex center marginTop-xxl'>
         <div className='container'>
           <button
             onClick={_.bind(this.setActiveTab, this, 0)}

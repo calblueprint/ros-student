@@ -1,3 +1,10 @@
+/**
+ * Component of `AddCoursesPage` that allows students to request for courses
+ * through selecting from the catalong. The other tab on the page uses codes.
+ * Students can view and select any subset of the published courses and hit
+ * submit, which will render a request viewable to all admins.
+ */
+
 import React from 'react'
 import _ from 'underscore'
 
@@ -93,6 +100,14 @@ class CourseRequestTab extends React.Component {
   }
 
   renderCourses() {
+    if (_.isEmpty(this.state.courses)) {
+      return (
+        <div className='student-course-request-placeholder'>
+          <i className='fa fa-spinner fa-pulse save-button-icon'></i>
+          Loading all courses...
+        </div>
+      )
+    }
     return this.state.courses.map((value) => {
       return (
         <StudentCourseRequestCard
