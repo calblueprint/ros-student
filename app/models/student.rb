@@ -60,6 +60,16 @@ class Student < ActiveRecord::Base
     end
   end
 
+  def subscribe_from_requests(request)
+    if request.state == 'accepted'
+      request.courses.each do |course|
+        student_courses.find_or_create_by(course_id: course.id, self_paced: true)
+      end
+    else
+      true #kind of janky, needs to be true to not return an error response but still want to catch errors if find_or_create creates an error
+    end
+  end
+
   private
 
   def has_code
