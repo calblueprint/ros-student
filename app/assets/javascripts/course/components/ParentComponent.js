@@ -16,6 +16,7 @@ class ParentComponent extends React.Component {
       case 0:
         return (
           <ImageComponent
+            id={this.props.component.id}
             canSeek={this.props.component.is_complete}
             audioUrl={this.props.component.audio_url}
             imgUrl={this.props.component.content_url}
