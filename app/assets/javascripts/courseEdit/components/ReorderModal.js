@@ -63,6 +63,14 @@ class ReorderModal extends React.Component {
     )
   }
 
+  renderDisabled() {
+    return (
+      <div>
+        This course has already been published - reordering is now disabled so that those already taking the course won't be affected. If you'd like to change the order, clone a new course instead.
+      </div>
+    )
+  }
+
   render() {
     return (
       <SimpleModal
@@ -70,13 +78,14 @@ class ReorderModal extends React.Component {
         closeModal={this.props.closeModal}
         title={`Reorder ${this.props.type}`}
       >
-        {this.renderItems()}
+        {this.props.disabled ? this.renderDisabled() : this.renderItems()}
       </SimpleModal>
     )
   }
 }
 
 ReorderModal.propTypes = {
+  disabled: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   isModalOpen: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,

@@ -125,6 +125,33 @@ class ChangeParentModal extends React.Component {
     }
   }
 
+  renderReorder() {
+    return (
+      <div>
+        {this.renderDropdowns()}
+        <button
+          className='button marginTop-xs'
+          onClick={_.partial(
+            this.props.moveItem,
+            this.state.selectedSection,
+            this.state.selectedSubsection,
+          )}
+          disabled={this.submitIsDisabled()}
+        >
+        Move {this.props.objectType}
+        </button>
+      </div>
+    )
+  }
+
+  renderDisabled() {
+    return (
+      <div>
+        This course has already been published - reordering is now disabled so that those already taking the course won't be affected. If you'd like to change the order, clone a new course instead.
+      </div>
+    )
+  }
+
   render() {
     return (
       <SimpleModal
@@ -132,20 +159,7 @@ class ChangeParentModal extends React.Component {
         isModalOpen={this.props.isChangeOpen}
         closeModal={this.props.closeModal}
       >
-        <div>
-          {this.renderDropdowns()}
-          <button
-            className='button marginTop-xs'
-            onClick={_.partial(
-              this.props.moveItem,
-              this.state.selectedSection,
-              this.state.selectedSubsection,
-            )}
-            disabled={this.submitIsDisabled()}
-          >
-          Move {this.props.objectType}
-          </button>
-        </div>
+        {this.props.course.isPublished ? this.renderDisabled() : this.renderReorder()}
       </SimpleModal>
     )
   }

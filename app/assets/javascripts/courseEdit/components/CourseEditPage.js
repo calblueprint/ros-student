@@ -437,6 +437,7 @@ class CourseEditPage extends React.Component {
           type='Sections'
           items={this.state.course.sections}
           onReorder={this.onReorder}
+          disabled={this.state.course.isPublished}
         />
       </div>
     )

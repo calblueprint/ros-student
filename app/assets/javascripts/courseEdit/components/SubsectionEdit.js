@@ -34,7 +34,7 @@ const ComponentHandle = SortableHandle(() => {
 const ComponentItem = SortableElement(({ value, deleteComponent, updateMoveComponent, course, section, subsection }) => {
   return (
     <div className='flex vertical' key={value.id}>
-      <ComponentHandle />
+      {course.isPublished ? '' : <ComponentHandle />}
       <ComponentEdit
         component={value}
         deleteComponent={deleteComponent}
@@ -301,6 +301,7 @@ class SubsectionEdit extends React.Component {
               </span>
             </button>
           </div>
+
           <DeleteModal
             openDeleteModal={this.state.openDeleteModal}
             closeModal={this.closeDeleteModal}
