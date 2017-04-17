@@ -56,6 +56,6 @@ class Admin < ActiveRecord::Base
   end
 
   def send_email
-    AdminMailer.send_request(self, @temp_password).deliver_now
+    AdminMailer.create_admin(self, @temp_password).deliver_now
   end
 end
