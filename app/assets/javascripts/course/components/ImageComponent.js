@@ -4,9 +4,19 @@ import AudioComponent from './AudioComponent'
 import Image from '../../shared/components/widgets/Image'
 
 class ImageComponent extends React.Component {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.id != nextProps.id) {
+      this.markClassroomComplete(nextProps)
+    }
+  }
+
   componentDidMount() {
-    if (!this.props.selfPaced || this.props.audioUrl == null) {
-      this.props.onEnd()
+    this.markClassroomComplete(this.props)
+  }
+
+  markClassroomComplete(props) {
+    if (!props.selfPaced || props.audioUrl == null) {
+      props.onEnd()
     }
   }
 
@@ -30,6 +40,7 @@ class ImageComponent extends React.Component {
 }
 
 ImageComponent.propTypes = {
+  id: PropTypes.number.isRequired,
   imgUrl: PropTypes.string.isRequired,
   onEnd: PropTypes.func.isRequired,
   audioUrl: PropTypes.string,
