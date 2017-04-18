@@ -29,7 +29,7 @@ class Section < ActiveRecord::Base
       end
     end
 
-    return completed / n * 100
+    return (completed / n * 100).round
   end
 
   def switch(params)
