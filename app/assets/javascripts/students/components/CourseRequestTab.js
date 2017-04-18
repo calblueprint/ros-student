@@ -6,20 +6,15 @@ import Form from '../../shared/components/forms/Form'
 import Input from '../../shared/components/forms/Input'
 import SaveButton from '../../shared/components/widgets/SaveButton'
 import { getInputToParams } from '../../utils/helpers/form_helpers'
+import StudentCourseRequestCard from './StudentCourseRequestCard'
 
 class CourseRequestTab extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      formFields: {
-        course_ids: {
-          value: '',
-          name: 'Course Ids',
-          onChange: _.bind(this.handleChange, this, 'course_ids')
-        },
-      },
       courses: [],
+      activeCourseIds: new Set(),
     }
 
     this._mounted = false
