@@ -36,9 +36,9 @@ class CourseSidebar extends React.Component {
           data-method='get'>
           <i className='fa fa-arrow-left' aria-hidden='true'></i>
         </a>
-        <h1 className='sidebar-course-title'>{this.props.courseSidebar.name}</h1>
-        <div className='sidebar-course-title-filler'>
-        </div>
+        <h1 className='sidebar-course-title'>
+          {this.props.courseSidebar.name}
+        </h1>
       </div>
     )
   }

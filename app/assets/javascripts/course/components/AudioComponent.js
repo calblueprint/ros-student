@@ -129,6 +129,7 @@ class AudioComponent extends React.Component {
   }
 
   render() {
+    console.log(this.props.audioUrl)
     return(
       <div>
         {this.renderAudio()}
