@@ -36,7 +36,6 @@ class CourseRequestApprovePage extends React.Component {
   getRequests() {
     const path = APIRoutes.getIncompleteRequestsPath()
     request.get(path, (response) => {
-      console.log(response)
       this.setState({ requests: response.requests })
     }, (error) => {
       console.log(error)

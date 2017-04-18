@@ -66,7 +66,7 @@ class Student < ActiveRecord::Base
         student_courses.find_or_create_by(course_id: course.id, self_paced: true)
       end
     else
-      true #kind of janky, needs to be true to not return an error response but still want to catch errors if find_or_create creates an error
+      true
     end
   end
 
