@@ -307,6 +307,7 @@ class SubsectionEdit extends React.Component {
             closeModal={this.closeDeleteModal}
             deleteFunction={this.deleteSubsection}
             objectType="subsection"
+            disabled={this.props.course.isPublished}
           />
 
           <ChangeParentModal
@@ -327,6 +328,7 @@ class SubsectionEdit extends React.Component {
             closeModal={this.closeNewComponentForm}
             subsectionId={this.state.subsection.id}
             callback={this.onFormCompletion}
+            disabled={this.props.course.isPublished}
           />
           <button
             className='button button--white add-component-button'

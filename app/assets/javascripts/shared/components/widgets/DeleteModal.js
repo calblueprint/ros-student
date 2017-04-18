@@ -11,17 +11,11 @@ class DeleteModal extends React.Component {
     }
   }
 
-  render() {
+  renderDelete() {
     const confirmDeleteMessage = `Are you sure you want to delete this ${this.props.objectType}? This action cannot be undone.`
 
     return (
-      <Modal
-        show={this.props.openDeleteModal}
-        onHide={this.props.closeModal}
-      >
-        <Modal.Header>
-          <Modal.Title>Confirm Delete</Modal.Title>
-        </Modal.Header>
+      <div>
         <Modal.Body>
           {confirmDeleteMessage}
         </Modal.Body>
@@ -46,6 +40,33 @@ class DeleteModal extends React.Component {
             </div>
           </div>
         </Modal.Footer>
+      </div>
+    )
+  }
+
+  renderDisabled() {
+    return (
+      <div>
+        <Modal.Body>
+          This course has already been published - deleting is now disabled so that those already taking the course won't be affected. If you'd like to make changes, unpublish the course first.
+        </Modal.Body>
+        <Modal.Footer>
+        </Modal.Footer>
+      </div>
+    )
+  }
+
+  render() {
+    return (
+      <Modal
+        show={this.props.openDeleteModal}
+        onHide={this.props.closeModal}
+      >
+        <Modal.Header>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+
+        {this.props.disabled ? this.renderDisabled() : this.renderDelete()}
       </Modal>
     )
   }
@@ -56,6 +77,7 @@ DeleteModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   deleteFunction: PropTypes.func.isRequired,
   objectType: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
 }
 
 export default DeleteModal

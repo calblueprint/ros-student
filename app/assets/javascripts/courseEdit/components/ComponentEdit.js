@@ -171,6 +171,7 @@ class ComponentEdit extends React.Component {
           subsectionId={this.subsectionId}
           component={this.state.component}
           callback={this.onFormCompletion}
+          disabled={false}
         />
 
         <DeleteModal
@@ -178,6 +179,7 @@ class ComponentEdit extends React.Component {
           closeModal={this.closeDeleteModal}
           deleteFunction={this.deleteComponent}
           objectType='component'
+          disabled={this.props.course.isPublished}
         />
 
         <ChangeParentModal
