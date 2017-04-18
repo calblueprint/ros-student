@@ -14,9 +14,7 @@
   font-size: $md;
   font-weight: 900;
   color: $white;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  @include overflowText;
 }
 
 .sidebar-back-button {
@@ -54,9 +52,7 @@
   color: $white;
   font-size: $sm;
   font-weight: 400;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  @include overflowText;
 }
 
 .sidebar-section-arrow {
@@ -104,7 +100,5 @@
 }
 
 .sidebar-subsection-title {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  @include overflowText;
 }

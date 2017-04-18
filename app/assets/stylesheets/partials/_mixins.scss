@@ -98,3 +98,9 @@
     display: block;
   }
 }
+
+@mixin overflowText {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

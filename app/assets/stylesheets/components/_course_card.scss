@@ -36,6 +36,7 @@
   color: $charcoal;
   font-size: 20px;
   text-align: center;
+  @include overflowText;
 }
 
 .card-description {
