@@ -12,6 +12,7 @@ import SimpleModal from '../../shared/components/widgets/SimpleModal'
 
 import SectionEdit from './SectionEdit'
 import DeleteCourseModal from './DeleteCourseModal'
+import PublishCourseModal from './PublishCourseModal'
 import ReorderModal from './ReorderModal'
 
 class CourseEditPage extends React.Component {
@@ -30,6 +31,7 @@ class CourseEditPage extends React.Component {
       isDeleteModalOpen: false,
       isReorderModalOpen: false,
       isDisabledModalOpen: false,
+      isPublishModalOpen: false,
     }
 
     this.createSection = this.createSection.bind(this)
@@ -45,6 +47,8 @@ class CourseEditPage extends React.Component {
     this.closeReorderModal = this.closeReorderModal.bind(this)
     this.openDisabledModal = this.openDisabledModal.bind(this)
     this.closeDisabledModal = this.closeDisabledModal.bind(this)
+    this.openPublishModal = this.openPublishModal.bind(this)
+    this.closePublishModal = this.closePublishModal.bind(this)
 
     this.onConfirmDelete = this.onConfirmDelete.bind(this)
     this.toggleIsPublished = this.toggleIsPublished.bind(this)
@@ -80,6 +84,14 @@ class CourseEditPage extends React.Component {
 
   closeDisabledModal() {
     this.setState({ isDisabledModalOpen: false })
+  }
+
+  openPublishModal() {
+    this.setState({ isPublishModalOpen: true })
+  }
+
+  closePublishModal() {
+    this.setState({ isPublishModalOpen: false })
   }
 
   getCourse() {
@@ -164,6 +176,7 @@ class CourseEditPage extends React.Component {
     }
     this.updateCourse(params)
     this.setCourseValue('isPublished', !this.state.course.isPublished)
+    this.closePublishModal()
   }
 
   toggleIsCollapsed() {
@@ -426,7 +439,7 @@ class CourseEditPage extends React.Component {
             <div className='course-edit-controls-container'>
               <button
                 className='button marginRight-md'
-                onClick={this.toggleIsPublished}
+                onClick={this.openPublishModal}
               >
                 {this.renderPublishLabel()}
               </button>
@@ -466,6 +479,13 @@ class CourseEditPage extends React.Component {
             This course has already been published - adding sections is now disabled so that those already taking the course won't be affected. If you'd like to make changes, unpublish the course first.
           </div>
         </SimpleModal>
+
+        <PublishCourseModal
+          closeModal={this.closePublishModal}
+          isModalOpen={this.state.isPublishModalOpen}
+          onTogglePublish={this.toggleIsPublished}
+          isPublished={this.state.course.isPublished}
+        />
       </div>
     )
   }
