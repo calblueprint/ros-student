@@ -31,13 +31,10 @@ class CourseSidebar extends React.Component {
     return (
       <div className='flex vertical sidebar-course-title-container'>
         <a
-          className='flex'
+          className='flex sidebar-back-button'
           href={RailsRoutes.courseOutlinePath(this.props.courseId)}
           data-method='get'>
-          <img
-            className='sidebar-back-button'
-            src={Images.left_arrow}
-          />
+          <i className='fa fa-arrow-left' aria-hidden='true'></i>
         </a>
         <h1 className='sidebar-course-title'>{this.props.courseSidebar.name}</h1>
         <div className='sidebar-course-title-filler'>

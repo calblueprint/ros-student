@@ -17,8 +17,22 @@
 }
 
 .sidebar-back-button {
-  height: $md;
+  position: relative;
+  font-size: $md;
   padding-right: $sm;
+  color: $white;
+  text-decoration: none;
+
+  &:hover::after {
+    position: absolute;
+    left: calc(#{$md} + 5px);
+    line-height: $md;
+    content: "BACK";
+    font-size: $sm;
+    font-weight: $bold;
+    color: $white;
+    letter-spacing: 1px;
+  }
 }
 
 .sidebar-course-title-filler {

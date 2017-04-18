@@ -32,16 +32,16 @@ class QuizForm extends React.Component {
           onChange: _.bind(this.handleChange, this, 'title'),
           error: '',
         },
-        formKey: {
-          label: 'Quiz Key',
-          value: this.props.component.form_key,
-          onChange: _.bind(this.handleChange, this, 'contentUrl'),
-          error: '',
-        },
         contentUrl: {
           label: 'Google Forms Url',
           value: this.props.component.content_url,
           onChange: _.bind(this.handleChange, this, 'contentUrl'),
+          error: '',
+        },
+        formKey: {
+          label: 'Quiz Key',
+          value: this.props.component.form_key,
+          onChange: _.bind(this.handleChange, this, 'formKey'),
           error: '',
         },
       }
