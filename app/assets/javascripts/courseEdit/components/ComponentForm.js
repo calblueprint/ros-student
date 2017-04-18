@@ -67,6 +67,40 @@ class ComponentForm extends React.Component {
     }
   }
 
+  renderItem() {
+    return (
+      <div className='flex flex-vertical add-component-container'>
+        <div className='input-label marginTopBot-xxs'>Type</div>
+        <div className='flex flex-horizontal'>
+          <button
+            className={`tab ${this.isActiveStyle(0)}`}
+            onClick={this.handleClick.bind(this, 0)}>
+            Slide
+          </button>
+          <button
+            className={`tab ${this.isActiveStyle(1)}`}
+            onClick={this.handleClick.bind(this, 1)}>
+            Quiz
+          </button>
+          <button
+            className={`tab ${this.isActiveStyle(2)}`}
+            onClick={this.handleClick.bind(this, 2)}>
+            Multimedia
+          </button>
+        </div>
+        <div className='component-form'>{this.renderForm()}</div>
+      </div>
+    )
+  }
+
+  renderDisabled() {
+    return (
+      <div>
+        This course has already been published - adding components is now disabled so that those already taking the course won't be affected. If you'd like to make changes, unpublish the course first.
+      </div>
+    )
+  }
+
   render() {
     return (
       <div>
@@ -87,27 +121,7 @@ class ComponentForm extends React.Component {
             </Modal.Dismiss>
           </Modal.Header>
           <Modal.Body>
-            <div className='flex flex-vertical add-component-container'>
-              <div className='input-label marginTopBot-xxs'>Type</div>
-              <div className='flex flex-horizontal'>
-                <button
-                  className={`tab ${this.isActiveStyle(0)}`}
-                  onClick={this.handleClick.bind(this, 0)}>
-                  Slide
-                </button>
-                <button
-                  className={`tab ${this.isActiveStyle(1)}`}
-                  onClick={this.handleClick.bind(this, 1)}>
-                  Quiz
-                </button>
-                <button
-                  className={`tab ${this.isActiveStyle(2)}`}
-                  onClick={this.handleClick.bind(this, 2)}>
-                  Multimedia
-                </button>
-              </div>
-              <div className='component-form'>{this.renderForm()}</div>
-            </div>
+            {this.props.disabled ? this.renderDisabled() : this.renderItem()}
           </Modal.Body>
           <Modal.Footer className='white'>
           </Modal.Footer>
@@ -125,7 +139,8 @@ ComponentForm.defaultProps = {
     audio_url: null,
     content_url: null,
     form_key: '',
-  }
+  },
+  disabled: false,
 }
 
 export default ComponentForm

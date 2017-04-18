@@ -7,6 +7,7 @@ import { arrayMove } from 'react-sortable-hoc'
 import { APIRoutes } from '../../shared/routes'
 import { Images } from '../../utils/helpers/image_helpers'
 import request from '../../shared/requests/request'
+import SimpleModal from '../../shared/components/widgets/SimpleModal'
 
 import SubsectionEdit from './SubsectionEdit'
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
@@ -23,6 +24,7 @@ class SectionEdit extends React.Component {
       isOpen: false,
       openDeleteModal: false,
       isReorderModalOpen: false,
+      isDisabledModalOpen: false,
     }
 
     this.createSubsection = this.createSubsection.bind(this)
@@ -35,6 +37,8 @@ class SectionEdit extends React.Component {
     this.closeDeleteModal = this.closeDeleteModal.bind(this)
     this.openReorderModal = this.openReorderModal.bind(this)
     this.closeReorderModal = this.closeReorderModal.bind(this)
+    this.openDisabledModal = this.openDisabledModal.bind(this)
+    this.closeDisabledModal = this.closeDisabledModal.bind(this)
 
     this.onReorder = this.onReorder.bind(this)
   }
@@ -71,7 +75,20 @@ class SectionEdit extends React.Component {
     this.setState({ isReorderModalOpen: false })
   }
 
+  openDisabledModal() {
+    this.setState({ isDisabledModalOpen: true })
+  }
+
+  closeDisabledModal() {
+    this.setState({ isDisabledModalOpen: false })
+  }
+
   createSubsection() {
+    if (this.props.course.isPublished) {
+      this.openDisabledModal()
+      return
+    }
+
     const path = APIRoutes.createSubsectionPath(this.id)
 
     request.post(path, {}, (response) => {
@@ -233,6 +250,7 @@ class SectionEdit extends React.Component {
           closeModal={this.closeDeleteModal}
           deleteFunction={this.deleteSection}
           objectType='section'
+          disabled={this.props.course.isPublished}
         />
 
         <ReorderModal
@@ -243,6 +261,16 @@ class SectionEdit extends React.Component {
           onReorder={this.onReorder}
           disabled={this.props.course.isPublished}
         />
+
+        <SimpleModal
+          isModalOpen={this.state.isDisabledModalOpen}
+          closeModal={this.closeDisabledModal}
+          title='Add Subsection'
+        >
+          <div>
+            This course has already been published - adding subsections is now disabled so that those already taking the course won't be affected. If you'd like to make changes, unpublish the course first.
+          </div>
+        </SimpleModal>
       </div>
     )
   }

@@ -8,6 +8,7 @@ import { Images, convertImage } from '../../utils/helpers/image_helpers'
 import { snakeToCamel } from '../../utils/helpers/form_helpers'
 
 import InlineEditInput from '../../shared/components/forms/InlineEditInput'
+import SimpleModal from '../../shared/components/widgets/SimpleModal'
 
 import SectionEdit from './SectionEdit'
 import DeleteCourseModal from './DeleteCourseModal'
@@ -28,6 +29,7 @@ class CourseEditPage extends React.Component {
       forceOpen: false,
       isDeleteModalOpen: false,
       isReorderModalOpen: false,
+      isDisabledModalOpen: false,
     }
 
     this.createSection = this.createSection.bind(this)
@@ -41,6 +43,8 @@ class CourseEditPage extends React.Component {
     this.closeDeleteModal = this.closeDeleteModal.bind(this)
     this.openReorderModal = this.openReorderModal.bind(this)
     this.closeReorderModal = this.closeReorderModal.bind(this)
+    this.openDisabledModal = this.openDisabledModal.bind(this)
+    this.closeDisabledModal = this.closeDisabledModal.bind(this)
 
     this.onConfirmDelete = this.onConfirmDelete.bind(this)
     this.toggleIsPublished = this.toggleIsPublished.bind(this)
@@ -68,6 +72,14 @@ class CourseEditPage extends React.Component {
 
   closeReorderModal() {
     this.setState({ isReorderModalOpen: false })
+  }
+
+  openDisabledModal() {
+    this.setState({ isDisabledModalOpen: true })
+  }
+
+  closeDisabledModal() {
+    this.setState({ isDisabledModalOpen: false })
   }
 
   getCourse() {
@@ -163,6 +175,11 @@ class CourseEditPage extends React.Component {
   }
 
   createSection() {
+    if (this.state.course.isPublished) {
+      this.openDisabledModal()
+      return
+    }
+
     const path = APIRoutes.createSectionPath(this.id)
 
     request.post(path, {}, (response) => {
@@ -439,6 +456,16 @@ class CourseEditPage extends React.Component {
           onReorder={this.onReorder}
           disabled={this.state.course.isPublished}
         />
+
+        <SimpleModal
+          isModalOpen={this.state.isDisabledModalOpen}
+          closeModal={this.closeDisabledModal}
+          title='Add Section'
+        >
+          <div>
+            This course has already been published - adding sections is now disabled so that those already taking the course won't be affected. If you'd like to make changes, unpublish the course first.
+          </div>
+        </SimpleModal>
       </div>
     )
   }
