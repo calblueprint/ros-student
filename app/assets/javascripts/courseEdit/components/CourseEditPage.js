@@ -319,7 +319,9 @@ class CourseEditPage extends React.Component {
       return true
     }
 
-    const list = _.map(sections, (section) => {
+    // For all sections, returns true if it has no subsections
+    // Else, check if any of its subsections has no components
+    const boolSections = _.map(sections, (section) => {
       if (section.subsections.length == 0) {
         return true
       } else {
@@ -329,7 +331,8 @@ class CourseEditPage extends React.Component {
       }
     })
 
-    return _.contains(list, true)
+    // Check if any sections return true
+    return _.contains(boolSections, true)
   }
 
   renderPublishLabel() {
