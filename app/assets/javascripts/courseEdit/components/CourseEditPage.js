@@ -314,7 +314,6 @@ class CourseEditPage extends React.Component {
   }
 
   hasEmpty() {
-    console.log(this.state.course.sections)
     const sections = this.state.course.sections
     if (sections.length == 0) {
       return true
@@ -329,8 +328,6 @@ class CourseEditPage extends React.Component {
         })
       }
     })
-
-    console.log(list)
 
     return _.contains(list, true)
   }
