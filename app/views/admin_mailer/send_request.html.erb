@@ -6,7 +6,7 @@
   <body>
     <h1>Hi <%= @user.first_name %>!</h1>
     <p>
-      Your request status for the following courses: <%= @request.courses.map { |course| course.name }%> has been deemed <%= @request.state%>
+      Your request status for the following courses: (<%= @request.courses.map { |course| course.name } %>) has been deemed <%= @request.state %>
     </p>
     <p>
       Here is the message that the admin attached to this status change:
