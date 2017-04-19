@@ -30,8 +30,4 @@ class Request < ActiveRecord::Base
       course_requests.create(course_id: course_id)
     end
   end
-
-  def send_email
-    AdminMailer.send_request(student, self).deliver_now
-  end
 end
