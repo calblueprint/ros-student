@@ -151,9 +151,10 @@ class SubsectionEdit extends React.Component {
   }
 
   onFormCompletion(newComponent) {
-    this.setState({ subsection: update(this.state.subsection, {
-      components: { $push: [newComponent] },
-    })})
+    const subsection = this.state.subsection
+    subsection.components.push(newComponent)
+    this.setState({ subsection: subsection })
+
     this.closeNewComponentForm()
   }
 
