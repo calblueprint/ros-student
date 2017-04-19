@@ -22,13 +22,6 @@ class CourseRequestTab extends React.Component {
     super(props)
 
     this.state = {
-      formFields: {
-        course_ids: {
-          value: '',
-          name: 'Course Ids',
-          onChange: _.bind(this.handleChange, this, 'course_ids')
-        },
-      },
       courses: [],
       activeCourseIds: new Set(),
     }
@@ -48,15 +41,8 @@ class CourseRequestTab extends React.Component {
     this._mounted = false
   }
 
-  handleChange(attr, e) {
-    const formFields = this.state.formFields
-    formFields[attr].value = e.target.value
-    this.setState({ formFields: formFields })
-  }
-
   getCourses() {
     const path = APIRoutes.getPublishedCourses()
-
     request.get(path, (response) => {
       this._mounted && this.setState({ courses: response.courses })
     }, (error) => {

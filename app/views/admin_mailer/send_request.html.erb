@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.first_name %>!</h1>
+    <p>
+      Your request status for the following courses: (<%= @request.courses.map { |course| course.name } %>) has been deemed <%= @request.state %>
+    </p>
+    <p>
+      Here is the message that the admin attached to this status change:
+    </p>
+    <p>
+      <%= @request.message %>
+    </p>
+    <p>- Roots of Success</p>
+  </body>
+</html>

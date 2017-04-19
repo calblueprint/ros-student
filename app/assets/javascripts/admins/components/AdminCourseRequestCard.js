@@ -98,6 +98,7 @@ class AdminCourseRequestCard extends React.Component {
     this.updateRequest({
       update_params: {
         state: this.requestStates.ACCEPTED,
+        message: this.state.formFields.message.value,
       }
     })
   }
@@ -107,6 +108,7 @@ class AdminCourseRequestCard extends React.Component {
     this.updateRequest({
       update_params: {
         state: this.requestStates.REJECTED,
+        message: this.state.formFields.message.value, 
       }
     })
   }

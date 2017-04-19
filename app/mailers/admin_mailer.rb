@@ -5,4 +5,10 @@ class AdminMailer < ApplicationMailer
 
     mail(to: @user.email, subject: '[Roots of Success] Admin Created')
   end
+
+  def send_request(user, request)
+    @user = user
+    @request = request
+    mail(to: @user.email, subject: '[Roots of Success] Course Request Status Updated')
+  end
 end

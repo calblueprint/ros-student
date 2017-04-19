@@ -5,7 +5,12 @@ class Api::Admins::RequestsController < Api::Admins::BaseController
 
   def update
     if @request.update(update_params)
-      render json: @request, serializer: RequestSerializer
+      if @request.student.subscribe_from_requests(@request)
+        AdminMailer.send_request(@request.student, @request).deliver_later
+        render json: @request, serializer: RequestSerializer
+      else
+        error_response(@request)
+      end
     else
       error_response(@request)
     end
@@ -19,6 +24,7 @@ class Api::Admins::RequestsController < Api::Admins::BaseController
   def update_params
     params.require(:update_params).permit(
       :state,
+      :message,
     )
   end
 end

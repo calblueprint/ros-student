@@ -60,6 +60,16 @@ class Student < ActiveRecord::Base
     end
   end
 
+  def subscribe_from_requests(request)
+    if request.state == 'accepted'
+      request.courses.each do |course|
+        student_courses.find_or_create_by(course_id: course.id, self_paced: true)
+      end
+    else
+      true
+    end
+  end
+
   private
 
   def has_code
