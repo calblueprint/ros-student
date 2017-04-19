@@ -1,3 +1,4 @@
+import _ from 'underscore'
 import React from 'react'
 import update from 'immutability-helper'
 import { arrayMove } from 'react-sortable-hoc'
@@ -40,6 +41,7 @@ class CourseEditPage extends React.Component {
     this.onBlurDescription = this.onBlurDescription.bind(this)
     this.onBlurImage = this.onBlurImage.bind(this)
     this.setImage = this.setImage.bind(this)
+    this.hasEmpty = this.hasEmpty.bind(this)
 
     this.openDeleteModal = this.openDeleteModal.bind(this)
     this.closeDeleteModal = this.closeDeleteModal.bind(this)
@@ -311,6 +313,28 @@ class CourseEditPage extends React.Component {
     })
   }
 
+  hasEmpty() {
+    const sections = this.state.course.sections
+    if (sections.length == 0) {
+      return true
+    }
+
+    // For all sections, returns true if it has no subsections
+    // Else, check if any of its subsections has no components
+    const boolSections = _.map(sections, (section) => {
+      if (section.subsections.length == 0) {
+        return true
+      } else {
+        return _.some(section.subsections, (subsection) => {
+          return subsection.components.length == 0
+        })
+      }
+    })
+
+    // Check if any sections return true
+    return _.contains(boolSections, true)
+  }
+
   renderPublishLabel() {
     return this.state.course.isPublished ? 'Unpublish Course' : 'Publish Course'
   }
@@ -485,6 +509,7 @@ class CourseEditPage extends React.Component {
           isModalOpen={this.state.isPublishModalOpen}
           onTogglePublish={this.toggleIsPublished}
           isPublished={this.state.course.isPublished}
+          hasEmpty={this.hasEmpty}
         />
       </div>
     )
