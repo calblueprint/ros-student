@@ -50,7 +50,7 @@ class Component < ActiveRecord::Base
 
   def switch(params)
     new_position = params[:position].presence || position
-    return false if new_position >= subsection.components.size or new_position < 0
+    return false if new_position > subsection.components.size or new_position < 0
     insert_at(new_position)
     true
   end
