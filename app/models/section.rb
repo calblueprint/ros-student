@@ -19,17 +19,17 @@ class Section < ActiveRecord::Base
   acts_as_list scope: :course
 
   def progress(user)
-    n = 0.0
-    completed = 0.0
+    total_components = 0.0
+    completed_components = 0.0
 
-    subsections.each do |subsection|
-      n = n + 1
-      if subsection.is_complete?(user)
-        completed = completed + 1
-      end
+    subsections.map(&:components)
+               .flatten.each do |component|
+      total_components += 1
+      completed_components += 1 if component.is_complete?(user)
     end
 
-    return (completed / n * 100).round
+    return total_components == 0 ?
+      0 : (completed_components / total_components * 100).round
   end
 
   def switch(params)
