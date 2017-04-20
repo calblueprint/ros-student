@@ -47,17 +47,21 @@ class Course < ActiveRecord::Base
   end
 
   def progress(user)
-    completed = 0.0
+    total_components = 0.0
+    completed_components = 0.0
 
-    sections.each do |section|
-      section_progress = section.progress(user)
-      completed += 1 if section_progress >= 100
+    sections.map(&:subsections)
+            .flatten
+            .map(&:components)
+            .flatten.each do |component|
+      total_components += 1
+
+      completed_components += 1 if component.is_complete?(user)
     end
 
-    if sections.size == 0
-      return 0
-    end
-
-    return (completed / sections.size * 100).round
+    puts completed_components
+    puts total_components
+    return total_components == 0 ?
+      0 : (completed_components / total_components * 100).round
   end
 end

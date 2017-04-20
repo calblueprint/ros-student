@@ -14,6 +14,7 @@
   font-size: $md;
   font-weight: 900;
   color: $white;
+  @include overflowText;
 }
 
 .sidebar-back-button {
@@ -51,6 +52,7 @@
   color: $white;
   font-size: $sm;
   font-weight: 400;
+  @include overflowText;
 }
 
 .sidebar-section-arrow {
@@ -59,8 +61,21 @@
   margin-left: auto;
 }
 
+.sidebar-subsection-card-container {
+  width: 100%;
+  position: relative;
+}
+
+.sidebar-subsection-highlight {
+  background: $blue;
+  height: 100%;
+  width: 5px;
+  position: absolute;
+}
+
 .sidebar-subsection-card {
   height: 40px;
+  width: 100%;
   line-height: 40px;
   padding: 0px $lg + $sm;
   margin: 0px;
@@ -68,17 +83,13 @@
   color: $white;
 
   &:hover {
-    background: $charcoal;
+    background: $black-20;
   }
 
   &.active {
-    background: $charcoal;
+    height: 100%;
+    background: $black-20;
     font-weight: $bold;
-    border-left: 5px solid $blue;
-    .sidebar-subsection-title {
-      margin-left: -5px;
-    }
-
   }
 
   &.inactive {
@@ -86,4 +97,8 @@
     pointer-events: none;
     cursor: not-allowed;
   }
+}
+
+.sidebar-subsection-title {
+  @include overflowText;
 }
