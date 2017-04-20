@@ -118,6 +118,7 @@ Rails.application.routes.draw do
         end
       end
       resources :requests, only: [:create]
+      resources :student_courses, only: [:update]
     end
 
     scope module: 'students' do

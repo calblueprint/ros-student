@@ -117,6 +117,8 @@ class CoursePage extends React.Component {
     */
   displayNextComponent() {
     this.setState({ nextDisabled: true })
+    console.log("here")
+    //console.log(this.state.courseSidebar.course)
 
     const sections = this.state.courseSidebar.sections
     const section = this.state.displayedSection
@@ -136,7 +138,16 @@ class CoursePage extends React.Component {
     } else if (!isLast(sections, section)) {
       this.displaySection(section.position + 1, 1, 1)
     } else {
-      // TODO: Congratulations Modal or if already completed, something else
+      console.log("here")
+      const path = APIRoutes.finishedCoursePath(this.state.courseSidebar.course)
+      const updateParams = {
+        sent_email: true,
+      }
+      request.update(path, updateParams, (response) => {
+        console.log(response)
+      }, (error) => {
+        console.log(error)
+      })
     }
   }
 

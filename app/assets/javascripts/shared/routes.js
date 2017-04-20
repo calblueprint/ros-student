@@ -110,6 +110,7 @@ class APIRoutes {
   static getSubsectionPath(id)            { return APIRoutes.createRoute(`students/subsections/${id}`) }
   static getComponentProgressPath(id)     { return APIRoutes.createRoute(`students/components/${id}/component_progresses`) }
   static createComponentProgressPath(id)  { return APIRoutes.createRoute(`students/components/${id}/component_progresses`)}
+  static finishedCoursePath(id)             { return APIRoutes.createRoute(`students/student_courses/${id}`)}
 
   //Requests
   static courseRequestPath()              { return APIRoutes.createRoute(`students/requests`) }
