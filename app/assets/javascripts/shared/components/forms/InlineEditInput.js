@@ -26,14 +26,20 @@ class InlineEditInput extends React.Component {
   }
 
   renderInput() {
-    return (
-      <input
+    return this.props.rows == 1 ?
+      (<input
         autoFocus
         className='flex inline-edit-input inline-edit-container'
         defaultValue={this.props.value}
         onBlur={this.onBlur}
-      />
-    )
+      />) :
+      (<textarea
+        autoFocus
+        className='flex inline-edit-input inline-edit-container'
+        defaultValue={this.props.value}
+        onBlur={this.onBlur}
+        rows={this.props.rows}
+      />)
   }
 
   renderValue() {
@@ -69,11 +75,13 @@ class InlineEditInput extends React.Component {
 InlineEditInput.propTypes = {
   onBlur: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  rows: PropTypes.number.isRequired,
 }
 
 InlineEditInput.defaultProps = {
   value: '',
-  buttonStyle: 'button button--sm'
+  buttonStyle: 'button button--sm',
+  rows: 1,
 }
 
 export default InlineEditInput

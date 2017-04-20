@@ -393,6 +393,7 @@ class CourseEditPage extends React.Component {
                     value={this.state.course.description}
                     onBlur={this.onBlurDescription}
                     buttonStyle="button button--sm-sq button--ghost"
+                    rows={3}
                   />
                 </div>
               </div>
