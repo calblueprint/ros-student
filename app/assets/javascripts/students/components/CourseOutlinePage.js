@@ -49,6 +49,16 @@ class CourseOutlinePage extends React.Component {
     })
   }
 
+  renderProgressBar() {
+    if (!_.isEmpty(this.state.courseOutline)) {
+      return (
+        <div className="course-outline-header-bar">
+          <TopProgressBar progress={this.state.courseOutline.progress}/>
+        </div>
+      )
+    }
+  }
+
   renderSections() {
     if (_.isEmpty(this.state.courseOutline.sections)) {
       return "Loading"
@@ -78,9 +88,7 @@ class CourseOutlinePage extends React.Component {
                     {this.state.courseOutline.progress === 0 ? 'Start course' : 'Continue course' }
                   </a>
                 </div>
-                <div className="course-outline-header-bar">
-                  <TopProgressBar progress={this.state.courseOutline.progress}/>
-                </div>
+                { this.renderProgressBar() }
               </div>
             </div>
           </div>
