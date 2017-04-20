@@ -203,12 +203,14 @@ class SectionEdit extends React.Component {
             src={Images.dropdown_arrow}
             onClick={this.toggleSubsections}
           />
-          <InlineEditInput
-            value={this.state.section.title}
-            onBlur={this.onBlurTitle}
-            buttonStyle='button button--sm-sq button--white'
-          />
-          <div className='course-edit-button-container'>
+          <div className='course-inline-edit'>
+            <InlineEditInput
+              value={this.state.section.title}
+              onBlur={this.onBlurTitle}
+              buttonStyle='button button--sm-sq button--white'
+            />
+          </div>
+          <div className='flex course-edit-button-container'>
             <button
               className='button button--sm button--white marginRight-sm tooltip'
               onClick={this.openReorderModal}

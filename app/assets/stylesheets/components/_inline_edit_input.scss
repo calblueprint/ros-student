@@ -3,12 +3,11 @@
 }
 
 .inline-edit-container {
-  max-width: 100%;
+  min-width: 100%;
 }
 
 .inline-edit-value {
   float: left;
-  max-width: 80%;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
