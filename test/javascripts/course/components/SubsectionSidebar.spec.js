@@ -18,7 +18,6 @@ describe('<SubsectionSidebar />', () => {
     is_complete: true,
   }
 
-
   it('should render subsection correctly', () => {
     const currentSubsection = subsection
     const displayedSubsection = subsection
@@ -45,7 +44,7 @@ describe('<SubsectionSidebar />', () => {
       />
     )
 
-    expect(subsectionSidebar.find('div').hasClass('active')).to.be.true
+    expect(subsectionSidebar.find('.sidebar-subsection-card').hasClass('active')).to.be.true
   })
 
   it('should trigger a callback on click', () => {
@@ -80,7 +79,7 @@ describe('<SubsectionSidebar />', () => {
       />
     )
 
-    expect(subsectionSidebar.find('div').hasClass('active')).to.not.be.true
+    expect(subsectionSidebar.find('.sidebar-subsection-card').hasClass('active')).to.not.be.true
   })
 
   it('should not be inactive if subsection is complete', () => {
@@ -95,7 +94,7 @@ describe('<SubsectionSidebar />', () => {
       />
     )
 
-    expect(subsectionSidebar.find('div').hasClass('inactive')).to.be.false
+    expect(subsectionSidebar.find('.sidebar-subsection-card').hasClass('inactive')).to.be.false
 
     currentSubsection = {
       id: 1,
@@ -114,7 +113,7 @@ describe('<SubsectionSidebar />', () => {
       />
     )
 
-    expect(subsectionSidebar.find('div').hasClass('inactive')).to.be.false
+    expect(subsectionSidebar.find('.sidebar-subsection-card').hasClass('inactive')).to.be.false
   })
 
   it('should be inactive if the subsection is not complete', () => {
@@ -133,6 +132,6 @@ describe('<SubsectionSidebar />', () => {
       />
     )
 
-    expect(subsectionSidebar.find('div').hasClass('inactive')).to.be.true
+    expect(subsectionSidebar.find('.sidebar-subsection-card').hasClass('inactive')).to.be.true
   })
 })
