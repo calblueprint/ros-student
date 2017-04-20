@@ -43,6 +43,17 @@ class StudentCourseList extends CourseList {
   }
 
   render() {
+    if (_.isEmpty(this.state.courses)) {
+      return (
+        <div>
+          <h1 className="courses-title courses-header">Enrolled Courses</h1>
+          <div className='courses-placeholder'>
+            <i className='fa fa-spinner fa-pulse save-button-icon'></i>
+            Loading all courses...
+          </div>
+        </div>
+      )
+    }
     var lists = this.sortCards()
     let enrolledList = lists[0]
     var allList = lists[1]
