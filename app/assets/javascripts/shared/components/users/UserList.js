@@ -84,6 +84,7 @@ class UserList extends React.Component {
       ),
       maxWidth: 50,
       sortable: false,
+      hideFilter: true, 
       headerClassName: 'header',
     }]
   }
