@@ -7,7 +7,7 @@ class Api::Students::StudentCoursesController < Api::Students::BaseController
   end
 
   def update
-    if !@student_course.sent_email
+    if !@student_course.completed
       if StudentMailer.course_finish(@student_course.student, @student_course.course).deliver_now
         if @student_course.update(update_params)
           render json: @student_course
@@ -22,7 +22,7 @@ class Api::Students::StudentCoursesController < Api::Students::BaseController
 
   def update_params
     params.require(:student_course).permit(
-      :sent_email,
+      :completed,
     )
   end
 end

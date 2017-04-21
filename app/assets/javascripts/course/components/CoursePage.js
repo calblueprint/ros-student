@@ -31,13 +31,14 @@ class CoursePage extends React.Component {
     this.enableNextButton = this.enableNextButton.bind(this)
     this.showNextButtonTooltip = this.showNextButtonTooltip.bind(this)
     this.setStudentCourseId = this.setStudentCourseId.bind(this)
+    this.sendEmailToAdmins = this.sendEmailToAdmins.bind(this)
   }
   /*
    * API Request to get the student_course id
    */
   setStudentCourseId() {
-    const path2 = APIRoutes.getStudentCourseIdPath(this.state.courseSidebar.id)
-    request.get(path2, (response) => {
+    const path = APIRoutes.getStudentCourseIdPath(this.state.courseSidebar.id)
+    request.get(path, (response) => {
       this.setState({
         studentCourseId: response.student_course_list.id
       })
@@ -129,6 +130,21 @@ class CoursePage extends React.Component {
   }
 
   /**
+   * Function sends email to administrators if they have not received one already
+   */
+  sendEmailToAdmins() {
+    const path = APIRoutes.finishedCoursePath(this.state.studentCourseId)
+    const updateParams = {
+      completed: true,
+    }
+    request.update(path, updateParams, (response) => {
+      console.log(response)
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+  /**
     * Gets and displays the next component and possibly next subsection and/or section
     */
   displayNextComponent() {
@@ -152,15 +168,8 @@ class CoursePage extends React.Component {
     } else if (!isLast(sections, section)) {
       this.displaySection(section.position + 1, 1, 1)
     } else {
-      const path = APIRoutes.finishedCoursePath(this.state.studentCourseId)
-      const updateParams = {
-        sent_email: true,
-      }
-      request.update(path, updateParams, (response) => {
-        console.log(response)
-      }, (error) => {
-        console.log(error)
-      })
+      //TODO: Congratulations Modal
+      this.sendEmailToAdmins()
     }
   }
 
