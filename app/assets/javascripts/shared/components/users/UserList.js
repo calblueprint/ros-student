@@ -6,8 +6,6 @@ import request from '../../requests/request'
 import { Images } from '../../../utils/helpers/image_helpers'
 import DeleteModal from '../widgets/DeleteModal'
 
-import UserRow from './UserRow'
-
 class UserList extends React.Component {
   constructor(props) {
     super(props)
@@ -20,7 +18,6 @@ class UserList extends React.Component {
     this.openDeleteModal = this.openDeleteModal.bind(this)
     this.closeDeleteModal = this.closeDeleteModal.bind(this)
     this.deleteUser = this.deleteUser.bind(this)
-    this.onDeleteUser = this.onDeleteUser.bind(this)
   }
 
   componentDidMount() {
@@ -52,33 +49,42 @@ class UserList extends React.Component {
   deleteUser(id, e) {
     e.preventDefault()
     request.delete(this.props.deleteRoute(id), (response) => {
-      this.props.onDeleteUser(response)
+      this.onDeleteUser(response)
     }, (error) => {
       console.log(error)
     })
   }
 
+  // Get column information for React Table
   getColumns() {
     return [{
       header: 'First Name',
       accessor: 'first_name',
+      headerClassName: 'header',
     }, {
       header: 'Last Name',
       accessor: 'last_name',
+      headerClassName: 'header',
     }, {
       header: 'Username',
-      accessor: 'username'
+      accessor: 'username',
+      className: 'username',
+      headerClassName: 'header',
     }, {
       header: 'Email',
       accessor: 'email',
       minWidth: 200,
+      className: 'email-text',
+      headerClassName: 'header',
     }, {
-      header: 'Delete',
+      header: '',
       accessor: 'id',
       render: row => (
         this.getDeleteCell(row.value)
       ),
       maxWidth: 50,
+      sortable: false,
+      headerClassName: 'header',
     }]
   }
 
@@ -105,33 +111,12 @@ class UserList extends React.Component {
       {
         users: this.state.users.filter((otherUser) => {
           return otherUser.id != user.id
-        })
+        }),
       }
     )
   }
 
-  // render() {
-  //   return (
-  //     <div className='user-list-container'>
-  //       {this.state.users.map((user) => {
-  //         return (
-  //           <div key={user.id}>
-  //             <div className='user-row-divider'/>
-  //             <UserRow
-  //               user={user}
-  //               deleteRoute={this.props.deleteRoute}
-  //               onDeleteUser={this.onDeleteUser}
-  //               onRowClick={this.props.onRowClick}
-  //             />
-  //           </div>
-  //         )
-  //       })}
-  //     </div>
-  //   )
-  // }
-
   render() {
-    console.log(this.state.users)
     return (
       <div className='users-table-container marginBot-xxl'>
         <ReactTable

@@ -4,6 +4,22 @@
   .delete-container {
     text-align: center;
   }
+
+  .header {
+    font-weight: $bold;
+  }
+  
+  .username {
+    font-weight: $bold;
+    color: $light-charcoal;
+  }
+
+  .email-text {
+    font-weight: $bold;
+    font-style: italic;
+    color: $light-charcoal;
+    letter-spacing: 0.5px;
+  }
 }
 
 /* Below CSS used for ReactTable component */
