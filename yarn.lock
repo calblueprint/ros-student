@@ -3220,7 +3220,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.8:
+prop-types@15.5.8, prop-types@^15.5.8:
   version "15.5.8"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
   dependencies:
@@ -3328,9 +3328,11 @@ react-bootstrap-modal@^3.0.1:
     react-overlays "^0.6.10"
     react-prop-types "^0.4.0"
 
-react-collapse@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/react-collapse/-/react-collapse-2.3.3.tgz#68c70f1fceeaf375e3599b95710cc51e5dd339a3"
+react-collapse@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-collapse/-/react-collapse-4.0.1.tgz#c7c8e5959e9ef3b22b1b2833941ae80eede36f24"
+  dependencies:
+    prop-types "15.5.8"
 
 react-dom@^15.3.1:
   version "15.4.2"
@@ -3351,9 +3353,11 @@ react-element-to-jsx-string@^5.0.0:
     stringify-object "2.4.0"
     traverse "^0.6.6"
 
-react-height@^2.1.1:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-height/-/react-height-2.2.0.tgz#c65de6a7f7245c848f5ec9d3087f0758b90d7a0b"
+react-height@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-height/-/react-height-3.0.0.tgz#fae322f9da64d3e9e25536f26b77c73954261524"
+  dependencies:
+    prop-types "15.5.8"
 
 react-hot-api@^0.4.5:
   version "0.4.7"
@@ -3413,7 +3417,7 @@ react-sortable-hoc@0.0.9:
     invariant "^2.2.1"
     lodash "^4.12.0"
 
-react-test-renderer@^15.3.1:
+react-test-renderer@^15.5.4:
   version "15.5.4"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.5.4.tgz#d4ebb23f613d685ea8f5390109c2d20fbf7c83bc"
   dependencies:
