@@ -46,15 +46,6 @@ class UserList extends React.Component {
     this.setState({ openDeleteModal: null })
   }
 
-  deleteUser(id, e) {
-    e.preventDefault()
-    request.delete(this.props.deleteRoute(id), (response) => {
-      this.onDeleteUser(response)
-    }, (error) => {
-      console.log(error)
-    })
-  }
-
   // Get column information for React Table
   getColumns() {
     return [{
@@ -84,7 +75,7 @@ class UserList extends React.Component {
       ),
       maxWidth: 50,
       sortable: false,
-      hideFilter: true, 
+      hideFilter: true,
       headerClassName: 'header',
     }]
   }
@@ -97,14 +88,18 @@ class UserList extends React.Component {
           className='user-list-delete'>
           <img src={Images.delete} className='user-list-delete-image' />
         </button>
-        <DeleteModal
-          openDeleteModal={this.state.openDeleteModal === userId}
-          closeModal={this.closeDeleteModal}
-          deleteFunction={_.partial(this.deleteUser, userId)}
-          objectType="user"
-        />
+
       </div>
     )
+  }
+
+  deleteUser(id, e) {
+    e.preventDefault()
+    request.delete(this.props.deleteRoute(id), (response) => {
+      this.onDeleteUser(response)
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   onDeleteUser(user) {
@@ -113,6 +108,7 @@ class UserList extends React.Component {
         users: this.state.users.filter((otherUser) => {
           return otherUser.id != user.id
         }),
+        openDeleteModal: null, 
       }
     )
   }
@@ -127,6 +123,12 @@ class UserList extends React.Component {
           defaultPageSize={20}
           loading={_.isEmpty(this.state.users)}
           showFilters={true}
+        />
+        <DeleteModal
+          openDeleteModal={this.state.openDeleteModal != null}
+          closeModal={this.closeDeleteModal}
+          deleteFunction={_.partial(this.deleteUser, this.state.openDeleteModal)}
+          objectType="user"
         />
       </div>
     )
