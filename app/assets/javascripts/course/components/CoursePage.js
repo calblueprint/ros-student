@@ -33,7 +33,8 @@ class CoursePage extends React.Component {
     this.setStudentCourseId = this.setStudentCourseId.bind(this)
     this.sendEmailToAdmins = this.sendEmailToAdmins.bind(this)
   }
-  /*
+
+  /**
    * API Request to get the student_course id
    */
   setStudentCourseId() {
@@ -138,7 +139,6 @@ class CoursePage extends React.Component {
       completed: true,
     }
     request.update(path, updateParams, (response) => {
-      console.log(response)
     }, (error) => {
       console.log(error)
     })
@@ -345,7 +345,6 @@ class CoursePage extends React.Component {
   }
 
   render() {
-    console.log(this.state.courseSidebar)
     return (
       <div className='flex'>
         <div className='course-sidebar-container'>
