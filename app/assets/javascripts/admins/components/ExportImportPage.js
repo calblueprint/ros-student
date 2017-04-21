@@ -52,7 +52,8 @@ class ExportImportPage extends React.Component {
     }, `${course.name}.json`)
   }
 
-  importCourse(e, success, error) {
+  importCourse(e, onSuccess, onFailure) {
+    console.log(this.state.file)
     e.preventDefault()
     if (_.isEmpty(this.state.file)) {
       return
@@ -66,10 +67,10 @@ class ExportImportPage extends React.Component {
     }
 
     request.post(route, params, (response) => {
-      success && success()
+      onSuccess && onSuccess()
     }, (error) => {
       console.log(error)
-      error && error()
+      onFailure && onFailure()
     })
   }
 
@@ -137,7 +138,9 @@ class ExportImportPage extends React.Component {
           <div className='import-container'>
             <div className='flex center flex-vertical'>
               <h1 className='h1'>Import Course</h1>
-              <p className='marginTopBot-md export-import-desc'>Be sure you want to import a course before continuing. By using this feature, you will create a new course. We will only accept properly formatted .json files, such as those downloaded from Export Course.</p>
+              <p className='marginTopBot-md export-import-desc'>
+                Be sure you want to import a course before continuing. By using this feature, you will create a new course. We will only accept properly formatted .json files, such as those downloaded from Export Course.
+              </p>
               <Form>
                 <label
                   htmlFor='course-import'
@@ -147,7 +150,7 @@ class ExportImportPage extends React.Component {
                 </label>
                 <p className='marginTop-xs'>
                   {`Selected File: ${this.state.fileName}`}
-                  </p>
+                </p>
                 <input
                   id='course-import'
                   className='hidden-input'
