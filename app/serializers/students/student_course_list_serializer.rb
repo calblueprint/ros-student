@@ -1,0 +1,2 @@
+class StudentCourseListSerializer < BaseStudentCourseSerializer
+end

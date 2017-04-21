@@ -17,6 +17,7 @@ class StudentAbility
     can [:show], Subsection
     can [:show], Component
     can [:show, :create], ComponentProgress
+    can [:show, :update], StudentCourse
     can [:show, :outline, :sidebar], Course do |course|
       course.is_enrolled?(student) && course.is_published
     end
