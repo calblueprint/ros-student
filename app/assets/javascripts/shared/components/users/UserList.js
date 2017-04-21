@@ -1,3 +1,17 @@
+/**
+ * General user list component for viewing a list of all students
+ * or all admins. Also has methods to update lists when a new user
+ * is created or deleted. Sortable and filterable. Implemented using
+ * ReactTable library.
+ *
+ * @prop editRoute          - route used to get all the users in list
+ * @prop deleteRoute        - route used to delete a particular user
+ * @prop newUser            - user object given to this component if
+ *                            a new user is created and has to be added
+ * @prop setNewUser         - callback function for parent upon setting 
+ *                            a new user
+ */
+
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 import ReactTable from 'react-table'
@@ -88,13 +102,12 @@ class UserList extends React.Component {
           className='user-list-delete'>
           <img src={Images.delete} className='user-list-delete-image' />
         </button>
-
       </div>
     )
   }
 
-  deleteUser(id, e) {
-    e.preventDefault()
+  deleteUser(id, event) {
+    event.preventDefault()
     request.delete(this.props.deleteRoute(id), (response) => {
       this.onDeleteUser(response)
     }, (error) => {
@@ -103,14 +116,12 @@ class UserList extends React.Component {
   }
 
   onDeleteUser(user) {
-    this.setState(
-      {
-        users: this.state.users.filter((otherUser) => {
-          return otherUser.id != user.id
-        }),
-        openDeleteModal: null, 
-      }
-    )
+    this.setState({
+      users: this.state.users.filter((otherUser) => {
+        return otherUser.id != user.id
+      }),
+      openDeleteModal: null,
+    })
   }
 
   render() {
@@ -138,7 +149,6 @@ class UserList extends React.Component {
 UserList.propTypes = {
   editRoute: PropTypes.func.isRequired,
   deleteRoute: PropTypes.func.isRequired,
-  onRowClick: PropTypes.func,
   newUser: PropTypes.object,
   setNewUser: PropTypes.func,
 }
