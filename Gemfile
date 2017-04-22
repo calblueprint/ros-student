@@ -29,7 +29,7 @@ gem 'meta-tags', '2.3.1'
 gem 'acts_as_list', '0.8.0'
 
 # Uploading
-gem 'carrierwave', '~> 0.11.2'
+gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws', '1.0.2'
 gem 'carrierwave-audio', '~> 1.0', '>= 1.0.1'
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'

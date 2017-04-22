@@ -1,7 +1,7 @@
 # Start CodeClimate
-require 'codeclimate-test-reporter'
+# require 'codeclimate-test-reporter'
 require 'json-schema'
-CodeClimate::TestReporter.start
+# CodeClimate::TestReporter.start
 
 # http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

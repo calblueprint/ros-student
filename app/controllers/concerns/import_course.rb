@@ -55,13 +55,14 @@ class ImportCourse
     params = component.slice('component_type', 'audio_url', 'title', 'content_url', 'form_key')
     component_type = params.fetch('component_type', 3)
 
-    add_photo(params, 'content_url') if component_type == Component.component_types[:slides]
+    add_photo(params, 'content_url') if component_type == Component.component_types[:slide]
 
     add_audio(params, 'audio_url')
   end
 
   def add_photo(params, image_url_field)
     image_url = params.fetch(image_url_field, nil)
+
     params.delete(image_url_field)
     return params unless image_url
 

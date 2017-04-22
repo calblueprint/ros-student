@@ -33,7 +33,7 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
     if ImportCourse.new(import_params).import_course
       success_response('Successfully imported course.')
     else
-      error_response(nil, 'Invalid course information. Error:')
+      error_response(nil, 'Invalid course information')
     end
   end
 

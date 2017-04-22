@@ -36,7 +36,7 @@ class ExportImportPage extends React.Component {
     })
   }
 
-  exportCourse(e, success, error) {
+  exportCourse(e, onSuccess, onFailure) {
     e.preventDefault()
     const id = this.state.selectedCourse
     if (id == -1) {
@@ -46,14 +46,13 @@ class ExportImportPage extends React.Component {
     const route = APIRoutes.exportCoursePath(id)
     const course = this.state.courses.find((course) => course.id == id)
     request.json(route, (response) => {
-      success && success()
+      onSuccess && onSuccess()
     }, (error) => {
-      error && error()
+      onFailure && onFailure()
     }, `${course.name}.json`)
   }
 
   importCourse(e, onSuccess, onFailure) {
-    console.log(this.state.file)
     e.preventDefault()
     if (_.isEmpty(this.state.file)) {
       return
