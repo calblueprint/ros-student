@@ -9,6 +9,7 @@
 #  self_paced :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  completed  :boolean          default(FALSE)
 #
 
 require 'rails_helper'

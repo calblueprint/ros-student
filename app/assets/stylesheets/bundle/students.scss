@@ -1,6 +1,9 @@
 @import 'base';
 
 @import '../pages/profile_page';
+@import '../pages/users_list_page';
+@import '../pages/course_outline_page';
+@import '../pages/add_courses_page';
 
 @import '../components/course_card';
 @import '../components/course_list';
@@ -10,6 +13,3 @@
 
 @import '../components/section_outline';
 @import '../components/subsection_outline';
-
-@import '../pages/course_outline_page';
-@import '../pages/add_courses_page';

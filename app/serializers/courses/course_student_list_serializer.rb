@@ -1,6 +1,5 @@
 class CourseStudentListSerializer < BaseCourseSerializer
   attributes :progress, :is_enrolled, :image_url
-
   def progress
     object.progress(serialization_options[:user])
   end

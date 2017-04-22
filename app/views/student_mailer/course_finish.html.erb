@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @admin.first_name %>!</h1>
+    <p>
+      Student <%= @user.first_name %> <%= @user.last_name %> has finished the course <%= @course.name %>.
+    </p>
+    <p>
+      Here is their email:
+    </p>
+    <p>
+      <%= @user.email %>
+    </p>
+    <p>- Roots of Success</p>
+  </body>
+</html>

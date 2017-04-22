@@ -20,9 +20,9 @@ class CoursePage extends React.Component {
       displayedSection: {},
       displayedSubsection: {},
       displayedComponent: {},
+      studentCourseId: null,
       nextDisabled: true
     }
-
     this.displaySubsection = this.displaySubsection.bind(this)
     this.displayComponent = this.displayComponent.bind(this)
     this.displayNextComponent = this.displayNextComponent.bind(this)
@@ -30,6 +30,22 @@ class CoursePage extends React.Component {
     this.getDisplayedSection = this.getDisplayedSection.bind(this)
     this.enableNextButton = this.enableNextButton.bind(this)
     this.showNextButtonTooltip = this.showNextButtonTooltip.bind(this)
+    this.setStudentCourseId = this.setStudentCourseId.bind(this)
+    this.sendEmailToAdmins = this.sendEmailToAdmins.bind(this)
+  }
+
+  /**
+   * API Request to get the student_course id
+   */
+  setStudentCourseId() {
+    const path = APIRoutes.getStudentCourseIdPath(this.state.courseSidebar.id)
+    request.get(path, (response) => {
+      this.setState({
+        studentCourseId: response.student_course_list.id
+      })
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   /**
@@ -48,11 +64,13 @@ class CoursePage extends React.Component {
         if (currentSubsection) {
           this.displaySubsection(currentSubsection.id)
         }
+        this.setStudentCourseId()
       })
     }, (error) => {
       console.log(error)
     })
   }
+
 
   /**
     * Displays component at the given position in the displayedSubsection list
@@ -113,6 +131,20 @@ class CoursePage extends React.Component {
   }
 
   /**
+   * Function sends email to administrators if they have not received one already
+   */
+  sendEmailToAdmins() {
+    const path = APIRoutes.finishedCoursePath(this.state.studentCourseId)
+    const updateParams = {
+      completed: true,
+    }
+    request.update(path, updateParams, (response) => {
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+  /**
     * Gets and displays the next component and possibly next subsection and/or section
     */
   displayNextComponent() {
@@ -136,7 +168,8 @@ class CoursePage extends React.Component {
     } else if (!isLast(sections, section)) {
       this.displaySection(section.position + 1, 1, 1)
     } else {
-      // TODO: Congratulations Modal or if already completed, something else
+      //TODO: Congratulations Modal
+      this.sendEmailToAdmins()
     }
   }
 
