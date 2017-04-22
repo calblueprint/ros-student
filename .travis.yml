@@ -10,4 +10,4 @@ before_script:
   - nvm use 4.0.0
   - npm install
 script:
-  - bundle exec rake --trace db:reset db:seed && bundle exec rspec spec && npm test
+  - bundle exec rake --trace db:create db:migrate && bundle exec rspec spec && npm test
