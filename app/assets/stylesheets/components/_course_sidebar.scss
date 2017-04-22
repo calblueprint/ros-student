@@ -24,15 +24,18 @@
   color: $white;
   text-decoration: none;
 
-  &:hover::after {
-    position: absolute;
-    left: calc(#{$md} + 5px);
-    line-height: $md;
-    content: "BACK";
-    font-size: $sm;
-    font-weight: $bold;
-    color: $white;
-    letter-spacing: 1px;
+  &:hover {
+    color: transparent;
+    &::after {
+      color: $white;
+      position: absolute;
+      right: 10px;
+      content: "BACK";
+      font-size: 12px;
+      font-weight: $bold;
+      letter-spacing: 1px;
+      line-height: $md;
+    }
   }
 }
 
