@@ -25,18 +25,24 @@ class CourseRequestApprovePage extends React.Component {
       activeRequestId: null,
     }
 
+    this._mounted = false
     this.setActiveRequest = this.setActiveRequest.bind(this)
     this.completeRequest = this.completeRequest.bind(this)
   }
 
   componentDidMount() {
     this.getRequests()
+    this._mounted = true
+  }
+
+  componentWillUnmount() {
+    this._mounted = false
   }
 
   getRequests() {
     const path = APIRoutes.getIncompleteRequestsPath()
     request.get(path, (response) => {
-      this.setState({ requests: response.requests })
+      this._mounted && this.setState({ requests: response.requests })
     }, (error) => {
       console.log(error)
     })

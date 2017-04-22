@@ -8,7 +8,7 @@
  * @prop deleteRoute        - route used to delete a particular user
  * @prop newUser            - user object given to this component if
  *                            a new user is created and has to be added
- * @prop setNewUser         - callback function for parent upon setting 
+ * @prop setNewUser         - callback function for parent upon setting
  *                            a new user
  */
 
@@ -29,14 +29,16 @@ class UserList extends React.Component {
       openDeleteModal: null,
     }
 
+    this._mounted = false
     this.openDeleteModal = this.openDeleteModal.bind(this)
     this.closeDeleteModal = this.closeDeleteModal.bind(this)
     this.deleteUser = this.deleteUser.bind(this)
   }
 
   componentDidMount() {
+    this._mounted = true
     request.get(this.props.editRoute(), (response) => {
-      this.setState({ users: response })
+      this._mounted && this.setState({ users: response })
     }, (error) => {
       console.log(error)
     })
@@ -50,6 +52,10 @@ class UserList extends React.Component {
       this.setState({ users: users })
       this.props.setNewUser(undefined)
     }
+  }
+
+  componentWillUnmount() {
+    this._mounted = false
   }
 
   openDeleteModal(userId) {

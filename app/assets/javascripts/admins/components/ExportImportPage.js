@@ -20,6 +20,7 @@ class ExportImportPage extends React.Component {
       selectedCourse: -1,
     }
 
+    this._mounted = false
     this.handleCourseSelect = this.handleCourseSelect.bind(this)
     this.handleFile = this.handleFile.bind(this)
     this.importCourse = this.importCourse.bind(this)
@@ -28,12 +29,17 @@ class ExportImportPage extends React.Component {
   }
 
   componentDidMount() {
+    this._mounted = true
     const path = APIRoutes.getAdminCoursesPath()
     request.get(path, (response) => {
-      this.setState({ courses: response.courses })
+      this._mounted && this.setState({ courses: response.courses })
     }, (error) => {
       console.log(error)
     })
+  }
+
+  componentWillUnmount() {
+    this._mounted = false
   }
 
   exportCourse(e, onSuccess, onFailure) {

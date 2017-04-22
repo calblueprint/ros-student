@@ -19,19 +19,28 @@ class CodeCsvListPage extends React.Component {
       code_csvs: [],
       isModalOpen: false,
     }
-    this.getCodeCsvs()
+    this._mounted = false
     this.updateCodeCsvs = this.updateCodeCsvs.bind(this)
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+  }
+
+  componentDidMount() {
+    this._mounted = true
+    this.getCodeCsvs()
+  }
+
+  componentWillUnmount() {
+    this._mounted = false
   }
 
   getCodeCsvs() {
     const path = APIRoutes.codeCsvListPath()
 
     request.get(path, (response) => {
-      this.setState({ code_csvs: response.code_csvs })
+      this._mounted && this.setState({ code_csvs: response.code_csvs })
     }, (error) => {
-      console.log('error')
+      console.log(error)
     })
   }
 
