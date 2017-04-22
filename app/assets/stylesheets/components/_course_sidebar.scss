@@ -18,7 +18,8 @@
 }
 
 .sidebar-back-button {
-  position: relative;
+  position: absolute;
+  left: $lg;
   font-size: $md;
   padding-right: $sm;
   color: $white;
