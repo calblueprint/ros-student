@@ -9,7 +9,7 @@ import { APIRoutes } from '../../shared/routes'
 import UpdateUserModal from '../../shared/components/users/UpdateUserModal'
 
 class UpdateAdminModal extends UpdateUserModal {
-  updateUser(e, success, error) {
+  updateUser(e, onSuccess, onFailure) {
     e.preventDefault()
 
     const path = APIRoutes.updateAdminPath(this.props.id)
@@ -28,12 +28,12 @@ class UpdateAdminModal extends UpdateUserModal {
       this.user = response.admin
       this.setState(this.getUserFields())
       this.props.closeModal()
-      success && success()
+      onSuccess && onSuccess()
     }, (error) => {
       this.setState({
         formFields: mapErrorToFormFields(error, this.state.formFields)
       })
-      error && error()
+      onFailure && onFailure()
     })
   }
 }
