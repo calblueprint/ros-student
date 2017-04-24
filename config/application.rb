@@ -33,11 +33,12 @@ module RosStudent
     # config.i18n.default_locale = :de
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'serializers', '{**}')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'jobs', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('lib')]
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.active_job.queue_adapter = :sidekiq
+    # config.active_job.queue_adapter = :sidekiq
   end
 end

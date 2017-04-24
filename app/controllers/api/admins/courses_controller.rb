@@ -30,7 +30,8 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
   end
 
   def import
-    ImportCourseJob.perform_later(current_admin.id, import_params)
+    ImportCourseJob.perform_async(current_admin.id, import_params)
+    success_response
   end
 
   def export

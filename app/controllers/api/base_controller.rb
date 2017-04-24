@@ -17,7 +17,7 @@ class Api::BaseController < ApplicationController
     error_response(nil, "Not Found", 404)
   end
 
-  def success_response(message = nil)
+  def success_response(message = 'Successful request')
     render json: Success.new(message), serializer: SuccessSerializer
   end
 
