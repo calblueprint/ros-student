@@ -31,7 +31,7 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
 
   def switch_position
     if @component.switch(switch_position_params)
-      render json: @component, serializer: ComponentAdminSerializer, root: false
+      render json: @component.subsection, serializer: SubsectionAdminSerializer, root: false
     else
       error_response(nil, 'Invalid position given')
     end
