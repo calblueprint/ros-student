@@ -12,9 +12,10 @@ class AdminMailer < ApplicationMailer
     mail(to: @user.email, subject: '[Roots of Success] Course Request Status Updated')
   end
 
-  def imported_course(user, course)
+  def imported_course(user, imported)
     @user = user
-    @course = course
-    mail(to: @user.email, subject: '[Roots of Success] Course Imported')
+    @imported = imported
+    result = imported ? 'Success' : 'Failure'
+    mail(to: @user.email, subject: "[Roots of Success] Course Import #{result}")
   end
 end
