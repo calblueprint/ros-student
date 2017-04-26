@@ -20,6 +20,7 @@ class ExportImportPage extends React.Component {
       selectedCourse: -1,
     }
 
+    this._mounted = false
     this.handleCourseSelect = this.handleCourseSelect.bind(this)
     this.handleFile = this.handleFile.bind(this)
     this.importCourse = this.importCourse.bind(this)
@@ -28,15 +29,20 @@ class ExportImportPage extends React.Component {
   }
 
   componentDidMount() {
+    this._mounted = true
     const path = APIRoutes.getAdminCoursesPath()
     request.get(path, (response) => {
-      this.setState({ courses: response.courses })
+      this._mounted && this.setState({ courses: response.courses })
     }, (error) => {
       console.log(error)
     })
   }
 
-  exportCourse(e, success, error) {
+  componentWillUnmount() {
+    this._mounted = false
+  }
+
+  exportCourse(e, onSuccess, onFailure) {
     e.preventDefault()
     const id = this.state.selectedCourse
     if (id == -1) {
@@ -46,13 +52,13 @@ class ExportImportPage extends React.Component {
     const route = APIRoutes.exportCoursePath(id)
     const course = this.state.courses.find((course) => course.id == id)
     request.json(route, (response) => {
-      success && success()
+      onSuccess && onSuccess()
     }, (error) => {
-      error && error()
+      onFailure && onFailure()
     }, `${course.name}.json`)
   }
 
-  importCourse(e, success, error) {
+  importCourse(e, onSuccess, onFailure) {
     e.preventDefault()
     if (_.isEmpty(this.state.file)) {
       return
@@ -66,10 +72,10 @@ class ExportImportPage extends React.Component {
     }
 
     request.post(route, params, (response) => {
-      success && success()
+      onSuccess && onSuccess()
     }, (error) => {
       console.log(error)
-      error && error()
+      onFailure && onFailure()
     })
   }
 
@@ -148,7 +154,7 @@ class ExportImportPage extends React.Component {
                 </label>
                 <p className='marginTop-xs'>
                   {`Selected File: ${this.state.fileName}`}
-                  </p>
+                </p>
                 <input
                   id='course-import'
                   className='hidden-input'

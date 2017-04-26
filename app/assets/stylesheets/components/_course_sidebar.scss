@@ -1,6 +1,7 @@
 .sidebar-course-title-container {
+  position: relative;
   background: $charcoal;
-  padding: $sm $lg;
+  padding: $sm $xxxl;
   justify-content: space-between;
 }
 
@@ -18,21 +19,25 @@
 }
 
 .sidebar-back-button {
-  position: relative;
+  position: absolute;
+  left: $md;
   font-size: $md;
   padding-right: $sm;
   color: $white;
   text-decoration: none;
 
-  &:hover::after {
-    position: absolute;
-    left: calc(#{$md} + 5px);
-    line-height: $md;
-    content: "BACK";
-    font-size: $sm;
-    font-weight: $bold;
-    color: $white;
-    letter-spacing: 1px;
+  &:hover {
+    color: transparent;
+    &::after {
+      color: $white;
+      position: absolute;
+      right: 8px;
+      content: "BACK";
+      font-size: 12px;
+      font-weight: $bold;
+      letter-spacing: 1px;
+      line-height: $md;
+    }
   }
 }
 

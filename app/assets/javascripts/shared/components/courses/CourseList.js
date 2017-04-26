@@ -10,12 +10,21 @@ class CourseList extends React.Component {
       courses: [],
     }
 
+    this._mounted = false
+  }
+
+  componentDidMount() {
+    this._mounted = true
     this.getCourses()
+  }
+
+  componentWillUnmount() {
+    this._mounted = false
   }
 
   getCourses() {
     request.get(this.props.coursePath, (response) => {
-      this.setState({ courses: response.courses })
+      this._mounted && this.setState({ courses: response.courses })
     }, (error) => {
       console.log('error')
     })
