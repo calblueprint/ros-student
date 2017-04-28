@@ -54,6 +54,7 @@ group :development do
   gem 'annotate'
   gem 'letter_opener'
   gem 'foreman'
+  gem 'rails-erd'
 end
 
 group :test do
