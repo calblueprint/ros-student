@@ -162,6 +162,7 @@ class SectionEdit extends React.Component {
     })})
 
     request.post(path, params, (response) => {
+      this.setState({ subsections: response })
     }, (error) => {
       console.log(error)
       this.setState({ section: update(this.state.section, {
