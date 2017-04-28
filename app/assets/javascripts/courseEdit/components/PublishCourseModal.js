@@ -38,7 +38,7 @@ class PublishCourseModal extends React.Component {
   renderUnpublishText() {
     return (
       <div>
-        Are you sure you want to unpublish this course? Students will no longer be able to view the course or take any of it's material.
+        Are you sure you want to unpublish this course? Students will no longer be able to view the course or take any of its material.
 
         <div className='flex flex-horizontal marginTop-sm'>
           <input

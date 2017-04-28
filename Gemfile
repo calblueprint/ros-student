@@ -14,6 +14,7 @@ gem 'kaminari', '0.16.3'
 gem 'nokogiri'
 gem 'pg', '0.18.4'
 gem 'pg_search', '1.0.5'
+gem 'sucker_punch', '~> 2.0'
 
 # Building javascript
 gem 'webpack-rails', '0.9.9'

@@ -229,6 +229,7 @@ class SubsectionEdit extends React.Component {
     })})
 
     request.post(path, params, (response) => {
+      this.setState({ subsection: response })
     }, (error) => {
       console.log(error)
 

@@ -143,9 +143,8 @@ class ExportImportPage extends React.Component {
           <div className='import-container'>
             <div className='flex center flex-vertical'>
               <h1 className='h1'>Import Course</h1>
-              <p className='marginTopBot-md export-import-desc'>
-                Be sure you want to import a course before continuing. By using this feature, you will create a new course. We will only accept properly formatted .json files, such as those downloaded from Export Course.
-              </p>
+              <p className='fill marginTop-md export-import-desc'>Be sure you want to import a course before continuing. By using this feature, you will create a new course. We will only accept properly formatted .json files, such as those downloaded from Export Course.</p>
+              <p className='fill marginTop-sm marginBot-md export-import-desc'>We will email you once your file has been processed.</p>
               <Form>
                 <label
                   htmlFor='course-import'

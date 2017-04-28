@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.first_name %>!</h1>
+
+    <% if @imported %>
+      <p>
+        Your course has been imported! Go check it out.</a>
+      </p>
+    <% else %>
+      <p>
+        Looks like the json file that you've imported had some errors - make sure that it is formatted correctly!
+      </p>
+    <% end %>
+
+    <p>- Roots of Success</p>
+  </body>
+</html>

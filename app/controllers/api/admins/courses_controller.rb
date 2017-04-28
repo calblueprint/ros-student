@@ -30,11 +30,8 @@ class Api::Admins::CoursesController < Api::Admins::BaseController
   end
 
   def import
-    if ImportCourse.new(import_params).import_course
-      success_response('Successfully imported course.')
-    else
-      error_response(nil, 'Invalid course information')
-    end
+    ImportCourseJob.perform_async(current_admin.id, import_params)
+    success_response
   end
 
   def export
