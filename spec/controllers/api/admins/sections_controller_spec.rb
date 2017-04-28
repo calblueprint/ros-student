@@ -66,7 +66,7 @@ describe Api::Admins::SectionsController, type: :controller do
       parsed_response = JSON.parse(response.body)
 
       expect(validate_serializer(parsed_response,
-                                 SECTION_ADMIN_SERIALIZER,
+                                 COURSE_ADMIN_SERIALIZER,
                                  false)).to be true
       expect(Section.find(@section1.id).position).to eq 2
       expect(Section.find(@section2.id).position).to eq 1
