@@ -32,7 +32,7 @@ class Api::Admins::SectionsController < Api::Admins::BaseController
 
   def switch_position
     if @section.switch(switch_position_params)
-      render json: @section, serializer: SectionAdminSerializer, root: false
+      render json: @section.course, serializer: CourseAdminSerializer, root: false
     else
       error_response(nil, 'Invalid position given')
     end

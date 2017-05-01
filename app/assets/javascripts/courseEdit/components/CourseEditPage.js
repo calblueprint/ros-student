@@ -240,6 +240,7 @@ class CourseEditPage extends React.Component {
     })})
 
     request.post(path, params, (response) => {
+      this.setState({ section: response })
     }, (error) => {
       console.log(error)
       this.setState({ course: update(this.state.course, {
