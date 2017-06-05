@@ -1,3 +1,8 @@
+/**
+ * Basic login form used for both admins and students with email and password
+ * fields. 
+ */
+
 import _ from 'underscore'
 import React from 'react'
 

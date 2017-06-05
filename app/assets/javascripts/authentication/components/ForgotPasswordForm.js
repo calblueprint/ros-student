@@ -1,3 +1,12 @@
+/**
+ * Form for users to reset a forgotten password. Contains an email field to which
+ * a reset password notice is sent.
+ *
+ * @prop userType     - either 'student' or 'admin' and denotes the type of form
+ * @prop route        - string route to which a request is posted for resetting
+ *                      the user's password
+ */
+
 import React, { PropTypes } from 'react'
 
 import Form from '../../shared/components/forms/Form'

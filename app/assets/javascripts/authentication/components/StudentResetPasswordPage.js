@@ -1,3 +1,7 @@
+/**
+ * Basic container for ResetPasswordForm for students. 
+ */
+
 import React from 'react'
 
 import { RailsRoutes, APIRoutes } from '../../shared/routes'

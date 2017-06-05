@@ -1,3 +1,7 @@
+/**
+ * Basic container for students, which displays the appropriate LoginForm. 
+ */
+
 import React from 'react'
 import { Link } from 'react-router'
 

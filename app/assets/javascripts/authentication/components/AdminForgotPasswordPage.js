@@ -1,3 +1,7 @@
+/**
+ * Page containing the admin's ability to reset a forgotten password.
+ */
+ 
 import React from 'react'
 
 import { APIRoutes } from '../../shared/routes'

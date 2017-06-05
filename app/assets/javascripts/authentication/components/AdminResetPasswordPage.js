@@ -1,3 +1,7 @@
+/**
+ * Basic page for admins to reset their passwords. 
+ */
+
 import React from 'react'
 
 import { RailsRoutes, APIRoutes } from '../../shared/routes'

@@ -1,3 +1,7 @@
+/**
+ * Sign up page for students after they've entered their registration code. 
+ */
+
 import _ from 'underscore'
 import React from 'react'
 

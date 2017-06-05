@@ -1,3 +1,7 @@
+/**
+ * Basic container for ForgotPasswordForm for students. 
+ */
+
 import React from 'react'
 
 import { APIRoutes } from '../../shared/routes'

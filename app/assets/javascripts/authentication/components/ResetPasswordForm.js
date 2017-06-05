@@ -1,3 +1,12 @@
+/**
+ * Form shared by both students and admins displayed after user clicks on email
+ * link to reset password. Shows fields for new password and password confirmation.
+ *
+ * @prop userType             - either 'student' or 'admin'
+ * @prop railsRoute           - the reset password path for the particular user type
+ * @prop resetPasswordToken   - token associated with this request
+ */
+
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 

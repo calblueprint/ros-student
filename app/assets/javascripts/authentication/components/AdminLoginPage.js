@@ -1,3 +1,7 @@
+/**
+ * Entry point into the admin application. Students must use StudentLoginPage.
+ */
+
 import React from 'react'
 import { Link } from 'react-router'
 
