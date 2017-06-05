@@ -1,3 +1,8 @@
+/**
+ * Container page for AdminListTab and StudentListTab for displaying lists of
+ * all users currently on the platform. 
+ */
+
 import _ from 'underscore'
 import React from 'react'
 

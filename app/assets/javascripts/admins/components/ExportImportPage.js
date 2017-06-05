@@ -1,3 +1,8 @@
+/**
+ * Page on admin side that allows the exportion and importion of courses to
+ * JSON files, either to be backed up or automatically edited via a script. 
+ */
+
 import _ from 'underscore'
 import React from 'react'
 

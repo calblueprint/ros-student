@@ -1,3 +1,8 @@
+/**
+ * Landing page of the admin platform, with a list of AdminCourseCard's that
+ * link to the respective course edit pages for those courses.
+ */
+ 
 import _ from 'underscore'
 import React from 'react'
 import { Link } from 'react-router'

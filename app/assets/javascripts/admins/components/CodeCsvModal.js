@@ -1,3 +1,13 @@
+/**
+ * Basic modal on CodeCsvListPage that shows when admin presses on a code_csv
+ * to expand its details. Takes the corresponding code_csv and returns the list
+ * of courses to which it corresponds.
+ *
+ * @prop codeCsv          - code_csv object that the admin selected to expand
+ * @prop isModalOpen      - bool indicating whether this modal is opened
+ * @prop closeModal       - parent method that sets the closed state of this modal
+ */
+
 import React, { PropTypes } from 'react'
 import Modal from 'react-bootstrap-modal'
 import { Images } from '../../utils/helpers/image_helpers'

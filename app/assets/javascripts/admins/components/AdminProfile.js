@@ -1,3 +1,8 @@
+/**
+ * Basic information card on the admin side that displays information about the
+ * current admin and contains a link for them to update their information.
+ */
+
 import _ from 'underscore'
 import React from 'react'
 

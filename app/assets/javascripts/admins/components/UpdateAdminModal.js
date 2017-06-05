@@ -1,3 +1,11 @@
+/**
+ * Modal on AdminProfile that extends from UpdateUserModal and allows admin to
+ * update basic profile information, such as password, email, username, etc.
+ *
+ * @prop id            - id of current admin to update
+ * @prop closeModal    - parent method that tracks closed state of this modal
+ */
+
 import _ from 'underscore'
 import React from 'react'
 
@@ -36,6 +44,11 @@ class UpdateAdminModal extends UpdateUserModal {
       onFailure && onFailure()
     })
   }
+}
+
+UpdateAdminModal.propTypes = {
+  id: PropTypes.number.isRequired,
+  closeModal: PropTypes.func.isRequired, 
 }
 
 export default UpdateAdminModal

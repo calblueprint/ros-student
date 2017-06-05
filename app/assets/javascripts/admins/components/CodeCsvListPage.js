@@ -1,3 +1,10 @@
+/**
+ * Main page that is displayed on the admin-side code generating functionality.
+ * Shows an alphabetically sorted list of code_csv's, which can each be expanded
+ * and downloaded. There is also a button at the top, which enables admins to
+ * generate a new code_csv.
+ */
+
 import _ from 'underscore'
 import React from 'react'
 import Modal from 'react-bootstrap-modal'

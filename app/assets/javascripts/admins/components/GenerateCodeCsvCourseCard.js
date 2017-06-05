@@ -1,3 +1,8 @@
+/**
+ * Basic card with the name of a course to be selected (on GenerateCodeCsvModal)
+ * for which to generate codes. 
+ */
+
 import React from 'react'
 
 class GenerateCodeCsvCourseCard extends React.Component {
@@ -7,7 +12,6 @@ class GenerateCodeCsvCourseCard extends React.Component {
     this.state = {
       selected: false
     }
-
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -22,7 +26,7 @@ class GenerateCodeCsvCourseCard extends React.Component {
         className={`flex generate-code-csv-course-card ${this.state.selected ? ' active' : ''}`}
         onClick={this.handleClick}
       >
-          <h2 className='generate-code-csv-course-text'>{this.props.course.name}</h2>
+        <h2 className='generate-code-csv-course-text'>{this.props.course.name}</h2>
       </div>
     )
   }

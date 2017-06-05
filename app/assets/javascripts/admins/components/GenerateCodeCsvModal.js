@@ -1,3 +1,16 @@
+/**
+ * Modal on CodeCsvListPage that shows when an admin wants to generate new
+ * code_csv's to register new students. Fields rendered include a name for the
+ * list of codes, the number of codes to be generated, whether the codes
+ * should register students to be self-paced or instructor-led, and a list of
+ * selectable courses that the codes should be assigned to
+ *
+ * @prop isModalOpen    - bool indicating whether the modal is currently opened
+ * @prop closeModal     - parent method that sets closed state of modal
+ * @prop update         - parent callback method that updates the set of code_csvs
+ *                        maintained on the parent page
+ */
+
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 import Modal from 'react-bootstrap-modal'

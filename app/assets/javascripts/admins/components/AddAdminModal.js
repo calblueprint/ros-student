@@ -1,3 +1,12 @@
+/**
+ * Modal on AdminListTab that allows an admin to create another admin. Contains
+ * basic form fields that should be filled out, and then an email will be sent
+ * to the designated target with information for registration.
+ *
+ * @prop setNewUser        - function used by parent to keep track of the new
+ *                           user's state
+ */
+
 import _ from 'underscore'
 import React, { PropTypes } from 'react'
 import Modal from 'react-bootstrap-modal'

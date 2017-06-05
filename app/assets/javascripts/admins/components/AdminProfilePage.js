@@ -1,3 +1,7 @@
+/**
+ * Container page that holds AdminProfile. 
+ */
+
 import React from 'react'
 
 import AdminProfile from './AdminProfile'

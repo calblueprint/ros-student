@@ -1,3 +1,8 @@
+/**
+ * A dynamically resizing grid of AdminCourseCard's on the AdminDashboardPage,
+ * which link to their respective course edit pages. 
+ */
+
 import _ from 'underscore'
 import React from 'react'
 

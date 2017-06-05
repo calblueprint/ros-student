@@ -1,9 +1,9 @@
 /**
  * Card for displaying groups of generated codes and allowing download
  *
- * @prop code_csv  - code_csv object with id, name, and created_at
+ * @prop code_csv      - code_csv object with id, name, and created_at
  */
- 
+
 import React, { PropTypes } from 'react'
 import request from '../../shared/requests/request'
 import { APIRoutes } from '../../shared/routes'

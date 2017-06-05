@@ -1,3 +1,8 @@
+/**
+ * A tab component located on UsersListPage which inherits from the base class
+ * UserList and renders a list of all the students on the platform.
+ */
+
 import React from 'react'
 
 import { APIRoutes } from '../../shared/routes'
