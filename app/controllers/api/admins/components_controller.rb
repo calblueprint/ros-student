@@ -79,7 +79,7 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
     return unless audio_file
 
     params[:component][:audio] = audio_file
-    params[:component].delete(:audio_data)
+    params[:component].delete "audio_data"
   end
 
   def convert_image
@@ -91,6 +91,6 @@ class Api::Admins::ComponentsController < Api::Admins::BaseController
     return unless image_file
 
     params[:component][:photo_attributes][:image] = image_file
-    params[:component][:photo_attributes].delete(:image_data)
+    params[:component][:photo_attributes].delete "image_data"
   end
 end

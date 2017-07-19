@@ -17,6 +17,7 @@ class SlideForm extends React.Component {
       imageUrl: this.props.component.image_data,
       audioUrl: this.props.component.audio_url,
     })
+    this.imageChanged = false
 
     this.handleChange = this.handleChange.bind(this)
 
@@ -49,6 +50,7 @@ class SlideForm extends React.Component {
   }
 
   updateImageData(image) {
+    this.imageChanged = true
     this.setState({ imageUrl: image })
   }
 
@@ -59,11 +61,13 @@ class SlideForm extends React.Component {
   submit(event, successFunction, errorFunction) {
     event.preventDefault()
 
-    const component = {
+    let component = {
       componentType: 0,
       title: this.state.formFields.title.value,
       audioData: this.state.audioUrl ? this.state.audioUrl : null,
-      imageData: this.state.imageUrl,
+    }
+    if (this.imageChanged) {
+      component.imageData = this.state.imageUrl
     }
 
     this.props.callback(component, successFunction, (error) => {
