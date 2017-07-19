@@ -28,6 +28,7 @@ class ComponentForm extends React.Component {
       componentParams.component.photo_attributes = {
         image_data: componentJson.imageData
       }
+      delete componentParams.imageData
     }
 
     return componentParams
