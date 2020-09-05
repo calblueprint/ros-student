@@ -1,6 +1,9 @@
 {
   "name": "RootsOfSuccess",
   "version": "0.0.1",
+  "engines": {
+    "node": "6.x"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
