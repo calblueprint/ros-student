@@ -34,7 +34,7 @@
     "sass-loader": "4.0.2",
     "stats-webpack-plugin": "^0.2.1",
     "style-loader": "0.13.1",
-    "underscore": "1.8.3",
+    "underscore": "1.12.1",
     "webpack": "^1.9.11",
     "webpack-dev-middleware": "1.7.0",
     "webpack-dev-server": "^1.9.0",
