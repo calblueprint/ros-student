@@ -1,5 +1,7 @@
 require('es6-promise').polyfill()
 
+/* eslint-disable */
+
 // Example webpack configuration with asset fingerprinting in production.
 'use strict';
 
