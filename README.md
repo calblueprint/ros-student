@@ -1,4 +1,4 @@
-lol
+league of lol
 
 # Roots of Success
 The production application is located at https://ros-student-production.herokuapp.com. This is the **student entry portal**, which only students should use. Admin access a different entry portal described below.
